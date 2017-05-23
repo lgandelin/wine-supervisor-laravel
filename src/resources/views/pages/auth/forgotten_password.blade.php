@@ -24,8 +24,6 @@
                             </div>
                         @endif
 
-                        <h1 class="logo" style="text-align: center; margin-top: 1rem; margin-bottom: 4rem"><img src="{{asset('img/logo-arol-energy.png')}}"></h1>
-
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('forgotten_password_handler') }}">
                             <div class="form-group">
                                 <label>{{ trans('wine-supervisor::login.email') }}</label>
