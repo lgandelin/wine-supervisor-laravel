@@ -1,0 +1,20 @@
+{
+    "name": "webaccess/wine-supervisor-laravel",
+    "type": "library",
+    "description": "Wine Supervisor - Laravel package",
+    "authors": [
+        {
+            "name": "Louis Gandelin",
+            "email": "lgandelin@web-access.fr"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "fzaninotto/faker": "~1.4",
+    },
+    "autoload": {
+        "psr-4": {
+            "Webaccess\\WineSupervisorLaravel\\": "src/Webaccess/WineSupervisorLaravel"
+        }
+    }
+}
