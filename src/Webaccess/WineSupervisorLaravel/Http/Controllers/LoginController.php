@@ -28,7 +28,7 @@ class LoginController extends Controller
      */
     public function authenticate()
     {
-        if (Auth::attempt([
+        if (Auth::guard('administrators')->attempt([
             'email' => $this->request->input('email'),
             'password' => $this->request->input('password'),
         ])) {

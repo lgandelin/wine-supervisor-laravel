@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Webaccess\WineSupervisorLaravel\Commands\CreateAdministratorCommand;
 use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
 use Webaccess\WineSupervisorLaravel\Commands\GenerateDataFromExcelCommand;
 use Webaccess\WineSupervisorLaravel\Commands\GenerateRandomDatabaseDataCommand;
@@ -26,7 +27,7 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom($basePath.'resources/views/', 'wine-supervisor');
         $this->loadTranslationsFrom($basePath.'resources/lang/', 'wine-supervisor');
-        //$router->middleware('admin', AdminMiddleware::class);
+        $router->middleware('admin', AdminMiddleware::class);
 
         $this->publishes([
             $basePath.'resources/assets/css' => base_path('public/css'),
@@ -43,7 +44,7 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
-
+            CreateAdministratorCommand::class
         ]);
 
         $this->app->register(
