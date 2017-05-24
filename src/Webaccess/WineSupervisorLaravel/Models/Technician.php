@@ -5,11 +5,11 @@ namespace Webaccess\WineSupervisorLaravel\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Technician extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'users';
+    protected $table = 'technicians';
     public $incrementing = false;
     public $casts = [
         'id' => 'string'
@@ -21,16 +21,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'company',
+        'registration',
         'email',
         'address',
         'zipcode',
         'city',
         'phone',
-        'email',
+        'status',
         'last_connection_date',
-        'opt_in'
     ];
 
     /**

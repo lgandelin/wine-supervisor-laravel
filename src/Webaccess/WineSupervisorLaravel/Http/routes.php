@@ -11,7 +11,6 @@ Route::group(['middleware' => ['web']], function () {
 
     //AUTH
     Route::group(['middleware' => ['auth']], function () {
-
-        Route::get('/', array('as' => 'dashboard', 'uses' => 'Webaccess\WineSupervisorLaravel\Http\Controllers\DashboardController@index'));
+        Route::get('/dashboard', array('as' => 'dashboard', 'uses' => 'Webaccess\WineSupervisorLaravel\Http\Controllers\DashboardController@index'));
     });
 });
