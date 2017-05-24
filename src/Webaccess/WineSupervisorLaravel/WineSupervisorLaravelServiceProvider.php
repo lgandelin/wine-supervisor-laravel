@@ -5,16 +5,10 @@ namespace Webaccess\WineSupervisorLaravel;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Webaccess\WineSupervisorLaravel\Commands\CreateAdministratorCommand;
-use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateDataFromExcelCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateRandomDatabaseDataCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateRandomJSONDataCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateSampleExcelDataCommand;
-use Webaccess\WineSupervisorLaravel\Commands\HandleExcelCommand;
-use Webaccess\WineSupervisorLaravel\Commands\StoreExcelDataToCloudCommand;
-use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminClientsMiddleware;
 use Illuminate\Support\Facades\Route;
+use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminMiddleware;
+use Webaccess\WineSupervisorLaravel\Http\Middlewares\UserMiddleware;
 
 class WineSupervisorLaravelServiceProvider extends ServiceProvider
 {
@@ -38,6 +32,7 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
             $basePath.'database/migrations' => database_path('migrations'),
         ], 'migrations');
 
+        $router->aliasMiddleware('user', UserMiddleware::class);
         $router->aliasMiddleware('admin', AdminMiddleware::class);
 
         Route::middleware('web')
@@ -48,6 +43,7 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
+            CreateUserCommand::class,
             CreateAdministratorCommand::class
         ]);
 

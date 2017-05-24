@@ -17,7 +17,7 @@
             </div>
         @endif
 
-        <h1>Dashboard</h1>
+        <h1>Dashboard - Utilisateur</h1>
 
         <a href="{{ route('logout') }}">Logout</a>
     </div>

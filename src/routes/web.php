@@ -10,7 +10,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/forgotten_password', array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
     Route::post('/forgotten_password_handler', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
 
+    Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'LoginController@admin_login'));
+    Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'LoginController@admin_authenticate'));
+    Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'LoginController@admin_logout'));
+
+    Route::group(['middleware' => ['user']], function () {
+        Route::get('/', array('as' => 'user_index', 'uses' => 'User\IndexController@index'));
+    });
+
     Route::group(['middleware' => ['admin']], function () {
-        Route::get('/', array('as' => 'dashboard', 'uses' => 'DashboardController@index'));
+        Route::get('/admin', array('as' => 'admin_index', 'uses' => 'Admin\IndexController@index'));
     });
 });

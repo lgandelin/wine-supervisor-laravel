@@ -17,22 +17,22 @@ class LoginController extends Controller
 
     public function login()
     {
-        return view('wine-supervisor::pages.auth.login', [
+        return view('wine-supervisor::pages.user.auth.login', [
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
         ]);
     }
 
     /**
-     * @param 
+     * @param
      * @return mixed
      */
     public function authenticate()
     {
-        if (Auth::guard('administrators')->attempt([
+        if (Auth::guard('users')->attempt([
             'email' => $this->request->input('email'),
             'password' => $this->request->input('password'),
         ])) {
-            return redirect()->intended('/');
+            return redirect()->route('user_index');
         }
 
         return redirect()->route('login')->with([
@@ -45,9 +45,44 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        Auth::guard('administrators')->logout();
+        Auth::guard('users')->logout();
 
         return redirect()->route('login');
+    }
+
+    public function admin_login()
+    {
+        return view('wine-supervisor::pages.admin.auth.login', [
+            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
+        ]);
+    }
+
+    /**
+     * @param 
+     * @return mixed
+     */
+    public function admin_authenticate()
+    {
+        if (Auth::guard('administrators')->attempt([
+            'email' => $this->request->input('email'),
+            'password' => $this->request->input('password'),
+        ])) {
+            return redirect()->route('admin_index');
+        }
+
+        return redirect()->route('admin_login')->with([
+            'error' => trans('wine-supervisor::login.login_or_password_error'),
+        ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function admin_logout()
+    {
+        Auth::guard('administrators')->logout();
+
+        return redirect()->route('admin_login');
     }
 
     /**
@@ -56,7 +91,7 @@ class LoginController extends Controller
      */
     public function forgotten_password()
     {
-        return view('wine-supervisor::pages.auth.forgotten_password', [
+        return view('wine-supervisor::pages.user.auth.forgotten_password', [
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
             'message' => ($this->request->session()->has('message')) ? $this->request->session()->get('message') : null,
         ]);
