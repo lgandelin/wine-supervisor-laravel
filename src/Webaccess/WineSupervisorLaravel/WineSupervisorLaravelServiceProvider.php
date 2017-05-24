@@ -13,6 +13,7 @@ use Webaccess\WineSupervisorLaravel\Commands\GenerateSampleExcelDataCommand;
 use Webaccess\WineSupervisorLaravel\Commands\HandleExcelCommand;
 use Webaccess\WineSupervisorLaravel\Commands\StoreExcelDataToCloudCommand;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminClientsMiddleware;
+use Illuminate\Support\Facades\Route;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminMiddleware;
 
 class WineSupervisorLaravelServiceProvider extends ServiceProvider
@@ -23,11 +24,8 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
     {
         $basePath = __DIR__.'/../../';
 
-        include __DIR__.'/Http/routes.php';
-
         $this->loadViewsFrom($basePath.'resources/views/', 'wine-supervisor');
         $this->loadTranslationsFrom($basePath.'resources/lang/', 'wine-supervisor');
-        $router->middleware('admin', AdminMiddleware::class);
 
         $this->publishes([
             $basePath.'resources/assets/css' => base_path('public/css'),
@@ -39,6 +37,12 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
         $this->publishes([
             $basePath.'database/migrations' => database_path('migrations'),
         ], 'migrations');
+
+        $router->aliasMiddleware('admin', AdminMiddleware::class);
+
+        Route::middleware('web')
+            ->namespace('Webaccess\WineSupervisorLaravel\Http\Controllers')
+            ->group($basePath . 'routes/web.php');
     }
 
     public function register()

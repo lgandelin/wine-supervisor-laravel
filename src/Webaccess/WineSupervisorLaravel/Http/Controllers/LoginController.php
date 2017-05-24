@@ -45,7 +45,7 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('administrators')->logout();
 
         return redirect()->route('login');
     }
@@ -93,10 +93,10 @@ class LoginController extends Controller
      */
     private function sendNewPasswordToUser($newPassword, $userEmail)
     {
-        Mail::send('WineSupervisor::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
+        Mail::send('wine-supervisor::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
 
             $message->to($userEmail)
-                ->from('no-reply@WineSupervisor.com')
+                ->from('no-reply@winesupervisor.com')
                 ->subject('[WineSupervisor] Votre nouveau mot de passe pour accéder à votre compte');
         });
     }
