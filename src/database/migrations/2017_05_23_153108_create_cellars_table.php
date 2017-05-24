@@ -29,8 +29,6 @@ class CreateCellarsTable extends Migration
             $table->string('city')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->datetime('creation_date')->nullable();
-            $table->datetime('update_date')->nullable();
             $table->timestamps();
         });
     }
