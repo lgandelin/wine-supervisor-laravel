@@ -1,7 +1,5 @@
 @extends('wine-supervisor::default')
 
-@section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
-
 @section('page-content')
     <div class="dashboard-template">
 
@@ -20,5 +18,23 @@
         <h1>Dashboard - Utilisateur</h1>
 
         <a href="{{ route('user_logout') }}">Logout</a>
+
+        <h2>Mes caves</h2>
+
+        @if ($cellars)
+            <div class="cellars">
+                @foreach($cellars as $cellar)
+                    <div>
+                        {{ $cellar->id }}
+                        {{ $cellar->technician_id }}
+                        <h2>{{ $cellar->name }}</h2>
+                        <a href="{{ route('user_cellar_delete', ['id' => $cellar->id]) }}">Supprimer</a>
+                        <hr>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        <a href="{{ route('user_cellar_create') }}">Ajouter une cave</a>
     </div>
 @stop

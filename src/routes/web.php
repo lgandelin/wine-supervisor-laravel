@@ -6,15 +6,15 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/login', array('as' => 'user_login', 'uses' => 'LoginController@login'));
     Route::post('/login', array('as' => 'user_login_handler', 'uses' => 'LoginController@authenticate'));
-    Route::get('/logout', array('as' => 'user_logout', 'uses' => 'LoginController@logout'));
-    Route::get('/forgotten_password', array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
-    Route::post('/forgotten_password_handler', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
+    Route::get('/se-deconnecter', array('as' => 'user_logout', 'uses' => 'LoginController@logout'));
+    Route::get('/mot-de-passe-oublie', array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
+    Route::post('/mot-de-passe-oublie', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
 
-    Route::get('/signup', array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
-    Route::post('/signup', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
+    Route::get('/inscription', array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
+    Route::post('/inscription', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
 
-    Route::get('/signup_2', array('as' => 'user_signup_2', 'uses' => 'User\SignupController@signup_2'));
-    Route::post('/signup_2', array('as' => 'user_signup_2_handler', 'uses' => 'User\SignupController@signup_2_handler'));
+    Route::get('/inscription/cave', array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
+    Route::post('/inscription/cave', array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
 
     Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'LoginController@admin_login'));
     Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'LoginController@admin_authenticate'));
@@ -23,7 +23,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
 
     Route::group(['middleware' => ['user']], function () {
-        Route::get('/user', array('as' => 'user_index', 'uses' => 'User\IndexController@index'));
+        Route::get('/utilisateur', array('as' => 'user_index', 'uses' => 'User\IndexController@index'));
+        Route::get('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create', 'uses' => 'User\CellarController@create'));
+        Route::post('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create_handler', 'uses' => 'User\CellarController@create_handler'));
+        Route::get('/utilisateur/supprimer-cave/{uuid}', array('as' => 'user_cellar_delete_handler', 'uses' => 'User\CellarController@delete'));
     });
 
     Route::group(['middleware' => ['admin']], function () {

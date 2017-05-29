@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\User;
+use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 use Webaccess\WineSupervisorLaravel\Services\SignupManager;
+use Webaccess\WineSupervisorLaravel\Services\UserManager;
 
 class SignupController extends BaseController
 {
@@ -19,7 +21,7 @@ class SignupController extends BaseController
             $session_user = json_decode($session_user);
         }
 
-        return view('wine-supervisor::pages.user.signup.1', [
+        return view('wine-supervisor::pages.user.signup.user', [
             'last_name' => isset($session_user) ? $session_user->last_name : null,
             'first_name' => isset($session_user) ? $session_user->first_name : null,
             'email' => isset($session_user) ? $session_user->email : null,
@@ -44,44 +46,51 @@ class SignupController extends BaseController
 
         $request->session()->put('user_signup', json_encode($user));
 
-        return redirect()->route('user_signup_2');
+        return redirect()->route('user_signup_cellar');
     }
 
-    public function signup_2(Request $request)
+    public function signup_cellar(Request $request)
     {
         parent::__construct($request);
 
-        return view('wine-supervisor::pages.user.signup.2', [
+        return view('wine-supervisor::pages.user.signup.cellar', [
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function signup_2_handler(Request $request)
+    public function signup_cellar_handler(Request $request)
     {
         parent::__construct($request);
 
         //TODO : REFACTORING
 
         if ($session_user = $this->request->session()->get('user_signup')) {
-            $user = new User(get_object_vars(json_decode($session_user)));
-            $unhashed_password = $user->password;
+            $user_data = json_decode($session_user);
 
-            if ($userID = SignupManager::createUser($user)) {
+            if ($userID = UserManager::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->password)) {
 
-                if (!SignupManager::checkIDWS($request)) {
+                if (!CellarManager::checkIDWS($request->get('id_ws'))) {
                     $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
-                    return redirect()->route('user_signup_2');
+                    return redirect()->route('user_signup_cellar');
                 }
 
-                SignupManager::createCellar($userID, $request);
-                SignupManager::updateWSTable($request);
+                CellarManager::create(
+                    $this->getUser()->id,
+                    $request->get('id_ws'),
+                    $request->get('technician_id'),
+                    $request->get('name'),
+                    $request->get('serial_number'),
+                    $request->get('address'),
+                    $request->get('zipcode'),
+                    $request->get('city')
+                );
 
                 //Call CDO webservice
                 //TODO : CALL CDO
 
                 //Log user in and redirect
-                if (Auth::attempt(['email' => $user->email, 'password' => $unhashed_password])) {
+                if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
                     return redirect()->route('user_index');
                 }
             }

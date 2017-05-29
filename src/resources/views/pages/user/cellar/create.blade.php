@@ -1,7 +1,5 @@
 @extends('wine-supervisor::default')
 
-@section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
-
 @section('page-content')
     <div class="signup-template">
 
@@ -19,7 +17,7 @@
 
         <h1>Création d'une cave</h1>
 
-        <form action="{{ route('user_signup_2_handler') }}" method="POST">
+        <form action="{{ route('user_cellar_create_handler') }}" method="POST">
 
             <div>
                 <label for="id_ws">Adresse Mak</label>
@@ -56,7 +54,7 @@
                 <input type="text" name="city" id="city" />
             </div>
 
-            <a href="{{ route('user_signup') }}">Retour</a>
+            <a href="{{ route('user_index') }}">Retour</a>
             <input type="submit" value="Valider" />
             {{ csrf_field() }}
         </form>

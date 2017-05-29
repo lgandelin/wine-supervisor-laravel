@@ -2,8 +2,8 @@
 
 namespace Webaccess\WineSupervisorLaravel\Services;
 
+use DateTime;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Administrator;
 use Webaccess\WineSupervisorLaravel\Models\User;
@@ -17,7 +17,7 @@ class UserManager
      * @param $password
      * @return User
      */
-    public static function createUser($firstName, $lastName, $email, $password)
+    public static function create($firstName, $lastName, $email, $password)
     {
         $user = new User();
         $user->id = Uuid::uuid4()->toString();
@@ -25,10 +25,9 @@ class UserManager
         $user->last_name = $lastName;
         $user->email = $email;
         $user->password = Hash::make($password);
+        $user->last_connection_date = new DateTime();
 
         $user->save();
-
-        Log::info('Created user profile successfully: ' . json_encode($user) . $password . "\n");
 
         return $user->id;
     }
@@ -51,8 +50,6 @@ class UserManager
 
         $administrator->save();
 
-        Log::info('Created administrator profile successfully: ' . json_encode($administrator) . $password . "\n");
-            
         return $administrator->id;
     }
 }
