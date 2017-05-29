@@ -28,6 +28,7 @@
                         {{ $cellar->id }}
                         {{ $cellar->technician_id }}
                         <h2>{{ $cellar->name }}</h2>
+                        <a href="{{ route('user_cellar_update', ['id' => $cellar->id]) }}">Editer</a>
                         <a href="{{ route('user_cellar_delete_handler', ['id' => $cellar->id]) }}">Supprimer</a>
                         <hr>
                     </div>

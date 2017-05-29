@@ -75,11 +75,17 @@ class SignupController extends BaseController
                     return redirect()->route('user_signup_cellar');
                 }
 
+                if ($request->get('technician_id') && !CellarManager::checkTechnicianID($request->get('technician_id'))) {
+                    $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
+                    return redirect()->back()->withInput();
+                }
+
                 CellarManager::create(
                     $this->getUser()->id,
                     $request->get('id_ws'),
                     $request->get('technician_id'),
                     $request->get('name'),
+                    Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE DIFFERENT SUBSCRIPTION TYPES
                     $request->get('serial_number'),
                     $request->get('address'),
                     $request->get('zipcode'),

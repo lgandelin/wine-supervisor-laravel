@@ -11,6 +11,10 @@ class GPSTool
         $response = file_get_contents($url);
         $json = json_decode($response, TRUE);
 
-        return array($json['results'][0]['geometry']['location']['lat'], $json['results'][0]['geometry']['location']['lng']);
+        if (isset($json['results']) && isset($json['results'][0])) {
+            return array($json['results'][0]['geometry']['location']['lat'], $json['results'][0]['geometry']['location']['lng']);
+        }
+
+        return self::getGPSCoordinates($complete_address);
     }
 }
