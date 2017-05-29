@@ -2,7 +2,9 @@
 
 namespace Webaccess\WineSupervisorLaravel\Models;
 
-class Cellar
+use Illuminate\Database\Eloquent\Model;
+
+class Cellar extends Model
 {
     protected $table = 'cellars';
     public $incrementing = false;
@@ -30,15 +32,5 @@ class Cellar
         'city',
         'latitude',
         'longitude'
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
     ];
 }

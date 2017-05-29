@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
+use Webaccess\WineSupervisorLaravel\Models\Cellar;
 use Webaccess\WineSupervisorLaravel\Models\User;
 
 class SignupController extends BaseController
@@ -65,10 +66,14 @@ class SignupController extends BaseController
             $user = new User(get_object_vars(json_decode($session_user)));
             $unhashed_password = $user->password;
 
-            $this->storeUser($user);
+            if ($userID = $this->storeUser($user)) {
+                $this->storeCellar($userID, $request);
 
-            if (Auth::attempt(['email' => $user->email, 'password' => $unhashed_password])) {
-                return redirect()->route('user_index');
+                //TODO : CALL CDO
+
+                if (Auth::attempt(['email' => $user->email, 'password' => $unhashed_password])) {
+                    return redirect()->route('user_index');
+                }
             }
         }
 
@@ -79,6 +84,7 @@ class SignupController extends BaseController
 
     /**
      * @param $user
+     * @return string
      */
     private function storeUser($user)
     {
@@ -86,6 +92,27 @@ class SignupController extends BaseController
         $user->password = Hash::make($user->password);
         $user->last_connection_date = new DateTime();
         $user->save();
+
+        return $user->id;
+    }
+
+    /**
+     * @param $userID
+     * @param $request
+     */
+    private function storeCellar($userID, $request)
+    {
+        $cellar = new Cellar();
+        $cellar->id = Uuid::uuid4()->toString();
+        $cellar->user_id = $userID;
+        $cellar->id_ws = $request->get('id_ws');
+        $cellar->technician_id = $request->get('technician_id');
+        $cellar->name = $request->get('name');
+        $cellar->serial_number = $request->get('serial_number');
+        $cellar->address = $request->get('address');
+        $cellar->zipcode = $request->get('zipcode');
+        $cellar->city = $request->get('city');
+        $cellar->save();
     }
 
 }
