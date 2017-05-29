@@ -2,14 +2,12 @@
 
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
-use Webaccess\WineSupervisorLaravel\Models\Cellar;
+use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\User;
+use Webaccess\WineSupervisorLaravel\Services\SignupManager;
 
 class SignupController extends BaseController
 {
@@ -41,6 +39,7 @@ class SignupController extends BaseController
         $user->first_name = $request->get('first_name');
         $user->email = $request->get('email');
         $user->password = $request->get('password');
+        $user->subscription_type = Subscription::DEFAULT_SUBSCRIPTION;
         $user->opt_in = $request->get('opt_in') === 'on' ? true : false;
 
         $request->session()->put('user_signup', json_encode($user));
@@ -62,15 +61,26 @@ class SignupController extends BaseController
     {
         parent::__construct($request);
 
+        //TODO : REFACTORING
+
         if ($session_user = $this->request->session()->get('user_signup')) {
             $user = new User(get_object_vars(json_decode($session_user)));
             $unhashed_password = $user->password;
 
-            if ($userID = $this->storeUser($user)) {
-                $this->storeCellar($userID, $request);
+            if ($userID = SignupManager::createUser($user)) {
 
+                if (!SignupManager::checkIDWS($request)) {
+                    $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
+                    return redirect()->route('user_signup_2');
+                }
+
+                SignupManager::createCellar($userID, $request);
+                SignupManager::updateWSTable($request);
+
+                //Call CDO webservice
                 //TODO : CALL CDO
 
+                //Log user in and redirect
                 if (Auth::attempt(['email' => $user->email, 'password' => $unhashed_password])) {
                     return redirect()->route('user_index');
                 }
@@ -80,39 +90,6 @@ class SignupController extends BaseController
         $request->session()->flash('error', trans('wine-supervisor::user_signup.session_error'));
 
         return redirect()->route('user_signup');
-    }
-
-    /**
-     * @param $user
-     * @return string
-     */
-    private function storeUser($user)
-    {
-        $user->id = Uuid::uuid4()->toString();
-        $user->password = Hash::make($user->password);
-        $user->last_connection_date = new DateTime();
-        $user->save();
-
-        return $user->id;
-    }
-
-    /**
-     * @param $userID
-     * @param $request
-     */
-    private function storeCellar($userID, $request)
-    {
-        $cellar = new Cellar();
-        $cellar->id = Uuid::uuid4()->toString();
-        $cellar->user_id = $userID;
-        $cellar->id_ws = $request->get('id_ws');
-        $cellar->technician_id = $request->get('technician_id');
-        $cellar->name = $request->get('name');
-        $cellar->serial_number = $request->get('serial_number');
-        $cellar->address = $request->get('address');
-        $cellar->zipcode = $request->get('zipcode');
-        $cellar->city = $request->get('city');
-        $cellar->save();
     }
 
 }

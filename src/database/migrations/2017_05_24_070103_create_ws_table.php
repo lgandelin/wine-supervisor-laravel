@@ -15,7 +15,6 @@ class CreateWsTable extends Migration
     {
         Schema::create('ws', function (Blueprint $table) {
             $table->uuid('id')->primary('id');
-            $table->string('id_ws')->nullable();
             $table->string('board_type')->nullable();
             $table->datetime('first_activation_date')->nullable();
             $table->datetime('deactivation_date')->nullable();

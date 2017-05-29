@@ -23,17 +23,17 @@
 
             <div>
                 <label for="last_name">Nom</label>
-                <input type="text" name="last_name" id="last_name" value="{{{ $last_name }}}" />
+                <input type="text" name="last_name" id="last_name" value="{{ $last_name }}" />
             </div>
 
             <div>
                 <label for="first_name">Prénom</label>
-                <input type="text" name="first_name" id="first_name" value="{{{ $first_name }}}"/>
+                <input type="text" name="first_name" id="first_name" value="{{ $first_name }}"/>
             </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" value="{{{ $email }}}"/>
+                <input type="text" name="email" id="email" value="{{ $email }}"/>
             </div>
 
             <div>
@@ -43,7 +43,7 @@
 
             <div>
                 <label for="opt_in">S'inscrire à la newsletter</label>
-                <input type="checkbox" name="opt_in" id="opt_in" @if ($opt_in === true)checked="checked"@endif />
+                <input type="checkbox" name="opt_in" id="opt_in" @if ($opt_in === true || $opt_in === null)checked="checked"@endif />
             </div>
 
             <input type="submit" value="Valider" />
