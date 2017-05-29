@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/utilisateur', array('as' => 'user_index', 'uses' => 'User\IndexController@index'));
         Route::get('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create', 'uses' => 'User\CellarController@create'));
         Route::post('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create_handler', 'uses' => 'User\CellarController@create_handler'));
-        Route::get('/utilisateur/supprimer-cave/{uuid}', array('as' => 'user_cellar_delete_handler', 'uses' => 'User\CellarController@delete'));
+        Route::get('/utilisateur/supprimer-cave/{uuid}', array('as' => 'user_cellar_delete_handler', 'uses' => 'User\CellarController@delete_handler'));
     });
 
     Route::group(['middleware' => ['admin']], function () {

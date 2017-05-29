@@ -3,8 +3,11 @@
 namespace Webaccess\WineSupervisorLaravel\Services;
 
 use DateTime;
+use Ramsey\Uuid\Uuid;
+use Webaccess\WineSupervisorLaravel\Models\Board;
 use Webaccess\WineSupervisorLaravel\Models\Cellar;
 use Webaccess\WineSupervisorLaravel\Models\WS;
+use Webaccess\WineSupervisorLaravel\Tools\GPSTool;
 
 class CellarManager
 {
@@ -29,6 +32,10 @@ class CellarManager
      */
     public static function create($userID, $idWS, $technicianID, $name, $serialNumber, $address, $zipcode, $city)
     {
+        //Fetch GPS coordinates from address
+        $complete_address = implode(' ', [$address, $zipcode, $city]);
+        list($latitude, $longitude) = GPSTool::getGPSCoordinates($complete_address);
+
         //Create cellar
         $cellar = new Cellar();
         $cellar->id = Uuid::uuid4()->toString();
@@ -40,6 +47,8 @@ class CellarManager
         $cellar->address = $address;
         $cellar->zipcode = $zipcode;
         $cellar->city = $city;
+        $cellar->latitude = $latitude;
+        $cellar->longitude = $longitude;
         $cellar->first_activation_date = new DateTime();
         $cellar->save();
 
@@ -73,6 +82,20 @@ class CellarManager
      */
     public static function checkIDWS($idWS)
     {
-        return WS::find($idWS);
+        $ws = WS::find($idWS);
+
+        //If the WS does not exist
+        if (!$ws)
+            return false;
+
+        //If the WS is not already in use
+        if (Cellar::where('id_ws', '=', $idWS)->first())
+            return false;
+
+        //If the board type is compatible
+        if ($ws->board_type != Board::PRIMO_BOARD && $ws->board_type != Board::OTHER_BOARD)
+            return false;
+
+        return true;
     }
 }

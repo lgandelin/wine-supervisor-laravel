@@ -25,7 +25,7 @@ class CellarController extends BaseController
 
         if (!CellarManager::checkIDWS($request->get('id_ws'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
-            return redirect()->route('user_signup_cellar');
+            return redirect()->back()->withInput();
         }
 
         CellarManager::create(
