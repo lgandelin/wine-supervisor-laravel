@@ -18,7 +18,7 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('login_handler') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('user_login_handler') }}">
 
                             <div class="form-group">
                                 <label>{{ trans('wine-supervisor::login.email') }}</label>

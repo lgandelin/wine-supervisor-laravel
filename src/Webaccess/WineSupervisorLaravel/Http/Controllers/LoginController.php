@@ -2,6 +2,7 @@
 
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,14 @@ class LoginController extends Controller
             'email' => $this->request->input('email'),
             'password' => $this->request->input('password'),
         ])) {
+            //Update last connection date
+            Auth::user()->last_connection_date = new DateTime();
+            Auth::user()->save();
+
             return redirect()->route('user_index');
         }
 
-        return redirect()->route('login')->with([
+        return redirect()->route('user_login')->with([
             'error' => trans('wine-supervisor::login.login_or_password_error'),
         ]);
     }
@@ -47,7 +52,7 @@ class LoginController extends Controller
     {
         Auth::guard('users')->logout();
 
-        return redirect()->route('login');
+        return redirect()->route('user_login');
     }
 
     public function admin_login()
@@ -98,7 +103,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @param 
+     * @param
      * @return mixed
      */
     public function forgotten_password_handler()

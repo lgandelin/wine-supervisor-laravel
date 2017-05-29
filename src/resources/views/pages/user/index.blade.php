@@ -19,6 +19,6 @@
 
         <h1>Dashboard - Utilisateur</h1>
 
-        <a href="{{ route('logout') }}">Logout</a>
+        <a href="{{ route('user_logout') }}">Logout</a>
     </div>
 @stop

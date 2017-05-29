@@ -42,7 +42,7 @@ class UserMiddleware
             }
             else
             {
-                return redirect()->route('login');
+                return redirect()->route('user_login');
             }
         }
 

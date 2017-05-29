@@ -32,7 +32,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-valid">{{ trans('wine-supervisor::login.send_new_password') }}</button>
-                                <a href="{{ route('login') }}" title="{{ trans('wine-supervisor::generic.back') }}">{{ trans('wine-supervisor::generic.back') }}</a>
+                                <a href="{{ route('user_login') }}" title="{{ trans('wine-supervisor::generic.back') }}">{{ trans('wine-supervisor::generic.back') }}</a>
                             </div>
 
                             {!! csrf_field() !!}

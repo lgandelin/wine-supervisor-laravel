@@ -52,7 +52,7 @@ class UserManager
         $administrator->save();
 
         Log::info('Created administrator profile successfully: ' . json_encode($administrator) . $password . "\n");
-
+            
         return $administrator->id;
     }
 }
