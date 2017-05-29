@@ -8,7 +8,6 @@ use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\User;
 use Webaccess\WineSupervisorLaravel\Services\CellarManager;
-use Webaccess\WineSupervisorLaravel\Services\SignupManager;
 use Webaccess\WineSupervisorLaravel\Services\UserManager;
 
 class SignupController extends BaseController

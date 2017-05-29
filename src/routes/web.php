@@ -10,11 +10,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/mot-de-passe-oublie', array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
     Route::post('/mot-de-passe-oublie', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
 
-    Route::get('/inscription', array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
-    Route::post('/inscription', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
+    Route::get('/utilisateur/inscription', array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
+    Route::post('/utilisateur/inscription', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
+    Route::get('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
+    Route::post('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
 
-    Route::get('/inscription/cave', array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
-    Route::post('/inscription/cave', array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
+    Route::get('professionnel/inscription', array('as' => 'technician_signup', 'uses' => 'Technician\SignupController@signup'));
+    Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'Technician\SignupController@signup_handler'));
 
     Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'LoginController@admin_login'));
     Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'LoginController@admin_authenticate'));

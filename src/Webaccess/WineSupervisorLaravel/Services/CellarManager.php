@@ -71,9 +71,12 @@ class CellarManager
         $cellar->longitude = $longitude;
 
         if ($cellar->save()) {
+
             //Update WS table
-            $ws->first_activation_date = new DateTime();
-            $ws->save();
+            if ($ws->first_activation_date == null) {
+                $ws->first_activation_date = new DateTime();
+                $ws->save();
+            }
         }
     }
 

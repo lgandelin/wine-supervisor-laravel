@@ -6,6 +6,7 @@ use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Administrator;
+use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\User;
 
 class UserManager
@@ -51,5 +52,31 @@ class UserManager
         $administrator->save();
 
         return $administrator->id;
+    }
+
+    /**
+     * @param $company
+     * @param $registration
+     * @param $phone
+     * @param $email
+     * @param $password
+     * @param $address
+     * @param $zipcode
+     * @param $city
+     */
+    public static function createTechnician($company, $registration, $phone, $email, $password, $address, $zipcode, $city)
+    {
+        $technician = new Technician();
+        $technician->id = Uuid::uuid4()->toString();
+        $technician->company = $company;
+        $technician->registration = $registration;
+        $technician->phone = $phone;
+        $technician->email = $email;
+        $technician->password = Hash::make($password);
+        $technician->address = $address;
+        $technician->zipcode = $zipcode;
+        $technician->city = $city;
+
+        $technician->save();
     }
 }
