@@ -26,17 +26,17 @@
 
             <div>
                 <label for="registration">Immatriculation</label>
-                <input type="text" name="registration" id="registration" value="{{ old('registration') }}"/>
+                <input type="text" name="registration" id="registration" value="{{ old('registration') }}" />
             </div>
 
             <div>
                 <label for="phone">Téléphone</label>
-                <input type="text" name="phone" id="phone" value="{{ old('phone') }}"/>
+                <input type="text" name="phone" id="phone" value="{{ old('phone') }}" />
             </div>
 
             <div>
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" value="{{ old('email') }}"/>
+                <input type="text" name="email" id="email" value="{{ old('email') }}" />
             </div>
 
             <div>
@@ -46,17 +46,17 @@
 
             <div>
                 <label for="address">Adresse</label>
-                <input type="text" name="address" id="address" value="{{ old('address') }}"/>
+                <input type="text" name="address" id="address" value="{{ old('address') }}" />
             </div>
 
             <div>
                 <label for="zipcode">Code postal</label>
-                <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}"/>
+                <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
             </div>
 
             <div>
                 <label for="city">Ville</label>
-                <input type="text" name="city" id="city" value="{{ old('city') }}"/>
+                <input type="text" name="city" id="city" value="{{ old('city') }}" />
             </div>
 
             <input type="submit" value="Valider" />

@@ -9,6 +9,9 @@ class Technician extends Authenticatable
 {
     use Notifiable;
 
+    const STATUS_DISABLED = 0;
+    const STATUS_ENABLED = 1;
+
     protected $table = 'technicians';
     public $incrementing = false;
     public $casts = [

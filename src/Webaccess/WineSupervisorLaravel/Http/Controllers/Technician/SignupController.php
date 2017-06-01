@@ -3,7 +3,6 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Technician;
 
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Services\UserManager;
 
@@ -34,6 +33,6 @@ class SignupController extends BaseController
             $request->get('city')
         );
 
-        return redirect()->route('user_ login');
+        return redirect()->route('user_login');
     }
 }

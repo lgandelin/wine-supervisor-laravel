@@ -76,6 +76,7 @@ class UserManager
         $technician->address = $address;
         $technician->zipcode = $zipcode;
         $technician->city = $city;
+        $technician->status = Technician::STATUS_DISABLED;
 
         $technician->save();
     }
