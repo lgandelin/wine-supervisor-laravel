@@ -15,16 +15,18 @@ class UserManager
      * @param $firstName
      * @param $lastName
      * @param $email
+     * @param $login
      * @param $password
      * @return User
      */
-    public static function create($firstName, $lastName, $email, $password)
+    public static function create($firstName, $lastName, $email, $login, $password)
     {
         $user = new User();
         $user->id = Uuid::uuid4()->toString();
         $user->first_name = $firstName;
         $user->last_name = $lastName;
         $user->email = $email;
+        $user->login = $login;
         $user->password = Hash::make($password);
         $user->last_connection_date = new DateTime();
 
@@ -59,18 +61,20 @@ class UserManager
      * @param $registration
      * @param $phone
      * @param $email
+     * @param $login
      * @param $password
      * @param $address
      * @param $zipcode
      * @param $city
      */
-    public static function createTechnician($company, $registration, $phone, $email, $password, $address, $zipcode, $city)
+    public static function createTechnician($company, $registration, $phone, $email, $login, $password, $address, $zipcode, $city)
     {
         $technician = new Technician();
         $technician->id = Uuid::uuid4()->toString();
         $technician->company = $company;
         $technician->registration = $registration;
         $technician->phone = $phone;
+        $technician->login = $login;
         $technician->email = $email;
         $technician->password = Hash::make($password);
         $technician->address = $address;

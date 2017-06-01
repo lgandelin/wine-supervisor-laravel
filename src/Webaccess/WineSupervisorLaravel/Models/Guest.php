@@ -24,6 +24,7 @@ class Guest extends Authenticatable
         'first_name',
         'last_name',
         'email',
+        'login',
         'address',
         'zipcode',
         'city',

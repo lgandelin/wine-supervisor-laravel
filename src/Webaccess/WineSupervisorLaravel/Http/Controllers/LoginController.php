@@ -30,7 +30,7 @@ class LoginController extends Controller
     public function authenticate()
     {
         if (Auth::guard('users')->attempt([
-            'email' => $this->request->input('email'),
+            'login' => $this->request->input('login'),
             'password' => $this->request->input('password'),
         ])) {
             //Update last connection date

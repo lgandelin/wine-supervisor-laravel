@@ -18,6 +18,7 @@ class CreateTechniciansTable extends Migration
             $table->string('company')->nullable();
             $table->string('registration')->nullable();
             $table->string('email')->nullable();
+            $table->string('login')->nullable();
             $table->string('password')->nullable();
             $table->string('remember_token')->nullable();
             $table->text('address')->nullable();

@@ -27,6 +27,7 @@ class SignupController extends BaseController
             $request->get('registration'),
             $request->get('phone'),
             $request->get('email'),
+            $request->get('login'),
             $request->get('password'),
             $request->get('address'),
             $request->get('zipcode'),

@@ -24,6 +24,7 @@ class SignupController extends BaseController
             'last_name' => isset($session_user) ? $session_user->last_name : null,
             'first_name' => isset($session_user) ? $session_user->first_name : null,
             'email' => isset($session_user) ? $session_user->email : null,
+            'login' => isset($session_user) ? $session_user->login : null,
             'opt_in' => isset($session_user) ? $session_user->opt_in : null,
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
@@ -39,6 +40,7 @@ class SignupController extends BaseController
         $user->last_name = $request->get('last_name');
         $user->first_name = $request->get('first_name');
         $user->email = $request->get('email');
+        $user->login = $request->get('login');
         $user->password = $request->get('password');
         $user->subscription_type = Subscription::DEFAULT_SUBSCRIPTION;
         $user->opt_in = $request->get('opt_in') === 'on' ? true : false;
@@ -67,7 +69,7 @@ class SignupController extends BaseController
         if ($session_user = $this->request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
-            if ($userID = UserManager::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->password)) {
+            if ($userID = UserManager::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password)) {
 
                 if (!CellarManager::checkIDWS($request->get('id_ws'))) {
                     $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));

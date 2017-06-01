@@ -7,7 +7,6 @@ use DateTime;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Board;
 use Webaccess\WineSupervisorLaravel\Models\Cellar;
-use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Tools\GPSTool;
