@@ -19,6 +19,10 @@
 
         <h1>Dashboard - Administrateur</h1>
 
+        <ul>
+            <li><a href="{{ route('admin_technician_list') }}">Gestion des professionnels</a></li>
+        </ul>
+
         <a href="{{ route('admin_logout') }}">Logout</a>
     </div>
 @stop

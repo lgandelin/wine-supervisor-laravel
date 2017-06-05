@@ -4,7 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Technician;
 
 use Illuminate\Http\Request;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
-use Webaccess\WineSupervisorLaravel\Services\UserManager;
+use Webaccess\WineSupervisorLaravel\Services\TechnicianManager;
 
 class SignupController extends BaseController
 {
@@ -22,7 +22,7 @@ class SignupController extends BaseController
     {
         parent::__construct($request);
 
-        UserManager::createTechnician(
+        TechnicianManager::create(
             $request->get('company'),
             $request->get('registration'),
             $request->get('phone'),

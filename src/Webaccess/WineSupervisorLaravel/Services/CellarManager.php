@@ -95,17 +95,18 @@ class CellarManager
         $complete_address = implode(' ', [$address, $zipcode, $city]);
         list($latitude, $longitude) = GPSTool::getGPSCoordinates($complete_address);
 
-        $cellar = Cellar::find($cellarID);
-        $cellar->technician_id = $technicianID;
-        $cellar->name = $name;
-        $cellar->serial_number = $serialNumber;
-        $cellar->subscription_type = $subscriptionType;
-        $cellar->address = $address;
-        $cellar->zipcode = $zipcode;
-        $cellar->city = $city;
-        $cellar->latitude = $latitude;
-        $cellar->longitude = $longitude;
-        $cellar->save();
+        if ($cellar = Cellar::find($cellarID)) {
+            $cellar->technician_id = $technicianID;
+            $cellar->name = $name;
+            $cellar->serial_number = $serialNumber;
+            $cellar->subscription_type = $subscriptionType;
+            $cellar->address = $address;
+            $cellar->zipcode = $zipcode;
+            $cellar->city = $city;
+            $cellar->latitude = $latitude;
+            $cellar->longitude = $longitude;
+            $cellar->save();
+        }
     }
 
     /**
@@ -114,16 +115,18 @@ class CellarManager
      */
     public static function delete($cellarID, $boardType)
     {
-        $cellar = Cellar::find($cellarID);
+        if ($cellar = Cellar::find($cellarID)) {
 
-        //Update WS table
-        $ws = WS::find($cellar->id_ws)->first();
-        $ws->deactivation_date = new DateTime();
-        $ws->board_type = $boardType;
-        $ws->save();
+            //Update WS table
+            if ($ws = WS::find($cellar->id_ws)->first()) {
+                $ws->deactivation_date = new DateTime();
+                $ws->board_type = $boardType;
+                $ws->save();
+            }
 
-        //Delete cellar in database
-        Cellar::find($cellar->id)->delete();
+            //Delete cellar in database
+            Cellar::find($cellar->id)->delete();
+        }
     }
 
     /**

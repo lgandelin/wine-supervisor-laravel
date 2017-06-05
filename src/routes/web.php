@@ -35,5 +35,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/admin', array('as' => 'admin_index', 'uses' => 'Admin\IndexController@index'));
+        Route::get('/admin/professionnels', array('as' => 'admin_technician_list', 'uses' => 'Admin\TechnicianController@index'));
+        Route::get('/admin/modifier-professionnel/{uuid}', array('as' => 'admin_technician_update', 'uses' => 'Admin\TechnicianController@update'));
+        Route::post('/admin/modifier-professionnel/', array('as' => 'admin_technician_update_handler', 'uses' => 'Admin\TechnicianController@update_handler'));
     });
 });

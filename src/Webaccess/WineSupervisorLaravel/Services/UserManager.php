@@ -57,33 +57,4 @@ class UserManager
 
         return $administrator->id;
     }
-
-    /**
-     * @param $company
-     * @param $registration
-     * @param $phone
-     * @param $email
-     * @param $login
-     * @param $password
-     * @param $address
-     * @param $zipcode
-     * @param $city
-     */
-    public static function createTechnician($company, $registration, $phone, $email, $login, $password, $address, $zipcode, $city)
-    {
-        $technician = new Technician();
-        $technician->id = Uuid::uuid4()->toString();
-        $technician->company = $company;
-        $technician->registration = $registration;
-        $technician->phone = $phone;
-        $technician->login = $login;
-        $technician->email = $email;
-        $technician->password = Hash::make($password);
-        $technician->address = $address;
-        $technician->zipcode = $zipcode;
-        $technician->city = $city;
-        $technician->status = Technician::STATUS_DISABLED;
-
-        $technician->save();
-    }
 }
