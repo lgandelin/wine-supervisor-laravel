@@ -155,6 +155,8 @@ class CellarManager
      */
     public static function checkTechnicianID($technicianID)
     {
-        return Technician::find($technicianID);
+        $technician = Technician::find($technicianID);
+
+        return $technician && $technician->status == Technician::STATUS_ENABLED;
     }
 }

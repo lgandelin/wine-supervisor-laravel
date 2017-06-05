@@ -17,7 +17,7 @@
 
         <h1>Création d'une cave</h1>
 
-        <form action="{{ route('user_signup_2_handler') }}" method="POST">
+        <form action="{{ route('user_signup_cellar_handler') }}" method="POST">
 
             <div>
                 <label for="id_ws">Adresse Mak</label>

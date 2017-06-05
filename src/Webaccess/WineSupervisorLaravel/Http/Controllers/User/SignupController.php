@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
-use Webaccess\WineSupervisorLaravel\Models\User;
 use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 use Webaccess\WineSupervisorLaravel\Services\UserManager;
 
@@ -36,16 +35,15 @@ class SignupController extends BaseController
     {
         parent::__construct($request);
 
-        $user = new User();
-        $user->last_name = $request->get('last_name');
-        $user->first_name = $request->get('first_name');
-        $user->email = $request->get('email');
-        $user->login = $request->get('login');
-        $user->password = $request->get('password');
-        $user->subscription_type = Subscription::DEFAULT_SUBSCRIPTION;
-        $user->opt_in = $request->get('opt_in') === 'on' ? true : false;
-
-        $request->session()->put('user_signup', json_encode($user));
+        $request->session()->put('user_signup', json_encode([
+            'last_name' => $request->get('last_name'),
+            'first_name' => $request->get('first_name'),
+            'email' => $request->get('email'),
+            'login' => $request->get('login'),
+            'password' => $request->get('password'),
+            'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION,
+            'opt_in' => $request->get('opt_in') === 'on' ? true : false,
+        ]));
 
         return redirect()->route('user_signup_cellar');
     }
@@ -64,12 +62,10 @@ class SignupController extends BaseController
     {
         parent::__construct($request);
 
-        //TODO : REFACTORING
-
         if ($session_user = $this->request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
-            if ($userID = UserManager::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password)) {
+            if ($userID = UserManager::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password, $user_data->opt_in)) {
 
                 if (!CellarManager::checkIDWS($request->get('id_ws'))) {
                     $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
@@ -82,7 +78,7 @@ class SignupController extends BaseController
                 }
 
                 CellarManager::create(
-                    $this->getUser()->id,
+                    $userID,
                     $request->get('id_ws'),
                     $request->get('technician_id'),
                     $request->get('name'),

@@ -21,7 +21,7 @@
 
             <div>
                 <label for="id_ws">Adresse Mak</label>
-                <input type="text" name="id_ws" id="id_ws" value="{{ $cellar->id_ws }}" />
+                <input type="text" name="id_ws" id="id_ws" value="{{ $cellar->id_ws }}" disabled />
             </div>
 
             <div>

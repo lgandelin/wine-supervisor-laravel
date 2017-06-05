@@ -17,9 +17,10 @@ class UserManager
      * @param $email
      * @param $login
      * @param $password
+     * @param $opt_in
      * @return User
      */
-    public static function create($firstName, $lastName, $email, $login, $password)
+    public static function create($firstName, $lastName, $email, $login, $password, $opt_in)
     {
         $user = new User();
         $user->id = Uuid::uuid4()->toString();
@@ -28,6 +29,7 @@ class UserManager
         $user->email = $email;
         $user->login = $login;
         $user->password = Hash::make($password);
+        $user->opt_in = $opt_in;
         $user->last_connection_date = new DateTime();
 
         $user->save();
