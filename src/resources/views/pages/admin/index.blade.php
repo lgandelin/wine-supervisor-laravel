@@ -20,8 +20,9 @@
         <h1>Dashboard - Administrateur</h1>
 
         <ul>
-            <li><a href="{{ route('admin_technician_list') }}">Gestion des professionnels</a></li>
             <li><a href="{{ route('admin_ws_list') }}">Gestion des WineSupervisor</a></li>
+            <li><a href="{{ route('admin_cellar_list') }}">Gestion des caves</a></li>
+            <li><a href="{{ route('admin_technician_list') }}">Gestion des professionnels</a></li>
             <li><a href="{{ route('admin_guest_list') }}">Gestion des invités</a></li>
         </ul>
 

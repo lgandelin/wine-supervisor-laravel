@@ -3,6 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Webaccess\WineSupervisorLaravel\WineSupervisorLaravelServiceProvider;
 
 class Cellar extends Model
 {
@@ -33,4 +34,9 @@ class Cellar extends Model
         'latitude',
         'longitude'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('Webaccess\WineSupervisorLaravel\Models\User');
+    }
 }

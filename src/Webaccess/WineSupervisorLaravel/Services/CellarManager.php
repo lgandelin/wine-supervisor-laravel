@@ -22,6 +22,14 @@ class CellarManager
     }
 
     /**
+     *
+     */
+    public static function getAll()
+    {
+        return Cellar::all();
+    }
+
+    /**
      * @param $userID
      * @return mixed
      */
