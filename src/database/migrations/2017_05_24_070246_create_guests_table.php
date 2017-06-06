@@ -25,8 +25,8 @@ class CreateGuestsTable extends Migration
             $table->string('zipcode')->nullable();
             $table->string('city')->nullable();
             $table->string('phone')->nullable();
-            $table->boolean('access_start_date')->nullable();
-            $table->boolean('access_end_date')->nullable();
+            $table->date('access_start_date')->nullable();
+            $table->date('access_end_date')->nullable();
             $table->timestamps();
         });
     }

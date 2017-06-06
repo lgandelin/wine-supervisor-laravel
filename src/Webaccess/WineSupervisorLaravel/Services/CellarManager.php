@@ -22,9 +22,6 @@ class CellarManager
         return Cellar::with('history', 'history.user', 'history.admin')->find($cellarID);
     }
 
-    /**
-     *
-     */
     public static function getAll()
     {
         return Cellar::all();

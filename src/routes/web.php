@@ -46,16 +46,23 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/admin/ws', array('as' => 'admin_ws_list', 'uses' => 'Admin\WSController@index'));
         Route::get('/admin/modifier-ws/{uuid}', array('as' => 'admin_ws_update', 'uses' => 'Admin\WSController@update'));
-        Route::post('/admin/modifier-ws/', array('as' => 'admin_ws_update_handler', 'uses' => 'Admin\WSController@update_handler'));
+        Route::post('/admin/modifier-ws', array('as' => 'admin_ws_update_handler', 'uses' => 'Admin\WSController@update_handler'));
 
         Route::get('/admin/invites', array('as' => 'admin_guest_list', 'uses' => 'Admin\GuestController@index'));
         Route::get('/admin/creer-invite', array('as' => 'admin_guest_create', 'uses' => 'Admin\GuestController@create'));
         Route::post('/admin/creer-invite', array('as' => 'admin_guest_create_handler', 'uses' => 'Admin\GuestController@create_handler'));
         Route::get('/admin/modifier-invite/{uuid}', array('as' => 'admin_guest_update', 'uses' => 'Admin\GuestController@update'));
-        Route::post('/admin/modifier-invite/', array('as' => 'admin_guest_update_handler', 'uses' => 'Admin\GuestController@update_handler'));
+        Route::post('/admin/modifier-invite', array('as' => 'admin_guest_update_handler', 'uses' => 'Admin\GuestController@update_handler'));
 
         Route::get('/admin/caves', array('as' => 'admin_cellar_list', 'uses' => 'Admin\CellarController@index'));
         Route::get('/admin/modifier-cave/{uuid}', array('as' => 'admin_cellar_update', 'uses' => 'Admin\CellarController@update'));
-        Route::post('/admin/modifier-cave/', array('as' => 'admin_cellar_update_handler', 'uses' => 'Admin\CellarController@update_handler'));
+        Route::post('/admin/modifier-cave', array('as' => 'admin_cellar_update_handler', 'uses' => 'Admin\CellarController@update_handler'));
+
+        Route::get('/admin/ventes', array('as' => 'admin_sale_list', 'uses' => 'Admin\SaleController@index'));
+        Route::get('/admin/creer-vente', array('as' => 'admin_sale_create', 'uses' => 'Admin\SaleController@create'));
+        Route::post('/admin/creer-vente', array('as' => 'admin_sale_create_handler', 'uses' => 'Admin\SaleController@create_handler'));
+        Route::get('/admin/modifier-vente/{uuid}', array('as' => 'admin_sale_update', 'uses' => 'Admin\SaleController@update'));
+        Route::post('/admin/modifier-vente', array('as' => 'admin_sale_update_handler', 'uses' => 'Admin\SaleController@update_handler'));
+        
     });
 });
