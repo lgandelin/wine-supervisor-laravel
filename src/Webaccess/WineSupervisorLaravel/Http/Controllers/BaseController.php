@@ -11,9 +11,4 @@ class BaseController extends Controller
     {
         $this->request = $request;
     }
-
-    protected function getUser()
-    {
-        return auth()->check() ? auth()->user() : false;
-    }
 }

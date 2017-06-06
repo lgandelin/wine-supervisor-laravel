@@ -15,6 +15,6 @@ class GPSTool
             return array($json['results'][0]['geometry']['location']['lat'], $json['results'][0]['geometry']['location']['lng']);
         }
 
-        return self::getGPSCoordinates($complete_address);
+        return array(null, null);
     }
 }

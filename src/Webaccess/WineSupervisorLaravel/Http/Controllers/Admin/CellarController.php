@@ -3,6 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 
@@ -43,6 +44,8 @@ class CellarController extends BaseController
 
         CellarManager::update(
             $request->get('cellar_id'),
+            null,
+            Auth::guard('administrators')->getUser()->id,
             $request->get('technician_id'),
             $request->get('name'),
             $request->get('subscription_type'),

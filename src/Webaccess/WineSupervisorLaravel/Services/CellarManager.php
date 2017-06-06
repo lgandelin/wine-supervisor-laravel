@@ -6,6 +6,7 @@ use DateInterval;
 use DateTime;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Cellar;
+use Webaccess\WineSupervisorLaravel\Models\CellarHistory;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Tools\GPSTool;
@@ -18,7 +19,7 @@ class CellarManager
      */
     public static function getByID($cellarID)
     {
-        return Cellar::find($cellarID);
+        return Cellar::with('history', 'history.user', 'history.admin')->find($cellarID);
     }
 
     /**
@@ -88,6 +89,8 @@ class CellarManager
 
     /**
      * @param $cellarID
+     * @param $userID
+     * @param $adminID
      * @param $technicianID
      * @param $name
      * @param $subscriptionType
@@ -96,13 +99,26 @@ class CellarManager
      * @param $zipcode
      * @param $city
      */
-    public static function update($cellarID, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
+    public static function update($cellarID, $userID, $adminID, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
     {
         //Fetch GPS coordinates from address
         $complete_address = implode(' ', [$address, $zipcode, $city]);
         list($latitude, $longitude) = GPSTool::getGPSCoordinates($complete_address);
 
         if ($cellar = Cellar::find($cellarID)) {
+
+            //Save the modifications history
+            $updates = [];
+            if ($technicianID != $cellar->technician_id) { $updates[]= ['column' => 'technician_id', 'old_value' => $cellar->technician_id, 'new_value' => $technicianID]; }
+            if ($name != $cellar->name) { $updates[]= ['column' => 'name', 'old_value' => $cellar->name, 'new_value' => $name]; }
+            if ($serialNumber != $cellar->serial_number) { $updates[]= ['column' => 'serial_number', 'old_value' => $cellar->serial_number, 'new_value' => $serialNumber]; }
+            if ($subscriptionType != $cellar->subscription_type) { $updates[]= ['column' => 'subscription_type', 'old_value' => $cellar->subscription_type, 'new_value' => $subscriptionType]; }
+            if ($address != $cellar->address) { $updates[]= ['column' => 'address', 'old_value' => $cellar->address, 'new_value' => $address]; }
+            if ($zipcode != $cellar->zipcode) { $updates[]= ['column' => 'zipcode', 'old_value' => $cellar->zipcode, 'new_value' => $zipcode]; }
+            if ($city != $cellar->city) { $updates[]= ['column' => 'city', 'old_value' => $cellar->city, 'new_value' => $city]; }
+            if ($latitude && $latitude != $cellar->latitude) { $updates[]= ['column' => 'latitude', 'old_value' => $cellar->latitude, 'new_value' => $latitude]; }
+            if ($longitude && $longitude != $cellar->longitude) { $updates[]= ['column' => 'longitude', 'old_value' => $cellar->longitude, 'new_value' => $longitude]; }
+
             $cellar->technician_id = $technicianID;
             $cellar->name = $name;
             $cellar->serial_number = $serialNumber;
@@ -110,9 +126,22 @@ class CellarManager
             $cellar->address = $address;
             $cellar->zipcode = $zipcode;
             $cellar->city = $city;
-            $cellar->latitude = $latitude;
-            $cellar->longitude = $longitude;
+            if ($latitude) $cellar->latitude = $latitude;
+            if ($longitude) $cellar->longitude = $longitude;
             $cellar->save();
+
+            foreach ($updates as $update) {
+                $history = new CellarHistory();
+                $history->id = Uuid::uuid4()->toString();
+                $history->cellar_id = $cellarID;
+                $history->user_id = $userID;
+                $history->admin_id = $adminID;
+                $history->column = $update['column'];
+                $history->old_value = $update['old_value'];
+                $history->new_value = $update['new_value'];
+                $history->save();
+            }
+
         }
     }
 

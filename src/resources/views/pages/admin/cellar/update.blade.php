@@ -90,5 +90,32 @@
             {{ csrf_field() }}
         </form>
 
+        @if ($cellar->history)
+            <h2>Historique des modifications</h2>
+
+            <table>
+                <tr>
+                    <th>Champ modifié</th>
+                    <th>Ancienne valeur</th>
+                    <th>Nouvelle valeur</th>
+                    <th>Utilisateur</th>
+                    <th>Date de modification</th>
+                </tr>
+
+                @foreach ($cellar->history as $history)
+                    <tr>
+                        <td>{{ $history->column }}</td>
+                        <td>{{ $history->old_value }}</td>
+                        <td>{{ $history->new_value }}</td>
+                        <td>
+                            @if ($history->user) {{ $history->user->last_name }} {{ $history->user->first_name }} [Utilisateur] @endif
+                            @if ($history->admin) {{ $history->admin->last_name }} {{ $history->admin->first_name }} [Administrateur] @endif
+                        </td>
+                        <td>{{ DateTime::createFromFormat('Y-m-d H:i:s', $history->created_at)->format('d/m/Y H:i:s') }}</td>
+                    </tr>
+                @endforeach
+            </table>
+        @endif
+
     </div>
 @stop

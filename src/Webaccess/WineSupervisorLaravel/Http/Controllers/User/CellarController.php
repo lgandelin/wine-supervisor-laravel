@@ -3,6 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Models\Board;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
@@ -35,7 +36,7 @@ class CellarController extends BaseController
         }
 
         CellarManager::create(
-            $this->getUser()->id,
+            Auth::guards('users')->getUser()->id,
             $request->get('id_ws'),
             $request->get('technician_id'),
             $request->get('name'),
@@ -76,6 +77,8 @@ class CellarController extends BaseController
 
         CellarManager::update(
             $request->get('cellar_id'),
+            Auth::guard('users')->getUser()->id,
+            null,
             $request->get('technician_id'),
             $request->get('name'),
             Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE DIFFERENT SUBSCRIPTION TYPES
