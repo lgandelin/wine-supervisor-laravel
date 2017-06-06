@@ -3,7 +3,6 @@
 namespace Webaccess\WineSupervisorLaravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Webaccess\WineSupervisorLaravel\WineSupervisorLaravelServiceProvider;
 
 class Cellar extends Model
 {
