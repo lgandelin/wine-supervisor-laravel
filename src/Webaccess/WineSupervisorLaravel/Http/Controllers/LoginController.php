@@ -29,6 +29,7 @@ class LoginController extends Controller
      */
     public function authenticate()
     {
+        //User authentication
         if (Auth::guard('users')->attempt([
             'login' => $this->request->input('login'),
             'password' => $this->request->input('password'),
@@ -38,6 +39,23 @@ class LoginController extends Controller
             Auth::user()->save();
 
             return redirect()->route('user_index');
+        }
+
+        //Guest authentication
+        if (Auth::guard('guests')->attempt([
+            'login' => $this->request->input('login'),
+            'password' => $this->request->input('password'),
+        ])) {
+            //Check access dates
+            $guest = Auth::guard('guests')->user();
+
+            if (new DateTime() < new DateTime($guest->access_start_date) || new DateTime() > new DateTime($guest->access_end_date)) {
+                return redirect()->route('user_login')->with([
+                    'error' => trans('wine-supervisor::login.guest_access_dates_error'),
+                ]);
+            }
+
+            return redirect()->route('guest_index');
         }
 
         return redirect()->route('user_login')->with([
@@ -51,6 +69,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::guard('users')->logout();
+        Auth::guard('guests')->logout();
 
         return redirect()->route('user_login');
     }
@@ -108,14 +127,14 @@ class LoginController extends Controller
      */
     public function forgotten_password_handler()
     {
-        $userEmail = $this->request->input('email');
+        $login = $this->request->input('login');
 
         try {
-            if ($user = User::where('email', '=', $userEmail)->first()) {
+            if ($user = User::where('login', '=', $login)->first()) {
                 $newPassword = self::generate(8);
                 $user->password = bcrypt($newPassword);
                 $user->save();
-                $this->sendNewPasswordToUser($newPassword, $userEmail);
+                $this->sendNewPasswordToUser($newPassword, $user->email);
                 $this->request->session()->flash('message', trans('wine-supervisor::login.forgotten_password_email_success'));
             } else {
                 $this->request->session()->flash('error', trans('wine-supervisor::login.forgotten_password_email_not_found_error'));

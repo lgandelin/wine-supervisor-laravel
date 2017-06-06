@@ -3,7 +3,7 @@
 @section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
 
 @section('page-content')
-    <div class="dashboard-template">
+    <div class="ws-template">
 
         @if (isset($error))
             <div class="alert alert-danger">
@@ -27,7 +27,7 @@
             </tr>
             @foreach ($wss as $ws)
                 <tr>
-                    <td><h2>{{ $ws->id }}</h2></td>
+                    <td>{{ $ws->id }}</td>
                     <td>{{ Webaccess\WineSupervisorLaravel\Services\WSManager::getBoardTypeLabel($ws->board_type) }}</td>
                     <td><a href="{{ route('admin_ws_update', $ws->id) }}">Modifier</a></td>
                 </tr>

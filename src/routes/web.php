@@ -24,6 +24,10 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
 
+    Route::group(['middleware' => ['guest']], function () {
+        Route::get('/invite', array('as' => 'guest_index', 'uses' => 'Guest\IndexController@index'));
+    });
+
     Route::group(['middleware' => ['user']], function () {
         Route::get('/utilisateur', array('as' => 'user_index', 'uses' => 'User\IndexController@index'));
         Route::get('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create', 'uses' => 'User\CellarController@create'));
@@ -45,6 +49,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/modifier-ws/', array('as' => 'admin_ws_update_handler', 'uses' => 'Admin\WSController@update_handler'));
 
         Route::get('/admin/invites', array('as' => 'admin_guest_list', 'uses' => 'Admin\GuestController@index'));
+        Route::get('/admin/creer-invite', array('as' => 'admin_guest_create', 'uses' => 'Admin\GuestController@create'));
+        Route::post('/admin/creer-invite', array('as' => 'admin_guest_create_handler', 'uses' => 'Admin\GuestController@create_handler'));
         Route::get('/admin/modifier-invite/{uuid}', array('as' => 'admin_guest_update', 'uses' => 'Admin\GuestController@update'));
         Route::post('/admin/modifier-invite/', array('as' => 'admin_guest_update_handler', 'uses' => 'Admin\GuestController@update_handler'));
     });

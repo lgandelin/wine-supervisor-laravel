@@ -1,7 +1,7 @@
 @extends('wine-supervisor::default')
 
 @section('page-content')
-    <div class="cellar-template">
+    <div class="ws-template">
 
         @if (isset($error))
             <div class="alert alert-danger">

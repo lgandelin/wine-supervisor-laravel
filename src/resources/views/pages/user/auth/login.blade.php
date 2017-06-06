@@ -21,8 +21,8 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('user_login_handler') }}">
 
                             <div class="form-group">
-                                <label>{{ trans('wine-supervisor::login.email') }}</label>
-                                <input type="email" class="form-control" name="email" />
+                                <label>{{ trans('wine-supervisor::login.login') }}</label>
+                                <input type="login" class="form-control" name="login" />
                             </div>
 
                             <div class="form-group">

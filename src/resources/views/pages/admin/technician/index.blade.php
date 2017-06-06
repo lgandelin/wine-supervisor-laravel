@@ -3,7 +3,7 @@
 @section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
 
 @section('page-content')
-    <div class="dashboard-template">
+    <div class="technician-template">
 
         @if (isset($error))
             <div class="alert alert-danger">
@@ -28,7 +28,7 @@
             </tr>
             @foreach ($technicians as $technician)
                 <tr>
-                    <td><h2>{{ $technician->company }}</h2></td>
+                    <td>{{ $technician->company }}</td>
                     <td><a href="mailto:{{ $technician->email }}">{{ $technician->email }}</a></td>
                     <td>@if ($technician->status == Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED) Activé @else Désactivé @endif
                     <td><a href="{{ route('admin_technician_update', $technician->id) }}">Modifier</a></td>

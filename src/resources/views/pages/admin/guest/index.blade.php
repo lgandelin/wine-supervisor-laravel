@@ -3,7 +3,7 @@
 @section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
 
 @section('page-content')
-    <div class="dashboard-template">
+    <div class="guest-template">
 
         @if (isset($error))
             <div class="alert alert-danger">
@@ -41,6 +41,8 @@
                 </tr>
             @endforeach
         </table>
+
+        <a href="{{ route('admin_guest_create') }}">Créer</a><br/>
 
         <a href="{{ route('admin_logout') }}">Logout</a>
     </div>
