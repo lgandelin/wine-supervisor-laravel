@@ -31,7 +31,7 @@
                     <td><h2>{{ $technician->company }}</h2></td>
                     <td><a href="mailto:{{ $technician->email }}">{{ $technician->email }}</a></td>
                     <td>@if ($technician->status == Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED) Activé @else Désactivé @endif
-                    <td><a href="{{ route('admin_technician_update', $technician->id) }}" class="btn">Modifier</a></td>
+                    <td><a href="{{ route('admin_technician_update', $technician->id) }}">Modifier</a></td>
                 </tr>
             @endforeach
         </table>

@@ -21,6 +21,8 @@
 
         <ul>
             <li><a href="{{ route('admin_technician_list') }}">Gestion des professionnels</a></li>
+            <li><a href="{{ route('admin_ws_list') }}">Gestion des WineSupervisor</a></li>
+            <li><a href="{{ route('admin_guest_list') }}">Gestion des invités</a></li>
         </ul>
 
         <a href="{{ route('admin_logout') }}">Logout</a>

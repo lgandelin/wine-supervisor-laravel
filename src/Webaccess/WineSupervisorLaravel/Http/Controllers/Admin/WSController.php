@@ -4,29 +4,28 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
-use Webaccess\WineSupervisorLaravel\Models\Technician;
-use Webaccess\WineSupervisorLaravel\Services\TechnicianManager;
+use Webaccess\WineSupervisorLaravel\Services\WSManager;
 
-class TechnicianController extends BaseController
+class WSController extends BaseController
 {
     public function index(Request $request)
     {
         parent::__construct($request);
 
-        return view('wine-supervisor::pages.admin.technician.index', [
-            'technicians' => TechnicianManager::getAll(),
+        return view('wine-supervisor::pages.admin.ws.index', [
+            'wss' => WSManager::getAll(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
 
-    public function update(Request $request, $technicianID) {
+    public function update(Request $request, $wsID) {
 
         parent::__construct($request);
 
-        return view('wine-supervisor::pages.admin.technician.update', [
-            'technician' => TechnicianManager::getByID($technicianID),
+        return view('wine-supervisor::pages.admin.ws.update', [
+            'ws' => WSManager::getByID($wsID),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -37,16 +36,16 @@ class TechnicianController extends BaseController
     {
         parent::__construct($request);
 
-        TechnicianManager::update(
-            $request->get('technician_id'),
-            $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
+        WSManager::update(
+            $request->get('ws_id'),
+            $request->get('board_type')
         );
 
         //Call CDO webservice
         //TODO : CALL CDO
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.technician_update_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::admin.ws_update_success'));
 
-        return redirect()->route('admin_technician_list');
+        return redirect()->route('admin_ws_list');
     }
 }

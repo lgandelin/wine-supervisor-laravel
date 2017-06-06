@@ -5,13 +5,13 @@
 
         @if (isset($error))
             <div class="alert alert-danger">
-                {{ $technician->error }}
+                {{ $error }}
             </div>
         @endif
 
         @if (isset($confirmation))
             <div class="alert alert-success">
-                {{ $technician->confirmation }}
+                {{ $confirmation }}
             </div>
         @endif
 

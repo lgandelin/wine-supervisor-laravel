@@ -35,8 +35,17 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/admin', array('as' => 'admin_index', 'uses' => 'Admin\IndexController@index'));
+
         Route::get('/admin/professionnels', array('as' => 'admin_technician_list', 'uses' => 'Admin\TechnicianController@index'));
         Route::get('/admin/modifier-professionnel/{uuid}', array('as' => 'admin_technician_update', 'uses' => 'Admin\TechnicianController@update'));
         Route::post('/admin/modifier-professionnel/', array('as' => 'admin_technician_update_handler', 'uses' => 'Admin\TechnicianController@update_handler'));
+
+        Route::get('/admin/ws', array('as' => 'admin_ws_list', 'uses' => 'Admin\WSController@index'));
+        Route::get('/admin/modifier-ws/{uuid}', array('as' => 'admin_ws_update', 'uses' => 'Admin\WSController@update'));
+        Route::post('/admin/modifier-ws/', array('as' => 'admin_ws_update_handler', 'uses' => 'Admin\WSController@update_handler'));
+
+        Route::get('/admin/invites', array('as' => 'admin_guest_list', 'uses' => 'Admin\GuestController@index'));
+        Route::get('/admin/modifier-invite/{uuid}', array('as' => 'admin_guest_update', 'uses' => 'Admin\GuestController@update'));
+        Route::post('/admin/modifier-invite/', array('as' => 'admin_guest_update_handler', 'uses' => 'Admin\GuestController@update_handler'));
     });
 });

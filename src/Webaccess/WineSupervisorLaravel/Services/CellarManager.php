@@ -5,7 +5,6 @@ namespace Webaccess\WineSupervisorLaravel\Services;
 use DateInterval;
 use DateTime;
 use Ramsey\Uuid\Uuid;
-use Webaccess\WineSupervisorLaravel\Models\Board;
 use Webaccess\WineSupervisorLaravel\Models\Cellar;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\WS;
@@ -60,7 +59,7 @@ class CellarManager
         $cellar->name = $name;
         $cellar->first_activation_date = new DateTime();
         $cellar->subscription_start_date = new DateTime();
-        $cellar->subscription_end_date = ($ws->board_type === Board::PRIMO_BOARD) ? (new DateTime())->add(new DateInterval('P24M')) : null;
+        $cellar->subscription_end_date = ($ws->board_type === WS::PRIMO_BOARD) ? (new DateTime())->add(new DateInterval('P24M')) : null;
         $cellar->subscription_type = $subscriptionType;
         $cellar->serial_number = $serialNumber;
         $cellar->address = $address;
@@ -146,7 +145,7 @@ class CellarManager
             return false;
 
         //If the board type is compatible
-        if ($ws->board_type != Board::PRIMO_BOARD && $ws->board_type != Board::OTHER_BOARD)
+        if ($ws->board_type != WS::PRIMO_BOARD && $ws->board_type != WS::OTHER_BOARD)
             return false;
 
         return true;
