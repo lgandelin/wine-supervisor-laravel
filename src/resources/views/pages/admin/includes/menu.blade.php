@@ -5,4 +5,5 @@
     <li><a href="{{ route('admin_technician_list') }}">Gestion des professionnels</a></li>
     <li><a href="{{ route('admin_guest_list') }}">Gestion des invités</a></li>
     <li><a href="{{ route('admin_sale_list') }}">Gestion des ventes</a></li>
+    <li><a href="{{ route('admin_content_list') }}">Gestion des contenus</a></li>
 </ul>
