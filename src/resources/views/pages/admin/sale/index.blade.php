@@ -29,9 +29,10 @@
             @foreach ($sales as $sale)
                 <tr>
                     <td>{{ $sale->title }}</td>
-                    <td>{{ $sale->start_date }}</td>
-                    <td>{{ $sale->end_date }}</td>
+                    <td>{{ \DateTime::createFromFormat('Y-m-d', $sale->start_date)->format('d/m/Y') }}</td>
+                    <td>{{ \DateTime::createFromFormat('Y-m-d', $sale->end_date)->format('d/m/Y') }}</td>
                     <td><a href="{{ route('admin_sale_update', $sale->id) }}">Modifier</a></td>
+                    <td><a href="{{ route('admin_sale_delete_handler', $sale->id) }}">Supprimer</a></td>
                 </tr>
             @endforeach
         </table>

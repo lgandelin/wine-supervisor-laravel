@@ -41,8 +41,8 @@ class SaleController extends BaseController
             $request->get('jury_opinion'),
             $request->get('description'),
             $request->get('link'),
-            $request->get('start_date'),
-            $request->get('end_date')
+            \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
+            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         );
 
         $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_create_success'));
@@ -68,18 +68,29 @@ class SaleController extends BaseController
 
         SaleManager::update(
             $request->get('sale_id'),
-            null,
-            Auth::guard('administrators')->getUser()->id,
-            $request->get('technician_id'),
-            $request->get('name'),
-            $request->get('subscription_type'),
-            $request->get('serial_number'),
-            $request->get('address'),
-            $request->get('zipcode'),
-            $request->get('city')
+            $request->get('title'),
+            $request->get('jury_note'),
+            $request->get('jury_opinion'),
+            $request->get('description'),
+            $request->get('link'),
+            \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
+            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         );
 
         $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_update_success'));
+
+        return redirect()->route('admin_sale_list');
+    }
+
+    public function delete_handler(Request $request, $saleID)
+    {
+        parent::__construct($request);
+
+        if (SaleManager::delete($saleID)) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_delete_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.sale_delete_error'));
+        }
 
         return redirect()->route('admin_sale_list');
     }

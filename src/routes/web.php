@@ -63,6 +63,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/creer-vente', array('as' => 'admin_sale_create_handler', 'uses' => 'Admin\SaleController@create_handler'));
         Route::get('/admin/modifier-vente/{uuid}', array('as' => 'admin_sale_update', 'uses' => 'Admin\SaleController@update'));
         Route::post('/admin/modifier-vente', array('as' => 'admin_sale_update_handler', 'uses' => 'Admin\SaleController@update_handler'));
-        
+        Route::get('/admin/supprimer-vente/{uuid}', array('as' => 'admin_sale_delete_handler', 'uses' => 'Admin\SaleController@delete_handler'));
+
     });
 });

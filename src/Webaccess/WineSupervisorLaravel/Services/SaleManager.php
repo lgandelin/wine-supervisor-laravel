@@ -70,4 +70,17 @@ class SaleManager
             $sale->save();
         }
     }
+
+    /**
+     * @param $saleID
+     * @return bool
+     */
+    public static function delete($saleID)
+    {
+        if ($sale = Sale::find($saleID)) {
+            return Sale::find($sale->id)->delete();
+        }
+
+        return false;
+    }
 }
