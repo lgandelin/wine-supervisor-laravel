@@ -128,17 +128,8 @@ class CellarManager
             $cellar->save();
 
             foreach ($updates as $update) {
-                $history = new CellarHistory();
-                $history->id = Uuid::uuid4()->toString();
-                $history->cellar_id = $cellarID;
-                $history->user_id = $userID;
-                $history->admin_id = $adminID;
-                $history->column = $update['column'];
-                $history->old_value = $update['old_value'];
-                $history->new_value = $update['new_value'];
-                $history->save();
+                self::updateCellarHistory($cellarID, $userID, $adminID, $update['column'], $update['old_value'], $update['new_value']);
             }
-
         }
     }
 
@@ -173,15 +164,7 @@ class CellarManager
             $cellar->save();
 
             //Update cellar history
-            $history = new CellarHistory();
-            $history->id = Uuid::uuid4()->toString();
-            $history->cellar_id = $cellarID;
-            $history->user_id = $userID;
-            $history->admin_id = null;
-            $history->column = 'id_ws';
-            $history->old_value = $oldIDWS;
-            $history->new_value = $idWS;
-            $history->save();
+            self::updateCellarHistory($cellarID, $userID, null, 'id_ws', $oldIDWS, $idWS);
         }
     }
 
@@ -237,5 +220,26 @@ class CellarManager
         $technician = Technician::find($technicianID);
 
         return $technician && $technician->status == Technician::STATUS_ENABLED;
+    }
+
+    /**
+     * @param $cellarID
+     * @param $userID
+     * @param $adminID
+     * @param $column
+     * @param $oldValue
+     * @param $newValue
+     */
+    private static function updateCellarHistory($cellarID, $userID, $adminID, $column, $oldValue, $newValue)
+    {
+        $history = new CellarHistory();
+        $history->id = Uuid::uuid4()->toString();
+        $history->cellar_id = $cellarID;
+        $history->user_id = $userID;
+        $history->admin_id = $adminID;
+        $history->column = $column;
+        $history->old_value = $oldValue;
+        $history->new_value = $newValue;
+        $history->save();
     }
 }
