@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Webaccess\WineSupervisorLaravel\Commands\CreateAdministratorCommand;
 use Illuminate\Support\Facades\Route;
 use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
+use Webaccess\WineSupervisorLaravel\Commands\DeleteInactiveUsersCommand;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\UserMiddleware;
 
@@ -44,7 +45,8 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
     {
         $this->commands([
             CreateUserCommand::class,
-            CreateAdministratorCommand::class
+            CreateAdministratorCommand::class,
+            DeleteInactiveUsersCommand::class
         ]);
 
         $this->app->register(
