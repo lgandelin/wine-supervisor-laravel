@@ -45,8 +45,6 @@
             @endforeach
         </table>
 
-        <a href="{{ route('admin_guest_create') }}">Créer</a><br/>
-
-        <a href="{{ route('admin_logout') }}">Logout</a>
+        <a href="{{ route('admin_guest_create') }}">Créer un invité</a><br/>
     </div>
 @stop

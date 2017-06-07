@@ -42,8 +42,6 @@
             @endforeach
         </table>
 
-        <a href="{{ route('admin_content_create') }}">Créer</a><br/>
-
-        <a href="{{ route('admin_logout') }}">Logout</a>
+        <a href="{{ route('admin_content_create') }}">Créer un contenu</a><br/>
     </div>
 @stop

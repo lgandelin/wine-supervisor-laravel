@@ -40,7 +40,6 @@
             @endforeach
         </table>
 
-        <a href="{{ route('admin_sale_create') }}">Ajouter une vente</a>
-        <a href="{{ route('admin_logout') }}">Logout</a>
+        <a href="{{ route('admin_sale_create') }}">Créer une vente</a>
     </div>
 @stop

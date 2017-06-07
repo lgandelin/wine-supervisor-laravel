@@ -36,7 +36,5 @@
                 </tr>
             @endforeach
         </table>
-
-        <a href="{{ route('admin_logout') }}">Logout</a>
     </div>
 @stop

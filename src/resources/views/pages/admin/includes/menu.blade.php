@@ -7,3 +7,5 @@
     <li><a href="{{ route('admin_sale_list') }}">Gestion des ventes</a></li>
     <li><a href="{{ route('admin_content_list') }}">Gestion des contenus</a></li>
 </ul>
+
+<a href="{{ route('admin_logout') }}">Logout</a>

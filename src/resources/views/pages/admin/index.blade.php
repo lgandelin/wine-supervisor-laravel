@@ -21,7 +21,5 @@
         @endif
 
         <h1>Tableau de bord</h1>
-
-        <a href="{{ route('admin_logout') }}">Logout</a>
     </div>
 @stop
