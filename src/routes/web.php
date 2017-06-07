@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::group(['middleware' => ['user']], function () {
-        Route::get('/utilisateur', array('as' => 'user_index', 'uses' => 'User\IndexController@index'));
+        Route::get('/utilisateur', array('as' => 'user_cellar_list', 'uses' => 'User\CellarController@index'));
         Route::get('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create', 'uses' => 'User\CellarController@create'));
         Route::post('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create_handler', 'uses' => 'User\CellarController@create_handler'));
         Route::get('/utilisateur/modifier-cave/{uuid}', array('as' => 'user_cellar_update', 'uses' => 'User\CellarController@update'));

@@ -11,6 +11,18 @@ use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 
 class CellarController extends BaseController
 {
+    public function index(Request $request)
+    {
+        parent::__construct($request);
+
+        return view('wine-supervisor::pages.user.index', [
+            'cellars' => CellarManager::getByUser(Auth::guard('users')->getUser()->id),
+
+            'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
+            'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
+        ]);
+    }
+
     public function create(Request $request)
     {
         parent::__construct($request);
@@ -51,7 +63,8 @@ class CellarController extends BaseController
         //TODO : CALL CDO
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
-        return redirect()->route('user_index');
+
+        return redirect()->route('user_cellar_list');
     }
 
     public function update(Request $request, $cellarID)
@@ -92,7 +105,7 @@ class CellarController extends BaseController
         //TODO : CALL CDO
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_update_success'));
-        return redirect()->route('user_index');
+        return redirect()->route('user_cellar_list');
     }
 
     public function sav_handler(Request $request)
@@ -115,7 +128,7 @@ class CellarController extends BaseController
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_sav_success'));
 
-        return redirect()->route('user_index');
+        return redirect()->route('user_cellar_list');
     }
 
     public function delete_handler(Request $request, $cellarID)
@@ -130,6 +143,7 @@ class CellarController extends BaseController
         //TODO : CALL CDO ?
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_deletion_success'));
-        return redirect()->route('user_index');
+
+        return redirect()->route('user_cellar_list');
     }
 }
