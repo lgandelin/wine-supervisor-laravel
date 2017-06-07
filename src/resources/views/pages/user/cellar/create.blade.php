@@ -20,7 +20,7 @@
         <form action="{{ route('user_cellar_create_handler') }}" method="POST">
 
             <div>
-                <label for="id_ws">Adresse Mak</label>
+                <label for="id_ws">Adresse MAK</label>
                 <input type="text" name="id_ws" id="id_ws" value="{{ old('id_ws') }}" />
             </div>
 

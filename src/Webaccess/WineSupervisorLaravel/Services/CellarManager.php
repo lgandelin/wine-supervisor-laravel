@@ -144,6 +144,49 @@ class CellarManager
 
     /**
      * @param $cellarID
+     * @param $userID
+     * @param $idWS
+     */
+    public static function sav($cellarID, $userID, $idWS)
+    {
+        if ($cellar = Cellar::find($cellarID)) {
+
+            $oldIDWS = $cellar->id_ws;
+
+            //Update WS table (old board)
+            if ($oldWS = WS::find($oldIDWS)) {
+                $oldWS->deactivation_date = new DateTime();
+                $oldWS->board_type = WS::OUT_OF_ORDER_BOARD;
+                $oldWS->save();
+            }
+
+            //Update WS table (new board)
+            if ($ws = WS::find($idWS)) {
+                if ($ws->first_activation_date == null) {
+                    $ws->first_activation_date = new DateTime();
+                    $ws->save();
+                }
+            }
+
+            //Update cellar with new id_ws
+            $cellar->id_ws = $idWS;
+            $cellar->save();
+
+            //Update cellar history
+            $history = new CellarHistory();
+            $history->id = Uuid::uuid4()->toString();
+            $history->cellar_id = $cellarID;
+            $history->user_id = $userID;
+            $history->admin_id = null;
+            $history->column = 'id_ws';
+            $history->old_value = $oldIDWS;
+            $history->new_value = $idWS;
+            $history->save();
+        }
+    }
+
+    /**
+     * @param $cellarID
      * @param $boardType
      */
     public static function delete($cellarID, $boardType)

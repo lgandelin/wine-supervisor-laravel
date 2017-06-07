@@ -17,10 +17,12 @@
 
         <h1>Editer une cave</h1>
 
+        <h2>Informations générales</h2>
+
         <form action="{{ route('user_cellar_update_handler') }}" method="POST">
 
             <div>
-                <label for="id_ws">Adresse Mak</label>
+                <label for="id_ws">Adresse MAK</label>
                 <input type="text" name="id_ws" id="id_ws" value="{{ $cellar->id_ws }}" disabled />
             </div>
 
@@ -52,6 +54,22 @@
             <div>
                 <label for="city">Ville</label>
                 <input type="text" name="city" id="city" value="{{ $cellar->city }}"/>
+            </div>
+
+            <a href="{{ route('user_index') }}">Retour</a>
+            <input type="submit" value="Valider" />
+            <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
+            {{ csrf_field() }}
+        </form>
+
+        <h2>SAV</h2>
+
+        <p>Si vous avez changé votre carte, veuillez renseignez ci-dessous l'adresse MAK de votre nouvelle carte.</p>
+
+        <form action="{{ route('user_cellar_sav_handler') }}" method="POST">
+            <div>
+                <label for="id_ws">Nouvelle adresse MAK</label>
+                <input type="text" name="id_ws" id="id_ws" />
             </div>
 
             <a href="{{ route('user_index') }}">Retour</a>

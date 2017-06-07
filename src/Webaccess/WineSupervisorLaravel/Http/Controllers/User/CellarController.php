@@ -5,8 +5,8 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
-use Webaccess\WineSupervisorLaravel\Models\Board;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
+use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 
 class CellarController extends BaseController
@@ -95,12 +95,35 @@ class CellarController extends BaseController
         return redirect()->route('user_index');
     }
 
+    public function sav_handler(Request $request)
+    {
+        parent::__construct($request);
+
+        if (!CellarManager::checkIDWS($request->get('id_ws'))) {
+            $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
+            return redirect()->back()->withInput();
+        }
+
+        CellarManager::sav(
+            $request->get('cellar_id'),
+            Auth::guard('users')->getUser()->id,
+            $request->get('id_ws')
+        );
+
+        //Call CDO webservice
+        //TODO : CALL CDO
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_sav_success'));
+
+        return redirect()->route('user_index');
+    }
+
     public function delete_handler(Request $request, $cellarID)
     {
         parent::__construct($request);
 
         //TODO : GET BOARD TYPE
-        $boardType = Board::OUT_OF_ORDER_BOARD;
+        $boardType = WS::OUT_OF_ORDER_BOARD;
 
         CellarManager::delete($cellarID, $boardType);
 
