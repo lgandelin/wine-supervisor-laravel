@@ -3,6 +3,9 @@
 @section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
 
 @section('page-content')
+
+    @include('wine-supervisor::pages.admin.includes.menu')
+
     <div class="ws-template">
 
         @if (isset($error))
@@ -17,7 +20,7 @@
             </div>
         @endif
 
-        <h1>Dashboard - Gestion des caves</h1>
+        <h1>Gestion des caves</h1>
 
         <table>
             <tr>

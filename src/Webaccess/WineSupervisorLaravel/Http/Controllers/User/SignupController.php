@@ -41,7 +41,6 @@ class SignupController extends BaseController
             'email' => $request->get('email'),
             'login' => $request->get('login'),
             'password' => $request->get('password'),
-            'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION,
             'opt_in' => $request->get('opt_in') === 'on' ? true : false,
         ]));
 
