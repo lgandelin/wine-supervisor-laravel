@@ -8,4 +8,4 @@
     <li><a href="{{ route('admin_content_list') }}">Gestion des contenus</a></li>
 </ul>
 
-<a href="{{ route('admin_logout') }}">Logout</a>
+<a href="{{ route('admin_logout') }}">Déconnexion</a>

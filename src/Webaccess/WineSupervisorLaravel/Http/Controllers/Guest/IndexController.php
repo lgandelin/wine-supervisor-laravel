@@ -3,7 +3,6 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Guest;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 
 class IndexController extends BaseController

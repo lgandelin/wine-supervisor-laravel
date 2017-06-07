@@ -17,7 +17,7 @@ class CreateSalesTable extends Migration
             $table->uuid('id')->primary('id');
             $table->string('title')->nullable();
             $table->string('jury_note')->nullable();
-            $table->string('jury_opinion')->nullable();
+            $table->text('jury_opinion')->nullable();
             $table->text('description')->nullable();
             $table->string('link')->nullable();
             $table->date('start_date')->nullable();

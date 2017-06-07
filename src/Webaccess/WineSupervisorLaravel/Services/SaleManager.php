@@ -2,6 +2,7 @@
 
 namespace Webaccess\WineSupervisorLaravel\Services;
 
+use DateTime;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Sale;
 
@@ -82,5 +83,14 @@ class SaleManager
         }
 
         return false;
+    }
+
+    public static function getCurrentSales()
+    {
+        $now = new DateTime();
+        return Sale::where('start_date', '<=', $now)
+            ->where('end_date', '>=', $now)
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 }
