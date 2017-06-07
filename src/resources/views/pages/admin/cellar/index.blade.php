@@ -1,7 +1,5 @@
 @extends('wine-supervisor::default')
 
-@section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
-
 @section('page-content')
 
     @include('wine-supervisor::pages.admin.includes.menu')
@@ -24,14 +22,14 @@
 
         <table>
             <tr>
-                <th>Utilisateur</th>
                 <th>ID WS</th>
+                <th>Utilisateur</th>
                 <th>Action</th>
             </tr>
             @foreach ($cellars as $cellar)
                 <tr>
-                    <td>{{ $cellar->user->last_name }} {{ $cellar->user->first_name }}</td>
                     <td>{{ $cellar->id_ws }}</td>
+                    <td>{{ $cellar->user->last_name }} {{ $cellar->user->first_name }}</td>
                     <td><a href="{{ route('admin_cellar_update', $cellar->id) }}">Modifier</a></td>
                 </tr>
             @endforeach

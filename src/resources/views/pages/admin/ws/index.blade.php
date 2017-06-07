@@ -1,7 +1,5 @@
 @extends('wine-supervisor::default')
 
-@section('page-title'){{ trans('wine-supervisor::dashboard.meta_title') }}@endsection
-
 @section('page-content')
 
     @include('wine-supervisor::pages.admin.includes.menu')
