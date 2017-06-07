@@ -122,10 +122,12 @@ class CellarController extends BaseController
     {
         parent::__construct($request);
 
-        //TODO : GET BOARD TYPE
-        $boardType = WS::OUT_OF_ORDER_BOARD;
+        $boardType = ($request->get('reason') == 'board_out_of_order') ? WS::OUT_OF_ORDER_BOARD : WS::OTHER_BOARD;
 
         CellarManager::delete($cellarID, $boardType);
+
+        //Call CDO webservice
+        //TODO : CALL CDO ?
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_deletion_success'));
         return redirect()->route('user_index');

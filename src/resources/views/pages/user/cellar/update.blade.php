@@ -78,5 +78,24 @@
             {{ csrf_field() }}
         </form>
 
+        <h2>Suppression</h2>
+
+        <p>ATTENTION : Valider ce formulaire entrainera la suppression de votre cave dans le système.</p>
+
+        <form action="{{ route('user_cellar_delete_handler') }}" method="POST">
+            <div>
+                <label for="reason">Raison de la suppression</label>
+                <select name="reason" id="reason">
+                    <option value="board_out_of_order">Carte HS</option>
+                    <option value="other">Autre</option>
+                </select>
+            </div>
+
+            <a href="{{ route('user_index') }}">Retour</a>
+            <input type="submit" value="Valider" />
+            <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
+            {{ csrf_field() }}
+        </form>
+
     </div>
 @stop

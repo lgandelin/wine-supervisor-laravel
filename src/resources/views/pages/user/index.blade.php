@@ -32,7 +32,6 @@
                         <td>@if ($cellar->name){{ $cellar->name }}@endif</td>
                         <td>
                             <a href="{{ route('user_cellar_update', ['id' => $cellar->id]) }}">Modifier</a>
-                            <a href="{{ route('user_cellar_delete_handler', ['id' => $cellar->id]) }}">Supprimer</a>
                         </td>
                     </tr>
                 @endforeach
