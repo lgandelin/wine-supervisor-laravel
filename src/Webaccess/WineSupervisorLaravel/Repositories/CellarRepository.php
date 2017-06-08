@@ -50,6 +50,8 @@ class CellarRepository
      */
     public static function create($userID, $idWS, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
     {
+        //TODO : CALL CDO
+
         //Fetch GPS coordinates from address
         $complete_address = implode(' ', [$address, $zipcode, $city]);
         list($latitude, $longitude) = GPSTool::getGPSCoordinates($complete_address);
@@ -102,6 +104,8 @@ class CellarRepository
      */
     public static function update($cellarID, $userID, $adminID, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
     {
+        //TODO : CALL CDO
+
         //Fetch GPS coordinates from address
         $complete_address = implode(' ', [$address, $zipcode, $city]);
         list($latitude, $longitude) = GPSTool::getGPSCoordinates($complete_address);
@@ -145,9 +149,12 @@ class CellarRepository
      * @param $cellarID
      * @param $userID
      * @param $idWS
+     * @return bool
      */
     public static function sav($cellarID, $userID, $idWS)
     {
+        //TODO : CALL CDO
+
         if ($cellar = Cellar::find($cellarID)) {
 
             $oldIDWS = $cellar->id_ws;
@@ -173,15 +180,22 @@ class CellarRepository
 
             //Update cellar history
             self::updateCellarHistory($cellarID, $userID, null, 'id_ws', $oldIDWS, $idWS);
+
+            return true;
         }
+
+        return false;
     }
 
     /**
      * @param $cellarID
      * @param $boardType
+     * @return bool
      */
     public static function delete($cellarID, $boardType)
     {
+        //TODO : CALL CDO ?
+
         if ($cellar = Cellar::find($cellarID)) {
 
             //Update WS table
@@ -191,9 +205,10 @@ class CellarRepository
                 $ws->save();
             }
 
-            //Delete cellar in database
-            Cellar::find($cellar->id)->delete();
+            $cellar->delete();
         }
+
+        return false;
     }
 
     /**

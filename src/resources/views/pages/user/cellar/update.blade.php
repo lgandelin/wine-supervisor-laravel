@@ -27,6 +27,15 @@
             </div>
 
             <div>
+                <label for="subscription_type">Type d'abonnement</label>
+                <select name="subscription_type" id="subscription_type">
+                    <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION }}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)selected="selected"@endif>Standard</option>
+                    <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>Premium</option>
+                    <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION)selected="selected"@endif>Gratuit</option>
+                </select>
+            </div>
+
+            <div>
                 <label for="technician_id">ID Professionnel</label>
                 <input type="text" name="technician_id" id="technician_id" value="{{ $cellar->technician_id }}" />
             </div>

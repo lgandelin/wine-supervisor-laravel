@@ -62,6 +62,8 @@ class TechnicianRepository
      */
     public static function update($technicianID, $status)
     {
+        //TODO : CALL CDO
+
         if ($technician = Technician::find($technicianID)) {
             $technician->status = $status;
 

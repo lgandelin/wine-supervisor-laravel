@@ -39,9 +39,6 @@ class WSController extends AdminController
             $request->get('ws_id'),
             $request->get('board_type')
         )) {
-            //Call CDO webservice
-            //TODO : CALL CDO
-
             $request->session()->flash('confirmation', trans('wine-supervisor::admin.ws_update_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::admin.ws_update_error'));

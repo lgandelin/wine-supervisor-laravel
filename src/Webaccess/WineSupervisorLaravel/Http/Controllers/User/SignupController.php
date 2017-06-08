@@ -74,7 +74,6 @@ class SignupController extends UserController
             }
 
             if ($userID = UserRepository::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password, $user_data->opt_in)) {
-
                 if (!CellarRepository::checkIDWS($request->get('id_ws'))) {
                     $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
                     return redirect()->route('user_signup_cellar');
@@ -85,7 +84,7 @@ class SignupController extends UserController
                     return redirect()->back()->withInput();
                 }
 
-                CellarRepository::create(
+                if (CellarRepository::create(
                     $userID,
                     $request->get('id_ws'),
                     $request->get('technician_id'),
@@ -95,14 +94,11 @@ class SignupController extends UserController
                     $request->get('address'),
                     $request->get('zipcode'),
                     $request->get('city')
-                );
-
-                //Call CDO webservice
-                //TODO : CALL CDO
-
-                //Log user in and redirect
-                if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
-                    return redirect()->route('user_cellar_list');
+                )) {
+                    //Log user in and redirect
+                    if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
+                        return redirect()->route('user_cellar_list');
+                    }
                 }
             } else {
                 $request->session()->flash('error', trans('wine-supervisor::user_signup.create_user_error'));

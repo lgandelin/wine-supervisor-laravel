@@ -77,6 +77,8 @@ class UserRepository
      */
     public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in)
     {
+        //TODO : CALL CDO
+
         if ($user = User::find($userID)) {
             $user->first_name = $firstName;
             $user->last_name = $lastName;

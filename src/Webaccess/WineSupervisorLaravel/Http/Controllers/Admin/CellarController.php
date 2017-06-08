@@ -52,10 +52,6 @@ class CellarController extends AdminController
             $request->get('zipcode'),
             $request->get('city')
         )) {
-
-            //Call CDO webservice
-            //TODO : CALL CDO
-
             $request->session()->flash('confirmation', trans('wine-supervisor::admin.cellar_update_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::admin.cellar_update_error'));

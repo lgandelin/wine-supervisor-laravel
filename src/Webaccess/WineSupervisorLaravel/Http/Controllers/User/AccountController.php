@@ -37,9 +37,6 @@ class AccountController extends UserController
             $request->get('password') ? $request->get('password') : null,
             $request->get('opt_in') === 'on' ? true : false
         )) {
-            //Call CDO webservice
-            //TODO : CALL CDO
-
             $request->session()->flash('confirmation', trans('wine-supervisor::user.user_update_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::user.user_update_error'));

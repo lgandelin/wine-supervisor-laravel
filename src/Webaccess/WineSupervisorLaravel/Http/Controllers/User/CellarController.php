@@ -47,19 +47,16 @@ class CellarController extends UserController
         }
 
         if (CellarRepository::create(
-            Auth::guards('users')->getUser()->id,
+            $this->getUserID(),
             $request->get('id_ws'),
             $request->get('technician_id'),
             $request->get('name'),
-            Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE DIFFERENT SUBSCRIPTION TYPES
+            Subscription::DEFAULT_SUBSCRIPTION,
             $request->get('serial_number'),
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
         )) {
-            //Call CDO webservice
-            //TODO : CALL CDO
-
             $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_creation_error'));
@@ -89,23 +86,23 @@ class CellarController extends UserController
             return redirect()->back()->withInput();
         }
 
-        CellarRepository::update(
+        if (CellarRepository::update(
             $request->get('cellar_id'),
             $this->getUserID(),
             null,
             $request->get('technician_id'),
             $request->get('name'),
-            Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE DIFFERENT SUBSCRIPTION TYPES
+            $request->get('subscription_type'),
             $request->get('serial_number'),
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        );
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_update_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_update_error'));
+        }
 
-        //Call CDO webservice
-        //TODO : CALL CDO
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_update_success'));
         return redirect()->route('user_cellar_list');
     }
 
@@ -118,16 +115,15 @@ class CellarController extends UserController
             return redirect()->back()->withInput();
         }
 
-        CellarRepository::sav(
+        if (CellarRepository::sav(
             $request->get('cellar_id'),
             $this->getUserID(),
             $request->get('id_ws')
-        );
-
-        //Call CDO webservice
-        //TODO : CALL CDO
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_sav_success'));
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_sav_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_sav_error'));
+        }
 
         return redirect()->route('user_cellar_list');
     }
@@ -138,12 +134,11 @@ class CellarController extends UserController
 
         $boardType = ($request->get('reason') == 'board_out_of_order') ? WS::OUT_OF_ORDER_BOARD : WS::OTHER_BOARD;
 
-        CellarRepository::delete($cellarID, $boardType);
-
-        //Call CDO webservice
-        //TODO : CALL CDO ?
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_deletion_success'));
+        if (CellarRepository::delete($cellarID, $boardType)) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_deletion_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_deletion_error'));
+        }
 
         return redirect()->route('user_cellar_list');
     }

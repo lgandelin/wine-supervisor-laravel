@@ -26,11 +26,19 @@
             <table>
                 <tr>
                     <th>Nom</th>
+                    <th>Type d'abonnement</th>
                     <th>Action</th>
                     </tr>
                 @foreach($cellars as $cellar)
                     <tr>
                         <td>@if ($cellar->name){{ $cellar->name }}@endif</td>
+                        <td>
+                            @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)Standard
+                            @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)Premium
+                            @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION)Gratuit
+                            @else Aucun
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('user_cellar_update', ['id' => $cellar->id]) }}">Modifier</a>
                         </td>

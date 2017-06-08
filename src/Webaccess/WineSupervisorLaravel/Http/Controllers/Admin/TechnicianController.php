@@ -40,9 +40,6 @@ class TechnicianController extends AdminController
             $request->get('technician_id'),
             $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
         )) {
-            //Call CDO webservice
-            //TODO : CALL CDO
-
             $request->session()->flash('confirmation', trans('wine-supervisor::admin.technician_update_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::admin.technician_update_error'));

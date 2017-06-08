@@ -31,6 +31,8 @@ class WSRepository
      */
     public static function create($idWS, $boardType)
     {
+        //TODO : CALL CDO
+
         $ws = new WS();
         $ws->id = $idWS ? $idWS : Uuid::uuid4()->toString();
         $ws->board_type = $boardType;
