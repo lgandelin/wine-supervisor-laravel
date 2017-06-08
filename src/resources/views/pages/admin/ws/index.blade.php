@@ -29,7 +29,7 @@
             @foreach ($wss as $ws)
                 <tr>
                     <td>{{ $ws->id }}</td>
-                    <td>{{ Webaccess\WineSupervisorLaravel\Services\WSManager::getBoardTypeLabel($ws->board_type) }}</td>
+                    <td>{{ Webaccess\WineSupervisorLaravel\Services\WSService::getBoardTypeLabel($ws->board_type) }}</td>
                     <td><a href="{{ route('admin_ws_update', $ws->id) }}">Modifier</a></td>
                 </tr>
             @endforeach

@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Services;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
+use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class AccountService
 {
@@ -32,7 +33,7 @@ class AccountService
             $userHasOneSubscription = false;
 
             //Récupération des caves de l'utilisateur
-            if ($cellars = CellarManager::getByUser($user->id)) {
+            if ($cellars = CellarRepository::getByUser($user->id)) {
                 foreach ($cellars as $cellar) {
                     if ($cellar->subscription_type !== Subscription::NO_SUBSCRIPTION && $cellar->subscription_type !== Subscription::FREE_SUBSCRIPTION) {
                         if (new DateTime() >= new DateTime($cellar->subscription_start_date) && new DateTime() <= new DateTime($cellar->subscription_end_date)) {

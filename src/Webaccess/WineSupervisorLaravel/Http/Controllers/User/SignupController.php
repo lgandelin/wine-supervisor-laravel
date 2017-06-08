@@ -5,8 +5,8 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
-use Webaccess\WineSupervisorLaravel\Services\CellarManager;
-use Webaccess\WineSupervisorLaravel\Services\UserManager;
+use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 
 class SignupController extends UserController
 {
@@ -34,7 +34,7 @@ class SignupController extends UserController
     {
         parent::__construct($request);
 
-        if (!UserManager::checkLogin(null, $request->get('login'))) {
+        if (!UserRepository::checkLogin(null, $request->get('login'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.user_existing_login_error'));
             return redirect()->back()->withInput();
         }
@@ -68,24 +68,24 @@ class SignupController extends UserController
         if ($session_user = $request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
-            if (!UserManager::checkLogin(null, $user_data->login)) {
+            if (!UserRepository::checkLogin(null, $user_data->login)) {
                 $request->session()->flash('error', trans('wine-supervisor::user_signup.user_existing_login_error'));
                 return redirect()->route('user_signup')->withInput();
             }
 
-            if ($userID = UserManager::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password, $user_data->opt_in)) {
+            if ($userID = UserRepository::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password, $user_data->opt_in)) {
 
-                if (!CellarManager::checkIDWS($request->get('id_ws'))) {
+                if (!CellarRepository::checkIDWS($request->get('id_ws'))) {
                     $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
                     return redirect()->route('user_signup_cellar');
                 }
 
-                if ($request->get('technician_id') && !CellarManager::checkTechnicianID($request->get('technician_id'))) {
+                if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
                     $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
                     return redirect()->back()->withInput();
                 }
 
-                CellarManager::create(
+                CellarRepository::create(
                     $userID,
                     $request->get('id_ws'),
                     $request->get('technician_id'),

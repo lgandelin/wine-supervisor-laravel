@@ -1,6 +1,6 @@
 <?php
 
-namespace Webaccess\WineSupervisorLaravel\Services;
+namespace Webaccess\WineSupervisorLaravel\Repositories;
 
 use DateInterval;
 use DateTime;
@@ -11,7 +11,7 @@ use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Tools\GPSTool;
 
-class CellarManager
+class CellarRepository
 {
     /**
      * @param $cellarID

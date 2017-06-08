@@ -1,11 +1,11 @@
 <?php
 
-namespace Webaccess\WineSupervisorLaravel\Services;
+namespace Webaccess\WineSupervisorLaravel\Repositories;
 
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Content;
 
-class ContentManager
+class ContentRepository
 {
     /**
      * @param $guestID

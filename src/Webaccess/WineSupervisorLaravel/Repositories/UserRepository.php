@@ -1,15 +1,14 @@
 <?php
 
-namespace Webaccess\WineSupervisorLaravel\Services;
+namespace Webaccess\WineSupervisorLaravel\Repositories;
 
 use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Administrator;
-use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\User;
 
-class UserManager
+class UserRepository
 {
     /**
      * @param $userID

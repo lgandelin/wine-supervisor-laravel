@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\WS;
-use Webaccess\WineSupervisorLaravel\Services\CellarManager;
+use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class CellarController extends UserController
 {
@@ -15,7 +15,7 @@ class CellarController extends UserController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.user.cellar.index', [
-            'cellars' => CellarManager::getByUser($this->getUserID()),
+            'cellars' => CellarRepository::getByUser($this->getUserID()),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -36,17 +36,17 @@ class CellarController extends UserController
     {
         parent::__construct($request);
 
-        if (!CellarManager::checkIDWS($request->get('id_ws'))) {
+        if (!CellarRepository::checkIDWS($request->get('id_ws'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
             return redirect()->back()->withInput();
         }
 
-        if ($request->get('technician_id') && !CellarManager::checkTechnicianID($request->get('technician_id'))) {
+        if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
             return redirect()->back()->withInput();
         }
 
-        if (CellarManager::create(
+        if (CellarRepository::create(
             Auth::guards('users')->getUser()->id,
             $request->get('id_ws'),
             $request->get('technician_id'),
@@ -73,7 +73,7 @@ class CellarController extends UserController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.user.cellar.update', [
-            'cellar' => CellarManager::getByID($cellarID),
+            'cellar' => CellarRepository::getByID($cellarID),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -84,12 +84,12 @@ class CellarController extends UserController
     {
         parent::__construct($request);
 
-        if ($request->get('technician_id') && !CellarManager::checkTechnicianID($request->get('technician_id'))) {
+        if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
             return redirect()->back()->withInput();
         }
 
-        CellarManager::update(
+        CellarRepository::update(
             $request->get('cellar_id'),
             $this->getUserID(),
             null,
@@ -113,12 +113,12 @@ class CellarController extends UserController
     {
         parent::__construct($request);
 
-        if (!CellarManager::checkIDWS($request->get('id_ws'))) {
+        if (!CellarRepository::checkIDWS($request->get('id_ws'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
             return redirect()->back()->withInput();
         }
 
-        CellarManager::sav(
+        CellarRepository::sav(
             $request->get('cellar_id'),
             $this->getUserID(),
             $request->get('id_ws')
@@ -138,7 +138,7 @@ class CellarController extends UserController
 
         $boardType = ($request->get('reason') == 'board_out_of_order') ? WS::OUT_OF_ORDER_BOARD : WS::OTHER_BOARD;
 
-        CellarManager::delete($cellarID, $boardType);
+        CellarRepository::delete($cellarID, $boardType);
 
         //Call CDO webservice
         //TODO : CALL CDO ?

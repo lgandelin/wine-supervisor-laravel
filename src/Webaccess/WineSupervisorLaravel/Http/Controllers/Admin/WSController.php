@@ -3,7 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Services\WSManager;
+use Webaccess\WineSupervisorLaravel\Repositories\WSRepository;
 
 class WSController extends AdminController
 {
@@ -12,7 +12,7 @@ class WSController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.ws.index', [
-            'wss' => WSManager::getAll(),
+            'wss' => WSRepository::getAll(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -24,7 +24,7 @@ class WSController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.ws.update', [
-            'ws' => WSManager::getByID($wsID),
+            'ws' => WSRepository::getByID($wsID),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -35,7 +35,7 @@ class WSController extends AdminController
     {
         parent::__construct($request);
 
-        if (WSManager::update(
+        if (WSRepository::update(
             $request->get('ws_id'),
             $request->get('board_type')
         )) {

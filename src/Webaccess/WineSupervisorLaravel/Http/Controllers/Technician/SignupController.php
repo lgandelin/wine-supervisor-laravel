@@ -3,7 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Technician;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Services\TechnicianManager;
+use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
 
 class SignupController
 {
@@ -17,7 +17,7 @@ class SignupController
 
     public function signup_handler(Request $request)
     {
-        TechnicianManager::create(
+        TechnicianRepository::create(
             $request->get('company'),
             $request->get('registration'),
             $request->get('phone'),

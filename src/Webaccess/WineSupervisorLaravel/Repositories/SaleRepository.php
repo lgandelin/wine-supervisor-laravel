@@ -1,12 +1,12 @@
 <?php
 
-namespace Webaccess\WineSupervisorLaravel\Services;
+namespace Webaccess\WineSupervisorLaravel\Repositories;
 
 use DateTime;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Sale;
 
-class SaleManager
+class SaleRepository
 {
     /**
      * @param $saleID

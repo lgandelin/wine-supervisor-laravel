@@ -3,7 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Services\SaleManager;
+use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
 
 class SaleController extends AdminController
 {
@@ -12,7 +12,7 @@ class SaleController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.sale.index', [
-            'sales' => SaleManager::getAll(),
+            'sales' => SaleRepository::getAll(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -33,7 +33,7 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
-        if (SaleManager::create(
+        if (SaleRepository::create(
             $request->get('title'),
             $request->get('jury_note'),
             $request->get('jury_opinion'),
@@ -55,7 +55,7 @@ class SaleController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.sale.update', [
-            'sale' => SaleManager::getByID($saleID),
+            'sale' => SaleRepository::getByID($saleID),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -66,7 +66,7 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
-        if (SaleManager::update(
+        if (SaleRepository::update(
             $request->get('sale_id'),
             $request->get('title'),
             $request->get('jury_note'),
@@ -88,7 +88,7 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
-        if (SaleManager::delete($saleID)) {
+        if (SaleRepository::delete($saleID)) {
             $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_delete_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::admin.sale_delete_error'));

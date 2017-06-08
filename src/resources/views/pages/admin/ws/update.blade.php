@@ -34,7 +34,7 @@
                         Webaccess\WineSupervisorLaravel\Models\WS::OTHER_BOARD,
                     ] as $board_type)
                         <option value="{{ $board_type }}" @if ($ws->board_type == $board_type) selected="selected" @endif>
-                            {{ Webaccess\WineSupervisorLaravel\Services\WSManager::getBoardTypeLabel($board_type) }}
+                            {{ Webaccess\WineSupervisorLaravel\Services\WSService::getBoardTypeLabel($board_type) }}
                         </option>
                     @endforeach
                 </select>

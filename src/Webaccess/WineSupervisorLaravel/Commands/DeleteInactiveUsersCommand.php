@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\User;
-use Webaccess\WineSupervisorLaravel\Services\CellarManager;
+use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class DeleteInactiveUsersCommand extends Command
 {
@@ -28,7 +28,7 @@ class DeleteInactiveUsersCommand extends Command
                     $userHasOneSubscription = false;
 
                     //Récupération des caves de l'utilisateur
-                    if ($cellars = CellarManager::getByUser($user->id)) {
+                    if ($cellars = CellarRepository::getByUser($user->id)) {
                         foreach ($cellars as $cellar) {
                             if ($cellar->subscription_type !== Subscription::NO_SUBSCRIPTION) {
                                 $userHasOneSubscription = true;

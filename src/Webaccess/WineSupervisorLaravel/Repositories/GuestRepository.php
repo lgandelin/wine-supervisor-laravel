@@ -1,12 +1,12 @@
 <?php
 
-namespace Webaccess\WineSupervisorLaravel\Services;
+namespace Webaccess\WineSupervisorLaravel\Repositories;
 
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Guest;
 
-class GuestManager
+class GuestRepository
 {
     /**
      * @param $guestID

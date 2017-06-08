@@ -3,7 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Commands;
 
 use Illuminate\Console\Command;
-use Webaccess\WineSupervisorLaravel\Services\UserManager;
+use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 
 class CreateAdministratorCommand extends Command
 {
@@ -19,7 +19,7 @@ class CreateAdministratorCommand extends Command
         $password = $this->secret('Entrez le mot de passe de l\'administrateur');
 
         try {
-            if (UserManager::createAdministrator($firstName, $lastName, $email, $password))
+            if (UserRepository::createAdministrator($firstName, $lastName, $email, $password))
                 $this->info('Le profil administrateur a été créé avec succès');
         } catch (\Exception $e) {
             $this->error('Une erreur est survenue lors de l\'ajout du profil administrateur : ' . $e->getMessage());

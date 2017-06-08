@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Webaccess\WineSupervisorLaravel\Models\User;
-use Webaccess\WineSupervisorLaravel\Services\AccountService;
+use Webaccess\WineSupervisorLaravel\Repositories\AccountService;
 
 class LoginController extends Controller
 {

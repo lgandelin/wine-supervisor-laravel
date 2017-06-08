@@ -4,7 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Webaccess\WineSupervisorLaravel\Services\UserManager;
+use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 
 class AccountController extends UserController
 {
@@ -13,7 +13,7 @@ class AccountController extends UserController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.user.account.update', [
-            'user' => UserManager::getByID($this->getUserID()),
+            'user' => UserRepository::getByID($this->getUserID()),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -24,12 +24,12 @@ class AccountController extends UserController
     {
         parent::__construct($request);
 
-        if (!UserManager::checkLogin($this->getUserID(), $request->get('login'))) {
+        if (!UserRepository::checkLogin($this->getUserID(), $request->get('login'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_account.existing_login_error'));
             return redirect()->back()->withInput();
         }
 
-        if (UserManager::update(
+        if (UserRepository::update(
             $this->getUserID(),
             $request->get('first_name'),
             $request->get('last_name'),

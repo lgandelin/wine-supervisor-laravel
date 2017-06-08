@@ -1,12 +1,11 @@
 <?php
 
-namespace Webaccess\WineSupervisorLaravel\Services;
+namespace Webaccess\WineSupervisorLaravel\Repositories;
 
-use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 
-class WSManager
+class WSRepository
 {
     /**
      * @param $wsID
@@ -23,18 +22,6 @@ class WSManager
     public static function getAll()
     {
         return WS::all();
-    }
-
-    public static function getBoardTypeLabel($boardType) {
-        $label = 'DEFAULT';
-        switch ($boardType) {
-            case WS::PRIMO_BOARD: $label = 'Primo'; break;
-            case WS::SAV_BOARD: $label = 'SAV'; break;
-            case WS::OUT_OF_ORDER_BOARD: $label = 'HS'; break;
-            case WS::OTHER_BOARD: $label = 'Autre'; break;
-        }
-
-        return $label;
     }
 
     /**

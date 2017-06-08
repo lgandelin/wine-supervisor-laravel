@@ -4,7 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
-use Webaccess\WineSupervisorLaravel\Services\TechnicianManager;
+use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
 
 class TechnicianController extends AdminController
 {
@@ -13,7 +13,7 @@ class TechnicianController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.technician.index', [
-            'technicians' => TechnicianManager::getAll(),
+            'technicians' => TechnicianRepository::getAll(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -25,7 +25,7 @@ class TechnicianController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.technician.update', [
-            'technician' => TechnicianManager::getByID($technicianID),
+            'technician' => TechnicianRepository::getByID($technicianID),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -36,7 +36,7 @@ class TechnicianController extends AdminController
     {
         parent::__construct($request);
 
-        if (TechnicianManager::update(
+        if (TechnicianRepository::update(
             $request->get('technician_id'),
             $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
         )) {

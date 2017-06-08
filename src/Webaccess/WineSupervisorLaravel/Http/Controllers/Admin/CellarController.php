@@ -3,7 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Services\CellarManager;
+use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class CellarController extends AdminController
 {
@@ -12,7 +12,7 @@ class CellarController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.cellar.index', [
-            'cellars' => CellarManager::getAll(),
+            'cellars' => CellarRepository::getAll(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -24,7 +24,7 @@ class CellarController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.cellar.update', [
-            'cellar' => CellarManager::getByID($cellarID),
+            'cellar' => CellarRepository::getByID($cellarID),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -35,12 +35,12 @@ class CellarController extends AdminController
     {
         parent::__construct($request);
 
-        if ($request->get('technician_id') && !CellarManager::checkTechnicianID($request->get('technician_id'))) {
+        if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
             return redirect()->back()->withInput();
         }
 
-        if (CellarManager::update(
+        if (CellarRepository::update(
             $request->get('cellar_id'),
             null,
             $this->getAdministratorID(),

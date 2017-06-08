@@ -3,7 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Services\ContentManager;
+use Webaccess\WineSupervisorLaravel\Repositories\ContentRepository;
 
 class ContentController extends AdminController
 {
@@ -12,7 +12,7 @@ class ContentController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.content.index', [
-            'contents' => ContentManager::getAll(),
+            'contents' => ContentRepository::getAll(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -33,7 +33,7 @@ class ContentController extends AdminController
     {
         parent::__construct($request);
 
-        if (ContentManager::create(
+        if (ContentRepository::create(
             $request->get('title'),
             $request->get('slug'),
             $request->get('text')
@@ -51,7 +51,7 @@ class ContentController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.content.update', [
-            'content' => ContentManager::getByID($contentID),
+            'content' => ContentRepository::getByID($contentID),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -62,7 +62,7 @@ class ContentController extends AdminController
     {
         parent::__construct($request);
 
-        if (ContentManager::update(
+        if (ContentRepository::update(
             $request->get('content_id'),
             $request->get('title'),
             $request->get('slug'),
@@ -80,7 +80,7 @@ class ContentController extends AdminController
     {
         parent::__construct($request);
 
-        if (ContentManager::delete($contentID)) {
+        if (ContentRepository::delete($contentID)) {
             $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_delete_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::admin.content_delete_error'));
