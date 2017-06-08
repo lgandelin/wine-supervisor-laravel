@@ -40,6 +40,7 @@ class WSManager
     /**
      * @param $idWS
      * @param $boardType
+     * @return bool
      */
     public static function create($idWS, $boardType)
     {
@@ -47,18 +48,22 @@ class WSManager
         $ws->id = $idWS ? $idWS : Uuid::uuid4()->toString();
         $ws->board_type = $boardType;
 
-        $ws->save();
+        return $ws->save();
     }
 
     /**
      * @param $wsID
      * @param $boardType
+     * @return bool
      */
     public static function update($wsID, $boardType)
     {
         if ($ws = WS::find($wsID)) {
             $ws->board_type = $boardType;
-            $ws->save();
+
+            return $ws->save();
         }
+
+        return false;
     }
 }

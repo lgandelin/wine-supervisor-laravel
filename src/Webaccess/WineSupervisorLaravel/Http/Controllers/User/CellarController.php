@@ -4,19 +4,18 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 
-class CellarController extends BaseController
+class CellarController extends UserController
 {
     public function index(Request $request)
     {
         parent::__construct($request);
 
         return view('wine-supervisor::pages.user.cellar.index', [
-            'cellars' => CellarManager::getByUser(Auth::guard('users')->getUser()->id),
+            'cellars' => CellarManager::getByUser($this->getUserID()),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -47,7 +46,7 @@ class CellarController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        CellarManager::create(
+        if (CellarManager::create(
             Auth::guards('users')->getUser()->id,
             $request->get('id_ws'),
             $request->get('technician_id'),
@@ -57,12 +56,14 @@ class CellarController extends BaseController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        );
+        )) {
+            //Call CDO webservice
+            //TODO : CALL CDO
 
-        //Call CDO webservice
-        //TODO : CALL CDO
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_creation_error'));
+        }
 
         return redirect()->route('user_cellar_list');
     }
@@ -90,7 +91,7 @@ class CellarController extends BaseController
 
         CellarManager::update(
             $request->get('cellar_id'),
-            Auth::guard('users')->getUser()->id,
+            $this->getUserID(),
             null,
             $request->get('technician_id'),
             $request->get('name'),
@@ -119,7 +120,7 @@ class CellarController extends BaseController
 
         CellarManager::sav(
             $request->get('cellar_id'),
-            Auth::guard('users')->getUser()->id,
+            $this->getUserID(),
             $request->get('id_ws')
         );
 

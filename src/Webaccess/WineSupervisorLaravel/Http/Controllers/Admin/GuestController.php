@@ -3,10 +3,9 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Services\GuestManager;
 
-class GuestController extends BaseController
+class GuestController extends AdminController
 {
     public function index(Request $request)
     {
@@ -39,7 +38,7 @@ class GuestController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        GuestManager::create(
+        if (GuestManager::create(
             $request->get('first_name'),
             $request->get('last_name'),
             \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
@@ -51,9 +50,11 @@ class GuestController extends BaseController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        );
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_create_success'));
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_create_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.guest_create_error'));
+        }
 
         return redirect()->route('admin_guest_list');
     }
@@ -79,7 +80,7 @@ class GuestController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        GuestManager::update(
+        if (GuestManager::update(
             $request->get('guest_id'),
             $request->get('first_name'),
             $request->get('last_name'),
@@ -92,9 +93,11 @@ class GuestController extends BaseController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        );
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_update_success'));
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_update_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.guest_update_error'));
+        }
 
         return redirect()->route('admin_guest_list');
     }

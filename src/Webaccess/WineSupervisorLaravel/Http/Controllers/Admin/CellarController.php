@@ -3,11 +3,9 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 
-class CellarController extends BaseController
+class CellarController extends AdminController
 {
     public function index(Request $request)
     {
@@ -42,10 +40,10 @@ class CellarController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        CellarManager::update(
+        if (CellarManager::update(
             $request->get('cellar_id'),
             null,
-            Auth::guard('administrators')->getUser()->id,
+            $this->getAdministratorID(),
             $request->get('technician_id'),
             $request->get('name'),
             $request->get('subscription_type'),
@@ -53,12 +51,15 @@ class CellarController extends BaseController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        );
+        )) {
 
-        //Call CDO webservice
-        //TODO : CALL CDO
+            //Call CDO webservice
+            //TODO : CALL CDO
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.cellar_update_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.cellar_update_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.cellar_update_error'));
+        }
 
         return redirect()->route('admin_cellar_list');
     }

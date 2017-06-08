@@ -3,10 +3,9 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Services\ContentManager;
 
-class ContentController extends BaseController
+class ContentController extends AdminController
 {
     public function index(Request $request)
     {
@@ -34,19 +33,21 @@ class ContentController extends BaseController
     {
         parent::__construct($request);
 
-        ContentManager::create(
+        if (ContentManager::create(
             $request->get('title'),
             $request->get('slug'),
             $request->get('text')
-        );
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_create_success'));
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_create_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.content_create_error'));
+        }
 
         return redirect()->route('admin_content_list');
     }
 
-    public function update(Request $request, $contentID) {
-
+    public function update(Request $request, $contentID)
+    {
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.content.update', [
@@ -61,14 +62,16 @@ class ContentController extends BaseController
     {
         parent::__construct($request);
 
-        ContentManager::update(
+        if (ContentManager::update(
             $request->get('content_id'),
             $request->get('title'),
             $request->get('slug'),
             $request->get('text')
-        );
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_update_success'));
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_update_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.content_update_error'));
+        }
 
         return redirect()->route('admin_content_list');
     }

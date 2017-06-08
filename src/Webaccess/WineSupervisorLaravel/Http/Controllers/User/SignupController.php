@@ -4,18 +4,17 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Services\CellarManager;
 use Webaccess\WineSupervisorLaravel\Services\UserManager;
 
-class SignupController extends BaseController
+class SignupController extends UserController
 {
     public function signup(Request $request)
     {
         parent::__construct($request);
 
-        if ($session_user = $this->request->session()->get('user_signup')) {
+        if ($session_user = $request->session()->get('user_signup')) {
             $session_user = json_decode($session_user);
         }
 
@@ -66,7 +65,7 @@ class SignupController extends BaseController
     {
         parent::__construct($request);
 
-        if ($session_user = $this->request->session()->get('user_signup')) {
+        if ($session_user = $request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
             if (!UserManager::checkLogin(null, $user_data->login)) {
@@ -105,10 +104,12 @@ class SignupController extends BaseController
                 if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
                     return redirect()->route('user_cellar_list');
                 }
+            } else {
+                $request->session()->flash('error', trans('wine-supervisor::user_signup.create_user_error'));
             }
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::user_signup.session_error'));
         }
-
-        $request->session()->flash('error', trans('wine-supervisor::user_signup.session_error'));
 
         return redirect()->route('user_signup');
     }

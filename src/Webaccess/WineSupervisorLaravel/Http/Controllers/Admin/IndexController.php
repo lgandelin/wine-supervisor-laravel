@@ -3,9 +3,8 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 
-class IndexController extends BaseController
+class IndexController extends AdminController
 {
     public function index(Request $request)
     {

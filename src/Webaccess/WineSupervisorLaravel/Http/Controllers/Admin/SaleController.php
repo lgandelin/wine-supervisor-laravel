@@ -3,11 +3,9 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Services\SaleManager;
 
-class SaleController extends BaseController
+class SaleController extends AdminController
 {
     public function index(Request $request)
     {
@@ -35,7 +33,7 @@ class SaleController extends BaseController
     {
         parent::__construct($request);
 
-        SaleManager::create(
+        if (SaleManager::create(
             $request->get('title'),
             $request->get('jury_note'),
             $request->get('jury_opinion'),
@@ -43,9 +41,11 @@ class SaleController extends BaseController
             $request->get('link'),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
-        );
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_create_success'));
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_create_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.sale_create_error'));
+        }
 
         return redirect()->route('admin_sale_list');
     }
@@ -66,7 +66,7 @@ class SaleController extends BaseController
     {
         parent::__construct($request);
 
-        SaleManager::update(
+        if (SaleManager::update(
             $request->get('sale_id'),
             $request->get('title'),
             $request->get('jury_note'),
@@ -75,9 +75,11 @@ class SaleController extends BaseController
             $request->get('link'),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
-        );
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_update_success'));
+        )) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_update_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.sale_update_error'));
+        }
 
         return redirect()->route('admin_sale_list');
     }

@@ -38,6 +38,7 @@ class GuestManager
      * @param $zipcode
      * @param $city
      * @internal param $idGuest
+     * @return bool
      */
     public static function create($firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $address, $zipcode, $city)
     {
@@ -54,7 +55,8 @@ class GuestManager
         $guest->address = $address;
         $guest->zipcode = $zipcode;
         $guest->city = $city;
-        $guest->save();
+
+        return $guest->save();
     }
 
     /**
@@ -70,6 +72,7 @@ class GuestManager
      * @param $address
      * @param $zipcode
      * @param $city
+     * @return bool
      */
     public static function update($guestID, $firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $address, $zipcode, $city)
     {
@@ -85,8 +88,11 @@ class GuestManager
             $guest->address = $address;
             $guest->zipcode = $zipcode;
             $guest->city = $city;
-            $guest->save();
+
+            return $guest->save();
         }
+
+        return false;
     }
 
     /**
@@ -111,9 +117,14 @@ class GuestManager
 
     /**
      * @param $guestID
+     * @return bool
      */
     public static function delete($guestID)
     {
-        return Guest::find($guestID)->delete();
+        if ($guest = Guest::find($guestID)) {
+            return $guest->delete();
+        }
+
+        return false;
     }
 }

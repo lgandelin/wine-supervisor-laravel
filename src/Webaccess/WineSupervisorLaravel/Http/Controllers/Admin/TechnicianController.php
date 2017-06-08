@@ -3,11 +3,10 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Services\TechnicianManager;
 
-class TechnicianController extends BaseController
+class TechnicianController extends AdminController
 {
     public function index(Request $request)
     {
@@ -37,15 +36,17 @@ class TechnicianController extends BaseController
     {
         parent::__construct($request);
 
-        TechnicianManager::update(
+        if (TechnicianManager::update(
             $request->get('technician_id'),
             $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
-        );
+        )) {
+            //Call CDO webservice
+            //TODO : CALL CDO
 
-        //Call CDO webservice
-        //TODO : CALL CDO
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.technician_update_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.technician_update_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.technician_update_error'));
+        }
 
         return redirect()->route('admin_technician_list');
     }

@@ -46,6 +46,7 @@ class CellarManager
      * @param $address
      * @param $zipcode
      * @param $city
+     * @return bool
      */
     public static function create($userID, $idWS, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
     {
@@ -82,6 +83,8 @@ class CellarManager
                 $ws->save();
             }
         }
+
+        return true;
     }
 
     /**
@@ -95,6 +98,7 @@ class CellarManager
      * @param $address
      * @param $zipcode
      * @param $city
+     * @return bool
      */
     public static function update($cellarID, $userID, $adminID, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
     {
@@ -125,12 +129,16 @@ class CellarManager
             $cellar->city = $city;
             if ($latitude) $cellar->latitude = $latitude;
             if ($longitude) $cellar->longitude = $longitude;
-            $cellar->save();
+            $result = $cellar->save();
 
             foreach ($updates as $update) {
                 self::updateCellarHistory($cellarID, $userID, $adminID, $update['column'], $update['old_value'], $update['new_value']);
             }
+
+            return $result;
         }
+
+        return false;
     }
 
     /**

@@ -3,10 +3,9 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use Webaccess\WineSupervisorLaravel\Http\Controllers\BaseController;
 use Webaccess\WineSupervisorLaravel\Services\WSManager;
 
-class WSController extends BaseController
+class WSController extends AdminController
 {
     public function index(Request $request)
     {
@@ -36,15 +35,17 @@ class WSController extends BaseController
     {
         parent::__construct($request);
 
-        WSManager::update(
+        if (WSManager::update(
             $request->get('ws_id'),
             $request->get('board_type')
-        );
+        )) {
+            //Call CDO webservice
+            //TODO : CALL CDO
 
-        //Call CDO webservice
-        //TODO : CALL CDO
-
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.ws_update_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.ws_update_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.ws_update_error'));
+        }
 
         return redirect()->route('admin_ws_list');
     }

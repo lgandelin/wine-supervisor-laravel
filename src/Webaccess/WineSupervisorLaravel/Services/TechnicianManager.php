@@ -35,6 +35,7 @@ class TechnicianManager
      * @param $address
      * @param $zipcode
      * @param $city
+     * @return bool
      */
     public static function create($company, $registration, $phone, $email, $login, $password, $address, $zipcode, $city)
     {
@@ -51,18 +52,22 @@ class TechnicianManager
         $technician->city = $city;
         $technician->status = Technician::STATUS_DISABLED;
 
-        $technician->save();
+        return $technician->save();
     }
 
     /**
      * @param $technicianID
      * @param $status
+     * @return bool
      */
     public static function update($technicianID, $status)
     {
         if ($technician = Technician::find($technicianID)) {
             $technician->status = $status;
-            $technician->save();
+
+            return $technician->save();
         }
+
+        return false;
     }
 }

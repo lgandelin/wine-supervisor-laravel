@@ -33,6 +33,7 @@ class SaleManager
      * @param $link
      * @param $startDate
      * @param $endDate
+     * @return bool
      */
     public static function create($title, $juryNote, $juryOpinion, $description, $link, $startDate, $endDate)
     {
@@ -45,7 +46,8 @@ class SaleManager
         $sale->link = $link;
         $sale->start_date = $startDate;
         $sale->end_date = $endDate;
-        $sale->save();
+
+        return $sale->save();
     }
 
     /**
@@ -57,6 +59,7 @@ class SaleManager
      * @param $link
      * @param $startDate
      * @param $endDate
+     * @return bool
      */
     public static function update($saleID, $title, $juryNote, $juryOpinion, $description, $link, $startDate, $endDate)
     {
@@ -68,8 +71,11 @@ class SaleManager
             $sale->link = $link;
             $sale->start_date = $startDate;
             $sale->end_date = $endDate;
-            $sale->save();
+
+            return $sale->save();
         }
+
+        return false;
     }
 
     /**

@@ -28,6 +28,7 @@ class ContentManager
      * @param $title
      * @param $slug
      * @param $text
+     * @return bool
      */
     public static function create($title, $slug, $text)
     {
@@ -36,7 +37,8 @@ class ContentManager
         $sale->title = $title;
         $sale->slug = $slug;
         $sale->text = $text;
-        $sale->save();
+
+        return $sale->save();
     }
 
     /**
@@ -44,6 +46,7 @@ class ContentManager
      * @param $title
      * @param $slug
      * @param $text
+     * @return bool
      */
     public static function update($saleID, $title, $slug, $text)
     {
@@ -51,8 +54,11 @@ class ContentManager
             $sale->title = $title;
             $sale->slug = $slug;
             $sale->text = $text;
-            $sale->save();
+
+            return $sale->save();
         }
+
+        return false;
     }
 
     /**
