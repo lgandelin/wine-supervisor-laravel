@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Webaccess\WineSupervisorLaravel\Models\User;
+use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
 class LoginController extends Controller
 {
@@ -46,10 +47,7 @@ class LoginController extends Controller
             'login' => $this->request->input('login'),
             'password' => $this->request->input('password'),
         ])) {
-            //Check access dates
-            $guest = Auth::guard('guests')->user();
-
-            if (new DateTime() < new DateTime($guest->access_start_date) || new DateTime() > new DateTime($guest->access_end_date)) {
+            if (!AccountService::hasAValidGuestAccount()) {
                 return redirect()->route('user_login')->with([
                     'error' => trans('wine-supervisor::login.guest_access_dates_error'),
                 ]);
