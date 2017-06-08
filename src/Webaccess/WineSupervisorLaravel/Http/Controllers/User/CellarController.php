@@ -15,7 +15,7 @@ class CellarController extends BaseController
     {
         parent::__construct($request);
 
-        return view('wine-supervisor::pages.user.index', [
+        return view('wine-supervisor::pages.user.cellar.index', [
             'cellars' => CellarManager::getByUser(Auth::guard('users')->getUser()->id),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,

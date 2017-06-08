@@ -1,7 +1,10 @@
 @extends('wine-supervisor::default')
 
 @section('page-content')
-    <tr class="dashboard-template">
+
+    @include('wine-supervisor::pages.user.includes.menu')
+
+    <div class="user-cellar-template">
 
         @if (isset($error))
             <div class="alert alert-danger">
@@ -15,9 +18,7 @@
             </div>
         @endif
 
-        <h1>Dashboard - Utilisateur</h1>
-
-        <a href="{{ route('user_logout') }}">Logout</a>
+        <h1>Tableau de bord</h1>
 
         <h2>Mes caves</h2>
 

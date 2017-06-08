@@ -56,7 +56,7 @@
                 <input type="text" name="city" id="city" value="{{ $cellar->city }}"/>
             </div>
 
-            <a href="{{ route('user_index') }}">Retour</a>
+            <a href="{{ route('user_cellar_list') }}">Retour</a>
             <input type="submit" value="Valider" />
             <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
             {{ csrf_field() }}
@@ -72,7 +72,7 @@
                 <input type="text" name="id_ws" id="id_ws" />
             </div>
 
-            <a href="{{ route('user_index') }}">Retour</a>
+            <a href="{{ route('user_cellar_list') }}">Retour</a>
             <input type="submit" value="Valider" />
             <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
             {{ csrf_field() }}
@@ -91,7 +91,7 @@
                 </select>
             </div>
 
-            <a href="{{ route('user_index') }}">Retour</a>
+            <a href="{{ route('user_cellar_list') }}">Retour</a>
             <input type="submit" value="Valider" />
             <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
             {{ csrf_field() }}

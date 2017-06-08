@@ -34,6 +34,11 @@ class GuestController extends BaseController
     {
         parent::__construct($request);
 
+        if (!GuestManager::checkLogin(null, $request->get('login'))) {
+            $request->session()->flash('error', trans('wine-supervisor::admin.guest_existing_login_error'));
+            return redirect()->back()->withInput();
+        }
+
         GuestManager::create(
             $request->get('first_name'),
             $request->get('last_name'),
@@ -68,6 +73,11 @@ class GuestController extends BaseController
     public function update_handler(Request $request)
     {
         parent::__construct($request);
+
+        if (!GuestManager::checkLogin($request->get('guest_id'), $request->get('login'))) {
+            $request->session()->flash('error', trans('wine-supervisor::admin.guest_existing_login_error'));
+            return redirect()->back()->withInput();
+        }
 
         GuestManager::update(
             $request->get('guest_id'),

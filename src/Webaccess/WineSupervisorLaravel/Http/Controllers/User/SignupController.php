@@ -35,6 +35,11 @@ class SignupController extends BaseController
     {
         parent::__construct($request);
 
+        if (!UserManager::checkLogin(null, $request->get('login'))) {
+            $request->session()->flash('error', trans('wine-supervisor::user_signup.user_existing_login_error'));
+            return redirect()->back()->withInput();
+        }
+
         $request->session()->put('user_signup', json_encode([
             'last_name' => $request->get('last_name'),
             'first_name' => $request->get('first_name'),
@@ -63,6 +68,11 @@ class SignupController extends BaseController
 
         if ($session_user = $this->request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
+
+            if (!UserManager::checkLogin(null, $user_data->login)) {
+                $request->session()->flash('error', trans('wine-supervisor::user_signup.user_existing_login_error'));
+                return redirect()->route('user_signup')->withInput();
+            }
 
             if ($userID = UserManager::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password, $user_data->opt_in)) {
 

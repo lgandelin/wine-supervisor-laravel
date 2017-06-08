@@ -88,4 +88,24 @@ class GuestManager
             $guest->save();
         }
     }
+
+    /**
+     * @param $guestID
+     * @param $login
+     * @return bool
+     */
+    public static function checkLogin($guestID, $login)
+    {
+        $existingGuest = Guest::where('login', '=', $login);
+
+        if ($guestID) {
+            $existingGuest->where('id', '!=', $guestID);
+        }
+
+        if ($existingGuest->first()) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -54,7 +54,7 @@
                 <input type="text" name="city" id="city" value="{{ old('city') }}"/>
             </div>
 
-            <a href="{{ route('user_index') }}">Retour</a>
+            <a href="{{ route('user_cellar_list') }}">Retour</a>
             <input type="submit" value="Valider" />
             {{ csrf_field() }}
         </form>

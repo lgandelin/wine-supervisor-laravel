@@ -37,6 +37,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/utilisateur/modifier-cave', array('as' => 'user_cellar_update_handler', 'uses' => 'User\CellarController@update_handler'));
         Route::post('/utilisateur/sav-cave', array('as' => 'user_cellar_sav_handler', 'uses' => 'User\CellarController@sav_handler'));
         Route::post('/utilisateur/supprimer-cave', array('as' => 'user_cellar_delete_handler', 'uses' => 'User\CellarController@delete_handler'));
+
+        Route::get('/utilisateur/mon-compte', array('as' => 'user_update_account', 'uses' => 'User\AccountController@update'));
+        Route::post('/utilisateur/mon-compte', array('as' => 'user_update_account_handler', 'uses' => 'User\AccountController@update_handler'));
     });
 
     Route::group(['middleware' => ['admin']], function () {

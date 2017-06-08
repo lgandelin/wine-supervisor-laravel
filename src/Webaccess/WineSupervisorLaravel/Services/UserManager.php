@@ -12,6 +12,14 @@ use Webaccess\WineSupervisorLaravel\Models\User;
 class UserManager
 {
     /**
+     * @param $userID
+     */
+    public static function getByID($userID)
+    {
+        return User::find($userID);
+    }
+
+    /**
      * @param $firstName
      * @param $lastName
      * @param $email
@@ -56,5 +64,53 @@ class UserManager
         $administrator->save();
 
         return $administrator->id;
+    }
+
+    /**
+     * @param $userID
+     * @param $firstName
+     * @param $lastName
+     * @param $email
+     * @param $login
+     * @param $password
+     * @param $opt_in
+     * @return User
+     */
+    public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in)
+    {
+        if ($user = User::find($userID)) {
+            $user->first_name = $firstName;
+            $user->last_name = $lastName;
+            $user->email = $email;
+            $user->login = $login;
+            if ($password !== null) $user->password = Hash::make($password);
+            $user->opt_in = $opt_in;
+
+            $user->save();
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $userID
+     * @param $login
+     * @return bool
+     */
+    public static function checkLogin($userID, $login)
+    {
+        $existingUser = User::where('login', '=', $login);
+
+        if ($userID) {
+            $existingUser->where('id', '!=', $userID);
+        }
+
+        if ($existingUser->first()) {
+            return false;
+        }
+
+        return true;
     }
 }

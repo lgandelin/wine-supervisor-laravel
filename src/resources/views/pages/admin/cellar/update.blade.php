@@ -81,7 +81,7 @@
 
             <div>
                 <label for="opt_in">Inscrit à la newsletter</label>
-                <input type="checkbox" name="opt_in" id="opt_in" @if ($cellar->user->opt_in === true || $cellar->user->opt_in === null)checked="checked"@endif disabled />
+                <input type="checkbox" name="opt_in" id="opt_in" @if ($cellar->user->opt_in == true || $cellar->user->opt_in === null)checked="checked"@endif disabled />
             </div>
 
             <a href="{{ route('admin_cellar_list') }}">Retour</a>

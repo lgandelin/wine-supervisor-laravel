@@ -46,7 +46,7 @@
 
             <div>
                 <label for="login">Mot de passe</label>
-                <input type="password" name="password" id="password" value="" autocomplete="off" />
+                <input type="password" name="password" id="password" value="" autocomplete="new-password" />
                 <i>Laisser vide pour ne pas modifier le mot de passe</i>
             </div>
 
