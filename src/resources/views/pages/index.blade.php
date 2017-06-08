@@ -1,10 +1,20 @@
 @extends('wine-supervisor::default')
 
 @section('page-content')
-    <a href="{{ route('user_signup') }}">Créer un compte utilisateur</a> |
-    <a href="{{ route('technician_signup') }}">Créer un compte professionnel</a> |
-    <a href="{{ route('user_login') }}">Se connecter</a>
+    @if (!$is_user && !$is_guest)
+        <a href="{{ route('user_signup') }}">Créer un compte utilisateur</a> |
+        <a href="{{ route('technician_signup') }}">Créer un compte professionnel</a> |
+        <a href="{{ route('user_login') }}">Se connecter</a>
+    @endif
 
-    <h1>Public site</h1>
+    @if ($is_eligible_to_club_premium)
+        <a href="{{ route('club_premium') }}">Club Premium</a>
+    @endif
+
+    @if ($is_user)
+        <a href="{{ route('user_cellar_list') }}">Mes caves</a>
+    @endif
+
+    <h1>WineSupervisor</h1>
 
 @stop

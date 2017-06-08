@@ -3,7 +3,6 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 
 class AccountController extends UserController
