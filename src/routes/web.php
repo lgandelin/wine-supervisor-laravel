@@ -58,6 +58,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/creer-invite', array('as' => 'admin_guest_create_handler', 'uses' => 'Admin\GuestController@create_handler'));
         Route::get('/admin/modifier-invite/{uuid}', array('as' => 'admin_guest_update', 'uses' => 'Admin\GuestController@update'));
         Route::post('/admin/modifier-invite', array('as' => 'admin_guest_update_handler', 'uses' => 'Admin\GuestController@update_handler'));
+        Route::get('/admin/supprimer-invite/{uuid}', array('as' => 'admin_guest_delete_handler', 'uses' => 'Admin\GuestController@delete_handler'));
 
         Route::get('/admin/caves', array('as' => 'admin_cellar_list', 'uses' => 'Admin\CellarController@index'));
         Route::get('/admin/modifier-cave/{uuid}', array('as' => 'admin_cellar_update', 'uses' => 'Admin\CellarController@update'));

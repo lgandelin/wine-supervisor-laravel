@@ -98,4 +98,17 @@ class GuestController extends BaseController
 
         return redirect()->route('admin_guest_list');
     }
+
+    public function delete_handler(Request $request, $guestID)
+    {
+        parent::__construct($request);
+
+        if (GuestManager::delete($guestID)) {
+            $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_delete_success'));
+        } else {
+            $request->session()->flash('error', trans('wine-supervisor::admin.guest_delete_error'));
+        }
+
+        return redirect()->route('admin_guest_list');
+    }
 }

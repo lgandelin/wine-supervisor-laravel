@@ -39,6 +39,7 @@
                     <td>{{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/Y') }}</td>
                     <td>{{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/Y') }}</td>
                     <td><a href="{{ route('admin_guest_update', $guest->id) }}">Modifier</a></td>
+                    <td><a href="{{ route('admin_guest_delete_handler', $guest->id) }}">Supprimer</a></td>
                 </tr>
             @endforeach
         </table>

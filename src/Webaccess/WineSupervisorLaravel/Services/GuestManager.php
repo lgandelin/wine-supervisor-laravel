@@ -108,4 +108,12 @@ class GuestManager
 
         return true;
     }
+
+    /**
+     * @param $guestID
+     */
+    public static function delete($guestID)
+    {
+        return Guest::find($guestID)->delete();
+    }
 }
