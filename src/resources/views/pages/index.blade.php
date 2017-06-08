@@ -11,6 +11,10 @@
         <a href="{{ route('club_premium') }}">Club Premium</a>
     @endif
 
+    @if ($is_eligible_to_supervision)
+        <a href="{{ url('supervision') }}">Supervision</a>
+    @endif
+
     @if ($is_user)
         <a href="{{ route('user_cellar_list') }}">Mes caves</a>
     @endif

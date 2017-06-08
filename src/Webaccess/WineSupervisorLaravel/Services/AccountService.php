@@ -13,7 +13,7 @@ class AccountService
     {
         return
             (self::isAdministrator()) ||
-            (self::isUser() && self::hasAValidUserAccount()) ||
+            (self::isUser() && self::hasAValidUserAccountForClubPremium()) ||
             (self::isGuest() && self::hasAValidGuestAccount());
     }
 
@@ -27,7 +27,7 @@ class AccountService
         return Auth::guard('users')->check();
     }
 
-    public static function hasAValidUserAccount()
+    public static function hasAValidUserAccountForClubPremium()
     {
         if ($user = Auth::guard('users')->user()) {
             $userHasOneSubscription = false;
@@ -58,6 +58,36 @@ class AccountService
     {
         if ($guest = Auth::guard('guests')->user()) {
             return new DateTime() >= new DateTime($guest->access_start_date) && new DateTime() <= new DateTime($guest->access_end_date);
+        }
+
+        return false;
+    }
+
+    public static function isUserEligibleToSupervision()
+    {
+        return
+            (self::isAdministrator()) ||
+            (self::isUser() && self::hasAValidUserAccountForSupervision());
+    }
+
+    public static function hasAValidUserAccountForSupervision()
+    {
+        $isEligible = false;
+
+        if ($user = Auth::guard('users')->user()) {
+
+            //Récupération des caves de l'utilisateur
+            if ($cellars = CellarRepository::getByUser($user->id)) {
+                foreach ($cellars as $cellar) {
+                    if ($cellar->subscription_type != Subscription::NO_SUBSCRIPTION) {
+                        if (new DateTime() >= new DateTime($cellar->subscription_start_date) && new DateTime() <= new DateTime($cellar->subscription_end_date)) {
+                            $isEligible = true;
+                        }
+                    }
+                }
+            }
+
+            return $isEligible;
         }
 
         return false;

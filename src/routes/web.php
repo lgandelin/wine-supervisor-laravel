@@ -24,6 +24,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
     Route::get('/club-avantages', array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'))->middleware('club-premium');
+    Route::get('/supervision', function() {
+        return redirect('http://supervision.fr');
+    });
 
     Route::group(['middleware' => ['guest']], function () {
         Route::get('/invite', array('as' => 'guest_index', 'uses' => 'Guest\IndexController@index'));

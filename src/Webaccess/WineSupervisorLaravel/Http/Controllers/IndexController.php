@@ -11,6 +11,7 @@ class IndexController
     {
         return view('wine-supervisor::pages.index', [
             'is_eligible_to_club_premium' => AccountService::isUserEligibleToClubPremium(),
+            'is_eligible_to_supervision' => AccountService::isUserEligibleToSupervision(),
             'is_user' => AccountService::isUser(),
             'is_guest' => AccountService::isGuest(),
         ]);
