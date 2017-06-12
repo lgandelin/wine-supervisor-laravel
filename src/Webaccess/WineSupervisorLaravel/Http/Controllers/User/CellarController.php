@@ -3,7 +3,8 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
@@ -36,31 +37,50 @@ class CellarController extends UserController
     {
         parent::__construct($request);
 
-        if (!CellarRepository::checkIDWS($request->get('id_ws'))) {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
-            return redirect()->back()->withInput();
-        }
+        $requestID = Uuid::uuid4()->toString();
 
-        if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
-            return redirect()->back()->withInput();
-        }
+        Log::info('USER_CREATE_CELLAR_REQUEST', [
+            'id' => $requestID,
+            'user_id' => $this->getUserID(),
+            'id_ws' => $request->get('id_ws'),
+            'technician_id' => $request->get('technician_id'),
+            'name' => $request->get('name'),
+            'serial_number' => $request->get('serial_number'),
+            'address' => $request->get('address'),
+            'zipcode' => $request->get('zipcode'),
+            'city' => $request->get('city'),
+        ]);
 
-        if (CellarRepository::create(
+        list($success, $error) = CellarRepository::create(
             $this->getUserID(),
             $request->get('id_ws'),
             $request->get('technician_id'),
             $request->get('name'),
-            Subscription::DEFAULT_SUBSCRIPTION,
+            Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE OTHER SUBSCRIPTION TYPES
             $request->get('serial_number'),
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
-        } else {
+        );
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_creation_error'));
+
+            Log::info('USER_CREATE_CELLAR_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
         }
+
+        Log::info('USER_CREATE_CELLAR_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
 
         return redirect()->route('user_cellar_list');
     }
@@ -81,12 +101,22 @@ class CellarController extends UserController
     {
         parent::__construct($request);
 
-        if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
-            return redirect()->back()->withInput();
-        }
+        $requestID = Uuid::uuid4()->toString();
 
-        if (CellarRepository::update(
+        Log::info('USER_UPDATE_CELLAR_REQUEST', [
+            'id' => $requestID,
+            'cellar_id' => $request->get('cellar_id'),
+            'user_id' => $this->getUserID(),
+            'technician_id' => $request->get('technician_id'),
+            'name' => $request->get('name'),
+            'subscription_type' => $request->get('subscription_type'),
+            'serial_number' => $request->get('serial_number'),
+            'address' => $request->get('address'),
+            'zipcode' => $request->get('zipcode'),
+            'city' => $request->get('city')
+        ]);
+
+        list($success, $error) = CellarRepository::update(
             $request->get('cellar_id'),
             $this->getUserID(),
             null,
@@ -97,11 +127,26 @@ class CellarController extends UserController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_update_success'));
-        } else {
+        );
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_update_error'));
+
+            Log::info('USER_UPDATE_CELLAR_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_update_success'));
+
+        Log::info('USER_UPDATE_CELLAR_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('user_cellar_list');
     }
@@ -110,35 +155,74 @@ class CellarController extends UserController
     {
         parent::__construct($request);
 
-        if (!CellarRepository::checkIDWS($request->get('id_ws'))) {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
-            return redirect()->back()->withInput();
-        }
+        $requestID = Uuid::uuid4()->toString();
 
-        if (CellarRepository::sav(
+        Log::info('USER_SAV_CELLAR_REQUEST', [
+            'id' => $requestID,
+            'cellar_id' => $request->get('cellar_id'),
+            'user_id' => $this->getUserID(),
+            'id_ws' => $request->get('id_ws')
+        ]);
+
+        list($success, $error) = CellarRepository::sav(
             $request->get('cellar_id'),
             $this->getUserID(),
             $request->get('id_ws')
-        )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_sav_success'));
-        } else {
+        );
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_sav_error'));
+
+            Log::info('USER_SAV_CELLAR_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_sav_success'));
+
+        Log::info('USER_SAV_CELLAR_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('user_cellar_list');
     }
 
-    public function delete_handler(Request $request, $cellarID)
+    public function delete_handler(Request $request)
     {
         parent::__construct($request);
 
         $boardType = ($request->get('reason') == 'board_out_of_order') ? WS::OUT_OF_ORDER_BOARD : WS::OTHER_BOARD;
+        $requestID = Uuid::uuid4()->toString();
 
-        if (CellarRepository::delete($cellarID, $boardType)) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_deletion_success'));
-        } else {
+        Log::info('USER_DELETE_CELLAR_REQUEST', [
+            'id' => $requestID,
+            'cellar_id' => $request->get('cellar_id'),
+            'board_type' => $boardType,
+        ]);
+
+        list($success, $error) = CellarRepository::delete($request->get('cellar_id'), $boardType);
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_deletion_error'));
+
+            Log::info('USER_SAV_CELLAR_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_deletion_success'));
+
+        Log::info('USER_DELETE_CELLAR_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('user_cellar_list');
     }

@@ -5,7 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Repositories;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 
-class WSRepository
+class WSRepository extends BaseRepository
 {
     /**
      * @param $wsID
@@ -37,7 +37,11 @@ class WSRepository
         $ws->id = $idWS ? $idWS : Uuid::uuid4()->toString();
         $ws->board_type = $boardType;
 
-        return $ws->save();
+        if (!$ws->save()) {
+            return self::error(trans('wine-supervisor::ws.database_create_error'));
+        }
+
+        return self::success();
     }
 
     /**
@@ -47,12 +51,18 @@ class WSRepository
      */
     public static function update($wsID, $boardType)
     {
+        //TODO : CALL CDO
+        
         if ($ws = WS::find($wsID)) {
             $ws->board_type = $boardType;
 
-            return $ws->save();
+            if (!$ws->save()) {
+                return self::error(trans('wine-supervisor::ws.database_create_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::ws.id_not_found'));
         }
 
-        return false;
+        return self::success();
     }
 }

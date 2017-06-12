@@ -3,6 +3,8 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class CellarController extends AdminController
@@ -35,12 +37,21 @@ class CellarController extends AdminController
     {
         parent::__construct($request);
 
-        if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
-            return redirect()->back()->withInput();
-        }
+        $requestID = Uuid::uuid4()->toString();
 
-        if (CellarRepository::update(
+        Log::info('ADMIN_UPDATE_CELLAR_REQUEST', [
+            'id' => $requestID,
+            'admin_id' => $this->getAdministratorID(),
+            'technician_id' => $request->get('technician_id'),
+            'name' => $request->get('name'),
+            'subscription_type' => $request->get('subscription_type'),
+            'serial_number' => $request->get('serial_number'),
+            'address' => $request->get('address'),
+            'zipcode' => $request->get('zipcode'),
+            'city' => $request->get('city')
+        ]);
+
+        list ($success, $error) = CellarRepository::update(
             $request->get('cellar_id'),
             null,
             $this->getAdministratorID(),
@@ -51,11 +62,26 @@ class CellarController extends AdminController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.cellar_update_success'));
-        } else {
+        );
+
+        if (!$success) {
+            Log::info('ADMIN_UPDATE_CELLAR_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
             $request->session()->flash('error', trans('wine-supervisor::admin.cellar_update_error'));
+
+            return redirect()->back()->withInput();
         }
+
+        Log::info('ADMIN_UPDATE_CELLAR_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::admin.cellar_update_success'));
 
         return redirect()->route('admin_cellar_list');
     }

@@ -3,6 +3,8 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Repositories\WSRepository;
 
 class WSController extends AdminController
@@ -35,14 +37,38 @@ class WSController extends AdminController
     {
         parent::__construct($request);
 
-        if (WSRepository::update(
+        $requestID = Uuid::uuid4()->toString();
+
+        Log::info('ADMIN_UPDATE_WS_REQUEST', [
+            'id' => $requestID,
+            'admin_id' => $this->getAdministratorID(),
+            'ws_id' => $request->get('ws_id'),
+            'board_type' => $request->get('board_type'),
+        ]);
+
+        list($success, $error) = WSRepository::update(
             $request->get('ws_id'),
             $request->get('board_type')
-        )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.ws_update_success'));
-        } else {
+        );
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::admin.ws_update_error'));
+
+            Log::info('ADMIN_UPDATE_WS_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::admin.ws_update_success'));
+
+        Log::info('ADMIN_UPDATE_WS_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('admin_ws_list');
     }

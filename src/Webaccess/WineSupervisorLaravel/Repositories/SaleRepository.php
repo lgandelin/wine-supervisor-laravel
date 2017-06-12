@@ -6,7 +6,7 @@ use DateTime;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Sale;
 
-class SaleRepository
+class SaleRepository extends BaseRepository
 {
     /**
      * @param $saleID

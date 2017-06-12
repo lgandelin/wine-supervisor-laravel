@@ -11,7 +11,7 @@ use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Tools\GPSTool;
 
-class CellarRepository
+class CellarRepository extends BaseRepository
 {
     /**
      * @param $cellarID
@@ -50,6 +50,14 @@ class CellarRepository
      */
     public static function create($userID, $idWS, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
     {
+        if (!CellarRepository::checkIDWS($idWS)) {
+            return self::error(trans('wine-supervisor::cellar.id_ws_error'));
+        }
+
+        if ($technicianID && !CellarRepository::checkTechnicianID($technicianID)) {
+            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        }
+
         //TODO : CALL CDO
 
         //Fetch GPS coordinates from address
@@ -77,16 +85,20 @@ class CellarRepository
         $cellar->latitude = $latitude;
         $cellar->longitude = $longitude;
 
-        if ($cellar->save()) {
+        if (!$cellar->save()) {
+            return self::error(trans('wine-supervisor::cellar.create_error'));
+        }
 
-            //Update WS table
-            if ($ws->first_activation_date == null) {
-                $ws->first_activation_date = new DateTime();
-                $ws->save();
+        //Update WS table
+        if ($ws->first_activation_date == null) {
+            $ws->first_activation_date = new DateTime();
+
+            if (!$ws->save()) {
+                return self::error(trans('wine-supervisor::cellar.create_error'));
             }
         }
 
-        return true;
+        return self::success();
     }
 
     /**
@@ -104,6 +116,10 @@ class CellarRepository
      */
     public static function update($cellarID, $userID, $adminID, $technicianID, $name, $subscriptionType, $serialNumber, $address, $zipcode, $city)
     {
+        if ($technicianID && !CellarRepository::checkTechnicianID($technicianID)) {
+            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        }
+
         //TODO : CALL CDO
 
         //Fetch GPS coordinates from address
@@ -133,16 +149,19 @@ class CellarRepository
             $cellar->city = $city;
             if ($latitude) $cellar->latitude = $latitude;
             if ($longitude) $cellar->longitude = $longitude;
-            $result = $cellar->save();
 
-            foreach ($updates as $update) {
-                self::updateCellarHistory($cellarID, $userID, $adminID, $update['column'], $update['old_value'], $update['new_value']);
+            if (!$cellar->save()) {
+                return self::error(trans('wine-supervisor::cellar.update_error'));
             }
 
-            return $result;
+            foreach ($updates as $update) {
+                if (!self::updateCellarHistory($cellarID, $userID, $adminID, $update['column'], $update['old_value'], $update['new_value'])) {
+                    return self::error(trans('wine-supervisor::cellar.update_error_history'));
+                }
+            }
         }
 
-        return false;
+        return self::success();
     }
 
     /**
@@ -153,6 +172,10 @@ class CellarRepository
      */
     public static function sav($cellarID, $userID, $idWS)
     {
+        if (!CellarRepository::checkIDWS($idWS)) {
+            return self::error(trans('wine-supervisor::user_signup.id_ws_error'));
+        }
+
         //TODO : CALL CDO
 
         if ($cellar = Cellar::find($cellarID)) {
@@ -176,15 +199,19 @@ class CellarRepository
 
             //Update cellar with new id_ws
             $cellar->id_ws = $idWS;
-            $cellar->save();
+            if (!$cellar->save()) {
+                return self::error(trans('wine-supervisor::cellar.database_error'));
+            }
 
             //Update cellar history
-            self::updateCellarHistory($cellarID, $userID, null, 'id_ws', $oldIDWS, $idWS);
-
-            return true;
+            if (!self::updateCellarHistory($cellarID, $userID, null, 'id_ws', $oldIDWS, $idWS)) {
+                return self::error(trans('wine-supervisor::cellar.database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::cellar.id_not_found'));
         }
 
-        return false;
+        return self::success();
     }
 
     /**
@@ -202,13 +229,19 @@ class CellarRepository
             if ($ws = WS::find($cellar->id_ws)->first()) {
                 $ws->deactivation_date = new DateTime();
                 $ws->board_type = $boardType;
-                $ws->save();
+                if (!$ws->save()) {
+                    return self::error(trans('wine-supervisor::cellar.database_error'));
+                }
             }
 
-            $cellar->delete();
+            if (!$cellar->delete()) {
+                return self::error(trans('wine-supervisor::cellar.database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::cellar.id_not_found'));
         }
 
-        return false;
+        return self::success();
     }
 
     /**
@@ -236,7 +269,7 @@ class CellarRepository
 
     /**
      * @param $technicianID
-     * @return mixed
+     * @return bool
      */
     public static function checkTechnicianID($technicianID)
     {
@@ -252,6 +285,7 @@ class CellarRepository
      * @param $column
      * @param $oldValue
      * @param $newValue
+     * @return bool
      */
     private static function updateCellarHistory($cellarID, $userID, $adminID, $column, $oldValue, $newValue)
     {
@@ -263,6 +297,7 @@ class CellarRepository
         $history->column = $column;
         $history->old_value = $oldValue;
         $history->new_value = $newValue;
-        $history->save();
+
+        return $history->save();
     }
 }

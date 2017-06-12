@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 
-class TechnicianRepository
+class TechnicianRepository extends BaseRepository
 {
     /**
      * @param $technicianID
@@ -39,6 +39,8 @@ class TechnicianRepository
      */
     public static function create($company, $registration, $phone, $email, $login, $password, $address, $zipcode, $city)
     {
+        //TODO : CALL CDO
+
         $technician = new Technician();
         $technician->id = Uuid::uuid4()->toString();
         $technician->company = $company;
@@ -52,7 +54,11 @@ class TechnicianRepository
         $technician->city = $city;
         $technician->status = Technician::STATUS_DISABLED;
 
-        return $technician->save();
+        if (!$technician->save()) {
+            return self::error(trans('wine-supervisor::technician.create_database_error'));
+        }
+
+        return self::success();
     }
 
     /**
@@ -67,9 +73,13 @@ class TechnicianRepository
         if ($technician = Technician::find($technicianID)) {
             $technician->status = $status;
 
-            return $technician->save();
+            if (!$technician->save()) {
+                return self::error(trans('wine-supervisor::technician.update_database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::technician.id_not_found'));
         }
 
-        return false;
+        return self::success();
     }
 }

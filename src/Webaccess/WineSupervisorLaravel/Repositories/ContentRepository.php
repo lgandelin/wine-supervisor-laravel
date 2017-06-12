@@ -5,7 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Repositories;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Content;
 
-class ContentRepository
+class ContentRepository extends BaseRepository
 {
     /**
      * @param $guestID

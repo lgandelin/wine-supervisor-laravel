@@ -4,11 +4,12 @@ namespace Webaccess\WineSupervisorLaravel\Repositories;
 
 use DateTime;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Administrator;
 use Webaccess\WineSupervisorLaravel\Models\User;
 
-class UserRepository
+class UserRepository extends BaseRepository
 {
     /**
      * @param $userID
@@ -29,6 +30,10 @@ class UserRepository
      */
     public static function create($firstName, $lastName, $email, $login, $password, $opt_in)
     {
+        if (!self::checkLogin(null, $login)) {
+            return self::error(trans('wine-supervisor::user.existing_login_error'));
+        }
+
         $user = new User();
         $user->id = Uuid::uuid4()->toString();
         $user->first_name = $firstName;
@@ -39,9 +44,11 @@ class UserRepository
         $user->opt_in = $opt_in;
         $user->last_connection_date = new DateTime();
 
-        $user->save();
+        if (!$user->save()) {
+            return self::error(trans('wine-supervisor::user.create_user_error'));
+        }
 
-        return $user->id;
+        return self::success($user->id);
     }
 
     /**
@@ -77,6 +84,10 @@ class UserRepository
      */
     public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in)
     {
+        if (!self::checkLogin($userID, $login)) {
+            return self::error(trans('wine-supervisor::user.existing_login_error'));
+        }
+
         //TODO : CALL CDO
 
         if ($user = User::find($userID)) {
@@ -87,12 +98,13 @@ class UserRepository
             if ($password !== null) $user->password = Hash::make($password);
             $user->opt_in = $opt_in;
 
-            $user->save();
-
-            return true;
+            if (!$user->save())
+                return self::error(trans('wine-supervisor::user.database_error'));
+        } else {
+            return self::error(trans('wine-supervisor::user.user_not_found'));
         }
 
-        return false;
+        return self::success();
     }
 
     /**

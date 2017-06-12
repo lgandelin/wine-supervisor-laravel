@@ -4,6 +4,8 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
@@ -65,26 +67,61 @@ class SignupController extends UserController
     {
         parent::__construct($request);
 
+        $requestID = Uuid::uuid4()->toString();
+
         if ($session_user = $request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
-            if (!UserRepository::checkLogin(null, $user_data->login)) {
-                $request->session()->flash('error', trans('wine-supervisor::user_signup.user_existing_login_error'));
-                return redirect()->route('user_signup')->withInput();
-            }
+            Log::info('USER_SIGNUP_CREATE_USER_REQUEST', [
+                'id' => $requestID,
+                'first_name' => $user_data->first_name,
+                'last_name' => $user_data->last_name,
+                'email' => $user_data->email,
+                'login' => $user_data->login,
+                'opt_in' => $user_data->opt_in,
+            ]);
 
-            if ($userID = UserRepository::create($user_data->first_name, $user_data->last_name, $user_data->email, $user_data->login, $user_data->password, $user_data->opt_in)) {
-                if (!CellarRepository::checkIDWS($request->get('id_ws'))) {
-                    $request->session()->flash('error', trans('wine-supervisor::user_signup.id_ws_error'));
-                    return redirect()->route('user_signup_cellar');
-                }
+            list($success, $error, $result) = UserRepository::create(
+                $user_data->first_name,
+                $user_data->last_name,
+                $user_data->email,
+                $user_data->login,
+                $user_data->password,
+                $user_data->opt_in
+            );
 
-                if ($request->get('technician_id') && !CellarRepository::checkTechnicianID($request->get('technician_id'))) {
-                    $request->session()->flash('error', trans('wine-supervisor::user_signup.technician_id_error'));
-                    return redirect()->back()->withInput();
-                }
+            if (!$success) {
+                $request->session()->flash('error', trans('wine-supervisor::user.signup_user_error'));
 
-                if (CellarRepository::create(
+                Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
+                    'id' => $requestID,
+                    'error' => $error,
+                    'success' => false
+                ]);
+
+                return redirect()->back()->withInput();
+            } else {
+                Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
+                    'id' => $requestID,
+                    'success' => true
+                ]);
+
+                $userID = $result;
+
+                Log::info('USER_SIGNUP_CREATE_CELLAR_REQUEST', [
+                    'id' => $requestID,
+                    'user_id' => $userID,
+                    'id_ws' => $request->get('id_ws'),
+                    'technician_id' => $request->get('technician_id'),
+                    'name' => $request->get('name'),
+                    'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE DIFFERENT SUBSCRIPTION TYPES
+                    'serial_number' => $request->get('serial_number'),
+                    'address' => $request->get('address'),
+                    'zipcode' => $request->get('zipcode'),
+                    'city' => $request->get('city')
+                ]);
+
+                list($success, $error) = CellarRepository::create(
                     $userID,
                     $request->get('id_ws'),
                     $request->get('technician_id'),
@@ -94,14 +131,29 @@ class SignupController extends UserController
                     $request->get('address'),
                     $request->get('zipcode'),
                     $request->get('city')
-                )) {
+                );
+
+                if (!$success) {
+                    $request->session()->flash('error', trans('wine-supervisor::user.signup_error'));
+
+                    Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
+                        'id' => $requestID,
+                        'error' => $error,
+                        'success' => false
+                    ]);
+
+                    return redirect()->back()->withInput();
+                } else {
+                    Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
+                        'id' => $requestID,
+                        'success' => true
+                    ]);
+
                     //Log user in and redirect
                     if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
                         return redirect()->route('user_cellar_list');
                     }
                 }
-            } else {
-                $request->session()->flash('error', trans('wine-supervisor::user_signup.create_user_error'));
             }
         } else {
             $request->session()->flash('error', trans('wine-supervisor::user_signup.session_error'));
@@ -109,5 +161,4 @@ class SignupController extends UserController
 
         return redirect()->route('user_signup');
     }
-
 }

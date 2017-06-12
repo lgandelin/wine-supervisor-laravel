@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Guest;
 
-class GuestRepository
+class GuestRepository extends BaseRepository
 {
     /**
      * @param $guestID
@@ -42,6 +42,10 @@ class GuestRepository
      */
     public static function create($firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $address, $zipcode, $city)
     {
+        if (!GuestRepository::checkLogin(null, $login)) {
+            return self::error(trans('wine-supervisor::guest.existing_login_error'));
+        }
+
         $guest = new Guest();
         $guest->id = Uuid::uuid4()->toString();
         $guest->first_name = $firstName;
@@ -56,7 +60,11 @@ class GuestRepository
         $guest->zipcode = $zipcode;
         $guest->city = $city;
 
-        return $guest->save();
+        if (!$guest->save()) {
+            return self::error(trans('wine-supervisor::guest.database_create_error'));
+        }
+
+        return self::success();
     }
 
     /**
@@ -76,6 +84,10 @@ class GuestRepository
      */
     public static function update($guestID, $firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $address, $zipcode, $city)
     {
+        if (!GuestRepository::checkLogin($guestID, $login)) {
+            return self::error(trans('wine-supervisor::guest.existing_login_error'));
+        }
+
         if ($guest = Guest::find($guestID)) {
             $guest->first_name = $firstName;
             $guest->last_name = $lastName;
@@ -89,10 +101,14 @@ class GuestRepository
             $guest->zipcode = $zipcode;
             $guest->city = $city;
 
-            return $guest->save();
+            if (!$guest->save()) {
+                return self::error(trans('wine-supervisor::guest.database_update_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::guest.id_not_found'));
         }
 
-        return false;
+        return self::success();
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Repositories\GuestRepository;
 
 class GuestController extends AdminController
@@ -33,12 +35,24 @@ class GuestController extends AdminController
     {
         parent::__construct($request);
 
-        if (!GuestRepository::checkLogin(null, $request->get('login'))) {
-            $request->session()->flash('error', trans('wine-supervisor::admin.guest_existing_login_error'));
-            return redirect()->back()->withInput();
-        }
+        $requestID = Uuid::uuid4()->toString();
 
-        if (GuestRepository::create(
+        Log::info('ADMIN_CREATE_GUEST_REQUEST', [
+            'id' => $requestID,
+            'admin_id' => $this->getAdministratorID(),
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'access_start_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
+            'access_end_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d'),
+            'login' => $request->get('login'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'address' => $request->get('address'),
+            'zipcode' => $request->get('zipcode'),
+            'city' => $request->get('city')
+        ]);
+
+        list($success, $error) = GuestRepository::create(
             $request->get('first_name'),
             $request->get('last_name'),
             \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
@@ -50,11 +64,26 @@ class GuestController extends AdminController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_create_success'));
-        } else {
+        );
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::admin.guest_create_error'));
+
+            Log::info('ADMIN_CREATE_GUEST_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_create_success'));
+
+        Log::info('ADMIN_CREATE_GUEST_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('admin_guest_list');
     }
@@ -75,12 +104,25 @@ class GuestController extends AdminController
     {
         parent::__construct($request);
 
-        if (!GuestRepository::checkLogin($request->get('guest_id'), $request->get('login'))) {
-            $request->session()->flash('error', trans('wine-supervisor::admin.guest_existing_login_error'));
-            return redirect()->back()->withInput();
-        }
+        $requestID = Uuid::uuid4()->toString();
 
-        if (GuestRepository::update(
+        Log::info('ADMIN_UPDATE_GUEST_REQUEST', [
+            'id' => $requestID,
+            'guest_id' => $request->get('guest_id'),
+            'admin_id' => $this->getAdministratorID(),
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'access_start_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
+            'access_end_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d'),
+            'login' => $request->get('login'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'address' => $request->get('address'),
+            'zipcode' => $request->get('zipcode'),
+            'city' => $request->get('city')
+        ]);
+
+        list($success, $error) = GuestRepository::update(
             $request->get('guest_id'),
             $request->get('first_name'),
             $request->get('last_name'),
@@ -93,11 +135,26 @@ class GuestController extends AdminController
             $request->get('address'),
             $request->get('zipcode'),
             $request->get('city')
-        )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_update_success'));
-        } else {
+        );
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::admin.guest_update_error'));
+
+            Log::info('ADMIN_UPDATE_GUEST_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_update_success'));
+
+        Log::info('ADMIN_UPDATE_GUEST_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('admin_guest_list');
     }
@@ -106,11 +163,34 @@ class GuestController extends AdminController
     {
         parent::__construct($request);
 
-        if (GuestRepository::delete($guestID)) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_delete_success'));
-        } else {
+        $requestID = Uuid::uuid4()->toString();
+
+        Log::info('ADMIN_DELETE_GUEST_REQUEST', [
+            'id' => $requestID,
+            'guest_id' => $request->get('guest_id'),
+            'admin_id' => $this->getAdministratorID(),
+        ]);
+
+        list ($success, $error) = GuestRepository::delete($guestID);
+
+        if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::admin.guest_delete_error'));
+
+            Log::info('ADMIN_DELETE_GUEST_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_delete_success'));
+
+        Log::info('ADMIN_DELETE_GUEST_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('admin_guest_list');
     }
