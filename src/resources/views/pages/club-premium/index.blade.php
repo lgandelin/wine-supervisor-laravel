@@ -20,5 +20,4 @@
         </div>
     @endforeach
 
-    <a href="{{ route('user_logout') }}">Logout</a>
 @stop

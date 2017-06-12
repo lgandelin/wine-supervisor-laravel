@@ -1,6 +1,9 @@
 @extends('wine-supervisor::default')
 
 @section('page-content')
+
+    @include('wine-supervisor::pages.user.includes.menu')
+
     <div class="my-account-template">
 
         @if (isset($error))
@@ -50,6 +53,7 @@
                 <input type="checkbox" name="opt_in" id="opt_in" @if ($user->opt_in == true || $user->opt_in === null)checked="checked"@endif />
             </div>
 
+            <a href="{{ route('user_cellar_list') }}">Retour</a>
             <input type="submit" value="Valider" />
             {{ csrf_field() }}
         </form>

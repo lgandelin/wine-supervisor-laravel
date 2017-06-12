@@ -17,6 +17,7 @@
 
     @if ($is_user)
         <a href="{{ route('user_cellar_list') }}">Mes caves</a>
+        <a href="{{ route('user_update_account') }}">Gérer mon compte</a>
     @endif
 
     <h1>WineSupervisor</h1>

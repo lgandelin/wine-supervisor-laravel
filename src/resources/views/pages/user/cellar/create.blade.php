@@ -1,6 +1,9 @@
 @extends('wine-supervisor::default')
 
 @section('page-content')
+
+    @include('wine-supervisor::pages.user.includes.menu')
+
     <div class="cellar-template">
 
         @if (isset($error))
