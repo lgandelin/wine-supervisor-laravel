@@ -91,12 +91,23 @@ class SaleRepository extends BaseRepository
         return false;
     }
 
+    /**
+     * @return mixed
+     */
     public static function getCurrentSales()
     {
         $now = new DateTime();
         return Sale::where('start_date', '<=', $now)
             ->where('end_date', '>=', $now)
-            ->orderBy('created_at', 'desc')
+            ->orderBy('start_date', 'desc')
             ->get();
+    }
+
+    /**
+     * @return mixed
+     */
+    public static function getSalesHistory()
+    {
+        return Sale::orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
     }
 }

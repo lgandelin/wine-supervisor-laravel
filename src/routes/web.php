@@ -23,7 +23,10 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'LoginController@admin_logout'));
 
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
+
     Route::get('/club-avantages', array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'))->middleware('club-premium');
+    Route::get('/club-avantages/historique-des-ventes', array('as' => 'club_premium_sales_history', 'uses' => 'ClubPremium\IndexController@sales_history'))->middleware('club-premium');
+
     Route::get('/supervision', function() {
         return redirect('http://supervision.fr');
     });

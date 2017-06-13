@@ -13,4 +13,11 @@ class IndexController
             'sales' => SaleRepository::getCurrentSales()
         ]);
     }
+
+    public function sales_history(Request $request)
+    {
+        return view('wine-supervisor::pages.club-premium.sales_history', [
+            'sales' => SaleRepository::getSalesHistory()
+        ]);
+    }
 }

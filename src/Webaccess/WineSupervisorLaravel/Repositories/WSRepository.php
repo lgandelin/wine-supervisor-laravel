@@ -52,7 +52,7 @@ class WSRepository extends BaseRepository
     public static function update($wsID, $boardType)
     {
         //TODO : CALL CDO
-        
+
         if ($ws = WS::find($wsID)) {
             $ws->board_type = $boardType;
 

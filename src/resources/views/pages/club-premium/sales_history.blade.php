@@ -4,7 +4,7 @@
 
     @include('wine-supervisor::pages.club-premium.includes.menu')
 
-    <h1>Club Avantages - Ventes en cours</h1>
+    <h1>Club Avantages - Historique des ventes</h1>
 
     @foreach ($sales as $sale)
         <div class="sale">
