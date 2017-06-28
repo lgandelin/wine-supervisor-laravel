@@ -13,22 +13,23 @@
                         <nav>
                             <ul>
                                 <li><a href="{{ route('user_signup') }}">Créer un compte</a></li>
-                                <li class="logout"><span class="account-icon"></span></li>
+                                <li class="account">
+                                    <span class="account-icon"></span>
+                                    <form class="login" action="mes-caves.html">
+                                        <div class="input-login">
+                                            <input type="text" />
+                                        </div>
+
+                                        <div class="input-password">
+                                            <input type="password" />
+                                        </div>
+
+                                        <input type="submit" value="Se connecter" />
+                                        <a class="forgotten-password" href="#">Mot de passe oublié ?</a>
+                                    </form>
+                                </li>
                             </ul>
                         </nav>
-
-                        <form class="login" action="mes-caves.html">
-                            <div class="input-login">
-                                <input type="text" />
-                            </div>
-
-                            <div class="input-password">
-                                <input type="password" />
-                            </div>
-
-                            <input type="submit" value="Se connecter" />
-                            <a class="forgotten-password" href="#">Mot de passe oublié ?</a>
-                        </form>
                     </div>
                 </div>
             </div>

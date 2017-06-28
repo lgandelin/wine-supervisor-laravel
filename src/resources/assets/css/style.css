@@ -1640,7 +1640,7 @@ header .top-bar .nav li {
   display: inline-block;
 }
 /* line 22, ../sass/partials/_header.scss */
-header .top-bar .nav li a {
+header .top-bar .nav li > a {
   display: block;
   padding-bottom: 1rem;
   font-family: "AgencyFB";
@@ -1651,10 +1651,19 @@ header .top-bar .nav li.active {
   border-bottom: 4px solid #114a83;
 }
 /* line 34, ../sass/partials/_header.scss */
-header .top-bar .nav li.logout {
+header .top-bar .nav li.account {
   margin-right: 0;
+  cursor: pointer;
 }
-/* line 39, ../sass/partials/_header.scss */
+/* line 41, ../sass/partials/_header.scss */
+header .top-bar .nav li.account:hover .login {
+  display: block;
+}
+/* line 45, ../sass/partials/_header.scss */
+header .top-bar .nav li.account:hover .account-icon {
+  background-color: #114a83;
+}
+/* line 52, ../sass/partials/_header.scss */
 header .top-bar .nav .logout-icon {
   width: 5.2rem;
   height: 4.5rem;
@@ -1663,11 +1672,11 @@ header .top-bar .nav .logout-icon {
   cursor: pointer;
   background: #1e95c9 url(../img/header/ico-logout.png) no-repeat center center;
 }
-/* line 49, ../sass/partials/_header.scss */
+/* line 62, ../sass/partials/_header.scss */
 header .top-bar .nav .logout-icon:hover {
   background-color: #114a83;
 }
-/* line 54, ../sass/partials/_header.scss */
+/* line 67, ../sass/partials/_header.scss */
 header .top-bar .nav .account-icon {
   width: 5.2rem;
   height: 4.5rem;
@@ -1675,7 +1684,7 @@ header .top-bar .nav .account-icon {
   vertical-align: middle;
   background: #1e95c9 url(../img/header/account.png) no-repeat center center;
 }
-/* line 63, ../sass/partials/_header.scss */
+/* line 76, ../sass/partials/_header.scss */
 header .top-bar .nav .login {
   width: 35.6rem;
   right: 1px;
@@ -1687,7 +1696,7 @@ header .top-bar .nav .login {
   transition-property: opacity;
   transition-duration: 0.5s;
 }
-/* line 76, ../sass/partials/_header.scss */
+/* line 89, ../sass/partials/_header.scss */
 header .top-bar .nav .login .input-login, header .top-bar .nav .login .input-password {
   width: 30.6rem;
   margin-bottom: 1.3rem;
@@ -1696,7 +1705,7 @@ header .top-bar .nav .login .input-login, header .top-bar .nav .login .input-pas
   border: 1px solid #114a83;
   border-radius: 3px;
 }
-/* line 85, ../sass/partials/_header.scss */
+/* line 98, ../sass/partials/_header.scss */
 header .top-bar .nav .login .input-login:before, header .top-bar .nav .login .input-password:before {
   content: '';
   width: 4.8rem;
@@ -1704,15 +1713,15 @@ header .top-bar .nav .login .input-login:before, header .top-bar .nav .login .in
   float: left;
   vertical-align: middle;
 }
-/* line 95, ../sass/partials/_header.scss */
+/* line 108, ../sass/partials/_header.scss */
 header .top-bar .nav .login .input-login:before {
   background: #114a83 url(../img/header/ico-login.png) no-repeat center center;
 }
-/* line 101, ../sass/partials/_header.scss */
+/* line 114, ../sass/partials/_header.scss */
 header .top-bar .nav .login .input-password:before {
   background: #114a83 url(../img/header/ico-password.png) no-repeat center center;
 }
-/* line 106, ../sass/partials/_header.scss */
+/* line 119, ../sass/partials/_header.scss */
 header .top-bar .nav .login input[type="text"], header .top-bar .nav .login input[type="password"] {
   margin: 0;
   padding: 0;
@@ -1723,7 +1732,7 @@ header .top-bar .nav .login input[type="text"], header .top-bar .nav .login inpu
   font-size: 1.4rem;
   border: none;
 }
-/* line 119, ../sass/partials/_header.scss */
+/* line 132, ../sass/partials/_header.scss */
 header .top-bar .nav .login input[type="submit"] {
   margin-top: 1.5rem;
   float: right;
@@ -1737,46 +1746,42 @@ header .top-bar .nav .login input[type="submit"] {
   border-radius: 1px;
   background: #e0363d;
 }
-/* line 133, ../sass/partials/_header.scss */
+/* line 146, ../sass/partials/_header.scss */
 header .top-bar .nav .login input[type="submit"]:hover {
   background: #e85258;
 }
-/* line 138, ../sass/partials/_header.scss */
+/* line 151, ../sass/partials/_header.scss */
 header .top-bar .nav .login a.forgotten-password {
   display: block;
   margin-top: 3.8rem;
   font-size: 1.4rem;
   color: white;
 }
-/* line 148, ../sass/partials/_header.scss */
-header .top-bar .nav:hover .login {
+/* line 159, ../sass/partials/_header.scss */
+header .top-bar .nav .login.login-open {
   display: block;
 }
-/* line 152, ../sass/partials/_header.scss */
-header .top-bar .nav:hover .account-icon {
-  background-color: #114a83;
-}
-/* line 160, ../sass/partials/_header.scss */
+/* line 167, ../sass/partials/_header.scss */
 header .logo-navigation {
   overflow: hidden;
   padding-top: 1.7rem;
   padding-bottom: 1.5rem;
 }
-/* line 165, ../sass/partials/_header.scss */
+/* line 172, ../sass/partials/_header.scss */
 header .logo-navigation nav {
   float: right;
   margin-top: 4rem;
 }
-/* line 171, ../sass/partials/_header.scss */
+/* line 178, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li {
   display: inline-block;
   margin-right: 4rem;
 }
-/* line 175, ../sass/partials/_header.scss */
+/* line 182, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li a {
   color: #000;
 }
-/* line 179, ../sass/partials/_header.scss */
+/* line 186, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li:last-child {
   margin-right: 0;
 }

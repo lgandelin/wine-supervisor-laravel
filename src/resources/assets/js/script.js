@@ -1,10 +1,5 @@
 $(document).ready(function() {
 
-	//LOGIN
-	$('.top-bar .account-icon').mouseover(function() {
-		$('.top-bar .login').toggleClass('login-opened');
-	});
-
 	//SLIDER NEWS
 	$('.news-slider').slick({
 		infinite: false,

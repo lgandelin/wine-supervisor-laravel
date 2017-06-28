@@ -19,7 +19,7 @@ header {
 				margin-right: 2.5rem;
 				display: inline-block;
 
-				a {
+				> a {
 					display: block;
 					padding-bottom: 1rem;
 
@@ -31,8 +31,21 @@ header {
 					border-bottom: 4px solid $dark-blue;	
 				}
 
-				&.logout {
+				&.account {
 					margin-right: 0;
+
+					cursor: pointer;
+
+					&:hover {
+
+						.login {
+							display: block;
+						}
+
+						.account-icon {
+							background-color: $dark-blue;
+						}
+					}
 				}
 			}
 
@@ -142,15 +155,9 @@ header {
 					font-size: 1.4rem;
 					color: white;
 				}
-			}
- 
-			&:hover {
-				.login {
-					display: block;
-				}
 
-				.account-icon { 
-					background-color: $dark-blue;
+				&.login-open {
+					display: block;
 				}
 			}
 		}
