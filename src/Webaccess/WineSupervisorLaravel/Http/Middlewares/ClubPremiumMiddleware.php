@@ -5,9 +5,9 @@ namespace Webaccess\WineSupervisorLaravel\Http\Middlewares;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
-class AdminMiddleware
+class ClubPremiumMiddleware
 {
     /**
      * The Guard implementation.
@@ -22,7 +22,7 @@ class AdminMiddleware
      */
     public function __construct()
     {
-        $this->auth = Auth::guard('administrators');
+
     }
 
     /**
@@ -34,15 +34,11 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (!$this->auth->user())
-        {
-            if ($request->ajax())
-            {
+        if (!AccountService::isUserEligibleToClubPremium()) {
+            if ($request->ajax()) {
                 return response('Forbbiden.', 403);
-            }
-            else
-            {
-                return redirect()->route('admin_login');
+            } else {
+                return redirect()->route('user_login');
             }
         }
 

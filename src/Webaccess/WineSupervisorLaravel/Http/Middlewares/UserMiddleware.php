@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class UserMiddleware
 {
     /**
      * The Guard implementation.
@@ -22,7 +22,7 @@ class AdminMiddleware
      */
     public function __construct()
     {
-        $this->auth = Auth::guard('administrators');
+        $this->auth = Auth::guard('users');
     }
 
     /**
@@ -42,7 +42,7 @@ class AdminMiddleware
             }
             else
             {
-                return redirect()->route('admin_login');
+                return redirect()->route('user_login');
             }
         }
 

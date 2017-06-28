@@ -4,15 +4,14 @@ namespace Webaccess\WineSupervisorLaravel;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Webaccess\WineSupervisorLaravel\Commands\CreateAdministratorCommand;
+use Illuminate\Support\Facades\Route;
 use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateDataFromExcelCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateRandomDatabaseDataCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateRandomJSONDataCommand;
-use Webaccess\WineSupervisorLaravel\Commands\GenerateSampleExcelDataCommand;
-use Webaccess\WineSupervisorLaravel\Commands\HandleExcelCommand;
-use Webaccess\WineSupervisorLaravel\Commands\StoreExcelDataToCloudCommand;
-use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminClientsMiddleware;
+use Webaccess\WineSupervisorLaravel\Commands\DeleteInactiveUsersCommand;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminMiddleware;
+use Webaccess\WineSupervisorLaravel\Http\Middlewares\ClubPremiumMiddleware;
+use Webaccess\WineSupervisorLaravel\Http\Middlewares\GuestMiddleware;
+use Webaccess\WineSupervisorLaravel\Http\Middlewares\UserMiddleware;
 
 class WineSupervisorLaravelServiceProvider extends ServiceProvider
 {
@@ -22,11 +21,8 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
     {
         $basePath = __DIR__.'/../../';
 
-        include __DIR__.'/Http/routes.php';
-
         $this->loadViewsFrom($basePath.'resources/views/', 'wine-supervisor');
         $this->loadTranslationsFrom($basePath.'resources/lang/', 'wine-supervisor');
-        //$router->middleware('admin', AdminMiddleware::class);
 
         $this->publishes([
             $basePath.'resources/assets/css' => base_path('public/css'),
@@ -38,12 +34,23 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
         $this->publishes([
             $basePath.'database/migrations' => database_path('migrations'),
         ], 'migrations');
+
+        $router->aliasMiddleware('user', UserMiddleware::class);
+        $router->aliasMiddleware('admin', AdminMiddleware::class);
+        $router->aliasMiddleware('guest', GuestMiddleware::class);
+        $router->aliasMiddleware('club-premium', ClubPremiumMiddleware::class);
+
+        Route::middleware('web')
+            ->namespace('Webaccess\WineSupervisorLaravel\Http\Controllers')
+            ->group($basePath . 'routes/web.php');
     }
 
     public function register()
     {
         $this->commands([
-
+            CreateUserCommand::class,
+            CreateAdministratorCommand::class,
+            DeleteInactiveUsersCommand::class
         ]);
 
         $this->app->register(

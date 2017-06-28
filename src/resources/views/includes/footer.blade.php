@@ -24,5 +24,6 @@
             jQuery.datepicker.setDefaults(jQuery.datepicker.regional['fr']);
         });
     </script>
+    <script src="https://cdn.ckeditor.com/4.7.0/standard/ckeditor.js"></script>
 </body>
 </html>
