@@ -1,0 +1,186 @@
+header {
+	z-index: 3;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	background: white;
+
+	.top-bar {
+		background: $light-gray;
+		
+		.nav {
+			position: relative;
+			float: right;
+
+			font-size: 1.8rem;
+			
+			li {
+				margin-right: 2.5rem;
+				display: inline-block;
+
+				a {
+					display: block;
+					padding-bottom: 1rem;
+
+					font-family: $secondary-font;
+					color: $gray;
+				}
+
+				&.active {
+					border-bottom: 4px solid $dark-blue;	
+				}
+
+				&.logout {
+					margin-right: 0;
+				}
+			}
+
+			.logout-icon {
+				width: 5.2rem;
+				height: 4.5rem;
+				vertical-align: middle;
+				display: inline-block;
+
+				cursor: pointer;
+				
+				background: $blue url(../img/header/ico-logout.png) no-repeat center center;
+
+				&:hover {
+					background-color: $dark-blue;
+				}
+			}
+
+			.account-icon {
+				width: 5.2rem;
+				height: 4.5rem;
+				display: inline-block;
+				vertical-align: middle;
+		
+				background: $blue url(../img/header/account.png) no-repeat center center;
+			}
+
+			.login {
+				width: 35.6rem;
+				right: 1px;
+				top: 4.5rem;
+				position: absolute;
+				padding: 2.5rem;
+				display: none;
+
+				background: $blue;
+
+				transition-property: opacity;
+				transition-duration: 0.5s;
+
+				.input-login, .input-password {
+					width: 30.6rem;
+					margin-bottom: 1.3rem;
+					white-space: nowrap;
+
+					background: white;
+					border: 1px solid $dark-blue;
+					border-radius: 3px;
+
+					&:before {
+						content: '';
+						width: 4.8rem;
+						height: 4.8rem;
+						float: left;
+						vertical-align: middle;
+					}
+				}
+
+				.input-login {
+					&:before {
+						background: $dark-blue url(../img/header/ico-login.png) no-repeat center center;
+					}
+				}
+
+				.input-password {
+					&:before {
+						background: $dark-blue url(../img/header/ico-password.png) no-repeat center center;
+					}
+				}
+
+				input[type="text"], input[type="password"] {
+					margin: 0;
+					padding: 0;
+					padding-left: 1.5rem;
+    				width: 18.3em;
+					height: 4.8rem;
+	
+					font-family: $main-font;
+					font-size: 1.4rem;
+			
+					border: none;
+				}
+
+				input[type="submit"] {
+					margin-top: 1.5rem;
+					float: right;
+					padding: 1.5rem 3rem;
+					text-align: center;
+					font-family: $main-font;
+					font-size: 1.4rem;
+					color: white;
+					
+					cursor: pointer;
+					border: none;
+					border-radius: 1px;
+					background: $red;
+
+					&:hover {
+						background: #e85258;
+					}
+				}
+
+				a.forgotten-password {
+					display: block;
+					margin-top: 3.8rem;
+
+					font-size: 1.4rem;
+					color: white;
+				}
+			}
+ 
+			&:hover {
+				.login {
+					display: block;
+				}
+
+				.account-icon { 
+					background-color: $dark-blue;
+				}
+			}
+		}
+	}
+
+	//LOGO
+	.logo-navigation {
+		overflow: hidden;
+		padding-top: 1.7rem;
+		padding-bottom: 1.5rem;
+
+		nav {
+			float: right;
+			margin-top: 4rem;
+
+			ul {
+
+				li {
+					display: inline-block;
+					margin-right: 4rem;
+
+					a {
+						color: $black;
+					}
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}	
+			}
+		}
+	}
+}

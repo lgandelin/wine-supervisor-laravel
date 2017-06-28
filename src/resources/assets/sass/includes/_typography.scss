@@ -1,19 +1,53 @@
-em {
-	font-style: italic;
-}
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans:300|Open+Sans+Condensed:400,700');
 
-strong {
+@font-face {
+	font-family: 'AgencyFBBold';
+	src: url('../fonts/AgencyFB-Bold.eot');
+	src: url('../fonts/AgencyFB-Bold.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/AgencyFB-Bold.woff') format('woff'),
+		url('../fonts/AgencyFB-Bold.ttf') format('truetype');
 	font-weight: bold;
+	font-style: normal;
 }
 
-ul {
-	list-style: none;
+@font-face {
+	font-family: 'AgencyFB';
+	src: url('../fonts/AgencyFB-Reg.eot');
+	src: url('../fonts/AgencyFB-Reg.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/AgencyFB-Reg.woff') format('woff'),
+		url('../fonts/AgencyFB-Reg.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
-a {
+html {
+	font-size: 62.5%;
 }
 
 body {
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 13px;
+	font-family: $main-font;
+	color: $black;
+	font-size: 1.8rem;
+	font-weight: 400;
+	line-height: 2.6rem;
+}
+
+a, a:visited {
+	color: $blue;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+p {
+	margin-bottom: 2rem;
+}
+
+h1, h2 {
+}
+
+em, strong {
+	font-weight: 700;
 }

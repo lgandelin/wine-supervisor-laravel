@@ -1,5 +1,60 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+body {
+	padding-top: 14.6rem;
+	position: relative;
+}
+
+header {
+	border-bottom: 2px solid #ccc;
+}
+
+.main-content {
+	//padding-top: 14.6rem;
+
+	.page-header {
+		margin-bottom: 9.5rem;
+		padding: 4.5rem 7rem;
+
+		font-size: 2rem;
+		color: white;
+
+		background: $blue;
+
+		h1 {
+			font-size: 5rem;
+			font-weight: 700;
+			line-height: 5rem;
+
+			&:after {
+				content: " ";
+				width: 1.8rem;
+				height: 0.3rem;
+				display: block;
+				margin-top: 3rem;
+				margin-bottom: 3.5rem;
+				
+				background: white;
+			}
+		}
+	}
+
+	.page-content {
+		overflow: hidden;
+
+		.submit-container {
+			clear: both;
+			margin-top: 15rem;
+			overflow: hidden;
+
+			input[type="submit"] {
+				float: right;
+			}
+		}
+	}
+
+	.back-button {
+		position: relative;
+		top: -4rem;
+		
+		color: white;
+	}
 }

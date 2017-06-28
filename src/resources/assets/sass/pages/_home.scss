@@ -1,0 +1,335 @@
+.home-template {
+
+	.subtitle {
+		display: block;
+		margin-bottom: 0.5rem;
+
+		text-transform: uppercase;
+		font-family: $main-font;
+		font-size: 1.8rem;
+		font-style: italic;
+	}
+
+	.title {
+		font-size: 7rem;
+		font-weight: 700;
+		line-height: 6rem;
+
+		&:after {
+			content: " ";
+			width: 1.8rem;
+			height: 0.3rem;
+			display: block;
+			margin-top: 1.5rem;
+			margin-bottom: 3.5rem;
+		}
+	}
+	
+	//BANNER
+	.banner {
+		margin-bottom: 0;
+
+		background: url(../img/home/banner/banner.jpg) no-repeat center center fixed; 
+		background-size: cover;
+		
+		.border {
+			top: -2rem;
+		}
+		
+		h2 {
+			position: relative;
+			z-index: 2;
+
+		  	.your-cellar {
+		  		margin-bottom: 2rem;
+		  		display: block;
+
+		  		text-transform: uppercase;
+		  		font-family: $main-font;
+		  		font-size: 2.4rem;
+		  		font-style: italic;
+		  	}
+		}
+	}
+	
+	//BOX
+	.box {
+		padding-top: 5.5rem;
+		padding-bottom: 5.5rem;
+
+		background: url(../img/home/box/pattern.jpg) repeat;
+
+		.subtitle {
+			color: $red;
+		}
+
+		.title {
+			display: inline-block;
+
+			font-size: 6rem;
+			color: $blue;
+
+			&:after {
+				background: $blue;
+			}
+		}
+
+		p {
+			width: 57%;
+			margin-right: 3%;
+
+			text-align: justify;
+		}
+		
+		.container {
+			position: relative;
+		}
+		.box-image {
+			right: 0;
+			position: absolute;
+			top: -15rem;
+			z-index: 2;
+		}
+	}
+
+	.club {
+		clear: both;
+		padding-top: 8rem;
+		height: 51.6rem;
+		margin-bottom: 5.6rem;
+		position: relative;
+		
+		color: white;
+		text-align: center;
+
+		background: url(../img/home/club/club.jpg) no-repeat center center;
+		-webkit-background-size: cover;
+	  	background-size: cover;
+		
+		&:before {
+			position: absolute;
+			content: "";
+		    left: 0;
+		    z-index: 1;
+		    right: 0;
+		    top: 0;
+		    bottom: 0;
+
+			background: rgba(0, 0, 0, 0.25);
+		}
+
+		.border {
+	  		position: relative;
+	  		z-index: 2;
+
+			width: 3px;
+			height: 15.4rem;
+			display: block;
+			margin-top: 4.5rem;
+			margin-left: auto;
+			margin-right: auto;
+			opacity: 0.5;
+			background: white;
+		}
+
+	  	.subtitle {
+	  		position: relative;
+	  		z-index: 2;
+	  		margin-top: 8rem;
+
+	  		font-size: 2.4rem;
+	  	}
+
+	  	.title {
+	  		position: relative;
+	  		z-index: 2;
+
+	  		&:after {
+		  		display: none;
+			}
+	  	}
+	}
+
+	//SALES
+	.sales {
+		color: white;
+		
+		background: url(../img/home/sales/background.jpg) no-repeat center top;
+		
+		.slider-container {
+			position: relative;
+		}
+
+		.sales-slider {
+			margin-bottom: 10rem;
+
+			padding-bottom: 1.5rem;
+		}		
+	}
+	
+	//NEWS
+	.news {
+		padding-top: 4rem;
+
+		text-align: center;
+		color: white;
+
+		background: $blue;
+
+	  	.title {
+	  		font-size: 6rem;
+
+	  		&:after {
+	  			margin-left: auto;
+	  			margin-right: auto;
+
+				background: white;
+			}
+	  	}
+
+	  	.container > p {
+	  		width: 60%;
+	  		margin-left: auto;
+	  		margin-right: auto;
+	  	}
+		
+		.news-slider {
+			position: relative;
+			margin-bottom: -4.5rem;
+			overflow: hidden;
+
+	  		-webkit-box-shadow: 0px 1px 24px 0px rgba(0,0,0,0.58);
+			-moz-box-shadow: 0px 1px 24px 0px rgba(0,0,0,0.58);
+			box-shadow: 0px 1px 24px 0px rgba(0,0,0,0.58);
+
+		  	.slick-slide {
+		  		max-height: 27.3rem;
+		  		overflow: hidden;
+
+		  		background: white;
+
+				.image {
+					float: left;
+				}
+
+				.content {
+					overflow: hidden;
+					padding: 3rem;
+			
+					text-align: left;
+					color: $black;
+
+					.date {
+						display: block;
+						margin-bottom: 1.5rem;
+						color: $blue;
+						font-style: italic;
+					}
+
+					h3 {
+						font-size: 2.5rem;
+						font-weight: 700;
+						margin-bottom: 3rem;
+					}
+				}
+		  	}
+		}
+
+		.slick-dots {
+			margin-bottom: 2.8rem;
+	  		li {
+	  			cursor: pointer;
+		  		display: inline-block;
+		  		width: 1.5rem;
+		  		height: 1.5rem;
+		  		margin-right: 1.5rem;
+
+	  			background: url(../img/home/news/dot.png) no-repeat center center;
+	  			border: none;
+		  		
+				button {
+					display: none;
+		  		}
+
+		  		&:hover, &.slick-active {
+					background: url(../img/home/news/dot-active.png) no-repeat center center;
+		  		}
+		  	}
+	  	}
+	}
+	
+	//OUR PARTNERS
+	.our-partners {
+		padding-top: 10rem;
+		padding-bottom: 3rem;
+		text-align: center;
+
+		.container {
+			position: relative;
+		}
+
+		.subtitle {
+			color: $red;
+		}
+
+		.title {
+			font-size: 6rem;
+			color: $blue;
+
+	  		&:after {
+	  			margin-left: auto;
+	  			margin-right: auto;
+
+	  			background: $blue;
+			}
+	  	}
+
+	  	.partners-slider {
+	  		width: 83%;
+	  		margin-left: auto;
+	  		margin-right: auto;
+	  		overflow: hidden;
+
+	  		.partner {
+	  			display: inline-block;
+	  			width: 25%;
+
+	  			img {
+	  				display: block;
+	  				margin-left: auto;
+	  				margin-right: auto;
+	  			}
+	  		}
+	  	}
+
+	  	.partners-slider-arrows {
+			.slick-arrow {
+				width: 2.2rem;
+	  			height: 4.5rem;
+	  			position: absolute;
+	  			z-index: 5;
+	  			top: 50%;
+
+				text-indent: -9999px;
+				cursor: pointer;
+				outline: 0;
+
+	  			border: none;
+
+		  		&.slick-prev {
+		  			left: 0;
+		  			background: url(../img/home/partners/previous.png) no-repeat center center;
+		  		}
+
+		  		&.slick-next {
+		  			right: 0;
+		  			background: url(../img/home/partners/next.png) no-repeat center center;
+		  		}
+
+		  		&:hover {
+		  			opacity: 0.8;
+		  		}
+			}
+	  	}
+	}
+}

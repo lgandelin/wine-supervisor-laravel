@@ -1,0 +1,62 @@
+.cellars-template {
+
+	.page-content {
+		margin-top: 7rem;
+
+		.table-list {
+			margin-bottom: 5rem;
+
+			.table-row {
+				margin-bottom: 3rem;
+			}
+
+			.cellar {
+				width: 24%;
+			}
+
+			.status {
+				width: 18%;
+			}
+
+			.type {
+				width: 18%;
+				text-align: center;
+			}
+
+			.date {
+				width: 18%;
+				text-align: center;
+			}
+
+			.price {
+				width: 15%;
+				text-align: center;
+			}
+
+			.action {
+				width: 7.6rem;
+				display: block;
+				padding: 0;
+				text-align: right;
+
+				&.table-cell-header {
+					height: 7.8rem;
+				}
+			}
+		}
+
+		.add-cellar-button {
+			width: 100%;
+			display: block;
+			padding: 2.5rem 0;
+
+			text-align: center;
+			text-indent: -999rem;
+			background: #e0363d url('../img/generic/add.png') no-repeat center;
+
+			&:hover {
+				background-color: lighten(#e0363d, 5%);
+			}
+		}
+	}
+}

@@ -1,0 +1,95 @@
+.signup-template {
+	padding-top: 14.5rem;
+	
+	.steps {
+		margin-bottom: 11.6rem;
+		overflow: hidden;
+
+		.step {
+			min-height: 14.5rem;
+			padding-top: 3rem;
+			padding-left: 5rem;
+			width: 50%;
+			float: left;
+			position: relative;
+
+			color: white;
+
+			background: $blue;
+
+			.step-number {
+				margin-right: 4rem;
+				vertical-align: middle;
+
+				line-height: 8rem;
+				font-family: $fourth-font;
+				font-size: 11rem;
+				font-weight: bold;
+				color: #7db9da;
+			}
+
+			.step-title {
+			    margin-top: 1rem;
+			    display: inline-block;
+			    vertical-align: middle;
+
+				font-size: 3rem;
+			}
+
+			&.active {
+				background: #114a83;
+
+				.step-number {
+					color: #7a8fae;
+				}
+
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					right: 0;
+					height: 2px;
+					background: #7092b5;
+				}
+			}
+		}
+	}
+	
+	.page-header {
+		float: left;
+		width: 42%;
+		margin-right: 7%;
+	}
+
+	.radio {
+		display: inline-block;
+		margin-right: 8.5rem;
+
+		color: #a9b2ba;
+		font-style: italic;
+
+		input[type="radio"] {
+			width: 2rem;
+			height: 2rem;
+			
+			cursor: pointer;
+			vertical-align: middle;
+
+
+			appearance: button;
+		    -webkit-appearance: button;
+		    -moz-appearance: button;
+		    -ms-appearance: button;
+			border-radius: 50%;
+			border: 1px solid #a9b2ba;
+			outline: 0;
+
+			&:checked, &:hover {
+				background-color: #114a83;
+			}
+		}
+	}
+}
+

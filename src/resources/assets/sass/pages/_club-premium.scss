@@ -1,0 +1,77 @@
+.club-premium-template {
+	
+	.page-header {
+		overflow: hidden;
+	}
+
+	.banner {
+		background-image: url(../img/club-premium/banner.jpg);
+	}
+
+	.left-navigation {
+		width: 6.5rem;
+		margin-right: 3rem;
+		float: left;
+
+		ul {
+			li {
+				width: 6.5rem;
+				height: 6.5rem;
+				margin-bottom: 1rem;
+				
+				text-indent: -999px;
+				cursor: pointer;
+
+				background-color: $light-gray;
+				background-position: center center;
+				background-repeat: no-repeat;
+
+				span {
+					display: none;
+				}
+
+				&.active, &:hover {
+					background-color: $dark-blue;
+
+					span {
+						display: block;
+					}
+				}
+
+				&.info { background-image: url(../img/left-navigation/ico-info.png); }
+				&.comity { background-image: url(../img/left-navigation/ico-comity.png); }
+				&.current-sales { background-image: url(../img/left-navigation/ico-sales.png); }
+				&.history { background-image: url(../img/left-navigation/ico-history.png); }
+
+				&.info:hover, &.info.active, { background-image: url(../img/left-navigation/ico-info-h.png); }
+				&.comity:hover, &.comity.active, { background-image: url(../img/left-navigation/ico-comity-h.png); }
+				&.current-sales:hover, &.current-sales.active, { background-image: url(../img/left-navigation/ico-sales-h.png); }
+				&.history:hover, &.history.active, { background-image: url(../img/left-navigation/ico-history-h.png); }
+
+				a {
+					display: block;
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+	}
+
+	.sales {
+		background: url(../img/club-premium/background-sale-1.jpg) no-repeat center top;
+		
+		.slider-container {
+			padding-bottom: 7.5rem;
+
+			.sales-slider-arrows {
+				.slick-arrow {
+					top: 45%;
+				}
+			}
+		}
+
+		.sales-navigation {
+			margin-top: 5rem;
+		}
+	}
+}
