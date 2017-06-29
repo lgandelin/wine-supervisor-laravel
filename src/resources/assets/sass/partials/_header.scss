@@ -47,20 +47,26 @@ header {
 						}
 					}
 				}
-			}
 
-			.logout-icon {
-				width: 5.2rem;
-				height: 4.5rem;
-				vertical-align: middle;
-				display: inline-block;
+				&.logout {
+					a {
+						padding-bottom: 0;
+					}
 
-				cursor: pointer;
-				
-				background: $blue url(../img/header/ico-logout.png) no-repeat center center;
+					.logout-icon {
+						width: 5.2rem;
+						height: 4.5rem;
+						vertical-align: middle;
+						display: inline-block;
 
-				&:hover {
-					background-color: $dark-blue;
+						cursor: pointer;
+
+						background: $blue url(../img/header/ico-logout.png) no-repeat center center;
+
+						&:hover {
+							background-color: $dark-blue;
+						}
+					}
 				}
 			}
 
@@ -85,68 +91,6 @@ header {
 
 				transition-property: opacity;
 				transition-duration: 0.5s;
-
-				.input-login, .input-password {
-					width: 30.6rem;
-					margin-bottom: 1.3rem;
-					white-space: nowrap;
-
-					background: white;
-					border: 1px solid $dark-blue;
-					border-radius: 3px;
-
-					&:before {
-						content: '';
-						width: 4.8rem;
-						height: 4.8rem;
-						float: left;
-						vertical-align: middle;
-					}
-				}
-
-				.input-login {
-					&:before {
-						background: $dark-blue url(../img/header/ico-login.png) no-repeat center center;
-					}
-				}
-
-				.input-password {
-					&:before {
-						background: $dark-blue url(../img/header/ico-password.png) no-repeat center center;
-					}
-				}
-
-				input[type="text"], input[type="password"] {
-					margin: 0;
-					padding: 0;
-					padding-left: 1.5rem;
-    				width: 18.3em;
-					height: 4.8rem;
-	
-					font-family: $main-font;
-					font-size: 1.4rem;
-			
-					border: none;
-				}
-
-				input[type="submit"] {
-					margin-top: 1.5rem;
-					float: right;
-					padding: 1.5rem 3rem;
-					text-align: center;
-					font-family: $main-font;
-					font-size: 1.4rem;
-					color: white;
-					
-					cursor: pointer;
-					border: none;
-					border-radius: 1px;
-					background: $red;
-
-					&:hover {
-						background: #e85258;
-					}
-				}
 
 				a.forgotten-password {
 					display: block;
@@ -189,5 +133,69 @@ header {
 				}	
 			}
 		}
+	}
+}
+
+
+
+.input-login, .input-password {
+	width: 30.6rem;
+	margin-bottom: 1.3rem;
+	white-space: nowrap;
+
+	background: white;
+	border: 1px solid $dark-blue;
+	border-radius: 3px;
+
+	&:before {
+		content: '';
+		width: 4.8rem;
+		height: 4.8rem;
+		float: left;
+		vertical-align: middle;
+	}
+}
+
+.input-login {
+	&:before {
+		background: $dark-blue url(../img/header/ico-login.png) no-repeat center center;
+	}
+}
+
+.input-password {
+	&:before {
+		background: $dark-blue url(../img/header/ico-password.png) no-repeat center center;
+	}
+}
+
+.input-login input[type="text"], .input-password input[type="password"] {
+	margin: 0;
+	padding: 0;
+	padding-left: 1.5rem;
+	width: 18.3em;
+	height: 4.8rem;
+
+	font-family: $main-font;
+	font-size: 1.4rem;
+
+	border: none;
+}
+
+input[type="submit"] {
+	margin-top: 1.5rem;
+	float: right;
+	padding: 1.5rem 3rem;
+	text-align: center;
+	font-family: $main-font;
+	font-size: 1.4rem;
+	color: white;
+
+	cursor: pointer;
+	border: none;
+	border-radius: 1px;
+	background: $red;
+
+	&:hover {
+		background: #e85258;
 	}
 }

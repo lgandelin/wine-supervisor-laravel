@@ -44,7 +44,7 @@ class AccountController extends UserController
             $request->get('email'),
             $request->get('login'),
             $request->get('password') ? $request->get('password') : null,
-            $request->get('opt_in') === 'on' ? true : false
+            $request->get('opt_in') == '1' ? true : false
         );
 
         if (!$success) {

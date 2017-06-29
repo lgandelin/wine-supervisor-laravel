@@ -1,5 +1,5 @@
 .alert {
-    padding: 1rem;
+    padding: 2rem;
     margin-bottom: 3rem;
 
     color: $dark-blue;
@@ -12,5 +12,12 @@
 
         border-color: #e0363d;
         background-color: rgba(224, 54, 61, 0.1);
+    }
+
+    &.alert-success {
+        color: #3c763d;
+
+        border-color: #d0e9c6;
+        background-color: #dff0d8;
     }
 }

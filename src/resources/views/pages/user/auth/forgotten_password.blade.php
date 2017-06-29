@@ -4,42 +4,43 @@
 
 @section('main-content')
 
-    <div class="container">
-        <div class="login-template">
+    <div class="login-template">
 
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default" style="margin-top: 5rem">
-                    <div class="panel-heading">Mot de passe oublié</div>
-                    <div class="panel-body">
+        @include('wine-supervisor::pages.user.includes.header')
 
-                        @if ($message)
-                            <div class="alert alert-info">
-                                {{ $message }}
-                            </div>
-                        @endif
+        <div class="main-content container">
 
-                        @if ($error)
-                            <div class="alert alert-danger">
-                                {{ $error }}
-                            </div>
-                        @endif
+            @if ($message)
+                <div class="alert alert-info">
+                    {{ $message }}
+                </div>
+            @endif
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('forgotten_password_handler') }}">
-                            <div class="form-group">
-                                <label>{{ trans('wine-supervisor::login.login') }}</label>
-                                <input type="login" class="form-control" name="login" value="{{ old('login') }}" />
-                            </div>
+            @if ($error)
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endif
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-valid">{{ trans('wine-supervisor::login.send_new_password') }}</button>
-                                <a href="{{ route('user_login') }}" title="{{ trans('wine-supervisor::generic.back') }}">{{ trans('wine-supervisor::generic.back') }}</a>
-                            </div>
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Mot de passe oublié</h1>
 
-                            {!! csrf_field() !!}
-                        </form>
-                    </div>
+                <div class="login">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('forgotten_password_handler') }}">
+                        <div class="input-login">
+                            <input type="text" name="login" value="{{ old('login') }}" placeholder="Votre login" />
+                        </div>
+
+                        <input type="submit" class="btn btn-valid" value="M'envoyer un nouveau mot de passe" />
+                        <a href="{{ route('user_login') }}" title="Retour" class="back-link">Retour</a>
+
+                        {!! csrf_field() !!}
+                    </form>
                 </div>
             </div>
+            <!-- PAGE HEADER -->
+
         </div>
     </div>
 

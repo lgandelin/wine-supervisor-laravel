@@ -36,5 +36,33 @@ form {
 
 		    color: black;
 		}
+
+		.radio {
+			display: inline-block;
+			margin-right: 6rem;
+
+			color: #a9b2ba;
+			font-style: italic;
+
+			input[type="radio"] {
+				width: 2rem;
+				height: 2rem;
+
+				cursor: pointer;
+				vertical-align: middle;
+
+				appearance: button;
+				-webkit-appearance: button;
+				-moz-appearance: button;
+				-ms-appearance: button;
+				border-radius: 50%;
+				border: 1px solid #a9b2ba;
+				outline: 0;
+
+				&:checked, &:hover {
+					background-color: #114a83;
+				}
+			}
+		}
 	}
 }

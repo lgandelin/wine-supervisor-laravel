@@ -93,7 +93,7 @@
             <!-- PAGE CONTENT -->
         </div>
 
-        @include('wine-supervisor::includes.legal-notices')
+        @include('wine-supervisor::partials.legal-notices')
 
     </div>
 @stop

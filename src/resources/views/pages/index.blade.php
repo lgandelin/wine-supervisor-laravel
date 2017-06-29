@@ -204,13 +204,7 @@
         <!-- OUR PARTNERS -->
 
 
-        <!-- FOOTER -->
-        <footer>
-            <div class="container">
-                <a href="#">Mentions légales</a>
-            </div>
-        </footer>
-        <!-- FOOTER -->
+        @include('wine-supervisor::partials.legal-notices')
 
         <div style="display:none">
             @if (!$is_user && !$is_guest)

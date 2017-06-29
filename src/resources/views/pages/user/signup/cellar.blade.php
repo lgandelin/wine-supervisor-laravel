@@ -94,7 +94,7 @@
             <a class="button red-button back-button" href="{{ route('user_signup') }}">Retour</a>
         </div>
 
-        @include('wine-supervisor::includes.legal-notices')
+        @include('wine-supervisor::partials.legal-notices')
 
     </div>
 @stop
