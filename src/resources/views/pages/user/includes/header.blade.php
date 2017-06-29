@@ -21,11 +21,11 @@
         <div class="container">
             <nav>
                 <ul>
-                    <li><a href="#wine-supervisor">WineSupervisor</a></li>
-                    <li><a href="#club-avantage">Le Club</a></li>
-                    <li><a href="#actualites">Actualités</a></li>
-                    <li><a href="#nos-partenaires">Nos partenaires</a></li>
-                    <li><a href="#top">Contact</a></li>
+                    <li><a href="@if (isset($route) && $route != 'index'){{ route('index') }}@endif#wine-supervisor">WineSupervisor</a></li>
+                    <li><a href="@if (isset($route) && $route != 'index'){{ route('index') }}@endif#club-avantage">Le Club</a></li>
+                    <li><a href="@if (isset($route) && $route != 'index'){{ route('index') }}@endif#actualites">Actualités</a></li>
+                    <li><a href="@if (isset($route) && $route != 'index'){{ route('index') }}@endif#nos-partenaires">Nos partenaires</a></li>
+                    <li><a href="@if (isset($route) && $route != 'index'){{ route('index') }}@endif#top">Contact</a></li>
                 </ul>
             </nav>
 

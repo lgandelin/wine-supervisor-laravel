@@ -203,7 +203,6 @@
         </div>
         <!-- OUR PARTNERS -->
 
-
         @include('wine-supervisor::partials.legal-notices')
 
         <div style="display:none">
