@@ -24,6 +24,7 @@ class SignupController extends UserController
             'last_name' => isset($session_user) ? $session_user->last_name : null,
             'first_name' => isset($session_user) ? $session_user->first_name : null,
             'email' => isset($session_user) ? $session_user->email : null,
+            'phone' => isset($session_user) ? $session_user->phone : null,
             'login' => isset($session_user) ? $session_user->login : null,
             'opt_in' => isset($session_user) ? $session_user->opt_in : null,
 
@@ -37,7 +38,7 @@ class SignupController extends UserController
         parent::__construct($request);
 
         if (!UserRepository::checkLogin(null, $request->get('login'))) {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.user_existing_login_error'));
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
             return redirect()->back()->withInput();
         }
 
@@ -45,6 +46,7 @@ class SignupController extends UserController
             'last_name' => $request->get('last_name'),
             'first_name' => $request->get('first_name'),
             'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
             'login' => $request->get('login'),
             'password' => $request->get('password'),
             'opt_in' => $request->get('opt_in') === 'on' ? true : false,
@@ -77,6 +79,7 @@ class SignupController extends UserController
                 'first_name' => $user_data->first_name,
                 'last_name' => $user_data->last_name,
                 'email' => $user_data->email,
+                'phone' => $user_data->phone,
                 'login' => $user_data->login,
                 'opt_in' => $user_data->opt_in,
             ]);
@@ -85,13 +88,14 @@ class SignupController extends UserController
                 $user_data->first_name,
                 $user_data->last_name,
                 $user_data->email,
+                $user_data->phone,
                 $user_data->login,
                 $user_data->password,
                 $user_data->opt_in
             );
 
             if (!$success) {
-                $request->session()->flash('error', trans('wine-supervisor::user.signup_user_error'));
+                $request->session()->flash('error', $error);
 
                 Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
                     'id' => $requestID,
@@ -134,7 +138,7 @@ class SignupController extends UserController
                 );
 
                 if (!$success) {
-                    $request->session()->flash('error', trans('wine-supervisor::user.signup_error'));
+                    $request->session()->flash('error', $error);
 
                     Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
                         'id' => $requestID,
@@ -156,7 +160,7 @@ class SignupController extends UserController
                 }
             }
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.session_error'));
+            $request->session()->flash('error', trans('wine-supervisor::signup.session_error'));
         }
 
         return redirect()->route('user_signup');

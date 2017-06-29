@@ -1402,7 +1402,7 @@ form .form-group {
   margin-bottom: 2rem;
 }
 /* line 5, ../sass/includes/_forms.scss */
-form .form-group input[type="text"], form .form-group select {
+form .form-group input[type="text"], form .form-group input[type="password"], form .form-group select {
   padding: 2rem;
   width: 100%;
   font-family: "Roboto";
@@ -1416,7 +1416,7 @@ form .form-group input[type="text"], form .form-group select {
   outline: 0;
 }
 /* line 20, ../sass/includes/_forms.scss */
-form .form-group input[type="text"]:focus, form .form-group input[type="text"]:hover, form .form-group select:focus, form .form-group select:hover {
+form .form-group input[type="text"]:focus, form .form-group input[type="text"]:hover, form .form-group input[type="password"]:focus, form .form-group input[type="password"]:hover, form .form-group select:focus, form .form-group select:hover {
   border-color: #f1f4f7;
   background-color: #fdfdfd;
 }
@@ -1478,21 +1478,21 @@ header {
   border-bottom: 2px solid #ccc;
 }
 
-/* line 13, ../sass/includes/_structure.scss */
+/* line 11, ../sass/includes/_structure.scss */
 .main-content .page-header {
   margin-bottom: 9.5rem;
-  padding: 4.5rem 7rem;
+  padding: 4.5rem 4rem 4.5rem 5rem;
   font-size: 2rem;
   color: white;
   background: #1e95c9;
 }
-/* line 22, ../sass/includes/_structure.scss */
+/* line 20, ../sass/includes/_structure.scss */
 .main-content .page-header h1 {
-  font-size: 5rem;
+  font-size: 4.5rem;
   font-weight: 700;
   line-height: 5rem;
 }
-/* line 27, ../sass/includes/_structure.scss */
+/* line 25, ../sass/includes/_structure.scss */
 .main-content .page-header h1:after {
   content: " ";
   width: 1.8rem;
@@ -1502,21 +1502,21 @@ header {
   margin-bottom: 3.5rem;
   background: white;
 }
-/* line 40, ../sass/includes/_structure.scss */
+/* line 38, ../sass/includes/_structure.scss */
 .main-content .page-content {
   overflow: hidden;
 }
-/* line 43, ../sass/includes/_structure.scss */
+/* line 41, ../sass/includes/_structure.scss */
 .main-content .page-content .submit-container {
   clear: both;
   margin-top: 15rem;
   overflow: hidden;
 }
-/* line 48, ../sass/includes/_structure.scss */
+/* line 46, ../sass/includes/_structure.scss */
 .main-content .page-content .submit-container input[type="submit"] {
   float: right;
 }
-/* line 54, ../sass/includes/_structure.scss */
+/* line 52, ../sass/includes/_structure.scss */
 .main-content .back-button {
   position: relative;
   top: -4rem;
@@ -1613,6 +1613,21 @@ img {
 /* line 92, ../sass/includes/_utils.scss */
 .text-content section {
   margin-bottom: 10rem;
+}
+
+/* line 1, ../sass/includes/_alerts.scss */
+.alert {
+  padding: 1rem;
+  margin-bottom: 3rem;
+  color: #114a83;
+  border: 1px solid #114a83;
+  background: #f7fafa;
+}
+/* line 10, ../sass/includes/_alerts.scss */
+.alert.alert-danger {
+  color: #e0363d;
+  border-color: #e0363d;
+  background-color: rgba(224, 54, 61, 0.1);
 }
 
 /* line 1, ../sass/partials/_header.scss */
@@ -2330,16 +2345,12 @@ footer a, footer a:visited {
   opacity: 0.8;
 }
 
-/* line 1, ../sass/pages/_signup.scss */
-.signup-template {
-  padding-top: 14.5rem;
-}
-/* line 4, ../sass/pages/_signup.scss */
+/* line 3, ../sass/pages/_signup.scss */
 .signup-template .steps {
   margin-bottom: 11.6rem;
   overflow: hidden;
 }
-/* line 8, ../sass/pages/_signup.scss */
+/* line 7, ../sass/pages/_signup.scss */
 .signup-template .steps .step {
   min-height: 14.5rem;
   padding-top: 3rem;
@@ -2350,7 +2361,7 @@ footer a, footer a:visited {
   color: white;
   background: #1e95c9;
 }
-/* line 20, ../sass/pages/_signup.scss */
+/* line 19, ../sass/pages/_signup.scss */
 .signup-template .steps .step .step-number {
   margin-right: 4rem;
   vertical-align: middle;
@@ -2360,22 +2371,22 @@ footer a, footer a:visited {
   font-weight: bold;
   color: #7db9da;
 }
-/* line 31, ../sass/pages/_signup.scss */
+/* line 30, ../sass/pages/_signup.scss */
 .signup-template .steps .step .step-title {
   margin-top: 1rem;
   display: inline-block;
   vertical-align: middle;
   font-size: 3rem;
 }
-/* line 39, ../sass/pages/_signup.scss */
+/* line 38, ../sass/pages/_signup.scss */
 .signup-template .steps .step.active {
   background: #114a83;
 }
-/* line 42, ../sass/pages/_signup.scss */
+/* line 41, ../sass/pages/_signup.scss */
 .signup-template .steps .step.active .step-number {
   color: #7a8fae;
 }
-/* line 46, ../sass/pages/_signup.scss */
+/* line 45, ../sass/pages/_signup.scss */
 .signup-template .steps .step.active:after {
   content: "";
   display: block;
@@ -2386,20 +2397,20 @@ footer a, footer a:visited {
   height: 2px;
   background: #7092b5;
 }
-/* line 60, ../sass/pages/_signup.scss */
+/* line 59, ../sass/pages/_signup.scss */
 .signup-template .page-header {
   float: left;
-  width: 42%;
+  width: 44%;
   margin-right: 7%;
 }
-/* line 66, ../sass/pages/_signup.scss */
+/* line 65, ../sass/pages/_signup.scss */
 .signup-template .radio {
   display: inline-block;
   margin-right: 8.5rem;
   color: #a9b2ba;
   font-style: italic;
 }
-/* line 73, ../sass/pages/_signup.scss */
+/* line 72, ../sass/pages/_signup.scss */
 .signup-template .radio input[type="radio"] {
   width: 2rem;
   height: 2rem;
@@ -2413,7 +2424,7 @@ footer a, footer a:visited {
   border: 1px solid #a9b2ba;
   outline: 0;
 }
-/* line 89, ../sass/pages/_signup.scss */
+/* line 88, ../sass/pages/_signup.scss */
 .signup-template .radio input[type="radio"]:checked, .signup-template .radio input[type="radio"]:hover {
   background-color: #114a83;
 }
