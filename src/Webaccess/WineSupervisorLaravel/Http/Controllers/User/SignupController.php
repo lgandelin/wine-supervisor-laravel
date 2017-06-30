@@ -10,12 +10,10 @@ use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 
-class SignupController extends UserController
+class SignupController
 {
     public function signup(Request $request)
     {
-        parent::__construct($request);
-
         if ($session_user = $request->session()->get('user_signup')) {
             $session_user = json_decode($session_user);
         }
@@ -35,8 +33,6 @@ class SignupController extends UserController
 
     public function signup_handler(Request $request)
     {
-        parent::__construct($request);
-
         if (!UserRepository::checkLogin(null, $request->get('login'))) {
             $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
             return redirect()->back()->withInput();
@@ -57,8 +53,6 @@ class SignupController extends UserController
 
     public function signup_cellar(Request $request)
     {
-        parent::__construct($request);
-
         return view('wine-supervisor::pages.user.signup.cellar', [
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -67,8 +61,6 @@ class SignupController extends UserController
 
     public function signup_cellar_handler(Request $request)
     {
-        parent::__construct($request);
-
         $requestID = Uuid::uuid4()->toString();
 
         if ($session_user = $request->session()->get('user_signup')) {

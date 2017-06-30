@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label for="opt_in">Infos Club</label>
                         <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in === true || $opt_in === null)checked="checked"@endif /> Oui</div>
-                        <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$opt_in)checked="checked"@endif /> Non</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="0" @if ($opt_in === false)checked="checked"@endif /> Non</div>
                     </div>
 
                     <div class="submit-container">
