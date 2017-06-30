@@ -39,23 +39,41 @@
             <!-- PAGE CONTENT -->
             <div class="page-content text-content">
                 <section>
-                    <h2>Qu’est ce que le Club Avantage</h2>
+                    <div class="left-image"><img src="{{ asset('img/club-premium/left-image.jpg') }}" width="350" height="400" /></div>
+                    <div class="text">
+                        <h2>Qu’est ce que le Club Avantage ?</h2>
 
-                    <p>Lorem ipsum <a href="#">dolor sit amet</a>, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncusnteger ultricies, neque eget elementum dapibus, velit nunc vulputate nulla, sit amet suscipit lorem tellus eget justo. Donec <a href="#">volutpat ligula eget felis eleifend fermentum</a>.</p>
+                        <p>En devanant utilisateur WineSupervisor II, vous devenez un membre priviligié du CLUB AVANTAGE, vous donnant alors accès à des ventes de vins très privées.</p>
+                        <p>L’offre limitée dans le temps, n’est toutefois pas une vente flash et permet de se laisser le temps de la dégustation pour pouvoir revenir et en faire profiter ses amis...</p>
+                        <p>Les ventes se font directement auprès des partenaires sélectionnés.</p>
+                    </div>
+                </section>
 
-                    <p>Sit amet, consectetur adipiscing elit. Integer a <a href="#">hendrerit justo</a>. Curabitur rhoncusnteger ultricies, <a href="#">neque eget elementum dapibus</a>, ipsum dolor velit nunc vulputate nulla, sit amet suscipit lorem tellus eget justo.</p>
+                <section>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur <a href="#">rhoncusnteger ultricies</a>, neque eget elementum dapibus, velit nunc vulputate nulla, <a href="#">sit amet suscipit lorem tellus</a> eget justo. Donec volutpat ligula eget felis eleifend fermentum.</p>
+                    <div class="right-image"><img src="{{ asset('img/club-premium/right-image.jpg') }}" width="541" height="361" /></div>
+                    <div class="text">
+                        <h2>Comité de dégustation</h2>
+
+                        <p>Les produits sont sélectionnés par notre comité de dégustation indépendant qui est représentatif des adeptes de la climatisation de cave.</p>
+                        <p>Composé de sommeliers, de cavistes, de chefs, de spécialistes et d’amateurs de vins en général, le comité valide une sélection exclusivement destinée à vous faire faire de belles découvertes à prix avantageux.</p>
+                    </div>
                 </section>
 
                 <section>
                     <h2>Le Programme des ventes </h2>
 
-                    <p>Lorem ipsum <a href="#">dolor sit amet</a>, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncusnteger ultricies, neque eget elementum dapibus, velit nunc vulputate nulla, sit amet suscipit lorem tellus eget justo. Donec <a href="#">volutpat ligula eget felis eleifend fermentum</a>.</p>
+                    <p>
+                        L’ objectif du CLUB AVANTAGE WineSupervisor est de vous permettre de découvrir, c’est pourquoi nous allons proposer dans cette espace des vins confidentiels qui demandent à
+                        obtenir la reconnaissance pour devenir des références dans l’avenir. Mais nous allons aussi vous présenter des sélections de vins dont vous connaissez la renommée mais vers
+                        lesquels vous n’êtes pas encore allés ou qu’il vous interessera de retrouver.
+                    </p>
 
-                    <p>Sit amet, consectetur adipiscing elit. Integer a <a href="#">hendrerit justo</a>. Curabitur rhoncusnteger ultricies, <a href="#">neque eget elementum dapibus</a>, ipsum dolor velit nunc vulputate nulla, sit amet suscipit lorem tellus eget justo.</p>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur <a href="#">rhoncusnteger ultricies</a>, neque eget elementum dapibus, velit nunc vulputate nulla, <a href="#">sit amet suscipit lorem tellus</a> eget justo. Donec volutpat ligula eget felis eleifend fermentum.</p>
+                    <p>
+                        Pour 2017 nous démarrons le CLUB AVANTAGE avec un jeune vigneron de l’appellation Gaillac dans le Tarn. C’est un véritable technicien du vin du fait de sa double formation de
+                        vigneron et de frigoriste, ce qui lui à permis de développer un système de vinification thermodnamique breveté très performant. Aristide Lacombe du Domaine Grand Chêne à
+                        Senouillac va nous régaler...
+                    </p>
                 </section>
 
             </div>
