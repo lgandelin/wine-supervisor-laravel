@@ -1920,31 +1920,31 @@ footer a, footer a:visited {
 /* line 1, ../sass/partials/_sales-slider.scss */
 .sales {
   color: white;
-  background: url(../img/home/sales/background.jpg) no-repeat center top;
   background-position: top center;
 }
-/* line 7, ../sass/partials/_sales-slider.scss */
+/* line 6, ../sass/partials/_sales-slider.scss */
 .sales .slider-container {
   overflow: hidden;
   position: relative;
 }
-/* line 11, ../sass/partials/_sales-slider.scss */
+/* line 10, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider {
   position: relative;
+  			/*&:before {
+  				position: absolute;
+  				content: "";
+  			    left: 1.5rem;
+  			    right: 1.5rem;
+  			    top: 0;
+  			    bottom: 3.1rem;
+  
+  				background: rgba(0, 0, 0, 0.25);
+  			}*/
 }
-/* line 14, ../sass/partials/_sales-slider.scss */
-.sales .slider-container .sales-slider:before {
-  position: absolute;
-  content: "";
-  left: 1.5rem;
-  right: 1.5rem;
-  top: 0;
-  bottom: 3.1rem;
-  background: rgba(0, 0, 0, 0.25);
-}
-/* line 25, ../sass/partials/_sales-slider.scss */
+/* line 24, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide {
-  padding: 6rem 10rem 0 14.4rem;
+  padding: 5rem 8rem 0rem 8rem;
+  position: relative;
 }
 /* line 28, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .bottle {
@@ -1953,26 +1953,38 @@ footer a, footer a:visited {
   z-index: 2;
 }
 /* line 34, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: black;
+  background-repeat: no-repeat;
+}
+/* line 46, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .content {
   position: relative;
-  z-index: 1;
-  margin-left: 30rem;
+  z-index: 2;
+  margin-left: 20rem;
+  font-size: 1.7rem;
 }
-/* line 39, ../sass/partials/_sales-slider.scss */
+/* line 53, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .content .sale-subtitle {
   display: block;
   margin-bottom: 1rem;
   text-transform: uppercase;
   font-size: 1.8rem;
 }
-/* line 46, ../sass/partials/_sales-slider.scss */
+/* line 60, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .content .sale-name {
   display: block;
   line-height: 5rem;
   font-weight: 700;
   font-size: 6rem;
 }
-/* line 53, ../sass/partials/_sales-slider.scss */
+/* line 67, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .content .sale-name:after {
   content: " ";
   display: block;
@@ -1982,20 +1994,20 @@ footer a, footer a:visited {
   margin-bottom: 3.5rem;
   background: white;
 }
-/* line 65, ../sass/partials/_sales-slider.scss */
+/* line 79, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .content .button {
+  float: right;
   position: relative;
   top: -7rem;
-  float: right;
   border-radius: 0;
-  border-color: 2px solid white;
+  border: 2px solid white;
   color: white;
 }
-/* line 74, ../sass/partials/_sales-slider.scss */
+/* line 88, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .content .button:hover {
   color: black;
 }
-/* line 83, ../sass/partials/_sales-slider.scss */
+/* line 97, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow {
   position: absolute;
   width: 2.7rem;
@@ -2007,27 +2019,27 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 96, ../sass/partials/_sales-slider.scss */
+/* line 110, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow.slick-prev {
-  left: 5rem;
+  left: 3rem;
   background: url(../img/home/sales/prev.png) no-repeat center center;
 }
-/* line 101, ../sass/partials/_sales-slider.scss */
+/* line 115, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow.slick-next {
-  right: 5rem;
+  right: 3rem;
   background: url(../img/home/sales/next.png) no-repeat center center;
 }
-/* line 106, ../sass/partials/_sales-slider.scss */
+/* line 120, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }
 
-/* line 114, ../sass/partials/_sales-slider.scss */
+/* line 128, ../sass/partials/_sales-slider.scss */
 .sales-navigation {
   overflow: hidden;
   margin-bottom: 7.3rem;
 }
-/* line 118, ../sass/partials/_sales-slider.scss */
+/* line 132, ../sass/partials/_sales-slider.scss */
 .sales-navigation li {
   float: left;
   margin-right: 3rem;
@@ -2041,7 +2053,7 @@ footer a, footer a:visited {
   text-transform: uppercase;
   cursor: pointer;
 }
-/* line 132, ../sass/partials/_sales-slider.scss */
+/* line 146, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:before {
   content: "";
   display: block;
@@ -2053,25 +2065,25 @@ footer a, footer a:visited {
   top: 0.75rem;
   border: 1px solid #eee;
 }
-/* line 145, ../sass/partials/_sales-slider.scss */
+/* line 159, ../sass/partials/_sales-slider.scss */
 .sales-navigation li.active {
   opacity: 1;
 }
-/* line 149, ../sass/partials/_sales-slider.scss */
+/* line 163, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:hover {
   opacity: 1;
 }
-/* line 153, ../sass/partials/_sales-slider.scss */
+/* line 167, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background {
   position: absolute;
   z-index: 1;
 }
-/* line 154, ../sass/partials/_sales-slider.scss */
+/* line 168, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background img {
   width: 100%;
   height: auto;
 }
-/* line 162, ../sass/partials/_sales-slider.scss */
+/* line 176, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-name {
   padding-top: 6.5rem;
   display: block;
@@ -2246,44 +2258,58 @@ footer a, footer a:visited {
 .home-template .club .title:after {
   display: none;
 }
-/* line 154, ../sass/pages/_home.scss */
+/* line 153, ../sass/pages/_home.scss */
+.home-template .club-contents {
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+/* line 157, ../sass/pages/_home.scss */
+.home-template .club-contents .image {
+  float: left;
+  margin-right: 10rem;
+}
+/* line 162, ../sass/pages/_home.scss */
+.home-template .club-contents .text {
+  margin-top: 3rem;
+  overflow: hidden;
+}
+/* line 169, ../sass/pages/_home.scss */
 .home-template .sales {
   color: white;
-  background: url(../img/home/sales/background.jpg) no-repeat center top;
 }
-/* line 159, ../sass/pages/_home.scss */
+/* line 172, ../sass/pages/_home.scss */
 .home-template .sales .slider-container {
   position: relative;
 }
-/* line 163, ../sass/pages/_home.scss */
+/* line 176, ../sass/pages/_home.scss */
 .home-template .sales .sales-slider {
   margin-bottom: 10rem;
   padding-bottom: 1.5rem;
 }
-/* line 171, ../sass/pages/_home.scss */
+/* line 184, ../sass/pages/_home.scss */
 .home-template .news {
   padding-top: 4rem;
   text-align: center;
   color: white;
   background: #1e95c9;
 }
-/* line 179, ../sass/pages/_home.scss */
+/* line 192, ../sass/pages/_home.scss */
 .home-template .news .title {
   font-size: 6rem;
 }
-/* line 182, ../sass/pages/_home.scss */
+/* line 195, ../sass/pages/_home.scss */
 .home-template .news .title:after {
   margin-left: auto;
   margin-right: auto;
   background: white;
 }
-/* line 190, ../sass/pages/_home.scss */
+/* line 203, ../sass/pages/_home.scss */
 .home-template .news .container > p {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 196, ../sass/pages/_home.scss */
+/* line 209, ../sass/pages/_home.scss */
 .home-template .news .news-slider {
   position: relative;
   margin-bottom: -4.5rem;
@@ -2292,41 +2318,41 @@ footer a, footer a:visited {
   -moz-box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
 }
-/* line 205, ../sass/pages/_home.scss */
+/* line 218, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide {
   max-height: 27.3rem;
   overflow: hidden;
   background: white;
 }
-/* line 211, ../sass/pages/_home.scss */
+/* line 224, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .image {
   float: left;
 }
-/* line 215, ../sass/pages/_home.scss */
+/* line 228, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content {
   overflow: hidden;
   padding: 3rem;
   text-align: left;
   color: #000;
 }
-/* line 222, ../sass/pages/_home.scss */
+/* line 235, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content .date {
   display: block;
   margin-bottom: 1.5rem;
   color: #1e95c9;
   font-style: italic;
 }
-/* line 229, ../sass/pages/_home.scss */
+/* line 242, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content h3 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
 }
-/* line 238, ../sass/pages/_home.scss */
+/* line 251, ../sass/pages/_home.scss */
 .home-template .news .slick-dots {
   margin-bottom: 2.8rem;
 }
-/* line 240, ../sass/pages/_home.scss */
+/* line 253, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li {
   cursor: pointer;
   display: inline-block;
@@ -2336,58 +2362,58 @@ footer a, footer a:visited {
   background: url(../img/home/news/dot.png) no-repeat center center;
   border: none;
 }
-/* line 250, ../sass/pages/_home.scss */
+/* line 263, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li button {
   display: none;
 }
-/* line 254, ../sass/pages/_home.scss */
+/* line 267, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li:hover, .home-template .news .slick-dots li.slick-active {
   background: url(../img/home/news/dot-active.png) no-repeat center center;
 }
-/* line 262, ../sass/pages/_home.scss */
+/* line 275, ../sass/pages/_home.scss */
 .home-template .our-partners {
   padding-top: 10rem;
   padding-bottom: 3rem;
   text-align: center;
 }
-/* line 267, ../sass/pages/_home.scss */
+/* line 280, ../sass/pages/_home.scss */
 .home-template .our-partners .container {
   position: relative;
 }
-/* line 271, ../sass/pages/_home.scss */
+/* line 284, ../sass/pages/_home.scss */
 .home-template .our-partners .subtitle {
   color: #e0363d;
 }
-/* line 275, ../sass/pages/_home.scss */
+/* line 288, ../sass/pages/_home.scss */
 .home-template .our-partners .title {
   font-size: 6rem;
   color: #1e95c9;
 }
-/* line 279, ../sass/pages/_home.scss */
+/* line 292, ../sass/pages/_home.scss */
 .home-template .our-partners .title:after {
   margin-left: auto;
   margin-right: auto;
   background: #1e95c9;
 }
-/* line 287, ../sass/pages/_home.scss */
+/* line 300, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider {
   width: 83%;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
 }
-/* line 293, ../sass/pages/_home.scss */
+/* line 306, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner {
   display: inline-block;
   width: 25%;
 }
-/* line 297, ../sass/pages/_home.scss */
+/* line 310, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 306, ../sass/pages/_home.scss */
+/* line 319, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow {
   width: 2.2rem;
   height: 4.5rem;
@@ -2399,17 +2425,17 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 319, ../sass/pages/_home.scss */
+/* line 332, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-prev {
   left: 0;
   background: url(../img/home/partners/previous.png) no-repeat center center;
 }
-/* line 324, ../sass/pages/_home.scss */
+/* line 337, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-next {
   right: 0;
   background: url(../img/home/partners/next.png) no-repeat center center;
 }
-/* line 329, ../sass/pages/_home.scss */
+/* line 342, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }

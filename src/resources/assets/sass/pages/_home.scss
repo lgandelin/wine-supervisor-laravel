@@ -150,11 +150,24 @@
 	  	}
 	}
 
+	.club-contents {
+		margin-top: 10rem;
+		margin-bottom: 10rem;
+
+		.image {
+			float: left;
+			margin-right: 10rem;
+		}
+
+		.text {
+			margin-top: 3rem;
+			overflow: hidden;
+		}
+	}
+
 	//SALES
 	.sales {
 		color: white;
-		
-		background: url(../img/home/sales/background.jpg) no-repeat center top;
 		
 		.slider-container {
 			position: relative;

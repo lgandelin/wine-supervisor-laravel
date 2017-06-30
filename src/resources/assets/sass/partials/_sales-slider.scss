@@ -1,7 +1,6 @@
 .sales {
 	color: white;
 
-	background: url(../img/home/sales/background.jpg) no-repeat center top;
     background-position: top center;
 
 	.slider-container {
@@ -11,7 +10,7 @@
 		.sales-slider {
 			position: relative;
 
-			&:before {
+			/*&:before {
 				position: absolute;
 				content: "";
 			    left: 1.5rem;
@@ -20,10 +19,11 @@
 			    bottom: 3.1rem;
 
 				background: rgba(0, 0, 0, 0.25);
-			}
+			}*/
 			
 			.slick-slide {
-				padding: 6rem 10rem 0 14.4rem;
+				padding: 5rem 8rem 0rem 8rem;
+				position: relative;
 
 				.bottle {
 					position: absolute;
@@ -31,10 +31,24 @@
 					z-index: 2;
 				}
 
+				.background {
+					position: absolute;
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					z-index: 1;
+
+					background-color: black;
+					background-repeat: no-repeat;
+				}
+
 				.content {
 					position: relative;
-					z-index: 1;
-					margin-left: 30rem;
+					z-index: 2;
+					margin-left: 20rem;
+
+					font-size: 1.7rem;
 
 					.sale-subtitle {
 						display: block;
@@ -63,12 +77,12 @@
 					}
 
 					.button {
+						float: right;
 						position: relative;
 						top: -7rem;
-						float: right;
 
 						border-radius: 0;
-						border-color: 2px solid white;
+						border: 2px solid white;
 						color: white;
 
 						&:hover {
@@ -94,12 +108,12 @@
 	  			border: none;
 
 		  		&.slick-prev {
-		  			left: 5rem;
+		  			left: 3rem;
 		  			background: url(../img/home/sales/prev.png) no-repeat center center;
 		  		}
 
 		  		&.slick-next {
-		  			right: 5rem;
+		  			right: 3rem;
 		  			background: url(../img/home/sales/next.png) no-repeat center center;
 		  		}
 
