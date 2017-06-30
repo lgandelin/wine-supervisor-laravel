@@ -19,13 +19,7 @@
 
             <!-- LEFT NAVIGATION -->
             <nav class="left-navigation">
-                <ul>
-                    <!-- @include('wine-supervisor::pages.club-premium.includes.menu')-->
-                    <li class="info active"><a href="club-avantage.html"><span>Informations</span></a></li>
-                    <li class="comity"><a href="#"><span>Comité</span></a></li>
-                    <li class="current-sales"><a href="club-avantage-ventes-en-cours.html"><span>Ventes en cours</span></a></li>
-                    <li class="history"><a href="#"><span>Historique des ventes</span></a></li>
-                </ul>
+                @include('wine-supervisor::pages.club-premium.includes.menu')
             </nav>
             <!-- LEFT NAVIGATION -->
 
