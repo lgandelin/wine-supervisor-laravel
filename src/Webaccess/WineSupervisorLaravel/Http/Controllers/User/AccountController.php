@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
+use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
@@ -16,6 +17,8 @@ class AccountController extends UserController
 
         return view('wine-supervisor::pages.user.account.update', [
             'user' => UserRepository::getByID($this->getUserID()),
+
+            'cellars' => CellarRepository::getByUser($this->getUserID()),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,

@@ -1,9 +1,9 @@
 @if (isset($is_user) && $is_user)
-    <li @if (isset($route) && $route == 'user_cellar_list')class="active"@endif><a href="{{ route('user_cellar_list') }}">Mes caves</a></li>
     @if ($is_eligible_to_club_premium)
         <li @if (isset($route) && $route == 'club_premium')class="active"@endif><a href="{{ route('club_premium') }}">Club Avantage</a></li>
     @endif
     <li @if (isset($route) && $route == 'user_update_account')class="active"@endif><a href="{{ route('user_update_account') }}">Gérer mon compte</a></li>
+    <li><a href="#">Supervision</a></li>
     <li class="account logout">
         <a href="{{ route('user_logout') }}"><span class="logout-icon" title="Se déconnecter"></span></a>
     </li>

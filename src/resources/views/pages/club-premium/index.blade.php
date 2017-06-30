@@ -44,30 +44,28 @@
                 </section>
 
                 <section>
+                    <div class="right-image" style="margin-top:6rem"><img src="{{ asset('img/club-premium/right-image.jpg') }}" width="541" height="361" /></div>
+                    <div class="text" style="padding-top: 0;">
+                        <h2>Le Programme des ventes </h2>
+                        <p>
+                            L’ objectif du CLUB AVANTAGE WineSupervisor est de vous permettre de découvrir, c’est pourquoi nous allons proposer dans cette espace des vins confidentiels qui demandent à
+                            obtenir la reconnaissance pour devenir des références dans l’avenir. Mais nous allons aussi vous présenter des sélections de vins dont vous connaissez la renommée mais vers
+                            lesquels vous n’êtes pas encore allés ou qu’il vous interessera de retrouver.
+                        </p>
 
-                    <div class="right-image"><img src="{{ asset('img/club-premium/right-image.jpg') }}" width="541" height="361" /></div>
-                    <div class="text">
-                        <h2>Comité de dégustation</h2>
-
-                        <p>Les produits sont sélectionnés par notre comité de dégustation indépendant qui est représentatif des adeptes de la climatisation de cave.</p>
-                        <p>Composé de sommeliers, de cavistes, de chefs, de spécialistes et d’amateurs de vins en général, le comité valide une sélection exclusivement destinée à vous faire faire de belles découvertes à prix avantageux.</p>
+                        <p>
+                            Pour 2017 nous démarrons le CLUB AVANTAGE avec un jeune vigneron de l’appellation Gaillac dans le Tarn. C’est un véritable technicien du vin du fait de sa double formation de
+                            vigneron et de frigoriste, ce qui lui à permis de développer un système de vinification thermodnamique breveté très performant. Aristide Lacombe du Domaine Grand Chêne à
+                            Senouillac va nous régaler...
+                        </p>
                     </div>
                 </section>
 
                 <section>
-                    <h2>Le Programme des ventes </h2>
+                    <h2>Comité de dégustation</h2>
 
-                    <p>
-                        L’ objectif du CLUB AVANTAGE WineSupervisor est de vous permettre de découvrir, c’est pourquoi nous allons proposer dans cette espace des vins confidentiels qui demandent à
-                        obtenir la reconnaissance pour devenir des références dans l’avenir. Mais nous allons aussi vous présenter des sélections de vins dont vous connaissez la renommée mais vers
-                        lesquels vous n’êtes pas encore allés ou qu’il vous interessera de retrouver.
-                    </p>
-
-                    <p>
-                        Pour 2017 nous démarrons le CLUB AVANTAGE avec un jeune vigneron de l’appellation Gaillac dans le Tarn. C’est un véritable technicien du vin du fait de sa double formation de
-                        vigneron et de frigoriste, ce qui lui à permis de développer un système de vinification thermodnamique breveté très performant. Aristide Lacombe du Domaine Grand Chêne à
-                        Senouillac va nous régaler...
-                    </p>
+                    <p>Les produits sont sélectionnés par notre comité de dégustation indépendant qui est représentatif des adeptes de la climatisation de cave.</p>
+                    <p>Composé de sommeliers, de cavistes, de chefs, de spécialistes et d’amateurs de vins en général, le comité valide une sélection exclusivement destinée à vous faire faire de belles découvertes à prix avantageux.</p>
                 </section>
 
             </div>
