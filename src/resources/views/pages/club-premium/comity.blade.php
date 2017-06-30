@@ -25,36 +25,24 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Historique des ventes</h1>
+                <h1>Comité de dégustation</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
             </div>
             <!-- PAGE HEADER -->
 
+            <!-- PAGE CONTENT -->
+            <div class="page-content text-content">
+                <section>
+                    <div class="left-image"><img src="{{ asset('img/club-premium/left-image.jpg') }}" width="350" height="400" /></div>
+                    <div class="text">
+                        <h2>Comité de dégustation</h2>
 
-            <!-- SALES -->
-            <div class="sales">
-                @include('wine-supervisor::partials.sales-slider')
-
-                <div class="container">
-                    <ul class="sales-navigation">
-                        <li data-slider="1" class="active">
-                            <span class="sale-background"><img src="{{ asset('img/sales/1/background.jpg') }}" alt="En cours" /></span>
-                            <span class="sale-name">12 Mai - 22 Mai</span>
-                        </li>
-
-                        <!--<li data-slider="2">
-                            <span class="sale-background"><img src="img/home/sales/2.jpg" alt="Sale 2" /></span>
-                            <span class="sale-name">06 Juin - 21 Juin</span>
-                        </li>
-
-                        <li data-slider="3">
-                            <span class="sale-background"><img src="img/home/sales/3.jpg" alt="Sale 3" /></span>
-                            <span class="sale-name">12 Juillet - 26 Juillet</span>
-                        </li>-->
-                    </ul>
-                </div>
+                        <p>Les produits sont sélectionnés par notre comité de dégustation indépendant qui est représentatif des adeptes de la climatisation de cave.</p>
+                        <p>Composé de sommeliers, de cavistes, de chefs, de spécialistes et d’amateurs de vins en général, le comité valide une sélection exclusivement destinée à vous faire faire de belles découvertes à prix avantageux.</p>
+                    </div>
+                </section>
             </div>
-            <!-- SALES -->
+            <!-- PAGE CONTENT -->
 
         </div>
 
@@ -63,19 +51,20 @@
 
     <!--
     @foreach ($sales as $sale)
-        <div class="sale">
-            <h2>{{ $sale->title }}</h2>
+            <div class="sale">
+                <h2>{{ $sale->title }}</h2>
 
             <strong>Note :</strong> {{ $sale->jury_note }} / 20 <br/>
             <strong>Avis du jury :</strong> {!! $sale->jury_opinion !!}
             <strong>Commentaires : </strong> {!! $sale->description !!}
 
-            @if ($sale->link)
-                <a href="{{ $sale->link }}" target="_blank">COMMANDER</a>
+    @if ($sale->link)
+            <a href="{{ $sale->link }}" target="_blank">COMMANDER</a>
             @endif
 
             <hr/>
         </div>
-    @endforeach-->
+    @endforeach
+            -->
 
 @stop

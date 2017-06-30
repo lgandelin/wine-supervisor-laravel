@@ -39,7 +39,7 @@ class LoginController extends Controller
             Auth::user()->last_connection_date = new DateTime();
             Auth::user()->save();
 
-            return redirect()->route('user_cellar_list');
+            return redirect()->route('user_update_account');
         }
 
         //Guest authentication

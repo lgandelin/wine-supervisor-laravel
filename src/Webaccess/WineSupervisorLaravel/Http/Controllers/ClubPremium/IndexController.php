@@ -23,6 +23,15 @@ class IndexController
         ]);
     }
 
+    public function comity(Request $request)
+    {
+        view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO
+
+        return view('wine-supervisor::pages.club-premium.comity', [
+            'sales' => SaleRepository::getSalesHistory()
+        ]);
+    }
+
     public function current_sales(Request $request)
     {
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO

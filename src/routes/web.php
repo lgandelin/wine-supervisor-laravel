@@ -25,6 +25,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
 
     Route::get('/club-avantages', array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'))->middleware('club-premium');
+    Route::get('/club-avantages/comite', array('as' => 'club_premium_comity', 'uses' => 'ClubPremium\IndexController@comity'))->middleware('club-premium');
     Route::get('/club-avantages/ventes-en-cours', array('as' => 'club_premium_current_sales', 'uses' => 'ClubPremium\IndexController@current_sales'))->middleware('club-premium');
     Route::get('/club-avantages/historique-des-ventes', array('as' => 'club_premium_sales_history', 'uses' => 'ClubPremium\IndexController@sales_history'))->middleware('club-premium');
 
