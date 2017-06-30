@@ -2,10 +2,66 @@
 
 @section('page-content')
 
-    @include('wine-supervisor::pages.club-premium.includes.menu')
+    <div class="club-premium-template">
+        @include('wine-supervisor::pages.user.includes.header')
 
-    <h1>Club Avantages - Historique des ventes</h1>
+                <!-- BANNER -->
+        <div class="banner">
+            <h1>
+                <span class="subtitle">Aux membres du</span>
+                <span class="title">Club Avantage</span>
+            </h1>
+            <span class="border"></span>
+        </div>
+        <!-- BANNER -->
 
+        <div class="main-content container">
+
+            <!-- LEFT NAVIGATION -->
+            <nav class="left-navigation">
+                @include('wine-supervisor::pages.club-premium.includes.menu')
+            </nav>
+            <!-- LEFT NAVIGATION -->
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Historique des ventes</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+            </div>
+            <!-- PAGE HEADER -->
+
+
+            <!-- SALES -->
+            <div class="sales">
+                @include('wine-supervisor::partials.sales-slider')
+
+                <div class="container">
+                    <ul class="sales-navigation">
+                        <li data-slider="1" class="active">
+                            <span class="sale-background"><img src="{{ asset('img/sales/1/background.jpg') }}" alt="En cours" /></span>
+                            <span class="sale-name">En cours</span>
+                        </li>
+
+                        <!--<li data-slider="2">
+                            <span class="sale-background"><img src="img/home/sales/2.jpg" alt="Sale 2" /></span>
+                            <span class="sale-name">06 Juin - 21 Juin</span>
+                        </li>
+
+                        <li data-slider="3">
+                            <span class="sale-background"><img src="img/home/sales/3.jpg" alt="Sale 3" /></span>
+                            <span class="sale-name">12 Juillet - 26 Juillet</span>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+            <!-- SALES -->
+
+        </div>
+
+        @include('wine-supervisor::partials.legal-notices')
+    </div>
+
+    <!--
     @foreach ($sales as $sale)
         <div class="sale">
             <h2>{{ $sale->title }}</h2>
@@ -20,6 +76,6 @@
 
             <hr/>
         </div>
-    @endforeach
+    @endforeach-->
 
 @stop

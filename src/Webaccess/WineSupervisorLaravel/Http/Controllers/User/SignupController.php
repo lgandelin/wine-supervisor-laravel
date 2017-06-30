@@ -10,12 +10,10 @@ use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 
-class SignupController extends UserController
+class SignupController
 {
     public function signup(Request $request)
     {
-        parent::__construct($request);
-
         if ($session_user = $request->session()->get('user_signup')) {
             $session_user = json_decode($session_user);
         }
@@ -24,6 +22,7 @@ class SignupController extends UserController
             'last_name' => isset($session_user) ? $session_user->last_name : null,
             'first_name' => isset($session_user) ? $session_user->first_name : null,
             'email' => isset($session_user) ? $session_user->email : null,
+            'phone' => isset($session_user) ? $session_user->phone : null,
             'login' => isset($session_user) ? $session_user->login : null,
             'opt_in' => isset($session_user) ? $session_user->opt_in : null,
 
@@ -34,10 +33,8 @@ class SignupController extends UserController
 
     public function signup_handler(Request $request)
     {
-        parent::__construct($request);
-
         if (!UserRepository::checkLogin(null, $request->get('login'))) {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.user_existing_login_error'));
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
             return redirect()->back()->withInput();
         }
 
@@ -45,6 +42,7 @@ class SignupController extends UserController
             'last_name' => $request->get('last_name'),
             'first_name' => $request->get('first_name'),
             'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
             'login' => $request->get('login'),
             'password' => $request->get('password'),
             'opt_in' => $request->get('opt_in') === 'on' ? true : false,
@@ -55,8 +53,6 @@ class SignupController extends UserController
 
     public function signup_cellar(Request $request)
     {
-        parent::__construct($request);
-
         return view('wine-supervisor::pages.user.signup.cellar', [
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -65,8 +61,6 @@ class SignupController extends UserController
 
     public function signup_cellar_handler(Request $request)
     {
-        parent::__construct($request);
-
         $requestID = Uuid::uuid4()->toString();
 
         if ($session_user = $request->session()->get('user_signup')) {
@@ -77,6 +71,7 @@ class SignupController extends UserController
                 'first_name' => $user_data->first_name,
                 'last_name' => $user_data->last_name,
                 'email' => $user_data->email,
+                'phone' => $user_data->phone,
                 'login' => $user_data->login,
                 'opt_in' => $user_data->opt_in,
             ]);
@@ -85,13 +80,14 @@ class SignupController extends UserController
                 $user_data->first_name,
                 $user_data->last_name,
                 $user_data->email,
+                $user_data->phone,
                 $user_data->login,
                 $user_data->password,
                 $user_data->opt_in
             );
 
             if (!$success) {
-                $request->session()->flash('error', trans('wine-supervisor::user.signup_user_error'));
+                $request->session()->flash('error', $error);
 
                 Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
                     'id' => $requestID,
@@ -134,7 +130,7 @@ class SignupController extends UserController
                 );
 
                 if (!$success) {
-                    $request->session()->flash('error', trans('wine-supervisor::user.signup_error'));
+                    $request->session()->flash('error', $error);
 
                     Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
                         'id' => $requestID,
@@ -156,7 +152,7 @@ class SignupController extends UserController
                 }
             }
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::user_signup.session_error'));
+            $request->session()->flash('error', trans('wine-supervisor::signup.session_error'));
         }
 
         return redirect()->route('user_signup');

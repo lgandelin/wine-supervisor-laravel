@@ -17,6 +17,6 @@ class BaseRepository
      * @return array
      */
     public static function error($message) {
-        return array(false, $message);
+        return array(false, $message, null);
     }
 }

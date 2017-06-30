@@ -4,42 +4,41 @@
 
 @section('main-content')
 
-    <div class="container">
-        <div class="login-template">
+    <div class="login-template">
 
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default" style="margin-top: 5rem">
-                    <div class="panel-heading">{{ trans('wine-supervisor::login.title') }}</div>
-                    <div class="panel-body">
+        @include('wine-supervisor::pages.user.includes.header')
 
-                        @if (isset($error))
-                            <div class="alert alert-danger">
-                                {{ $error }}
-                            </div>
-                        @endif
+        <div class="main-content container">
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('user_login_handler') }}">
+            @if (isset($error))
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endif
 
-                            <div class="form-group">
-                                <label>{{ trans('wine-supervisor::login.login') }}</label>
-                                <input type="login" class="form-control" name="login" />
-                            </div>
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Se connecter</h1>
 
-                            <div class="form-group">
-                                <label>{{ trans('wine-supervisor::login.password') }}</label>
-                                <input type="password" class="form-control" name="password" autocomplete="off" />
-                            </div>
+                <div class="login">
+                    <form class="login form-horizontal" role="form" method="POST" action="{{ route('user_login_handler') }}">
+                        <div class="input-login">
+                            <input type="text" name="login" />
+                        </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-valid">{{ trans('wine-supervisor::login.login') }}</button>
-                                <a href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password') }}</a>
-                            </div>
+                        <div class="input-password">
+                            <input type="password" name="password" autocomplete="off" />
+                        </div>
 
-                            {!! csrf_field() !!}
-                        </form>
-                    </div>
+                        <input type="submit" value="{{ trans('wine-supervisor::login.login') }}" />
+                        <a class="forgotten-password" href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password') }}</a>
+
+                        {!! csrf_field() !!}
+                    </form>
                 </div>
             </div>
+            <!-- PAGE HEADER -->
+
         </div>
     </div>
 

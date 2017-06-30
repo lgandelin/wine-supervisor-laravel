@@ -1,0 +1,68 @@
+form {
+	.form-group {
+		margin-bottom: 2rem;
+
+		input[type="text"], input[type="password"], select {
+		    padding: 2rem;
+		    width: 100%;
+
+		    font-family: $main-font;
+		    font-size: 1.6rem;
+		    color: black;
+		    cursor: pointer;
+		    
+		    background: #f8f7fa;
+		    border: 1px solid #cfdbe6;
+		    border-radius: 1px;
+		    box-shadow: none;
+			outline: 0;
+
+		    &:focus, &:hover {
+		    	border-color: #f1f4f7;
+		    	background-color: #fdfdfd;
+		    }
+		}
+
+		select {
+			-webkit-appearance: none;
+			
+			color: #a9b2ba;
+
+			background: #f8f7fa url('../img/signup/bg-select.png') no-repeat right 2rem center;
+		}
+
+		label {
+		    display: block;
+
+		    color: black;
+		}
+
+		.radio {
+			display: inline-block;
+			margin-right: 6rem;
+
+			color: #a9b2ba;
+			font-style: italic;
+
+			input[type="radio"] {
+				width: 2rem;
+				height: 2rem;
+
+				cursor: pointer;
+				vertical-align: middle;
+
+				appearance: button;
+				-webkit-appearance: button;
+				-moz-appearance: button;
+				-ms-appearance: button;
+				border-radius: 50%;
+				border: 1px solid #a9b2ba;
+				outline: 0;
+
+				&:checked, &:hover {
+					background-color: #114a83;
+				}
+			}
+		}
+	}
+}

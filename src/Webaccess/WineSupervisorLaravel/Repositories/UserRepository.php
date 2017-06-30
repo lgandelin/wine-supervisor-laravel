@@ -23,15 +23,16 @@ class UserRepository extends BaseRepository
      * @param $firstName
      * @param $lastName
      * @param $email
+     * @param $phone
      * @param $login
      * @param $password
      * @param $opt_in
      * @return User
      */
-    public static function create($firstName, $lastName, $email, $login, $password, $opt_in)
+    public static function create($firstName, $lastName, $email, $phone, $login, $password, $opt_in)
     {
         if (!self::checkLogin(null, $login)) {
-            return self::error(trans('wine-supervisor::user.existing_login_error'));
+            return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
         }
 
         $user = new User();
@@ -39,13 +40,14 @@ class UserRepository extends BaseRepository
         $user->first_name = $firstName;
         $user->last_name = $lastName;
         $user->email = $email;
+        $user->phone = $phone;
         $user->login = $login;
         $user->password = Hash::make($password);
         $user->opt_in = $opt_in;
         $user->last_connection_date = new DateTime();
 
         if (!$user->save()) {
-            return self::error(trans('wine-supervisor::user.create_user_error'));
+            return self::error(trans('wine-supervisor::signup.create_user_error'));
         }
 
         return self::success($user->id);
@@ -85,7 +87,7 @@ class UserRepository extends BaseRepository
     public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in)
     {
         if (!self::checkLogin($userID, $login)) {
-            return self::error(trans('wine-supervisor::user.existing_login_error'));
+            return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
         }
 
         //TODO : CALL CDO

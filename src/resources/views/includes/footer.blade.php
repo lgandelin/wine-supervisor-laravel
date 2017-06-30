@@ -25,5 +25,8 @@
         });
     </script>
     <script src="https://cdn.ckeditor.com/4.7.0/standard/ckeditor.js"></script>
+    <script src="{{ asset('js/vendor/slick.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/smooth-scroll.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

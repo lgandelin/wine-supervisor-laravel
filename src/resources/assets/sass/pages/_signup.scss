@@ -1,0 +1,65 @@
+.signup-template {
+
+	.steps {
+		margin-bottom: 11.6rem;
+		overflow: hidden;
+
+		.step {
+			min-height: 14.5rem;
+			padding-top: 3rem;
+			padding-left: 5rem;
+			width: 50%;
+			float: left;
+			position: relative;
+
+			color: white;
+
+			background: $blue;
+
+			.step-number {
+				margin-right: 4rem;
+				vertical-align: middle;
+
+				line-height: 8rem;
+				font-family: $fourth-font;
+				font-size: 11rem;
+				font-weight: bold;
+				color: #7db9da;
+			}
+
+			.step-title {
+			    margin-top: 1rem;
+			    display: inline-block;
+			    vertical-align: middle;
+
+				font-size: 3rem;
+			}
+
+			&.active {
+				background: #114a83;
+
+				.step-number {
+					color: #7a8fae;
+				}
+
+				&:after {
+					content: "";
+					display: block;
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					right: 0;
+					height: 2px;
+					background: #7092b5;
+				}
+			}
+		}
+	}
+	
+	.page-header {
+		float: left;
+		width: 44%;
+		margin-right: 7%;
+	}
+}
+
