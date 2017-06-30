@@ -33,8 +33,8 @@
             <!-- PAGE CONTENT -->
             <div class="page-content text-content">
                 <section>
-                    <div class="left-image"><img src="{{ asset('img/club-premium/left-image.jpg') }}" width="350" height="400" /></div>
-                    <div class="text">
+                    <div class="left-image"><img src="{{ asset('img/club-premium/comite.jpg') }}" width="541" height="361" /></div>
+                    <div class="text" style="padding-top: 4rem">
                         <h2>Comité de dégustation</h2>
 
                         <p>Les produits sont sélectionnés par notre comité de dégustation indépendant qui est représentatif des adeptes de la climatisation de cave.</p>
