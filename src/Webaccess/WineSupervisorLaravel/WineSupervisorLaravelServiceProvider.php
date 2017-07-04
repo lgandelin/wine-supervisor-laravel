@@ -2,8 +2,11 @@
 
 namespace Webaccess\WineSupervisorLaravel;
 
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use Webaccess\WineSupervisorLaravel\Exceptions\WineSupervisorLaravelExceptionHandler;
 use Webaccess\WineSupervisorLaravel\Commands\CreateAdministratorCommand;
 use Illuminate\Support\Facades\Route;
 use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
@@ -43,6 +46,11 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace('Webaccess\WineSupervisorLaravel\Http\Controllers')
             ->group($basePath . 'routes/web.php');
+
+        App::singleton(
+            ExceptionHandler::class,
+            WineSupervisorLaravelExceptionHandler::class
+        );
     }
 
     public function register()
