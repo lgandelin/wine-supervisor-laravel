@@ -1,49 +1,69 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Gestion des invités < Administration | WineSupervisor @endsection
+
 @section('page-content')
 
     @include('wine-supervisor::pages.admin.includes.header')
 
     <div class="guest-template admin-template">
 
-        @if (isset($error))
-            <div class="alert alert-danger">
-                {{ $error }}
+        <!-- MAIN CONTENT -->
+        <div class="main-content container">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Gestion des invités</h1>
             </div>
-        @endif
+            <!-- PAGE HEADER -->
 
-        @if (isset($confirmation))
-            <div class="alert alert-success">
-                {{ $confirmation }}
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                @if (isset($error))
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endif
+
+                @if (isset($confirmation))
+                    <div class="alert alert-success">
+                        {{ $confirmation }}
+                    </div>
+                @endif
+
+                <table class="table-list less-padding">
+                    <tr class="table-row">
+                        <th class="table-cell table-cell-header">Nom</th>
+                        <th class="table-cell table-cell-header">Prénom</th>
+                        <th class="table-cell table-cell-header">Email</th>
+                        <th class="table-cell table-cell-header">Login</th>
+                        <th class="table-cell table-cell-header">Début d'accès</th>
+                        <th class="table-cell table-cell-header">Fin d'accès</th>
+                        <th class="table-cell table-cell-header">Action</th>
+                    </tr>
+                    @foreach ($guests as $guest)
+                        <tr class="table-row">
+                            <td class="table-cell align-left">{{ $guest->last_name }}</td>
+                            <td class="table-cell align-left">{{ $guest->first_name }}</td>
+                            <td class="table-cell align-left"><a href="mailto:{{ $guest->email }}">{{ $guest->email }}</a></td>
+                            <td class="table-cell align-left">{{ $guest->login }}</td>
+                            <td class="table-cell align-left">@if ($guest->access_start_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/Y') }}@endif</td>
+                            <td class="table-cell align-left">@if ($guest->access_end_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/Y') }}@endif</td>
+                            <td class="table-cell align-left action">
+                                <a href="{{ route('admin_guest_update', $guest->id) }}"><button class="edit">Modifier</button></a>
+                                <a href="{{ route('admin_guest_delete_handler', $guest->id) }}"><button class="delete">Supprimer</button></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+
+                <a href="{{ route('admin_guest_create') }}" class="add">Créer un invité</a>
             </div>
-        @endif
+            <!-- PAGE CONTENT -->
 
-        <h1>Gestion des invités</h1>
+        </div>
+        <!-- MAIN CONTENT -->
 
-        <table>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Email</th>
-                <th>Login</th>
-                <th>Date de début d'accès</th>
-                <th>Date de fin d'accès</th>
-                <th>Action</th>
-            </tr>
-            @foreach ($guests as $guest)
-                <tr>
-                    <td>{{ $guest->last_name }}</td>
-                    <td>{{ $guest->first_name }}</td>
-                    <td><a href="mailto:{{ $guest->email }}">{{ $guest->email }}</a></td>
-                    <td>{{ $guest->login }}</td>
-                    <td>{{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/Y') }}</td>
-                    <td>{{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/Y') }}</td>
-                    <td><a href="{{ route('admin_guest_update', $guest->id) }}">Modifier</a></td>
-                    <td><a href="{{ route('admin_guest_delete_handler', $guest->id) }}">Supprimer</a></td>
-                </tr>
-            @endforeach
-        </table>
-
-        <a href="{{ route('admin_guest_create') }}">Créer un invité</a><br/>
     </div>
 @stop

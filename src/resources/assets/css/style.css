@@ -1437,13 +1437,19 @@ form .form-group label {
   color: black;
 }
 /* line 45, ../sass/includes/_forms.scss */
+form .form-group i {
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #8f8f8f;
+}
+/* line 51, ../sass/includes/_forms.scss */
 form .form-group .radio {
   display: inline-block;
   margin-right: 6rem;
   color: #a9b2ba;
   font-style: italic;
 }
-/* line 52, ../sass/includes/_forms.scss */
+/* line 58, ../sass/includes/_forms.scss */
 form .form-group .radio input[type="radio"] {
   width: 2rem;
   height: 2rem;
@@ -1457,7 +1463,7 @@ form .form-group .radio input[type="radio"] {
   border: 1px solid #a9b2ba;
   outline: 0;
 }
-/* line 67, ../sass/includes/_forms.scss */
+/* line 73, ../sass/includes/_forms.scss */
 form .form-group .radio input[type="radio"]:checked, form .form-group .radio input[type="radio"]:hover {
   background-color: #114a83;
 }
@@ -1651,7 +1657,7 @@ img {
 /* line 48, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.action {
   display: block;
-  padding: 0;
+  padding: 0 !important;
   text-align: right;
 }
 /* line 53, ../sass/includes/_tables.scss */

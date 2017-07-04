@@ -42,6 +42,12 @@ form {
 		    color: black;
 		}
 
+		i {
+			font-style: italic;
+			font-size: 1.25rem;
+			color: $gray;
+		}
+
 		.radio {
 			display: inline-block;
 			margin-right: 6rem;

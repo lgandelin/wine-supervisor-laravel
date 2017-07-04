@@ -42,8 +42,8 @@ class GuestController extends AdminController
             'admin_id' => $this->getAdministratorID(),
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
-            'access_start_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
-            'access_end_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d'),
+            'access_start_date' => $request->get('access_start_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d') : null,
+            'access_end_date' => $request->get('access_end_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d') : null,
             'login' => $request->get('login'),
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
@@ -55,8 +55,8 @@ class GuestController extends AdminController
         list($success, $error) = GuestRepository::create(
             $request->get('first_name'),
             $request->get('last_name'),
-            \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
-            \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d'),
+            $request->get('access_start_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d') : null,
+            $request->get('access_end_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d') : null,
             $request->get('login'),
             $request->get('password'),
             $request->get('email'),
@@ -67,7 +67,7 @@ class GuestController extends AdminController
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::admin.guest_create_error'));
+            $request->session()->flash('error', trans('wine-supervisor::guest.guest_create_error'));
 
             Log::info('ADMIN_CREATE_GUEST_RESPONSE', [
                 'id' => $requestID,
@@ -78,7 +78,7 @@ class GuestController extends AdminController
             return redirect()->back()->withInput();
         }
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_create_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::guest.guest_create_success'));
 
         Log::info('ADMIN_CREATE_GUEST_RESPONSE', [
             'id' => $requestID,
@@ -112,8 +112,8 @@ class GuestController extends AdminController
             'admin_id' => $this->getAdministratorID(),
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
-            'access_start_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
-            'access_end_date' => \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d'),
+            'access_start_date' => $request->get('access_start_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d') : null,
+            'access_end_date' => $request->get('access_end_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d') : null,
             'login' => $request->get('login'),
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
@@ -126,8 +126,8 @@ class GuestController extends AdminController
             $request->get('guest_id'),
             $request->get('first_name'),
             $request->get('last_name'),
-            \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d'),
-            \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d'),
+            $request->get('access_start_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d') : null,
+            $request->get('access_end_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d') : null,
             $request->get('login'),
             $request->get('password') ? $request->get('password') : null,
             $request->get('email'),
@@ -138,7 +138,7 @@ class GuestController extends AdminController
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::admin.guest_update_error'));
+            $request->session()->flash('error', trans('wine-supervisor::guest.guest_update_error'));
 
             Log::info('ADMIN_UPDATE_GUEST_RESPONSE', [
                 'id' => $requestID,
@@ -149,7 +149,7 @@ class GuestController extends AdminController
             return redirect()->back()->withInput();
         }
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_update_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::guest.guest_update_success'));
 
         Log::info('ADMIN_UPDATE_GUEST_RESPONSE', [
             'id' => $requestID,
@@ -174,7 +174,7 @@ class GuestController extends AdminController
         list ($success, $error) = GuestRepository::delete($guestID);
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::admin.guest_delete_error'));
+            $request->session()->flash('error', trans('wine-supervisor::guest.guest_delete_error'));
 
             Log::info('ADMIN_DELETE_GUEST_RESPONSE', [
                 'id' => $requestID,
@@ -185,7 +185,7 @@ class GuestController extends AdminController
             return redirect()->back()->withInput();
         }
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.guest_delete_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::guest.guest_delete_success'));
 
         Log::info('ADMIN_DELETE_GUEST_RESPONSE', [
             'id' => $requestID,

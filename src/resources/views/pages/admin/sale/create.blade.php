@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Créer une vente < Administration | WineSupervisor @endsection
+
 @section('page-content')
 
     @include('wine-supervisor::pages.admin.includes.header')
