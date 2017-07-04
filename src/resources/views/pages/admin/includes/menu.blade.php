@@ -5,7 +5,7 @@
     <li @if (isset($route) && preg_match('/admin_technician/', $route))class="active"@endif><a href="{{ route('admin_technician_list') }}">Professionnels</a></li>
     <li @if (isset($route) && preg_match('/admin_guest/', $route))class="active"@endif><a href="{{ route('admin_guest_list') }}">Invités</a></li>
     <li @if (isset($route) && preg_match('/admin_sale/', $route))class="active"@endif><a href="{{ route('admin_sale_list') }}">Ventes</a></li>
-    <li @if (isset($route) && preg_match('/admin_content/', $route))class="active"@endif><a href="{{ route('admin_content_list') }}">Contenus</a></li>
+    <!--<li @if (isset($route) && preg_match('/admin_content/', $route))class="active"@endif><a href="{{ route('admin_content_list') }}">Contenus</a></li>-->
     <li class="account logout"><a href="{{ route('admin_logout') }}"><span class="logout-icon" title="Se déconnecter"></span></a></li>
 </ul>
 

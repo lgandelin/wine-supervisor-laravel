@@ -11,7 +11,7 @@
         <div class="main-content container">
 
             @if (isset($error))
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" style="margin-top: 10rem;">
                     {{ $error }}
                 </div>
             @endif
