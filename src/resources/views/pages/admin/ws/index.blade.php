@@ -6,7 +6,7 @@
 
     @include('wine-supervisor::pages.admin.includes.header')
 
-    <div class="ws-template">
+    <div class="ws-template admin-template">
 
         <!-- MAIN CONTENT -->
         <div class="main-content container">

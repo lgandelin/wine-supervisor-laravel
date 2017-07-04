@@ -71,7 +71,7 @@ class CellarController extends AdminController
                 'success' => false
             ]);
 
-            $request->session()->flash('error', trans('wine-supervisor::admin.cellar_update_error'));
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_update_error'));
 
             return redirect()->back()->withInput();
         }
@@ -81,7 +81,7 @@ class CellarController extends AdminController
             'success' => true
         ]);
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.cellar_update_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_update_success'));
 
         return redirect()->route('admin_cellar_list');
     }

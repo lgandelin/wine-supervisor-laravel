@@ -4,7 +4,7 @@
 
     @include('wine-supervisor::pages.admin.includes.header')
 
-    <div class="sale-template">
+    <div class="sale-template admin-template">
 
         @if (isset($error))
             <div class="alert alert-danger">

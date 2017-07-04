@@ -1663,6 +1663,10 @@ img {
 .table-list .table-row .table-cell .edit {
   background-image: url(../img/generic/edit.png);
 }
+/* line 83, ../sass/includes/_tables.scss */
+.table-list.less-padding .table-row .table-cell {
+  padding: 2rem;
+}
 
 /* line 1, ../sass/includes/_alerts.scss */
 .alert {
@@ -2769,9 +2773,16 @@ footer a, footer a:visited {
   color: #cfdbe6;
 }
 
-/* line 4, ../sass/pages/admin/_admin.scss */
-table.table-list .table-row .table-cell {
+/* line 6, ../sass/pages/admin/_admin.scss */
+.admin-template table.table-list .table-row .table-cell {
   float: none;
+}
+/* line 12, ../sass/pages/admin/_admin.scss */
+.admin-template h2 {
+  margin-bottom: 2.5rem;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 3.5rem;
 }
 
 @media screen and (max-width: 1200px) {
