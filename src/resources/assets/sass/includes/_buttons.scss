@@ -37,3 +37,17 @@
 		background: lighten($red, 10%);
 	}
 }
+
+.add {
+	width: 100%;
+	display: block;
+	padding: 2.5rem 0;
+
+	text-align: center;
+	text-indent: -999rem;
+	background: #f83740 url('../img/generic/add.png') no-repeat center;
+
+	&:hover {
+		background-color: lighten(#e0363d, 5%);
+	}
+}

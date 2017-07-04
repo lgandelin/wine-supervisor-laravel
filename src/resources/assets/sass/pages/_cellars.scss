@@ -51,19 +51,5 @@
 				text-align: center;
 			}
 		}
-
-		.add-cellar-button {
-			width: 100%;
-			display: block;
-			padding: 2.5rem 0;
-
-			text-align: center;
-			text-indent: -999rem;
-			background: #e0363d url('../img/generic/add.png') no-repeat center;
-
-			&:hover {
-				background-color: lighten(#e0363d, 5%);
-			}
-		}
 	}
 }

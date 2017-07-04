@@ -42,9 +42,9 @@ class SaleController extends AdminController
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_create_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_create_success'));
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::admin.sale_create_error'));
+            $request->session()->flash('error', trans('wine-supervisor::sale.sale_create_error'));
         }
 
         return redirect()->route('admin_sale_list');
@@ -76,9 +76,9 @@ class SaleController extends AdminController
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_update_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_update_success'));
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::admin.sale_update_error'));
+            $request->session()->flash('error', trans('wine-supervisor::sale.sale_update_error'));
         }
 
         return redirect()->route('admin_sale_list');
@@ -89,9 +89,9 @@ class SaleController extends AdminController
         parent::__construct($request);
 
         if (SaleRepository::delete($saleID)) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.sale_delete_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_delete_success'));
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::admin.sale_delete_error'));
+            $request->session()->flash('error', trans('wine-supervisor::sale.sale_delete_error'));
         }
 
         return redirect()->route('admin_sale_list');

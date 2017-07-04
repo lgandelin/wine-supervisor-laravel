@@ -22,7 +22,7 @@ class SaleRepository extends BaseRepository
      */
     public static function getAll()
     {
-        return Sale::all();
+        return Sale::orderBy('created_at', 'desc')->get();
     }
 
     /**

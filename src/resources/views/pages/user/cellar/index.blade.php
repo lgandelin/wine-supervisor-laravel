@@ -76,7 +76,7 @@
                     </div>
                 @endif
 
-                <a href="{{ route('user_cellar_create') }}" class="add-cellar-button">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
+                <a href="{{ route('user_cellar_create') }}" class="add add-cellar-button">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
             </div>
             <!-- PAGE CONTENT -->
 

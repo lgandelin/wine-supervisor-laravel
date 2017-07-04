@@ -98,7 +98,6 @@
                         <input type="checkbox" name="opt_in" id="opt_in" @if ($cellar->user->opt_in == true || $cellar->user->opt_in === null)checked="checked"@endif disabled />
                     </div>
 
-
                     <div class="submit-container">
                         <input type="submit" value="Valider" />
                     </div>
@@ -108,7 +107,6 @@
                 </form>
 
                 <a class="button red-button back-button" href="{{ route('admin_cellar_list') }}">Retour</a>
-
 
                 @if ($cellar->history)
                     <h2 style="margin-top: 5rem;">Historique des modifications</h2>

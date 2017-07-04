@@ -1497,6 +1497,20 @@ form .form-group .radio input[type="radio"]:checked, form .form-group .radio inp
   background: #e76268;
 }
 
+/* line 41, ../sass/includes/_buttons.scss */
+.add {
+  width: 100%;
+  display: block;
+  padding: 2.5rem 0;
+  text-align: center;
+  text-indent: -999rem;
+  background: #f83740 url("../img/generic/add.png") no-repeat center;
+}
+/* line 50, ../sass/includes/_buttons.scss */
+.add:hover {
+  background-color: #e34c52;
+}
+
 /* line 1, ../sass/includes/_structure.scss */
 body {
   padding-top: 14.6rem;
@@ -1663,7 +1677,11 @@ img {
 .table-list .table-row .table-cell .edit {
   background-image: url(../img/generic/edit.png);
 }
-/* line 83, ../sass/includes/_tables.scss */
+/* line 79, ../sass/includes/_tables.scss */
+.table-list .table-row .table-cell .delete {
+  background-image: url(../img/generic/delete.png);
+}
+/* line 87, ../sass/includes/_tables.scss */
 .table-list.less-padding .table-row .table-cell {
   padding: 2rem;
 }
@@ -2589,19 +2607,6 @@ footer a, footer a:visited {
 .cellars-template .page-content .table-list .price {
   width: 15%;
   text-align: center;
-}
-/* line 55, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .add-cellar-button {
-  width: 100%;
-  display: block;
-  padding: 2.5rem 0;
-  text-align: center;
-  text-indent: -999rem;
-  background: #e0363d url("../img/generic/add.png") no-repeat center;
-}
-/* line 64, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .add-cellar-button:hover {
-  background-color: #e34c52;
 }
 
 /* line 3, ../sass/pages/_cellar-update.scss */
