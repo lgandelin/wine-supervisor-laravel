@@ -2,5 +2,5 @@
 
 return [
     'login' => 'Se connecter',
-    'forgotten_password' => 'Mot de passe oublié',
+    'forgotten_password' => 'Mot de passe oublié ?',
 ];

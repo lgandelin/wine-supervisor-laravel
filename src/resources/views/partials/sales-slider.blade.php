@@ -2,9 +2,14 @@
     <div class="slider-container">
         <div class="sales-slider-arrows"></div>
         <ul class="sales-slider" data-slider="1">
+
             <li>
-                <div class="background" style="background-image:url({{ asset('img/sales/1/background.jpg') }})"></div>
-                <img class="bottle" src="{{ asset('img/sales/1/bottle.png') }}" alt="Insolence" />
+                <div class="background" style="background-image: url({{ asset('img/sales/1/0/background.jpg') }})"></div>
+            </li>
+
+            <li>
+                <div class="background" style="background-image:url({{ asset('img/sales/1/1/background.jpg') }})"></div>
+                <img class="bottle" src="{{ asset('img/sales/1/1/bottle.png') }}" alt="Insolence" />
                 <div class="content">
                     <span class="sale-subtitle">Merlot - Duras - Braucol</span>
                     <h3 class="sale-name">Insolence</h3>
@@ -29,14 +34,15 @@
                         un caviar d’aubergines.
                     </p>
 
-                    <a href="#" class="button">Commander</a>
+                    @if ($is_user)<span class="sale-price">Prix : <span class="value">12€</span></span>@endif
+                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
             </li>
 
 
             <li>
-                <div class="background" style="background-image: url({{ asset('img/sales/2/background.jpg') }})"></div>
-                <img class="bottle" src="{{ asset('img/sales/2/bottle.png') }}" alt="Mauzac" />
+                <div class="background" style="background-image: url({{ asset('img/sales/1/2/background.jpg') }})"></div>
+                <img class="bottle" src="{{ asset('img/sales/1/2/bottle.png') }}" alt="Mauzac" />
                 <div class="content">
                     <!--<span class="sale-subtitle">Merlot - Duras - Braucol</span>-->
                     <h3 class="sale-name">Mauzac</h3>
@@ -54,14 +60,15 @@
                         Service : 6-8°C
                     </p>
 
-                    <a href="#" class="button">Commander</a>
+                    @if ($is_user)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
+                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
             </li>
 
 
             <li>
-                <div class="background" style="background-image: url({{ asset('img/sales/3/background.jpg') }})"></div>
-                <img class="bottle" src="{{ asset('img/sales/3/bottle.png') }}" alt="Douce envolée" />
+                <div class="background" style="background-image: url({{ asset('img/sales/1/3/background.jpg') }})"></div>
+                <img class="bottle" src="{{ asset('img/sales/1/3/bottle.png') }}" alt="Douce envolée" />
                 <div class="content">
                     <span class="sale-subtitle">Mauzac - Len de l'el</span>
                     <h3 class="sale-name">Mauzac</h3>
@@ -92,14 +99,15 @@
                         seulement de quelques bons amis.
                     </p>
 
-                    <a href="#" class="button">Commander</a>
+                    @if ($is_user)<span class="sale-price">Prix : <span class="value">18€</span></span>@endif
+                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
             </li>
 
 
             <li>
-                <div class="background" style="background-image: url({{ asset('img/sales/4/background.jpg') }})"></div>
-                <img class="bottle" src="{{ asset('img/sales/4/bottle.png') }}" alt="Parcelle de l'Ortolan" />
+                <div class="background" style="background-image: url({{ asset('img/sales/1/4/background.jpg') }})"></div>
+                <img class="bottle" src="{{ asset('img/sales/1/4/bottle.png') }}" alt="Parcelle de l'Ortolan" />
                 <div class="content">
                     <span class="sale-subtitle">Sauvignon - Len de l'el</span>
                     <h3 class="sale-name">Parcelle de l'Ortolan</h3>
@@ -129,14 +137,15 @@
                         poissons et fromages.
                     </p>
 
-                    <a href="#" class="button">Commander</a>
+                    @if ($is_user)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
+                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
             </li>
 
 
             <li>
-                <div class="background" style="background-image: url({{ asset('img/sales/5/background.jpg') }})"></div>
-                <img class="bottle" src="{{ asset('img/sales/5/bottle.png') }}" alt="Péché de vigne" />
+                <div class="background" style="background-image: url({{ asset('img/sales/1/5/background.jpg') }})"></div>
+                <img class="bottle" src="{{ asset('img/sales/1/5/bottle.png') }}" alt="Péché de vigne" />
                 <div class="content">
                     <span class="sale-subtitle">Syrah</span>
                     <h3 class="sale-name">Pêche de vigne</h3>
@@ -162,14 +171,15 @@
                         gourmandes d’été.
                     </p>
 
-                    <a href="#" class="button">Commander</a>
+                    @if ($is_user)<span class="sale-price">Prix : <span class="value">13€</span></span>@endif
+                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
             </li>
 
 
             <li>
-                <div class="background" style="background-image: url({{ asset('img/sales/6/background.jpg') }})"></div>
-                <img class="bottle" src="{{ asset('img/sales/6/bottle.png') }}" alt="Arigliole Julian" />
+                <div class="background" style="background-image: url({{ asset('img/sales/1/6/background.jpg') }})"></div>
+                <img class="bottle" src="{{ asset('img/sales/1/6/bottle.png') }}" alt="Arigliole Julian" />
                 <div class="content">
                     <span class="sale-subtitle">Braucol - Syrah - Duras</span>
                     <h3 class="sale-name">Arigliole Julian</h3>
@@ -191,7 +201,8 @@
                         panée ou foie gras poêlé… à vos papilles !
                     </p>
 
-                    <a href="#" class="button">Commander</a>
+                    @if ($is_user)<span class="sale-price">Prix : <span class="value">9€</span></span>@endif
+                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
             </li>
         </ul>

@@ -68,7 +68,7 @@
             <div class="container">
                 <ul class="sales-navigation">
                     <li data-slider="1" class="active">
-                        <span class="sale-background"><img src="{{ asset('img/sales/1/background.jpg') }}" alt="En cours" /></span>
+                        <span class="sale-background"><img src="{{ asset('img/sales/1/0/background.jpg') }}" alt="En cours" /></span>
                         <span class="sale-name">En cours</span>
                     </li>
 

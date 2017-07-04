@@ -25,6 +25,7 @@ class SignupController
             'phone' => isset($session_user) ? $session_user->phone : null,
             'login' => isset($session_user) ? $session_user->login : null,
             'opt_in' => isset($session_user) ? $session_user->opt_in : null,
+            'route' => $request->route()->getName(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
