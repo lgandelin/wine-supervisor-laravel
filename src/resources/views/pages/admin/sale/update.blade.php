@@ -1,6 +1,9 @@
 @extends('wine-supervisor::default')
 
 @section('page-content')
+
+    @include('wine-supervisor::pages.admin.includes.header')
+
     <div class="sale-template">
 
         @if (isset($error))

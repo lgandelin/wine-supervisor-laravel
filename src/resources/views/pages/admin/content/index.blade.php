@@ -2,7 +2,7 @@
 
 @section('page-content')
 
-    @include('wine-supervisor::pages.admin.includes.menu')
+    @include('wine-supervisor::pages.admin.includes.header')
 
     <div class="content-template">
 

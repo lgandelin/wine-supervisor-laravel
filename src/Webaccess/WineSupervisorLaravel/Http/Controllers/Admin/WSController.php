@@ -52,7 +52,7 @@ class WSController extends AdminController
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::admin.ws_update_error'));
+            $request->session()->flash('error', trans('wine-supervisor::ws.ws_update_error'));
 
             Log::info('ADMIN_UPDATE_WS_RESPONSE', [
                 'id' => $requestID,
@@ -63,7 +63,7 @@ class WSController extends AdminController
             return redirect()->back()->withInput();
         }
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.ws_update_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::ws.ws_update_success'));
 
         Log::info('ADMIN_UPDATE_WS_RESPONSE', [
             'id' => $requestID,

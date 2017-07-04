@@ -12,6 +12,7 @@
 @import "includes/_buttons";
 @import "includes/_structure";
 @import "includes/_utils";
+@import "includes/_tables";
 @import "includes/_alerts";
 
 @import "partials/_header";
@@ -26,5 +27,7 @@
 @import "pages/_cellar-update";
 @import "pages/_club-premium";
 @import "pages/_my-account";
+
+@import "pages/admin/_admin";
 
 @import "includes/_responsive";

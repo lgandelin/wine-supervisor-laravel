@@ -1,6 +1,9 @@
 @extends('wine-supervisor::default')
 
 @section('page-content')
+
+    @include('wine-supervisor::pages.admin.includes.header')
+
     <div class="content-template">
 
         @if (isset($error))

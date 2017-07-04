@@ -7,9 +7,7 @@
         <div class="container">
             <div class="nav">
                 <nav>
-                    <ul>
-                        @include('wine-supervisor::pages.user.includes.menu')
-                    </ul>
+                    @include('wine-supervisor::pages.user.includes.menu')
                 </nav>
             </div>
         </div>

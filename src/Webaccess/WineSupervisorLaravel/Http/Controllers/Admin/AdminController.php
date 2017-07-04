@@ -9,7 +9,7 @@ class AdminController
 {
     public function __construct(Request $request)
     {
-
+        view()->share('route', $request->route()->getName());
     }
 
     public function getAdministratorID()

@@ -1416,29 +1416,34 @@ form .form-group input[type="text"], form .form-group input[type="password"], fo
   outline: 0;
 }
 /* line 20, ../sass/includes/_forms.scss */
-form .form-group input[type="text"]:focus, form .form-group input[type="text"]:hover, form .form-group input[type="password"]:focus, form .form-group input[type="password"]:hover, form .form-group select:focus, form .form-group select:hover {
+form .form-group input[type="text"]:not([disabled]):focus, form .form-group input[type="text"]:not([disabled]):hover, form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:not([disabled]):focus, form .form-group input[type="password"]:not([disabled]):hover, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:not([disabled]):focus, form .form-group select:not([disabled]):hover, form .form-group select:disabled, form .form-group select:disabled {
   border-color: #f1f4f7;
   background-color: #fdfdfd;
 }
-/* line 26, ../sass/includes/_forms.scss */
+/* line 25, ../sass/includes/_forms.scss */
+form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:disabled, form .form-group select:disabled {
+  color: #a9b2ba;
+  cursor: default;
+}
+/* line 31, ../sass/includes/_forms.scss */
 form .form-group select {
   -webkit-appearance: none;
   color: #a9b2ba;
   background: #f8f7fa url("../img/signup/bg-select.png") no-repeat right 2rem center;
 }
-/* line 34, ../sass/includes/_forms.scss */
+/* line 39, ../sass/includes/_forms.scss */
 form .form-group label {
   display: block;
   color: black;
 }
-/* line 40, ../sass/includes/_forms.scss */
+/* line 45, ../sass/includes/_forms.scss */
 form .form-group .radio {
   display: inline-block;
   margin-right: 6rem;
   color: #a9b2ba;
   font-style: italic;
 }
-/* line 47, ../sass/includes/_forms.scss */
+/* line 52, ../sass/includes/_forms.scss */
 form .form-group .radio input[type="radio"] {
   width: 2rem;
   height: 2rem;
@@ -1452,7 +1457,7 @@ form .form-group .radio input[type="radio"] {
   border: 1px solid #a9b2ba;
   outline: 0;
 }
-/* line 62, ../sass/includes/_forms.scss */
+/* line 67, ../sass/includes/_forms.scss */
 form .form-group .radio input[type="radio"]:checked, form .form-group .radio input[type="radio"]:hover {
   background-color: #114a83;
 }
@@ -1567,18 +1572,34 @@ img {
   height: auto;
 }
 
-/* line 17, ../sass/includes/_utils.scss */
+/* line 19, ../sass/includes/_utils.scss */
+.text-content h2 {
+  margin-bottom: 3.5rem;
+  font-size: 3rem;
+  font-weight: 700;
+}
+/* line 26, ../sass/includes/_utils.scss */
+.text-content a {
+  font-weight: 700;
+  color: #1e95c9;
+}
+/* line 31, ../sass/includes/_utils.scss */
+.text-content section {
+  margin-bottom: 10rem;
+}
+
+/* line 1, ../sass/includes/_tables.scss */
 .table-list {
   width: 100%;
   vertical-align: middle;
   border-collapse: separate;
   border-spacing: 0 2.7rem;
 }
-/* line 24, ../sass/includes/_utils.scss */
+/* line 8, ../sass/includes/_tables.scss */
 .table-list .table-row {
   overflow: hidden;
 }
-/* line 27, ../sass/includes/_utils.scss */
+/* line 11, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell {
   float: left;
   padding: 2.5rem 5rem;
@@ -1587,15 +1608,15 @@ img {
   border-top: 1px solid #cfdbe6;
   border-bottom: 1px solid #cfdbe6;
 }
-/* line 37, ../sass/includes/_utils.scss */
+/* line 21, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell:first-child {
   border-left: 1px solid #cfdbe6;
 }
-/* line 41, ../sass/includes/_utils.scss */
+/* line 25, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell:last-child {
   border-right: 1px solid #cfdbe6;
 }
-/* line 45, ../sass/includes/_utils.scss */
+/* line 29, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.table-cell-header {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -1605,10 +1626,28 @@ img {
   font-family: "Open Sans";
   font-weight: 300;
 }
-/* line 56, ../sass/includes/_utils.scss */
+/* line 40, ../sass/includes/_tables.scss */
+.table-list .table-row .table-cell.align-left {
+  text-align: left;
+}
+/* line 43, ../sass/includes/_tables.scss */
+.table-list .table-row .table-cell.align-left:first-child {
+  padding-left: 5rem;
+}
+/* line 48, ../sass/includes/_tables.scss */
+.table-list .table-row .table-cell.action {
+  display: block;
+  padding: 0;
+  text-align: right;
+}
+/* line 53, ../sass/includes/_tables.scss */
+.table-list .table-row .table-cell.action.table-cell-header {
+  height: 8.2rem;
+}
+/* line 58, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button {
   width: 8rem;
-  height: 8rem;
+  height: 8.4rem;
   text-indent: -999rem;
   cursor: pointer;
   background-color: #f83740;
@@ -1616,29 +1655,13 @@ img {
   background-repeat: no-repeat;
   border: none;
 }
-/* line 68, ../sass/includes/_utils.scss */
+/* line 70, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button:hover {
   background-color: #fa686f;
 }
-/* line 73, ../sass/includes/_utils.scss */
+/* line 75, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell .edit {
   background-image: url(../img/generic/edit.png);
-}
-
-/* line 82, ../sass/includes/_utils.scss */
-.text-content h2 {
-  margin-bottom: 3.5rem;
-  font-size: 3rem;
-  font-weight: 700;
-}
-/* line 89, ../sass/includes/_utils.scss */
-.text-content a {
-  font-weight: 700;
-  color: #1e95c9;
-}
-/* line 94, ../sass/includes/_utils.scss */
-.text-content section {
-  margin-bottom: 10rem;
 }
 
 /* line 1, ../sass/includes/_alerts.scss */
@@ -2563,18 +2586,7 @@ footer a, footer a:visited {
   width: 15%;
   text-align: center;
 }
-/* line 54, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .action {
-  width: 7.6rem;
-  display: block;
-  padding: 0;
-  text-align: right;
-}
-/* line 60, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .action.table-cell-header {
-  height: 8.2rem;
-}
-/* line 66, ../sass/pages/_cellars.scss */
+/* line 55, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .add-cellar-button {
   width: 100%;
   display: block;
@@ -2583,7 +2595,7 @@ footer a, footer a:visited {
   text-indent: -999rem;
   background: #e0363d url("../img/generic/add.png") no-repeat center;
 }
-/* line 75, ../sass/pages/_cellars.scss */
+/* line 64, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .add-cellar-button:hover {
   background-color: #e34c52;
 }
@@ -2755,6 +2767,11 @@ footer a, footer a:visited {
   margin-top: 1rem;
   font-style: italic;
   color: #cfdbe6;
+}
+
+/* line 4, ../sass/pages/admin/_admin.scss */
+table.table-list .table-row .table-cell {
+  float: none;
 }
 
 @media screen and (max-width: 1200px) {

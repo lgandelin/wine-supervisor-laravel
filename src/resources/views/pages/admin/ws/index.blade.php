@@ -1,38 +1,56 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Gestion des WineSupervisor < Administration | WineSupervisor @endsection
+
 @section('page-content')
 
-    @include('wine-supervisor::pages.admin.includes.menu')
+    @include('wine-supervisor::pages.admin.includes.header')
 
     <div class="ws-template">
 
-        @if (isset($error))
-            <div class="alert alert-danger">
-                {{ $error }}
+        <!-- MAIN CONTENT -->
+        <div class="main-content container">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Gestion des WineSupervisor</h1>
             </div>
-        @endif
+            <!-- PAGE HEADER -->
 
-        @if (isset($confirmation))
-            <div class="alert alert-success">
-                {{ $confirmation }}
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                @if (isset($error))
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endif
+
+                @if (isset($confirmation))
+                    <div class="alert alert-success">
+                        {{ $confirmation }}
+                    </div>
+                @endif
+
+                <table class="table-list">
+                    <tr class="table-row">
+                        <td class="table-cell table-cell-header align-left">ID</td>
+                        <td class="table-cell table-cell-header align-left">Type de carte</td>
+                        <td class="table-cell table-cell-header">Action</td>
+                    </tr>
+                    @foreach ($wss as $ws)
+                        <tr class="table-row">
+                            <td class="table-cell">{{ $ws->id }}</td>
+                            <td class="table-cell">{{ Webaccess\WineSupervisorLaravel\Services\WSService::getBoardTypeLabel($ws->board_type) }}</td>
+                            <td class="table-cell action"><a href="{{ route('admin_ws_update', $ws->id) }}"><button class="edit">Modifier</button></a></td>
+                        </tr>
+                    @endforeach
+                </table>
             </div>
-        @endif
+            <!-- PAGE CONTENT -->
 
-        <h1>Gestion des WineSupervisor</h1>
+        </div>
+        <!-- MAIN CONTENT -->
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Type de carte</th>
-                <th>Action</th>
-            </tr>
-            @foreach ($wss as $ws)
-                <tr>
-                    <td>{{ $ws->id }}</td>
-                    <td>{{ Webaccess\WineSupervisorLaravel\Services\WSService::getBoardTypeLabel($ws->board_type) }}</td>
-                    <td><a href="{{ route('admin_ws_update', $ws->id) }}">Modifier</a></td>
-                </tr>
-            @endforeach
-        </table>
     </div>
 @stop
