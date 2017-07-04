@@ -79,11 +79,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/modifier-vente', array('as' => 'admin_sale_update_handler', 'uses' => 'Admin\SaleController@update_handler'));
         Route::get('/admin/supprimer-vente/{uuid}', array('as' => 'admin_sale_delete_handler', 'uses' => 'Admin\SaleController@delete_handler'));
 
-        Route::get('/admin/contenus', array('as' => 'admin_content_list', 'uses' => 'Admin\ContentController@index'));
-        Route::get('/admin/creer-contenu', array('as' => 'admin_content_create', 'uses' => 'Admin\ContentController@create'));
-        Route::post('/admin/creer-contenu', array('as' => 'admin_content_create_handler', 'uses' => 'Admin\ContentController@create_handler'));
-        Route::get('/admin/modifier-contenu/{uuid}', array('as' => 'admin_content_update', 'uses' => 'Admin\ContentController@update'));
-        Route::post('/admin/modifier-contenu', array('as' => 'admin_content_update_handler', 'uses' => 'Admin\ContentController@update_handler'));
-        Route::get('/admin/supprimer-contenu/{uuid}', array('as' => 'admin_content_delete_handler', 'uses' => 'Admin\ContentController@delete_handler'));
+        Route::get('/admin/actualites', array('as' => 'admin_content_list', 'uses' => 'Admin\ContentController@index'));
+        Route::get('/admin/creer-actualite', array('as' => 'admin_content_create', 'uses' => 'Admin\ContentController@create'));
+        Route::post('/admin/creer-actualite', array('as' => 'admin_content_create_handler', 'uses' => 'Admin\ContentController@create_handler'));
+        Route::get('/admin/modifier-actualite/{uuid}', array('as' => 'admin_content_update', 'uses' => 'Admin\ContentController@update'));
+        Route::post('/admin/modifier-actualite', array('as' => 'admin_content_update_handler', 'uses' => 'Admin\ContentController@update_handler'));
+        Route::get('/admin/supprimer-actualite/{uuid}', array('as' => 'admin_content_delete_handler', 'uses' => 'Admin\ContentController@delete_handler'));
     });
 });

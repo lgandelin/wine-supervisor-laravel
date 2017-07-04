@@ -1,5 +1,15 @@
 .admin-template {
 
+    .page-header {
+        margin-bottom: 4rem;
+
+        h1 {
+            &:after {
+                display: none;
+            }
+        }
+    }
+
     table.table-list {
 
         .table-row {

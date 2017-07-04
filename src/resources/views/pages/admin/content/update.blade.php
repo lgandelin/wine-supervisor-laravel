@@ -1,48 +1,68 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Editer une actualité < Administration | WineSupervisor @endsection
+
 @section('page-content')
 
     @include('wine-supervisor::pages.admin.includes.header')
 
     <div class="content-template admin-template">
 
-        @if (isset($error))
-            <div class="alert alert-danger">
-                {{ $error }}
+        <!-- MAIN CONTENT -->
+        <div class="main-content container">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Editer un contenu</h1>
             </div>
-        @endif
+            <!-- PAGE HEADER -->
 
-        @if (isset($confirmation))
-            <div class="alert alert-success">
-                {{ $confirmation }}
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                @if (isset($error))
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endif
+
+                @if (isset($confirmation))
+                    <div class="alert alert-success">
+                        {{ $confirmation }}
+                    </div>
+                @endif
+
+                <form action="{{ route('admin_content_update_handler') }}" method="POST">
+
+                    <div class="form-group">
+                        <label for="title">Titre</label>
+                        <input type="text" name="title" id="title" value="{{ $content->title }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="slug">URI</label>
+                        <input type="text" name="slug" id="slug" value="{{ $content->slug }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text">Texte</label>
+                        <textarea class="editor" name="text" id="text">{{ $content->text }}</textarea>
+                    </div>
+
+                    <div class="submit-container">
+                        <input type="submit" value="Valider" />
+                    </div>
+
+                    <input type="hidden" name="content_id" value="{{ $content->id }}" />
+                    {{ csrf_field() }}
+                </form>
+
+                <a class="button red-button back-button" href="{{ route('admin_content_list') }}">Retour</a>
             </div>
-        @endif
+            <!-- PAGE CONTENT -->
 
-        <h1>Editer un contenu</h1>
-
-        <form action="{{ route('admin_content_update_handler') }}" method="POST">
-
-            <div>
-                <label for="title">Titre</label>
-                <input type="text" name="title" id="title" value="{{ $content->title }}" />
-            </div>
-
-            <div>
-                <label for="slug">URI</label>
-                <input type="text" name="slug" id="slug" value="{{ $content->slug }}" />
-            </div>
-
-            <div>
-                <label for="text">Texte</label>
-                <textarea class="editor" name="text" id="text">{{ $content->text }}</textarea>
-            </div>
-
-            <a href="{{ route('admin_content_list') }}">Retour</a>
-            <input type="submit" value="Valider" />
-            <input type="hidden" name="content_id" value="{{ $content->id }}" />
-            {{ csrf_field() }}
-        </form>
-
+        </div>
+        <!-- MAIN CONTENT -->
     </div>
 
     <script>

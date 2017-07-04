@@ -2784,11 +2784,19 @@ footer a, footer a:visited {
   color: #cfdbe6;
 }
 
-/* line 6, ../sass/pages/admin/_admin.scss */
+/* line 3, ../sass/pages/admin/_admin.scss */
+.admin-template .page-header {
+  margin-bottom: 4rem;
+}
+/* line 7, ../sass/pages/admin/_admin.scss */
+.admin-template .page-header h1:after {
+  display: none;
+}
+/* line 16, ../sass/pages/admin/_admin.scss */
 .admin-template table.table-list .table-row .table-cell {
   float: none;
 }
-/* line 12, ../sass/pages/admin/_admin.scss */
+/* line 22, ../sass/pages/admin/_admin.scss */
 .admin-template h2 {
   margin-bottom: 2.5rem;
   font-size: 3.5rem;
