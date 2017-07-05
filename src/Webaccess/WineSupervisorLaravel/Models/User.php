@@ -30,7 +30,9 @@ class User extends Authenticatable
         'city',
         'phone',
         'last_connection_date',
-        'opt_in'
+        'opt_in',
+        'cd_user_id',
+        'cd_password',
     ];
 
     /**

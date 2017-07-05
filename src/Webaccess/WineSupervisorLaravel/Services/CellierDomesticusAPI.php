@@ -4,6 +4,9 @@ namespace Webaccess\WineSupervisorLaravel\Services;
 
 use DateTimeZone;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
+use Webaccess\WineSupervisorLaravel\Models\Cellar;
+use Webaccess\WineSupervisorLaravel\Models\User;
 
 class CellierDomesticusAPI
 {
@@ -40,13 +43,12 @@ class CellierDomesticusAPI
         return base64_encode(sha1(base64_decode($nonce).$created.env('CD_API_SECRET'), true));
     }
 
-    public function create_user()
+    public function create_user(User $user)
     {
-        $res = $this->client->request('POST', '/api/users', [
-            'debug' => true,
+        $requestData = [
             'json' => [
-                'username' => 'testusername4',
-                'email' => 'test@testemail4.fr',
+                'username' => 'testusername10',
+                'email' => 'test@testemail10.fr',
                 'plainPassword' => '111aaa',
                 'type' => 'user',
                 'lastName' => 'test lastname',
@@ -62,18 +64,39 @@ class CellierDomesticusAPI
                 'Authorization' => 'profile="UsernameToken"',
                 'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
             ]
-        ]);
-        echo $res->getStatusCode();
-        dd($res, $res->getBody());
+        ];
+
+        Log::info('API_CREATE_ACCOUNT_REQUEST', $requestData);
+
+        /*if ($response = $this->client->request('POST', '/api/users', $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_CREATE_ACCOUNT_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+
+            //Store the CD userID and password
+            $user->cd_user_id = $resultObject->data->id;
+            $user->cd_password = $resultObject->data->password;
+            $user->save();
+        } else {
+            Log::info('API_CREATE_ACCOUNT_RESPONSE', [
+                'success' => false,
+            ]);
+
+            //TODO : Re-launch the request
+        }*/
     }
 
-    public function activate_cellar()
+    public function activate_cellar(Cellar $cellar)
     {
-        $userID = 48;
+        $userID = 39;
         $key = '59565F1BD93A4';
 
-        $res = $this->client->request('POST', sprintf('/api/users/%s/activate-cellar/%s', $userID, $key), [
-            'debug' => true,
+        $requestData = [
             'json' => [
                 'name' => 'ma cave',
                 'timezone' => DateTimeZone::EUROPE,
@@ -83,8 +106,41 @@ class CellierDomesticusAPI
                 'Authorization' => 'profile="UsernameToken"',
                 'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
             ]
-        ]);
-        echo $res->getStatusCode();
-        dd($res, $res->getBody());
+        ];
+
+        Log::info('API_ACTIVATE_CELLAR_REQUEST', $requestData);
+
+        if ($response = $this->client->request('POST', sprintf('/api/users/%s/activate-cellar/%s', $userID, $key), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_ACTIVATE_CELLAR_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+
+            //Store the CD userID and password
+            $cellar->cd_cellar_id = $resultObject->data->id;
+            $cellar->save();
+        } else {
+            Log::info('API_ACTIVATE_CELLAR_RESPONSE', [
+                'success' => false,
+            ]);
+
+            //TODO : Re-launch the request
+        }
+    }
+
+    public function login_user(User $user)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_LOGIN_USER_REQUEST', $requestData);
     }
 }
