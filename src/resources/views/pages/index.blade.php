@@ -58,6 +58,8 @@
                         climatisation de cave : Oenologues, cavistes, chefs, spécialistes...
                     </p>
                 </div>
+
+                <a href="{{ route('club_premium') }}" class="btn red-button" style="float:right; margin-top: 5rem;">Découvrez le Club Avantages</a>
             </div>
         </div>
 

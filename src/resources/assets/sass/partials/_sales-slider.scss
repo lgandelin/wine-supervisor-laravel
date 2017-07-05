@@ -76,31 +76,32 @@
 						    background: white;
 						}
 					}
+				}
 
-					.sale-price {
-						position: absolute;
-						bottom: 7rem;
-						right: 4.5rem;
+				.sale-price {
+					z-index: 5;
+					position: absolute;
+					bottom: 11rem;
+					right: 8rem;
 
-
-						.value {
-							font-size: 2.5rem;
-							font-weight: 700;
-						}
+					.value {
+						font-size: 2.5rem;
+						font-weight: 700;
 					}
+				}
 
-					.button {
-						float: right;
-						position: relative;
-						top: -7rem;
+				.button {
+					z-index: 5;
+					position: absolute;
+					bottom: 4rem;
+					right: 4rem;
 
-						border-radius: 0;
-						border: 2px solid white;
-						color: white;
+					border-radius: 0;
+					border: 2px solid white;
+					color: white;
 
-						&:hover {
-							color: black;
-						}
+					&:hover {
+						color: black;
 					}
 				}
 			}

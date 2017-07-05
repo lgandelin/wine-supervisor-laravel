@@ -1500,10 +1500,15 @@ form .form-group .radio input[type="radio"]:checked, form .form-group .radio inp
 .red-button:hover {
   color: white;
   cursor: pointer;
+  text-decoration: none;
   background: #e76268;
 }
-
 /* line 41, ../sass/includes/_buttons.scss */
+.red-button:visited {
+  color: white;
+}
+
+/* line 46, ../sass/includes/_buttons.scss */
 .add {
   width: 100%;
   display: block;
@@ -1512,7 +1517,7 @@ form .form-group .radio input[type="radio"]:checked, form .form-group .radio inp
   text-indent: -999rem;
   background: #f83740 url("../img/generic/add.png") no-repeat center;
 }
-/* line 50, ../sass/includes/_buttons.scss */
+/* line 55, ../sass/includes/_buttons.scss */
 .add:hover {
   background-color: #e34c52;
 }
@@ -2046,31 +2051,33 @@ footer a, footer a:visited {
   margin-bottom: 3.5rem;
   background: white;
 }
-/* line 80, ../sass/partials/_sales-slider.scss */
-.sales .slider-container .sales-slider .slick-slide .content .sale-price {
+/* line 81, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .sale-price {
+  z-index: 5;
   position: absolute;
-  bottom: 7rem;
-  right: 4.5rem;
+  bottom: 11rem;
+  right: 8rem;
 }
-/* line 86, ../sass/partials/_sales-slider.scss */
-.sales .slider-container .sales-slider .slick-slide .content .sale-price .value {
+/* line 87, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .sale-price .value {
   font-size: 2.5rem;
   font-weight: 700;
 }
-/* line 92, ../sass/partials/_sales-slider.scss */
-.sales .slider-container .sales-slider .slick-slide .content .button {
-  float: right;
-  position: relative;
-  top: -7rem;
+/* line 93, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .button {
+  z-index: 5;
+  position: absolute;
+  bottom: 4rem;
+  right: 4rem;
   border-radius: 0;
   border: 2px solid white;
   color: white;
 }
-/* line 101, ../sass/partials/_sales-slider.scss */
-.sales .slider-container .sales-slider .slick-slide .content .button:hover {
+/* line 103, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .button:hover {
   color: black;
 }
-/* line 110, ../sass/partials/_sales-slider.scss */
+/* line 111, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow {
   position: absolute;
   width: 2.7rem;
@@ -2082,27 +2089,27 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 123, ../sass/partials/_sales-slider.scss */
+/* line 124, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow.slick-prev {
   left: 3rem;
   background: url(../img/home/sales/prev.png) no-repeat center center;
 }
-/* line 128, ../sass/partials/_sales-slider.scss */
+/* line 129, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow.slick-next {
   right: 3rem;
   background: url(../img/home/sales/next.png) no-repeat center center;
 }
-/* line 133, ../sass/partials/_sales-slider.scss */
+/* line 134, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }
 
-/* line 141, ../sass/partials/_sales-slider.scss */
+/* line 142, ../sass/partials/_sales-slider.scss */
 .sales-navigation {
   overflow: hidden;
   margin-bottom: 7.3rem;
 }
-/* line 145, ../sass/partials/_sales-slider.scss */
+/* line 146, ../sass/partials/_sales-slider.scss */
 .sales-navigation li {
   float: left;
   margin-right: 3rem;
@@ -2116,7 +2123,7 @@ footer a, footer a:visited {
   text-transform: uppercase;
   cursor: pointer;
 }
-/* line 159, ../sass/partials/_sales-slider.scss */
+/* line 160, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:before {
   content: "";
   display: block;
@@ -2128,25 +2135,25 @@ footer a, footer a:visited {
   top: 0.75rem;
   border: 1px solid #eee;
 }
-/* line 172, ../sass/partials/_sales-slider.scss */
+/* line 173, ../sass/partials/_sales-slider.scss */
 .sales-navigation li.active {
   opacity: 1;
 }
-/* line 176, ../sass/partials/_sales-slider.scss */
+/* line 177, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:hover {
   opacity: 1;
 }
-/* line 180, ../sass/partials/_sales-slider.scss */
+/* line 181, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background {
   position: absolute;
   z-index: 1;
 }
-/* line 181, ../sass/partials/_sales-slider.scss */
+/* line 182, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background img {
   width: 100%;
   height: auto;
 }
-/* line 189, ../sass/partials/_sales-slider.scss */
+/* line 190, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-name {
   padding-top: 7rem;
   display: block;

@@ -33,10 +33,10 @@
                         de viande, un filet mignon, une volaille rôtie ou<br/>
                         un caviar d’aubergines.
                     </p>
-
-                    @if ($is_user)<span class="sale-price">Prix : <span class="value">12€</span></span>@endif
-                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
+
+                @if ($is_user)<span class="sale-price">Prix : <span class="value">12€</span></span>@endif
+                <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -44,8 +44,8 @@
                 <div class="background" style="background-image: url({{ asset('img/sales/1/2/background.jpg') }})"></div>
                 <img class="bottle" src="{{ asset('img/sales/1/2/bottle.png') }}" alt="Mauzac" />
                 <div class="content">
-                    <!--<span class="sale-subtitle">Merlot - Duras - Braucol</span>-->
-                    <h3 class="sale-name">Mauzac</h3>
+                    <span class="sale-subtitle">Mauzac</span>
+                    <h3 class="sale-name">Brut</h3>
                     <p>
                         <strong>Dégustation</strong><br/>
                         Dans cette bouteille, l’effervescence de notre savoir-faire. Depuis plus de 1000 ans, le Mauzac, cépage historique gaillacois est naturellement prédisposé à l’élaboration de cette méthode ancestrale.<br/><br/>
@@ -59,10 +59,10 @@
 
                         Service : 6-8°C
                     </p>
-
-                    @if ($is_user)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
-                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
+
+                @if ($is_user)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
+                <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -70,38 +70,28 @@
                 <div class="background" style="background-image: url({{ asset('img/sales/1/3/background.jpg') }})"></div>
                 <img class="bottle" src="{{ asset('img/sales/1/3/bottle.png') }}" alt="Douce envolée" />
                 <div class="content">
-                    <span class="sale-subtitle">Mauzac - Len de l'el</span>
+                    <span class="sale-subtitle">Mauzac - Len de lel</span>
                     <h3 class="sale-name">Mauzac</h3>
                     <p>
                         <strong>Dégustation</strong><br/>
                         Douce Envolée s’exprime sur des notes de pomme, d’abricot, et en finale sur des agrumes
-                        avec une pointe d’acidité.<br/>
-                        Sélectionné par le Guide belge « Vins et Terroirs Authentiques »<br/>
-                        Note dégustation: 15,5/20<br/>
-                        <a href="http://www.vinsetterroirs.be/revue_num_detail?fileId=23">http://www.vinsetterroirs.be/revue_num_detail?fileId=23</a>
+                        avec une pointe d’acidité. Sélectionné par le Guide belge « Vins et Terroirs Authentiques »
                     </p>
 
                     <p>
                         <strong>Vinification</strong><br/>
-                        Douce Envolée résulte d’un effeuillage partiel du cep de vigne, d’un passerillage
-                        par le soleil et le vent d’autan exceptionnel grâce à l’exposition de la parcelle.
-                        La pourriture noble est aussi au rendez-vous sur une partie des raisins.
-                        Un débourbage gravitaire et une fermentation thermorégulée en cuves béton jalonnent
-                        l’élaboration de cette cuvée, l’arrêt de la fermentation est exécuté par filtration.
+                        Douce Envolée résulte d’un effeuillage partiel du cep de vigne, d’un passerillage par le soleil et le vent d’autan exceptionnel. Un débourbage gravitaire et une fermentation thermorégulée en cuves béton jalonnent l’élaboration de cette cuvée, l’arrêt de la fermentation est exécuté par filtration.
                     </p>
 
                     <p>
                         <strong>Accords parfaits</strong><br/>
                         Douce Envolée se savoure selon vos envies en apéritif,
-                        avec un fromage à pâte persillée, un foie gras ou un dessert chocolaté.<br/>
-                        Cette Douce Envolée est de celles que l’on déguste<br/>
-                        aussi pour elles-mêmes, elle peut s’accompagner<br/>
-                        seulement de quelques bons amis.
+                        avec un fromage à pâte<br/> persillée, un foie gras ou un dessert chocolaté.
                     </p>
-
-                    @if ($is_user)<span class="sale-price">Prix : <span class="value">18€</span></span>@endif
-                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
+
+                @if ($is_user)<span class="sale-price">Prix : <span class="value">18€</span></span>@endif
+                <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -116,10 +106,8 @@
                         La Parcelle de l’Ortolan 2015 possède une très belle maturité, son nez caractéristique
                         du Sauvignon avec des notes agrumes et de fruits blancs (pêche, poire) vous surprendra.
                         Le cépage indigène Len de lel apporte en bouche de la finesse, un côté minéral
-                        et des notes de fruits exotiques.<br/><br/>
-
-                        Médaille d’argent au Concours International de Lyon 2016<br/><br/>
-
+                        et des notes de fruits exotiques.<br/>
+                        Médaille d’argent au Concours International de Lyon 2016<br/>
                         Sélectionné dans le Guide Dis Vins Edition
                     </p>
 
@@ -132,14 +120,12 @@
 
                     <p>
                         <strong>Accords parfaits</strong><br/>
-                        La Parcelle de l’Ortolan accompagnera<br/>
-                        parfaitement fruits de mer,
-                        poissons et fromages.
+                        La Parcelle de l’Ortolan accompagnera parfaitement fruits de mer, poissons<br/> et fromages.
                     </p>
-
-                    @if ($is_user)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
-                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
+
+                @if ($is_user)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
+                <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -170,10 +156,10 @@
                         blanches, des grillades et des salades <br/>
                         gourmandes d’été.
                     </p>
-
-                    @if ($is_user)<span class="sale-price">Prix : <span class="value">13€</span></span>@endif
-                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
+
+                @if ($is_user)<span class="sale-price">Prix : <span class="value">13€</span></span>@endif
+                <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -200,10 +186,10 @@
                         de canard grillé ou en sauce, escalope de veau<br/>
                         panée ou foie gras poêlé… à vos papilles !
                     </p>
-
-                    @if ($is_user)<span class="sale-price">Prix : <span class="value">9€</span></span>@endif
-                    <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
                 </div>
+
+                @if ($is_user)<span class="sale-price">Prix : <span class="value">9€</span></span>@endif
+                <a href="@if (!$is_user){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
             </li>
         </ul>
     </div>

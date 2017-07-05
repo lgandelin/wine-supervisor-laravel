@@ -33,8 +33,13 @@
 	&:hover {
 		color: white;
 		cursor: pointer;
+		text-decoration: none;
 		
 		background: lighten($red, 10%);
+	}
+
+	&:visited {
+		color: white;
 	}
 }
 
