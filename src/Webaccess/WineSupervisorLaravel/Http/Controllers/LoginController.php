@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Webaccess\WineSupervisorLaravel\Models\User;
-use Webaccess\WineSupervisorLaravel\Repositories\AccountService;
+use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
 class LoginController extends Controller
 {
@@ -70,41 +70,6 @@ class LoginController extends Controller
         Auth::guard('guests')->logout();
 
         return redirect()->route('user_login');
-    }
-
-    public function admin_login()
-    {
-        return view('wine-supervisor::pages.admin.auth.login', [
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-        ]);
-    }
-
-    /**
-     * @param 
-     * @return mixed
-     */
-    public function admin_authenticate()
-    {
-        if (Auth::guard('administrators')->attempt([
-            'email' => $this->request->input('email'),
-            'password' => $this->request->input('password'),
-        ])) {
-            return redirect()->route('admin_index');
-        }
-
-        return redirect()->route('admin_login')->with([
-            'error' => trans('wine-supervisor::login.login_or_password_error'),
-        ]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function admin_logout()
-    {
-        Auth::guard('administrators')->logout();
-
-        return redirect()->route('admin_login');
     }
 
     /**

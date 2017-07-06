@@ -18,10 +18,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('professionnel/inscription', array('as' => 'technician_signup', 'uses' => 'Technician\SignupController@signup'));
     Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'Technician\SignupController@signup_handler'));
 
-    Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'LoginController@admin_login'));
-    Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'LoginController@admin_authenticate'));
-    Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'LoginController@admin_logout'));
-
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
 
     Route::get('/club-avantages', array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'));
@@ -49,6 +45,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/utilisateur/mon-compte', array('as' => 'user_update_account', 'uses' => 'User\AccountController@update'));
         Route::post('/utilisateur/mon-compte', array('as' => 'user_update_account_handler', 'uses' => 'User\AccountController@update_handler'));
     });
+
+    Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'Admin\LoginController@login'));
+    Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'Admin\LoginController@authenticate'));
+    Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'Admin\LoginController@logout'));
 
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/admin', array('as' => 'admin_index', 'uses' => 'Admin\IndexController@index'));
