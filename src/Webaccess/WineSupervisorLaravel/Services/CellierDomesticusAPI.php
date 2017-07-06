@@ -142,5 +142,22 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_LOGIN_USER_REQUEST', $requestData);
+
+        if ($response = $this->client->request('POST', '/api/login', $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_LOGIN_USER_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_LOGIN_USER_RESPONSE', [
+                'success' => false,
+            ]);
+
+            //TODO : Re-launch the request
+        }
     }
 }
