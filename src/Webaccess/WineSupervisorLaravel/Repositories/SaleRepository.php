@@ -27,22 +27,20 @@ class SaleRepository extends BaseRepository
 
     /**
      * @param $title
-     * @param $juryNote
-     * @param $juryOpinion
      * @param $description
+     * @param $image
      * @param $link
      * @param $startDate
      * @param $endDate
      * @return bool
      */
-    public static function create($title, $juryNote, $juryOpinion, $description, $link, $startDate, $endDate)
+    public static function create($title, $description, $image, $link, $startDate, $endDate)
     {
         $sale = new Sale();
         $sale->id = Uuid::uuid4()->toString();
         $sale->title = $title;
-        $sale->jury_note = $juryNote;
-        $sale->jury_opinion = $juryOpinion;
         $sale->description = $description;
+        $sale->image = $image;
         $sale->link = $link;
         $sale->start_date = $startDate;
         $sale->end_date = $endDate;
@@ -53,21 +51,19 @@ class SaleRepository extends BaseRepository
     /**
      * @param $saleID
      * @param $title
-     * @param $juryNote
-     * @param $juryOpinion
      * @param $description
+     * @param $image
      * @param $link
      * @param $startDate
      * @param $endDate
      * @return bool
      */
-    public static function update($saleID, $title, $juryNote, $juryOpinion, $description, $link, $startDate, $endDate)
+    public static function update($saleID, $title, $description, $image, $link, $startDate, $endDate)
     {
         if ($sale = Sale::find($saleID)) {
             $sale->title = $title;
-            $sale->jury_note = $juryNote;
-            $sale->jury_opinion = $juryOpinion;
             $sale->description = $description;
+            $sale->image = $image;
             $sale->link = $link;
             $sale->start_date = $startDate;
             $sale->end_date = $endDate;

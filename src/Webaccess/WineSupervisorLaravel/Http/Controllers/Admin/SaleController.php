@@ -35,9 +35,8 @@ class SaleController extends AdminController
 
         if (SaleRepository::create(
             $request->get('title'),
-            $request->get('jury_note'),
-            $request->get('jury_opinion'),
             $request->get('description'),
+            $request->get('image'),
             $request->get('link'),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
@@ -69,9 +68,8 @@ class SaleController extends AdminController
         if (SaleRepository::update(
             $request->get('sale_id'),
             $request->get('title'),
-            $request->get('jury_note'),
-            $request->get('jury_opinion'),
             $request->get('description'),
+            $request->get('image'),
             $request->get('link'),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')

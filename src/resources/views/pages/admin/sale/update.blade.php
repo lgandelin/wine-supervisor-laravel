@@ -40,17 +40,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jury_note">Note du jury</label>
-                        <input type="text" name="jury_note" id="jury_note" value="{{ $sale->jury_note }}" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="jury_opinion">Avis du jury</label>
-                        <textarea class="editor" name="jury_opinion" id="jury_opinion">{{ $sale->jury_opinion }}</textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="description">Commentaires</label>
+                        <label for="description">Description</label>
                         <textarea class="editor" name="description" id="description">{{ $sale->description }}</textarea>
                     </div>
 
@@ -65,8 +55,16 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="link">Lien de commande</label>
-                        <input type="text" name="link" id="link" value="{{ $sale->link }}" />
+                        <label for="image">Image</label>
+                        <input type="file" name="image" id="image" value="{{ $sale->image }}" />
+                        <br/>
+                        <br/>
+                        @if ($sale->image)
+                            Image actuelle : {{ $sale->image }}<br>
+                            <img class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }}" />
+                        @else
+                            Aucune image actuellement
+                        @endif
                     </div>
 
                     <div class="submit-container">
