@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserMiddleware
+class TechnicianMiddleware
 {
     /**
      * The Guard implementation.
@@ -22,7 +22,7 @@ class UserMiddleware
      */
     public function __construct()
     {
-        $this->auth = Auth::guard('users');
+        $this->auth = Auth::guard('technicians');
     }
 
     /**

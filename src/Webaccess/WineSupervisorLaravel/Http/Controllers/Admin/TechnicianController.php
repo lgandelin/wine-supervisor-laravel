@@ -47,7 +47,7 @@ class TechnicianController extends AdminController
             'status' => $request->get('status'),
         ]);
 
-        list($success, $error) = TechnicianRepository::update(
+        list($success, $error) = TechnicianRepository::update_status(
             $request->get('technician_id'),
             $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
         );

@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Services;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
+use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class AccountService
@@ -49,6 +50,11 @@ class AccountService
         return false;
     }
 
+    public static function isTechnician()
+    {
+        return Auth::guard('technicians')->check();
+    }
+
     public static function isGuest()
     {
         return Auth::guard('guests')->check();
@@ -88,6 +94,15 @@ class AccountService
             }
 
             return $isEligible;
+        }
+
+        return false;
+    }
+
+    public static function hasAValidTechnicianAccount()
+    {
+        if ($technician = Auth::guard('technicians')->user()) {
+            return $technician->status == Technician::STATUS_ENABLED;
         }
 
         return false;

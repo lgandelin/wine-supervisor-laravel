@@ -14,6 +14,7 @@ use Webaccess\WineSupervisorLaravel\Commands\DeleteInactiveUsersCommand;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\ClubPremiumMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\GuestMiddleware;
+use Webaccess\WineSupervisorLaravel\Http\Middlewares\TechnicianMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\UserMiddleware;
 
 class WineSupervisorLaravelServiceProvider extends ServiceProvider
@@ -40,6 +41,7 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
 
         $router->aliasMiddleware('user', UserMiddleware::class);
         $router->aliasMiddleware('admin', AdminMiddleware::class);
+        $router->aliasMiddleware('technician', TechnicianMiddleware::class);
         $router->aliasMiddleware('guest', GuestMiddleware::class);
         $router->aliasMiddleware('club-premium', ClubPremiumMiddleware::class);
 

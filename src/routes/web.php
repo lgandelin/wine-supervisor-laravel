@@ -45,6 +45,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/utilisateur/mon-compte', array('as' => 'user_update_account_handler', 'uses' => 'User\AccountController@update_handler'));
     });
 
+    Route::group(['middleware' => ['technician']], function () {
+        Route::get('/professionnel/mon-compte', array('as' => 'technician_update_account', 'uses' => 'Technician\AccountController@update'));
+        Route::post('/professionnel/mon-compte', array('as' => 'technician_update_account_handler', 'uses' => 'Technician\AccountController@update_handler'));
+    });
+
     Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'Admin\LoginController@login'));
     Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'Admin\LoginController@authenticate'));
     Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'Admin\LoginController@logout'));

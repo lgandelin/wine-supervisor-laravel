@@ -42,6 +42,20 @@ class LoginController extends Controller
             return redirect()->route('user_update_account');
         }
 
+        //Technician authentication
+        if (Auth::guard('technicians')->attempt([
+            'login' => $this->request->input('login'),
+            'password' => $this->request->input('password'),
+        ])) {
+            if (!AccountService::hasAValidTechnicianAccount()) {
+                return redirect()->route('user_login')->with([
+                    'error' => trans('wine-supervisor::login.technician_access_error'),
+                ]);
+            }
+
+            return redirect()->route('technician_update_account');
+        }
+
         //Guest authentication
         if (Auth::guard('guests')->attempt([
             'login' => $this->request->input('login'),
@@ -67,6 +81,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::guard('users')->logout();
+        Auth::guard('technicians')->logout();
         Auth::guard('guests')->logout();
 
         return redirect()->route('user_login');
