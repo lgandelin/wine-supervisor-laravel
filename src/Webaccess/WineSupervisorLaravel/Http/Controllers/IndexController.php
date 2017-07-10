@@ -17,4 +17,11 @@ class IndexController
             'is_guest' => AccountService::isGuest(),
         ]);
     }
+
+    public function supervision(Request $request)
+    {
+        if (AccountService::isUserEligibleToSupervision()) {
+            //TODO : CALL CDO
+        }
+    }
 }

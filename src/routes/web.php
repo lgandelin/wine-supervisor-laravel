@@ -24,9 +24,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/club-avantages/ventes-en-cours', array('as' => 'club_premium_current_sales', 'uses' => 'ClubPremium\IndexController@current_sales'));
     Route::get('/club-avantages/historique-des-ventes', array('as' => 'club_premium_sales_history', 'uses' => 'ClubPremium\IndexController@sales_history'));
 
-    Route::get('/supervision', function() {
-        return redirect('http://supervision.fr');
-    });
+    Route::get('/supervision', array('as' => 'supervision', 'uses' => 'IndexController@supervision'));
 
     Route::group(['middleware' => ['guest']], function () {
         Route::get('/invite', array('as' => 'guest_index', 'uses' => 'Guest\IndexController@index'));
