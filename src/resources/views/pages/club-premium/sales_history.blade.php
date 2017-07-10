@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Historique des ventes du Club Avantage | WineSupervisor @endsection
+
 @section('page-content')
 
     <div class="club-premium-template">

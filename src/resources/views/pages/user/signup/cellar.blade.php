@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Créer une cave | WineSupervisor @endsection
+
 @section('page-content')
     <div class="signup-template">
 

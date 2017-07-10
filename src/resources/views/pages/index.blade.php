@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Votre cave, accessible partout | WineSupervisor @endsection
+
 @section('page-content')
     <div class="home-template">
 

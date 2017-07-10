@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Ventes en cours du Club Avantage | WineSupervisor @endsection
+
 @section('page-content')
 
     <div class="club-premium-template">

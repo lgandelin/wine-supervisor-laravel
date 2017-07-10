@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Mes caves | WineSupervisor @endsection
+
 @section('page-content')
 
     <div class="cellars-template">

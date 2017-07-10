@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title')Mon compte | WineSupervisor @endsection
+
 @section('page-content')
 
     <div class="cellars-template">
@@ -76,7 +78,7 @@
                     </div>
                 @endif
 
-                <a href="{{ route('user_cellar_create') }}" class="add-cellar-button">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
+                <a href="{{ route('user_cellar_create') }}" class="add">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
             </div>
             <!-- PAGE CONTENT -->
 

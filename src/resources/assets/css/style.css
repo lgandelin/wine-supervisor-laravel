@@ -2593,7 +2593,7 @@ footer a, footer a:visited {
 }
 /* line 13, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .cellar {
-  width: 24%;
+  width: 23.9%;
 }
 /* line 17, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .status {
@@ -2608,28 +2608,33 @@ footer a, footer a:visited {
   border-radius: 50%;
   border: 1px solid #cfdbe6;
 }
-/* line 29, ../sass/pages/_cellars.scss */
+/* line 28, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .status .icon.status-ok {
   background: #3cb878;
 }
-/* line 33, ../sass/pages/_cellars.scss */
+/* line 32, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .status .icon.status-ko {
   background: #e0363d;
 }
-/* line 39, ../sass/pages/_cellars.scss */
+/* line 38, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .type {
   width: 18%;
   text-align: center;
 }
-/* line 44, ../sass/pages/_cellars.scss */
+/* line 43, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .date {
   width: 18%;
   text-align: center;
 }
-/* line 49, ../sass/pages/_cellars.scss */
+/* line 48, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .price {
   width: 15%;
   text-align: center;
+}
+/* line 53, ../sass/pages/_cellars.scss */
+.cellars-template .page-content .table-list .action {
+  width: 8rem;
+  height: 8rem;
 }
 
 /* line 3, ../sass/pages/_cellar-update.scss */

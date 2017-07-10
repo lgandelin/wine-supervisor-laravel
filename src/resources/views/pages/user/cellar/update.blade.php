@@ -1,10 +1,8 @@
 @extends('wine-supervisor::default')
 
-@section('page-content')
+@section('page-title') Modifier une cave | WineSupervisor @endsection
 
-    <!--
-    @include('wine-supervisor::pages.user.includes.menu')
-    -->
+@section('page-content')
 
     <div class="cellar-update-template">
 

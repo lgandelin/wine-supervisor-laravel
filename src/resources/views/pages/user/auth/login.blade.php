@@ -1,6 +1,6 @@
 @extends('wine-supervisor::master')
 
-@section('page-title') Connexion @endsection
+@section('page-title') Connexion | WineSupervisor @endsection
 
 @section('main-content')
 

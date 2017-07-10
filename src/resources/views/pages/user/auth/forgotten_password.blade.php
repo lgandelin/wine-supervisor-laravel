@@ -1,6 +1,6 @@
 @extends('wine-supervisor::master')
 
-@section('page-title') Mot de passe oublié @endsection
+@section('page-title') Mot de passe oublié | WineSupervisor @endsection
 
 @section('main-content')
 
