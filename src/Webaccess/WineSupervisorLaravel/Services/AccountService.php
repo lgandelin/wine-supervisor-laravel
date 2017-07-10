@@ -73,7 +73,8 @@ class AccountService
     {
         return
             (self::isAdministrator()) ||
-            (self::isUser() && self::hasAValidUserAccountForSupervision());
+            (self::isUser() && self::hasAValidUserAccountForSupervision()) ||
+            (self::isTechnician() && self::hasAValidTechnicianAccountForSupervision());
     }
 
     public static function hasAValidUserAccountForSupervision()

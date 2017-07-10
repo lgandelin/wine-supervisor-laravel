@@ -204,6 +204,8 @@ class CellierDomesticusAPI
                 'status_code' => $response->getStatusCode(),
                 'body' => $result
             ]);
+
+            return $resultObject;
         } else {
             Log::info('API_LOGIN_USER_RESPONSE', [
                 'success' => false,

@@ -3,7 +3,10 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
+use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
 
 class IndexController
 {
@@ -22,7 +25,23 @@ class IndexController
     public function supervision(Request $request)
     {
         if (AccountService::isUserEligibleToSupervision()) {
-            //TODO : CALL CDO
+            if (AccountService::isUser()) {
+                $user = Auth::guard('users')->getUser();
+                $result = (new CellierDomesticusAPI())->login_user($user);
+                if ($result->status == 'success') {
+                    return Redirect::to(sprintf('%s/manager?authToken=%s', env('CD_API_URL'), $result->authToken));
+                }
+            }
+
+            if (AccountService::isTechnician()) {
+                $technician= Auth::guard('technicians')->getUser();
+                $result = (new CellierDomesticusAPI())->login_user($technician);
+                if ($result->status == 'success') {
+                    return Redirect::to(sprintf('%s/manager?authToken=%s', env('CD_API_URL'), $result->authToken));
+                }
+            }
         }
+
+        return redirect()->back();
     }
 }

@@ -17,6 +17,7 @@ class IndexController
     public function index(Request $request)
     {
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO
+        view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
 
         return view('wine-supervisor::pages.club-premium.index', [
             'is_user' => Auth::user(),
@@ -29,6 +30,7 @@ class IndexController
     public function comity(Request $request)
     {
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO
+        view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
 
         return view('wine-supervisor::pages.club-premium.comity', [
             'is_user' => Auth::user(),
@@ -41,6 +43,7 @@ class IndexController
     public function current_sales(Request $request)
     {
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO
+        view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
 
         return view('wine-supervisor::pages.club-premium.current_sales', [
             'is_user' => Auth::user(),
@@ -53,6 +56,7 @@ class IndexController
     public function sales_history(Request $request)
     {
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO
+        view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
 
         return view('wine-supervisor::pages.club-premium.sales_history', [
             'is_user' => Auth::user(),
