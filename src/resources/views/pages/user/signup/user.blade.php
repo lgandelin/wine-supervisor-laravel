@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Créer un compte | WineSupervisor @endsection
+
 @section('page-content')
     <div class="signup-template">
 
@@ -44,7 +46,19 @@
                     </div>
                 @endif
 
-                <form action="{{ route('user_signup_handler') }}" method="post">
+                <form action="">
+                    <div class="form-group">
+                        <label>Vous êtes</label>
+                        <select name="type" id="type">
+                            <option value="-1">Sélectionner</option>
+                            <option value="1">Client de WineSupervisor</option>
+                            <option value="2">Professionnel</option>
+                        </select>
+                    </div>
+                </form>
+
+                <!-- USER FORM -->
+                <form id="user_signup" action="{{ route('user_signup_handler') }}" method="post">
 
                     <div class="form-group">
                         <label for="last_name">Nom</label>
@@ -88,6 +102,64 @@
 
                     {{ csrf_field() }}
                 </form>
+                <!-- USER FORM -->
+
+
+                <!-- TECHNICIAN FORM -->
+                <form id="technician_signup" action="{{ route('technician_signup_handler') }}" method="post">
+
+                    <div class="form-group">
+                        <label for="company">Nom de la société</label>
+                        <input type="text" name="company" id="company" value="{{ old('company') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registration">Immatriculation</label>
+                        <input type="text" name="registration" id="registration" value="{{ old('registration') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="text" name="phone" id="phone" value="{{ old('phone') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" id="email" value="{{ old('email') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login">Login</label>
+                        <input type="text" name="login" id="login" value="{{ old('login') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password" id="password" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <input type="text" name="address" id="address" value="{{ old('address') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Code postal</label>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Ville</label>
+                        <input type="text" name="city" id="city" value="{{ old('city') }}" />
+                    </div>
+
+                    <div class="submit-container">
+                        <input type="submit" class="button red-button" value="Valider" />
+                    </div>
+
+                    {{ csrf_field() }}
+                </form>
+                <!-- TECHNICIAN FORM -->
 
             </div>
             <!-- PAGE CONTENT -->
@@ -96,4 +168,20 @@
         @include('wine-supervisor::partials.legal-notices')
 
     </div>
+
+    <script>
+        $(document).ready(function() {
+           $('#type').change(function() {
+               if ($(this).val() == 1) {
+                   $('#user_signup').show();
+                   $('#technician_signup').hide();
+                   $('.steps .step').show();
+               } else if ($(this).val() == 2) {
+                   $('#user_signup').hide();
+                   $('#technician_signup').show();
+                   $('.steps .step').hide();
+               }
+           });
+        });
+    </script>
 @stop

@@ -2568,6 +2568,16 @@ footer a, footer a:visited {
   width: 44%;
   margin-right: 7%;
 }
+/* line 65, ../sass/pages/_signup.scss */
+.signup-template .subtitle {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #e0363d;
+  text-transform: uppercase;
+  font-family: "Roboto";
+  font-size: 1.8rem;
+  font-style: italic;
+}
 
 /* line 3, ../sass/pages/_cellars.scss */
 .cellars-template .page-content {

@@ -14,9 +14,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/utilisateur/inscription', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
     Route::get('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
     Route::post('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
-
-    Route::get('professionnel/inscription', array('as' => 'technician_signup', 'uses' => 'Technician\SignupController@signup'));
-    Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'Technician\SignupController@signup_handler'));
+    Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'User\SignupController@technician_signup_handler'));
+    Route::get('/professionnel/inscription', array('as' => 'technician_signup_success', 'uses' => 'User\SignupController@technician_signup_success'));
 
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
 
