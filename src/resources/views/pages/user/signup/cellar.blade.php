@@ -70,17 +70,17 @@
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ old('address') }}" />
+                        <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="zipcode">Code postal</label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
+                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="city">Ville</label>
-                        <input type="text" name="city" id="city" value="{{ old('city') }}" />
+                        <input type="text" name="city" id="city" value="{{ old('city') }}" required />
                     </div>
 
                     <div class="submit-container">

@@ -20,12 +20,13 @@ class SignupController
         }
 
         return view('wine-supervisor::pages.user.signup.user', [
-            'last_name' => isset($session_user) ? $session_user->last_name : null,
-            'first_name' => isset($session_user) ? $session_user->first_name : null,
-            'email' => isset($session_user) ? $session_user->email : null,
-            'phone' => isset($session_user) ? $session_user->phone : null,
-            'login' => isset($session_user) ? $session_user->login : null,
-            'opt_in' => isset($session_user) ? $session_user->opt_in : null,
+            'last_name' => isset($session_user) && $session_user->last_name ? $session_user->last_name : old('last_name'),
+            'first_name' => isset($session_user) && $session_user->first_name ? $session_user->first_name : old('first_name'),
+            'email' => isset($session_user) && $session_user->email ? $session_user->email : old('email'),
+            'email_confirm' => old('email_confirm'),
+            'phone' => isset($session_user) && $session_user->phone ? $session_user->phone : old('phone'),
+            'login' => isset($session_user) && $session_user->login? $session_user->login : old('login'),
+            'opt_in' => isset($session_user) && $session_user->opt_in? $session_user->opt_in : old('opt_in'),
             'route' => $request->route()->getName(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
@@ -35,6 +36,11 @@ class SignupController
 
     public function signup_handler(Request $request)
     {
+        if ($request->get('email') != $request->get('email_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_email_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
         if (!UserRepository::checkLogin(null, $request->get('login'))) {
             $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
             return redirect()->back()->withInput();
@@ -64,6 +70,13 @@ class SignupController
     public function signup_cellar_handler(Request $request)
     {
         $requestID = Uuid::uuid4()->toString();
+
+        list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($request->get('id_ws'), $request->get('technician_id'));
+
+        if (!$checkSuccess) {
+            $request->session()->flash('error', $checkError);
+            return redirect()->back()->withInput();
+        }
 
         if ($session_user = $request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);

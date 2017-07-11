@@ -62,7 +62,7 @@
 
                     <div class="form-group">
                         <label for="last_name">Nom</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ $last_name }}" />
+                        <input type="text" name="last_name" id="last_name" value="{{ $last_name }}" required />
                     </div>
 
                     <div class="form-group">
@@ -72,22 +72,27 @@
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ $email }}"/>
+                        <input type="text" name="email" id="email" value="{{ $email }}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email_confirm">Confirmation email</label>
+                        <input type="text" name="email_confirm" id="email_confirm" value="{{ $email }}"/>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Téléphone</label>
-                        <input type="text" name="phone" id="phone" value="{{ $phone }}"/>
+                        <input type="text" name="phone" id="phone" value="{{ $phone }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $login }}"/>
+                        <input type="text" name="login" id="login" value="{{ $login }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password" />
+                        <input type="password" name="password" id="password" required />
                     </div>
 
                     <div class="form-group">
@@ -106,21 +111,21 @@
 
 
                 <!-- TECHNICIAN FORM -->
-                <form id="technician_signup" action="{{ route('technician_signup_handler') }}" method="post">
+                <form id="technician_signup" action="{{ route('technician_signup_handler') }}" method="post" style="display:none">
 
                     <div class="form-group">
                         <label for="company">Nom de la société</label>
-                        <input type="text" name="company" id="company" value="{{ old('company') }}" />
+                        <input type="text" name="company" id="company" value="{{ old('company') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="registration">Immatriculation</label>
-                        <input type="text" name="registration" id="registration" value="{{ old('registration') }}" />
+                        <input type="text" name="registration" id="registration" value="{{ old('registration') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Téléphone</label>
-                        <input type="text" name="phone" id="phone" value="{{ old('phone') }}" />
+                        <input type="text" name="phone" id="phone" value="{{ old('phone') }}" required />
                     </div>
 
                     <div class="form-group">
@@ -130,17 +135,17 @@
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ old('login') }}" />
+                        <input type="text" name="login" id="login" value="{{ old('login') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password" />
+                        <input type="password" name="password" id="password" required />
                     </div>
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ old('address') }}" />
+                        <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>
 
                     <div class="form-group">

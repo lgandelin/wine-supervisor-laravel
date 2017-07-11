@@ -300,4 +300,22 @@ class CellarRepository extends BaseRepository
 
         return $history->save();
     }
+
+    /**
+     * @param $idWS
+     * @param $technicianID
+     * @return array
+     */
+    public static function doPreliminaryChecks($idWS, $technicianID)
+    {
+        if (!CellarRepository::checkIDWS($idWS)) {
+            return self::error(trans('wine-supervisor::cellar.id_ws_error'));
+        }
+
+        if ($technicianID && !CellarRepository::checkTechnicianID($technicianID)) {
+            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        }
+
+        return self::success();
+    }
 }
