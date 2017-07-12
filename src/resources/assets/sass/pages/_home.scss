@@ -84,11 +84,22 @@
 		.container {
 			position: relative;
 		}
+		
 		.box-image {
 			right: 0;
 			position: absolute;
 			top: -15rem;
 			z-index: 2;
+		}
+
+		.buttons {
+			margin-top: 5rem;
+			margin-left: 10rem;
+
+			.btn-supervision, .btn-discover {
+				float:left;
+				margin-right: 5rem;
+			}
 		}
 	}
 
@@ -162,6 +173,12 @@
 		.text {
 			margin-top: 3rem;
 			overflow: hidden;
+		}
+		
+		.btn {
+			float: right;
+			margin-top: 5rem;
+			margin-right: 19.5rem;
 		}
 	}
 

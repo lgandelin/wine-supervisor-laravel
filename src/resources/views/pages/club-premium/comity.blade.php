@@ -13,11 +13,10 @@
                 <span class="subtitle">Aux membres du</span>
                 <span class="title">Club Avantage</span>
             </h1>
-            <span class="border"></span>
         </div>
         <!-- BANNER -->
 
-        <div class="main-content container">
+        <div class="main-content container" id="top">
 
             <!-- LEFT NAVIGATION -->
             <nav class="left-navigation">
@@ -43,6 +42,8 @@
                         <p>Composé de sommeliers, de cavistes, de chefs, de spécialistes et d’amateurs de vins en général, le comité valide une sélection exclusivement destinée à vous faire faire de belles découvertes à prix avantageux.</p>
                     </div>
                 </section>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
             </div>
             <!-- PAGE CONTENT -->
 

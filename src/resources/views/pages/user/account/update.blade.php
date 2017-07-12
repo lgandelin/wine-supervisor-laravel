@@ -14,7 +14,6 @@
                 <span class="subtitle">Mes caves</span>
                 <span class="title">Accessibles partout</span>
             </h1>
-            <span class="border"></span>
         </div>
         <!-- BANNER -->
 

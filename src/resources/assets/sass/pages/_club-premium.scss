@@ -6,6 +6,21 @@
 
 	.banner {
 		background-image: url(../img/club-premium/banner.jpg);
+
+		.logo-club-premium {
+			position: absolute;
+			left: 50%;
+			margin-left: -150px;
+			top: 50%;
+			margin-top: -125px;
+		}
+	}
+
+	#top:before {
+		content: "";
+		display: block;
+		height: 205px;
+		margin: -205px 0 0;
 	}
 
 	.left-navigation {

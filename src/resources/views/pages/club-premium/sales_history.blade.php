@@ -13,11 +13,10 @@
                 <span class="subtitle">Aux membres du</span>
                 <span class="title">Club Avantage</span>
             </h1>
-            <span class="border"></span>
         </div>
         <!-- BANNER -->
 
-        <div class="main-content container">
+        <div class="main-content container" id="top">
 
             <!-- LEFT NAVIGATION -->
             <nav class="left-navigation">
@@ -31,7 +30,6 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
             </div>
             <!-- PAGE HEADER -->
-
 
             <!-- SALES -->
             <div class="sales">

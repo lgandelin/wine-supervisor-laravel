@@ -13,16 +13,16 @@
                 <span class="your-cellar subtitle">Votre cave</span>
                 <span class="title">Accessible partout</span>
             </h2>
-            <span class="border"></span>
         </div>
         <!-- BANNER -->
 
         <!-- BOX -->
         <div class="box" id="wine-supervisor">
             <div class="container">
-                <img class="box-image" src="img/home/box/box.png" width="390" height="453" alt="Boitier WineSupervisor" />
-                <span class="subtitle">Boitier</span>
-                <h2 class="title">WineSupervisor</h2>
+                <img class="box-image" src="{{ asset('img/home/box/box.png') }}" width="390" height="453" alt="Boitier WineSupervisor" />
+                <!--<span class="subtitle">Boitier</span>
+                <h2 class="title">WineSupervisor</h2>-->
+                <h2 class="title"><img class="logo-wine-supervisor-ii" src="{{ asset('img/home/box/logo-winesupervisor-ii.png') }}" width="450" height="100" alt="WineSupervisor" /></h2>
                 <p>
                     CAVE 100% CONNECTÉE<br/>
                     Votre cave accessible tout le temps et partout !<br/><br/>
@@ -30,6 +30,11 @@
                     Surveillez température et humidité, configurez et recevez des alertes en temps réel.
                     Optimisez la consommation énergétique de votre cave grâce à WineSupervisor II.<br/>
                 </p>
+
+                <div class="buttons">
+                    <a href="http://friax.fr/winesupervisor" target="_blank" class="btn red-button btn-discover">Découvrir</a>
+                    <a href="{{ route('supervision') }}" target="_blank" class="btn red-button btn-supervision">Se connecter</a>
+                </div>
             </div>
         </div>
         <!-- BOX -->
@@ -39,7 +44,6 @@
             <div class="container">
                 <span class="subtitle">Des vins d'exception grâce au</span>
                 <h2 class="title">Club Avantages</h2>
-                <span class="border"></span>
             </div>
         </div>
         <!-- CLUB -->
@@ -47,7 +51,7 @@
         <div class="club-contents">
             <div class="container">
                 <div class="image">
-                    <img src="img/home/partners/1.jpg" alt="Wine Supervisor - Club Avantage" width="300" height="205" />
+                    <img src="{{ asset('img/club-premium/logo-club-avantage.png') }}" alt="Wine Supervisor - Club Avantage" width="300" height="205" />
                 </div>
                 <div class="text">
                     <p>
@@ -61,7 +65,7 @@
                     </p>
                 </div>
 
-                <a href="{{ route('club_premium') }}" class="btn red-button" style="float:right; margin-top: 5rem;">Découvrez le Club Avantages</a>
+                <a href="{{ route('club_premium') }}" class="btn red-button">Découvrez le Club Avantages</a>
             </div>
         </div>
 
@@ -123,13 +127,13 @@
 
                 <div class="partners-slider-arrows"></div>
                 <ul class="partners-slider">
-                    <img class="partner" src="img/home/partners/1.jpg" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
+                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
                     <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/1.jpg" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
+                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
                     <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/1.jpg" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
+                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
                     <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/1.jpg" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
+                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
                     <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
                 </ul>
             </div>
