@@ -107,4 +107,40 @@ class AccountService
 
         return false;
     }
+
+    private static function hasAValidTechnicianAccountForSupervision()
+    {
+        $isEligible = false;
+
+        if ($technician = Auth::guard('technicians')->user()) {
+
+            //Récupération des caves associées
+            if ($cellars = CellarRepository::getByTechnician($technician->id)) {
+                foreach ($cellars as $cellar) {
+                    dd($cellar);
+                    if ($cellar->subscription_type != Subscription::NO_SUBSCRIPTION) {
+                        if (new DateTime() >= new DateTime($cellar->subscription_start_date) && new DateTime() <= new DateTime($cellar->subscription_end_date)) {
+                            $isEligible = true;
+                        }
+                    }
+                }
+            }
+
+            return $isEligible;
+        }
+
+        return false;
+    }
+
+    public static function getFirstName()
+    {
+        if (self::isTechnician())
+            return Auth::guard('technicians')->user()->first_name;
+        if (self::isGuest())
+            return Auth::guard('guests')->user()->first_name;
+        if (self::isUser())
+            return Auth::guard('users')->user()->first_name;
+
+        return null;
+    }
 }

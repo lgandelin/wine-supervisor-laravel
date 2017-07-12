@@ -14,6 +14,7 @@
         </li>
     @elseif (isset($is_guest) && $is_guest)
         <li @if (isset($route) && preg_match('/club_premium/', $route))class="active"@endif><a href="{{ route('club_premium') }}">Club Avantage</a></li>
+
         <li class="account logout">
             <a href="{{ route('user_logout') }}"><span class="logout-icon" title="Se déconnecter"></span></a>
         </li>

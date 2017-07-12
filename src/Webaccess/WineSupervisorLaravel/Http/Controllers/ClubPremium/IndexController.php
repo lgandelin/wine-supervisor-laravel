@@ -21,6 +21,7 @@ class IndexController
         return view('wine-supervisor::pages.club-premium.index', [
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
+            'first_name' => AccountService::getFirstName(),
             'sales' => SaleRepository::getCurrentSales(),
         ]);
     }
@@ -32,6 +33,7 @@ class IndexController
         return view('wine-supervisor::pages.club-premium.comity', [
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
+            'first_name' => AccountService::getFirstName(),
             'sales' => SaleRepository::getSalesHistory()
         ]);
     }
@@ -43,6 +45,7 @@ class IndexController
         return view('wine-supervisor::pages.club-premium.current_sales', [
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
+            'first_name' => AccountService::getFirstName(),
             'sales' => SaleRepository::getSalesHistory()
         ]);
     }
@@ -54,6 +57,7 @@ class IndexController
         return view('wine-supervisor::pages.club-premium.sales_history', [
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
+            'first_name' => AccountService::getFirstName(),
             'sales' => SaleRepository::getSalesHistory()
         ]);
     }

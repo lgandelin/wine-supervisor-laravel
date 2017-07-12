@@ -1732,45 +1732,54 @@ header .top-bar {
   background: #f8f7fa;
 }
 /* line 12, ../sass/partials/_header.scss */
+header .top-bar .welcome {
+  display: inline-block;
+  margin-top: 0.7rem;
+  font-size: 1.8rem;
+  font-family: "AgencyFB";
+  color: #114a83;
+}
+/* line 20, ../sass/partials/_header.scss */
 header .top-bar .nav {
   position: relative;
   float: right;
   font-size: 1.8rem;
 }
-/* line 18, ../sass/partials/_header.scss */
+/* line 26, ../sass/partials/_header.scss */
 header .top-bar .nav li {
   margin-right: 2.5rem;
   display: inline-block;
-}
-/* line 22, ../sass/partials/_header.scss */
-header .top-bar .nav li > a {
-  display: block;
-  padding-bottom: 1rem;
   font-family: "AgencyFB";
   color: #8f8f8f;
 }
-/* line 30, ../sass/partials/_header.scss */
+/* line 33, ../sass/partials/_header.scss */
+header .top-bar .nav li > a {
+  display: block;
+  padding-bottom: 1rem;
+  color: #8f8f8f;
+}
+/* line 40, ../sass/partials/_header.scss */
 header .top-bar .nav li.active {
   border-bottom: 4px solid #114a83;
 }
-/* line 34, ../sass/partials/_header.scss */
+/* line 44, ../sass/partials/_header.scss */
 header .top-bar .nav li.account {
   margin-right: 0;
   cursor: pointer;
 }
-/* line 41, ../sass/partials/_header.scss */
+/* line 51, ../sass/partials/_header.scss */
 header .top-bar .nav li.account:hover .login {
   display: block;
 }
-/* line 45, ../sass/partials/_header.scss */
+/* line 55, ../sass/partials/_header.scss */
 header .top-bar .nav li.account:hover .account-icon {
   background-color: #114a83;
 }
-/* line 52, ../sass/partials/_header.scss */
+/* line 62, ../sass/partials/_header.scss */
 header .top-bar .nav li.logout a {
   padding-bottom: 0;
 }
-/* line 56, ../sass/partials/_header.scss */
+/* line 66, ../sass/partials/_header.scss */
 header .top-bar .nav li.logout .logout-icon {
   width: 5.2rem;
   height: 4.5rem;
@@ -1779,11 +1788,11 @@ header .top-bar .nav li.logout .logout-icon {
   cursor: pointer;
   background: #1e95c9 url(../img/header/ico-logout.png) no-repeat center center;
 }
-/* line 66, ../sass/partials/_header.scss */
+/* line 76, ../sass/partials/_header.scss */
 header .top-bar .nav li.logout .logout-icon:hover {
   background-color: #114a83;
 }
-/* line 73, ../sass/partials/_header.scss */
+/* line 83, ../sass/partials/_header.scss */
 header .top-bar .nav .account-icon {
   width: 5.2rem;
   height: 4.5rem;
@@ -1791,7 +1800,7 @@ header .top-bar .nav .account-icon {
   vertical-align: middle;
   background: #1e95c9 url(../img/header/account.png) no-repeat center center;
 }
-/* line 82, ../sass/partials/_header.scss */
+/* line 92, ../sass/partials/_header.scss */
 header .top-bar .nav .login {
   width: 35.6rem;
   right: 1px;
@@ -1803,43 +1812,43 @@ header .top-bar .nav .login {
   transition-property: opacity;
   transition-duration: 0.5s;
 }
-/* line 95, ../sass/partials/_header.scss */
+/* line 105, ../sass/partials/_header.scss */
 header .top-bar .nav .login a.forgotten-password {
   display: block;
   margin-top: 3.8rem;
   font-size: 1.4rem;
   color: white;
 }
-/* line 103, ../sass/partials/_header.scss */
+/* line 113, ../sass/partials/_header.scss */
 header .top-bar .nav .login.login-open {
   display: block;
 }
-/* line 111, ../sass/partials/_header.scss */
+/* line 121, ../sass/partials/_header.scss */
 header .logo-navigation {
   overflow: hidden;
   padding-top: 1.7rem;
   padding-bottom: 1.5rem;
 }
-/* line 116, ../sass/partials/_header.scss */
+/* line 126, ../sass/partials/_header.scss */
 header .logo-navigation nav {
   float: right;
   margin-top: 4rem;
 }
-/* line 122, ../sass/partials/_header.scss */
+/* line 132, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li {
   display: inline-block;
   margin-right: 4rem;
 }
-/* line 126, ../sass/partials/_header.scss */
+/* line 136, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li a {
   color: #000;
 }
-/* line 130, ../sass/partials/_header.scss */
+/* line 140, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li:last-child {
   margin-right: 0;
 }
 
-/* line 141, ../sass/partials/_header.scss */
+/* line 151, ../sass/partials/_header.scss */
 .input-login, .input-password {
   width: 30.6rem;
   margin-bottom: 1.3rem;
@@ -1848,7 +1857,7 @@ header .logo-navigation nav ul li:last-child {
   border: 1px solid #114a83;
   border-radius: 3px;
 }
-/* line 150, ../sass/partials/_header.scss */
+/* line 160, ../sass/partials/_header.scss */
 .input-login:before, .input-password:before {
   content: '';
   width: 4.8rem;
@@ -1857,17 +1866,17 @@ header .logo-navigation nav ul li:last-child {
   vertical-align: middle;
 }
 
-/* line 160, ../sass/partials/_header.scss */
+/* line 170, ../sass/partials/_header.scss */
 .input-login:before {
   background: #114a83 url(../img/header/ico-login.png) no-repeat center center;
 }
 
-/* line 166, ../sass/partials/_header.scss */
+/* line 176, ../sass/partials/_header.scss */
 .input-password:before {
   background: #114a83 url(../img/header/ico-password.png) no-repeat center center;
 }
 
-/* line 171, ../sass/partials/_header.scss */
+/* line 181, ../sass/partials/_header.scss */
 .input-login input[type="text"], .input-password input[type="password"] {
   margin: 0;
   padding: 0;
@@ -1879,7 +1888,7 @@ header .logo-navigation nav ul li:last-child {
   border: none;
 }
 
-/* line 184, ../sass/partials/_header.scss */
+/* line 194, ../sass/partials/_header.scss */
 input[type="submit"] {
   margin-top: 1.5rem;
   float: right;
@@ -1893,7 +1902,7 @@ input[type="submit"] {
   border-radius: 1px;
   background: #e0363d;
 }
-/* line 198, ../sass/partials/_header.scss */
+/* line 208, ../sass/partials/_header.scss */
 input[type="submit"]:hover {
   background: #e85258;
 }
@@ -2281,11 +2290,13 @@ footer a, footer a:visited {
   position: relative;
   color: white;
   text-align: center;
-  background: url(../img/home/club/club.jpg) no-repeat center center;
-  -webkit-background-size: cover;
+  	/*background: url(../img/home/club/club.jpg) no-repeat center center;
+  	-webkit-background-size: cover;
+    	background-size: cover;*/
+  background: url(../img/home/club/club.jpg) no-repeat center center fixed;
   background-size: cover;
 }
-/* line 120, ../sass/pages/_home.scss */
+/* line 123, ../sass/pages/_home.scss */
 .home-template .club:before {
   position: absolute;
   content: "";
@@ -2296,7 +2307,7 @@ footer a, footer a:visited {
   bottom: 0;
   background: rgba(0, 0, 0, 0.25);
 }
-/* line 132, ../sass/pages/_home.scss */
+/* line 135, ../sass/pages/_home.scss */
 .home-template .club .border {
   position: relative;
   z-index: 2;
@@ -2309,80 +2320,80 @@ footer a, footer a:visited {
   opacity: 0.5;
   background: white;
 }
-/* line 146, ../sass/pages/_home.scss */
+/* line 149, ../sass/pages/_home.scss */
 .home-template .club .subtitle {
   position: relative;
   z-index: 2;
   margin-top: 8rem;
   font-size: 2.4rem;
 }
-/* line 154, ../sass/pages/_home.scss */
+/* line 157, ../sass/pages/_home.scss */
 .home-template .club .title {
   position: relative;
   z-index: 2;
 }
-/* line 158, ../sass/pages/_home.scss */
+/* line 161, ../sass/pages/_home.scss */
 .home-template .club .title:after {
   display: none;
 }
-/* line 164, ../sass/pages/_home.scss */
+/* line 167, ../sass/pages/_home.scss */
 .home-template .club-contents {
   margin-top: 10rem;
   margin-bottom: 10rem;
 }
-/* line 168, ../sass/pages/_home.scss */
+/* line 171, ../sass/pages/_home.scss */
 .home-template .club-contents .image {
   float: left;
   margin-right: 10rem;
 }
-/* line 173, ../sass/pages/_home.scss */
+/* line 176, ../sass/pages/_home.scss */
 .home-template .club-contents .text {
   margin-top: 3rem;
   overflow: hidden;
 }
-/* line 178, ../sass/pages/_home.scss */
+/* line 181, ../sass/pages/_home.scss */
 .home-template .club-contents .btn {
   float: right;
   margin-top: 5rem;
   margin-right: 19.5rem;
 }
-/* line 186, ../sass/pages/_home.scss */
+/* line 189, ../sass/pages/_home.scss */
 .home-template .sales {
   color: white;
 }
-/* line 189, ../sass/pages/_home.scss */
+/* line 192, ../sass/pages/_home.scss */
 .home-template .sales .slider-container {
   position: relative;
 }
-/* line 193, ../sass/pages/_home.scss */
+/* line 196, ../sass/pages/_home.scss */
 .home-template .sales .sales-slider {
   margin-bottom: 10rem;
   padding-bottom: 1.5rem;
 }
-/* line 201, ../sass/pages/_home.scss */
+/* line 204, ../sass/pages/_home.scss */
 .home-template .news {
   padding-top: 4rem;
   text-align: center;
   color: white;
   background: #1e95c9;
 }
-/* line 209, ../sass/pages/_home.scss */
+/* line 212, ../sass/pages/_home.scss */
 .home-template .news .title {
   font-size: 6rem;
 }
-/* line 212, ../sass/pages/_home.scss */
+/* line 215, ../sass/pages/_home.scss */
 .home-template .news .title:after {
   margin-left: auto;
   margin-right: auto;
   background: white;
 }
-/* line 220, ../sass/pages/_home.scss */
+/* line 223, ../sass/pages/_home.scss */
 .home-template .news .container > p {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 226, ../sass/pages/_home.scss */
+/* line 229, ../sass/pages/_home.scss */
 .home-template .news .news-slider {
   position: relative;
   margin-bottom: -4.5rem;
@@ -2391,41 +2402,41 @@ footer a, footer a:visited {
   -moz-box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
 }
-/* line 235, ../sass/pages/_home.scss */
+/* line 238, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide {
   max-height: 27.3rem;
   overflow: hidden;
   background: white;
 }
-/* line 241, ../sass/pages/_home.scss */
+/* line 244, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .image {
   float: left;
 }
-/* line 245, ../sass/pages/_home.scss */
+/* line 248, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content {
   overflow: hidden;
   padding: 3rem;
   text-align: left;
   color: #000;
 }
-/* line 252, ../sass/pages/_home.scss */
+/* line 255, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content .date {
   display: block;
   margin-bottom: 1.5rem;
   color: #1e95c9;
   font-style: italic;
 }
-/* line 259, ../sass/pages/_home.scss */
+/* line 262, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content h3 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
 }
-/* line 268, ../sass/pages/_home.scss */
+/* line 271, ../sass/pages/_home.scss */
 .home-template .news .slick-dots {
   margin-bottom: 2.8rem;
 }
-/* line 270, ../sass/pages/_home.scss */
+/* line 273, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li {
   cursor: pointer;
   display: inline-block;
@@ -2435,58 +2446,58 @@ footer a, footer a:visited {
   background: url(../img/home/news/dot.png) no-repeat center center;
   border: none;
 }
-/* line 280, ../sass/pages/_home.scss */
+/* line 283, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li button {
   display: none;
 }
-/* line 284, ../sass/pages/_home.scss */
+/* line 287, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li:hover, .home-template .news .slick-dots li.slick-active {
   background: url(../img/home/news/dot-active.png) no-repeat center center;
 }
-/* line 292, ../sass/pages/_home.scss */
+/* line 295, ../sass/pages/_home.scss */
 .home-template .our-partners {
   padding-top: 10rem;
   padding-bottom: 3rem;
   text-align: center;
 }
-/* line 297, ../sass/pages/_home.scss */
+/* line 300, ../sass/pages/_home.scss */
 .home-template .our-partners .container {
   position: relative;
 }
-/* line 301, ../sass/pages/_home.scss */
+/* line 304, ../sass/pages/_home.scss */
 .home-template .our-partners .subtitle {
   color: #e0363d;
 }
-/* line 305, ../sass/pages/_home.scss */
+/* line 308, ../sass/pages/_home.scss */
 .home-template .our-partners .title {
   font-size: 6rem;
   color: #1e95c9;
 }
-/* line 309, ../sass/pages/_home.scss */
+/* line 312, ../sass/pages/_home.scss */
 .home-template .our-partners .title:after {
   margin-left: auto;
   margin-right: auto;
   background: #1e95c9;
 }
-/* line 317, ../sass/pages/_home.scss */
+/* line 320, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider {
   width: 83%;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
 }
-/* line 323, ../sass/pages/_home.scss */
+/* line 326, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner {
   display: inline-block;
   width: 25%;
 }
-/* line 327, ../sass/pages/_home.scss */
+/* line 330, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 336, ../sass/pages/_home.scss */
+/* line 339, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow {
   width: 2.2rem;
   height: 4.5rem;
@@ -2498,17 +2509,17 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 349, ../sass/pages/_home.scss */
+/* line 352, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-prev {
   left: 0;
   background: url(../img/home/partners/previous.png) no-repeat center center;
 }
-/* line 354, ../sass/pages/_home.scss */
+/* line 357, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-next {
   right: 0;
   background: url(../img/home/partners/next.png) no-repeat center center;
 }
-/* line 359, ../sass/pages/_home.scss */
+/* line 362, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }

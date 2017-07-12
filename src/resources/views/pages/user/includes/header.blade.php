@@ -5,6 +5,10 @@
     <!-- TOP BAR -->
     <div class="top-bar">
         <div class="container">
+            @if (isset($first_name) && $first_name)
+                <span class="welcome">Bienvenue, {{ $first_name }}</span>
+            @endif
+
             <div class="nav">
                 <nav>
                     @include('wine-supervisor::pages.user.includes.menu')

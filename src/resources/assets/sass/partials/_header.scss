@@ -8,7 +8,15 @@ header {
 
 	.top-bar {
 		background: $light-gray;
-		
+
+		.welcome {
+			display: inline-block;
+			margin-top: 0.7rem;
+			font-size: 1.8rem;
+			font-family: $secondary-font;
+			color: $dark-blue;
+		}
+
 		.nav {
 			position: relative;
 			float: right;
@@ -19,11 +27,13 @@ header {
 				margin-right: 2.5rem;
 				display: inline-block;
 
+				font-family: $secondary-font;
+				color: $gray;
+
 				> a {
 					display: block;
 					padding-bottom: 1rem;
 
-					font-family: $secondary-font;
 					color: $gray;
 				}
 

@@ -113,9 +113,12 @@
 		color: white;
 		text-align: center;
 
-		background: url(../img/home/club/club.jpg) no-repeat center center;
+		/*background: url(../img/home/club/club.jpg) no-repeat center center;
 		-webkit-background-size: cover;
-	  	background-size: cover;
+	  	background-size: cover;*/
+
+		background: url(../img/home/club/club.jpg) no-repeat center center fixed;
+		background-size: cover;
 		
 		&:before {
 			position: absolute;

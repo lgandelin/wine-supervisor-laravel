@@ -15,6 +15,7 @@ class IndexController
             'is_user' => AccountService::isUser(),
             'is_technician' => AccountService::isTechnician(),
             'is_guest' => AccountService::isGuest(),
+            'first_name' => AccountService::getFirstName(),
         ]);
     }
 

@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
+use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
 class AccountController
 {
     public function __construct()
     {
+        view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
         view()->share('is_technician', true);
     }
 
