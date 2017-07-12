@@ -118,7 +118,6 @@ class AccountService
             //Récupération des caves associées
             if ($cellars = CellarRepository::getByTechnician($technician->id)) {
                 foreach ($cellars as $cellar) {
-                    dd($cellar);
                     if ($cellar->subscription_type != Subscription::NO_SUBSCRIPTION) {
                         if (new DateTime() >= new DateTime($cellar->subscription_start_date) && new DateTime() <= new DateTime($cellar->subscription_end_date)) {
                             $isEligible = true;
