@@ -176,17 +176,24 @@
 
     <script>
         $(document).ready(function() {
-           $('#type').change(function() {
-               if ($(this).val() == 1) {
-                   $('#user_signup').show();
-                   $('#technician_signup').hide();
-                   $('.steps .step').show();
-               } else if ($(this).val() == 2) {
-                   $('#user_signup').hide();
-                   $('#technician_signup').show();
-                   $('.steps .step').hide();
-               }
-           });
+
+            //User type
+            $('#type').change(function() {
+                if ($(this).val() == 1) {
+                    $('#user_signup').show();
+                    $('#technician_signup').hide();
+                    $('.steps .step').show();
+                } else if ($(this).val() == 2) {
+                    $('#user_signup').hide();
+                    $('#technician_signup').show();
+                    $('.steps .step').hide();
+                }
+            });
+
+            //Disable copy paste in email field
+            $('#email, #email_confirm').on('cut copy paste', function(e) {
+                e.preventDefault();
+            });
         });
     </script>
 @stop
