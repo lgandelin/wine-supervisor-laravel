@@ -67,7 +67,7 @@ class LoginController extends Controller
                 ]);
             }
 
-            return redirect()->route('guest_index');
+            return redirect()->route('club_premium');
         }
 
         return redirect()->route('user_login')->with([
