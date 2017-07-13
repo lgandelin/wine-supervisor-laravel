@@ -33,6 +33,7 @@
                         <input type="submit" value="{{ trans('wine-supervisor::login.login') }}" />
                         <a class="forgotten-password" href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password') }}</a>
 
+                        <input type="hidden" name="route" @if (isset($next_route) && $next_route)value="{{ $next_route }}"@endif />
                         {!! csrf_field() !!}
                     </form>
                 </div>

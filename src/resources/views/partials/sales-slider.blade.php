@@ -36,7 +36,7 @@
                 </div>
 
                 @if ($is_user || $is_guest)<span class="sale-price">Prix : <span class="value">12€</span></span>@endif
-                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
+                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -62,7 +62,7 @@
                 </div>
 
                 @if ($is_user || $is_guest)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
-                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
+                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -91,7 +91,7 @@
                 </div>
 
                 @if ($is_user || $is_guest)<span class="sale-price">Prix : <span class="value">18€</span></span>@endif
-                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
+                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -125,7 +125,7 @@
                 </div>
 
                 @if ($is_user || $is_guest)<span class="sale-price">Prix : <span class="value">10€</span></span>@endif
-                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
+                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -159,7 +159,7 @@
                 </div>
 
                 @if ($is_user || $is_guest)<span class="sale-price">Prix : <span class="value">13€</span></span>@endif
-                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
+                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ '#' }}@endif" class="button">Commander</a>
             </li>
 
 
@@ -189,7 +189,7 @@
                 </div>
 
                 @if ($is_user || $is_guest)<span class="sale-price">Prix : <span class="value">9€</span></span>@endif
-                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}@else{{ '#' }}@endif" class="button">Commander</a>
+                <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ '#' }}@endif" class="button">Commander</a>
             </li>
         </ul>
     </div>

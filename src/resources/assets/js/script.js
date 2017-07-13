@@ -12,6 +12,8 @@ $(document).ready(function() {
 
 	//SLIDER PARTNERS
 	$('.partners-slider').slick({
+		autoplay: true,
+		autoplaySpeed: 5000,
 		infinite: true,
 		dots: false,
 		slidesToShow: 4,
@@ -38,4 +40,17 @@ $(document).ready(function() {
 
         return false;
     });
+
+	//LOGIN
+	$('.account-icon').on('mouseenter', function() {
+		$('.account .login').show();
+	});
+
+	$('.account .login').on('mouseleave', function(e) {
+		setTimeout(function() {
+			if (!$(e.target).is('input')) {
+				$('.account .login').fadeOut();
+			}
+		}, 300);
+	})
 });

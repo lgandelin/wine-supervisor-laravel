@@ -43,7 +43,7 @@
         <div class="club" id="club-avantage">
             <div class="container">
                 <span class="subtitle">Des vins d'exception grâce au</span>
-                <h2 class="title">Club Avantages</h2>
+                <h2 class="title">Club Avantage</h2>
             </div>
         </div>
         <!-- CLUB -->
@@ -65,7 +65,7 @@
                     </p>
                 </div>
 
-                <a href="{{ route('club_premium') }}" class="btn red-button">Découvrez le Club Avantages</a>
+                <a href="{{ route('club_premium') }}" class="btn red-button">Découvrez le Club Avantage</a>
             </div>
         </div>
 
@@ -127,14 +127,14 @@
 
                 <div class="partners-slider-arrows"></div>
                 <ul class="partners-slider">
-                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" />
-                    <img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" />
+                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
+                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
+                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
+                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
+                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
+                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
+                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
+                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
                 </ul>
             </div>
         </div>

@@ -49,11 +49,8 @@
                 <form action="">
                     <div class="form-group">
                         <label>Vous êtes</label>
-                        <select name="type" id="type">
-                            <option value="-1">Sélectionner</option>
-                            <option value="1">Client de WineSupervisor</option>
-                            <option value="2">Professionnel</option>
-                        </select>
+                        <div class="radio"><input type="radio" name="type" value="1" checked="checked" /> Utilisateur</div>
+                        <div class="radio"><input type="radio" name="type" value="2"> Installateur</div>
                     </div>
                 </form>
 

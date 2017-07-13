@@ -7,12 +7,9 @@
     <div class="club-premium-template">
         @include('wine-supervisor::pages.user.includes.header')
 
-                <!-- BANNER -->
+        <!-- BANNER -->
         <div class="banner">
-            <h1>
-                <span class="subtitle">Aux membres du</span>
-                <span class="title">Club Avantage</span>
-            </h1>
+            <h1><img class="logo-club-premium" src="{{ asset('img/club-premium/logo-club-avantage.png') }}" width="300" height="205" alt="Aux membres du Club Avantage" /></h1>
         </div>
         <!-- BANNER -->
 

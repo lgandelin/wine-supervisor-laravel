@@ -95,7 +95,6 @@ header {
 				top: 4.5rem;
 				position: absolute;
 				padding: 2.5rem;
-				display: none;
 
 				background: $blue;
 
@@ -106,6 +105,7 @@ header {
 					display: block;
 					margin-top: 3.8rem;
 
+					font-family: $main-font;
 					font-size: 1.4rem;
 					color: white;
 				}

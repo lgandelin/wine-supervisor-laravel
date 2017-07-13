@@ -1807,15 +1807,15 @@ header .top-bar .nav .login {
   top: 4.5rem;
   position: absolute;
   padding: 2.5rem;
-  display: none;
   background: #1e95c9;
   transition-property: opacity;
   transition-duration: 0.5s;
 }
-/* line 105, ../sass/partials/_header.scss */
+/* line 104, ../sass/partials/_header.scss */
 header .top-bar .nav .login a.forgotten-password {
   display: block;
   margin-top: 3.8rem;
+  font-family: "Roboto";
   font-size: 1.4rem;
   color: white;
 }
@@ -2489,15 +2489,14 @@ footer a, footer a:visited {
 /* line 326, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner {
   display: inline-block;
-  width: 25%;
 }
-/* line 330, ../sass/pages/_home.scss */
+/* line 329, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 339, ../sass/pages/_home.scss */
+/* line 338, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow {
   width: 2.2rem;
   height: 4.5rem;
@@ -2509,17 +2508,17 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 352, ../sass/pages/_home.scss */
+/* line 351, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-prev {
   left: 0;
   background: url(../img/home/partners/previous.png) no-repeat center center;
 }
-/* line 357, ../sass/pages/_home.scss */
+/* line 356, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-next {
   right: 0;
   background: url(../img/home/partners/next.png) no-repeat center center;
 }
-/* line 362, ../sass/pages/_home.scss */
+/* line 361, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }

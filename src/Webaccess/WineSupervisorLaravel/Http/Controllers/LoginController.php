@@ -15,11 +15,13 @@ class LoginController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
+        view()->share('route', $request->route()->getName());
     }
 
     public function login()
     {
         return view('wine-supervisor::pages.user.auth.login', [
+            'next_route' => $this->request->input('route'),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
         ]);
     }
@@ -39,7 +41,9 @@ class LoginController extends Controller
             Auth::user()->last_connection_date = new DateTime();
             Auth::user()->save();
 
-            return redirect()->route('user_update_account');
+            $route = ($this->request->input('route') && !preg_match('/login/', $this->request->input('route'))) ? $this->request->input('route') : 'user_update_account';
+
+            return redirect()->route($route);
         }
 
         //Technician authentication
@@ -67,7 +71,9 @@ class LoginController extends Controller
                 ]);
             }
 
-            return redirect()->route('club_premium');
+            $route = $this->request->input('route') ? $this->request->input('route') : 'club_premium';
+
+            return redirect()->route($route);
         }
 
         return redirect()->route('user_login')->with([
@@ -84,7 +90,7 @@ class LoginController extends Controller
         Auth::guard('technicians')->logout();
         Auth::guard('guests')->logout();
 
-        return redirect()->route('user_login');
+        return redirect()->route('index');
     }
 
     /**
