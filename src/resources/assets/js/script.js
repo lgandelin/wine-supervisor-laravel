@@ -48,7 +48,7 @@ $(document).ready(function() {
 
 	$('.account .login').on('mouseleave', function(e) {
 		setTimeout(function() {
-			if (!$(e.target).is('input')) {
+			if (!$(e.target).is('input') && !$('.login:hover').length != 0) {
 				$('.account .login').fadeOut();
 			}
 		}, 300);

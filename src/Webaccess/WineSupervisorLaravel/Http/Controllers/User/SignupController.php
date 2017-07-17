@@ -23,7 +23,7 @@ class SignupController
             'last_name' => isset($session_user) && $session_user->last_name ? $session_user->last_name : old('last_name'),
             'first_name' => isset($session_user) && $session_user->first_name ? $session_user->first_name : old('first_name'),
             'email' => isset($session_user) && $session_user->email ? $session_user->email : old('email'),
-            'email_confirm' => old('email_confirm'),
+            //'email_confirm' => old('email_confirm'),
             'phone' => isset($session_user) && $session_user->phone ? $session_user->phone : old('phone'),
             'login' => isset($session_user) && $session_user->login? $session_user->login : old('login'),
             'opt_in' => isset($session_user) && $session_user->opt_in? $session_user->opt_in : old('opt_in'),
@@ -36,10 +36,10 @@ class SignupController
 
     public function signup_handler(Request $request)
     {
-        if ($request->get('email') != $request->get('email_confirm')) {
+        /*if ($request->get('email') != $request->get('email_confirm')) {
             $request->session()->flash('error', trans('wine-supervisor::signup.user_email_confirmation'));
             return redirect()->back()->withInput();
-        }
+        }*/
 
         if (!UserRepository::checkLogin(null, $request->get('login'))) {
             $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
@@ -125,11 +125,13 @@ class SignupController
                     'id_ws' => $request->get('id_ws'),
                     'technician_id' => $request->get('technician_id'),
                     'name' => $request->get('name'),
-                    'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE DIFFERENT SUBSCRIPTION TYPES
+                    'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION,
                     'serial_number' => $request->get('serial_number'),
                     'address' => $request->get('address'),
+                    'address2' => $request->get('address2'),
                     'zipcode' => $request->get('zipcode'),
-                    'city' => $request->get('city')
+                    'city' => $request->get('city'),
+                    'country' => $request->get('country')
                 ]);
 
                 list($success, $error) = CellarRepository::create(
@@ -137,11 +139,13 @@ class SignupController
                     $request->get('id_ws'),
                     $request->get('technician_id'),
                     $request->get('name'),
-                    Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE DIFFERENT SUBSCRIPTION TYPES
+                    Subscription::DEFAULT_SUBSCRIPTION,
                     $request->get('serial_number'),
                     $request->get('address'),
+                    $request->get('address2'),
                     $request->get('zipcode'),
-                    $request->get('city')
+                    $request->get('city'),
+                    $request->get('country')
                 );
 
                 if (!$success) {
@@ -185,8 +189,10 @@ class SignupController
             'email' => $request->get('email'),
             'login' => $request->get('login'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
-            'city' => $request->get('city')
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]);
 
         list($success, $error) = TechnicianRepository::create(
@@ -197,8 +203,10 @@ class SignupController
             $request->get('login'),
             $request->get('password'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {

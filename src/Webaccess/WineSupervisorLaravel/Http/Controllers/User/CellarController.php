@@ -47,8 +47,10 @@ class CellarController extends UserController
             'name' => $request->get('name'),
             'serial_number' => $request->get('serial_number'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
             'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]);
 
         list($success, $error) = CellarRepository::create(
@@ -56,11 +58,13 @@ class CellarController extends UserController
             $request->get('id_ws'),
             $request->get('technician_id'),
             $request->get('name'),
-            Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE OTHER SUBSCRIPTION TYPES
+            Subscription::DEFAULT_SUBSCRIPTION,
             $request->get('serial_number'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {
@@ -112,8 +116,10 @@ class CellarController extends UserController
             'subscription_type' => $request->get('subscription_type'),
             'serial_number' => $request->get('serial_number'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
-            'city' => $request->get('city')
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]);
 
         list($success, $error) = CellarRepository::update(
@@ -125,8 +131,10 @@ class CellarController extends UserController
             $request->get('subscription_type'),
             $request->get('serial_number'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {

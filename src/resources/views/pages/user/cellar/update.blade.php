@@ -85,6 +85,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="address2">Complément d'adresse</label>
+                            <input type="text" name="address2" id="address2" value="{{ $cellar->address2 }}"/>
+                        </div>
+
+                        <div class="form-group">
                             <label for="zipcode">Code postal</label>
                             <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}"/>
                         </div>
@@ -92,6 +97,15 @@
                         <div class="form-group">
                             <label for="city">Ville</label>
                             <input type="text" name="city" id="city" value="{{ $cellar->city }}"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Pays</label>
+                            <select name="country" id="country">
+                                @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                    <option value="{{ $key }}" @if ($cellar->country == $key)selected="selected"@endif>{{ $label }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="submit-container">

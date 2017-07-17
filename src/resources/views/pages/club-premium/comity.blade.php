@@ -9,7 +9,7 @@
 
         <!-- BANNER -->
         <div class="banner">
-            <h1><img class="logo-club-premium" src="{{ asset('img/club-premium/logo-club-avantage.png') }}" width="300" height="205" alt="Aux membres du Club Avantage" /></h1>
+            <h1><img class="logo-club-premium" src="{{ asset('img/club-premium/logo-club-avantage.png') }}" width="350" alt="Aux membres du Club Avantage" /></h1>
         </div>
         <!-- BANNER -->
 

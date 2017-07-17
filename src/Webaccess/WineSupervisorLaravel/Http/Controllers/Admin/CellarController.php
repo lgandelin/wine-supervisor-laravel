@@ -47,8 +47,10 @@ class CellarController extends AdminController
             'subscription_type' => $request->get('subscription_type'),
             'serial_number' => $request->get('serial_number'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
-            'city' => $request->get('city')
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
         ]);
 
         list ($success, $error) = CellarRepository::update(
@@ -60,8 +62,10 @@ class CellarController extends AdminController
             $request->get('subscription_type'),
             $request->get('serial_number'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {

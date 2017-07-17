@@ -68,19 +68,19 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="text" name="phone" id="phone" value="{{ $phone }}" required />
+                    </div>
+
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" name="email" id="email" value="{{ $email }}" required />
                     </div>
 
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="email_confirm">Confirmation email</label>
                         <input type="text" name="email_confirm" id="email_confirm" value="{{ $email }}"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="text" name="phone" id="phone" value="{{ $phone }}" required />
-                    </div>
+                    </div>-->
 
                     <div class="form-group">
                         <label for="login">Login</label>
@@ -146,6 +146,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="address2">Complément d'adresse</label>
+                        <input type="text" name="address2" id="address2" value="{{ old('address2') }}" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="zipcode">Code postal</label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
                     </div>
@@ -153,6 +158,15 @@
                     <div class="form-group">
                         <label for="city">Ville</label>
                         <input type="text" name="city" id="city" value="{{ old('city') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Pays</label>
+                        <select name="country" id="country">
+                            @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                <option value="{{ $key }}" @if (old('country') == $key)selected="selected"@endif @if (!old('country') && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="submit-container">
@@ -175,7 +189,7 @@
         $(document).ready(function() {
 
             //User type
-            $('#type').change(function() {
+            $('input[name="type"]').change(function() {
                 if ($(this).val() == 1) {
                     $('#user_signup').show();
                     $('#technician_signup').hide();
@@ -188,9 +202,9 @@
             });
 
             //Disable copy paste in email field
-            $('#email, #email_confirm').on('cut copy paste', function(e) {
+            /*$('#email, #email_confirm').on('cut copy paste', function(e) {
                 e.preventDefault();
-            });
+            });*/
         });
     </script>
 @stop

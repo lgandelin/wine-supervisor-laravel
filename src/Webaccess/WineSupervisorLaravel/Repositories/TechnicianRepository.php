@@ -33,11 +33,13 @@ class TechnicianRepository extends BaseRepository
      * @param $login
      * @param $password
      * @param $address
+     * @param $address2
      * @param $zipcode
      * @param $city
+     * @param $country
      * @return bool
      */
-    public static function create($company, $registration, $phone, $email, $login, $password, $address, $zipcode, $city)
+    public static function create($company, $registration, $phone, $email, $login, $password, $address, $address2, $zipcode, $city, $country)
     {
         //TODO : CALL CDO
 
@@ -50,8 +52,10 @@ class TechnicianRepository extends BaseRepository
         $technician->email = $email;
         $technician->password = Hash::make($password);
         $technician->address = $address;
+        $technician->address2 = $address2;
         $technician->zipcode = $zipcode;
         $technician->city = $city;
+        $technician->country = $country;
         $technician->status = Technician::STATUS_DISABLED;
 
         if (!$technician->save()) {
@@ -90,11 +94,13 @@ class TechnicianRepository extends BaseRepository
      * @param $login
      * @param $password
      * @param $address
+     * @param $address2
      * @param $zipcode
      * @param $city
+     * @param $country
      * @return bool
      */
-    public static function update($technicianID, $company, $registration, $phone, $email, $login, $password, $address, $zipcode, $city)
+    public static function update($technicianID, $company, $registration, $phone, $email, $login, $password, $address, $address2, $zipcode, $city, $country)
     {
         //TODO : CALL CDO
 
@@ -106,8 +112,10 @@ class TechnicianRepository extends BaseRepository
             $technician->email = $email;
             if ($password !== null) $technician->password = Hash::make($password);
             $technician->address = $address;
+            $technician->address2 = $address2;
             $technician->zipcode = $zipcode;
             $technician->city = $city;
+            $technician->country = $country;
 
             if (!$technician->save()) {
                 return self::error(trans('wine-supervisor::technician.update_database_error'));
