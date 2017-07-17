@@ -184,7 +184,7 @@ class CellierDomesticusAPI
         }
     }
 
-    public function login_user(User $user)
+    public function login_user($user)
     {
         $requestData = [
             'headers' => [
