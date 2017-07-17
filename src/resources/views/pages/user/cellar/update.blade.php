@@ -43,7 +43,7 @@
 
                 <!-- LEFT COLUMN -->
                 <div class="left-column">
-                    <h2>Adresse Mak</h2>
+                    <h2>Identifiant WineSupervisor</h2>
                     <span class="mak">{{ $cellar->id_ws }}</span>
 
                     <h2>N° de série de l'appareil</h2>
@@ -74,8 +74,7 @@
                             <select name="subscription_type" id="subscription_type">
                                 <option value="-1">Sélectionner</option>
                                 <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION }}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)selected="selected"@endif>Standard</option>
-                                <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>Premium</option>
-                                <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION)selected="selected"@endif>Gratuit</option>
+                                {{--<option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>Premium</option>--}}
                             </select>
                         </div>
 

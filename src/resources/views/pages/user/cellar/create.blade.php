@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="id_ws">Adresse MAK</label>
+                    <label for="id_ws">Identifiant WineSupervisor</label>
                     <input type="text" name="id_ws" id="id_ws" value="{{ old('id_ws') }}" />
                 </div>
 
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Adresse</label>
+                    <label for="address">Adresse de la cave</label>
                     <input type="text" name="address" id="address" value="{{ old('address') }}"/>
                 </div>
 
@@ -101,7 +101,7 @@
         </div>
         <!-- PAGE CONTENT -->
 
-        <a class="button red-button back-button" href="{{ route('user_cellar_list') }}">Retour</a>
+        <a class="button red-button back-button" href="{{ route('user_update_account') }}">Retour</a>
 
     </div>
 @stop

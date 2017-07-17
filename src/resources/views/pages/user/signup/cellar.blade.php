@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="id_ws">Adresse Mak</label>
+                        <label for="id_ws">Identifiant WineSupervisor</label>
                         <input type="text" name="id_ws" id="id_ws" value="{{ old('id_ws') }}" />
                     </div>
 
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Adresse</label>
+                        <label for="address">Adresse de la cave</label>
                         <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>
 

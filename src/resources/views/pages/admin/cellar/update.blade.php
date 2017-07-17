@@ -37,7 +37,7 @@
                     <h2>Infos cave</h2>
 
                     <div class="form-group">
-                        <label for="id_ws">Adresse Mak</label>
+                        <label for="id_ws">Identifiant WineSupervisor</label>
                         <input type="text" name="id_ws" id="id_ws" value="{{ $cellar->id_ws }}" disabled />
                     </div>
 

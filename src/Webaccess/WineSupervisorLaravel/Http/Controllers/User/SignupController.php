@@ -166,7 +166,7 @@ class SignupController
 
                     //Log user in and redirect
                     if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
-                        return redirect()->route('user_cellar_list');
+                        return redirect()->route('user_update_account');
                     }
                 }
             }

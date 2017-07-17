@@ -86,7 +86,7 @@ class CellarController extends UserController
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 
     public function update(Request $request, $cellarID)
@@ -156,7 +156,7 @@ class CellarController extends UserController
             'success' => true
         ]);
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 
     public function sav_handler(Request $request)
@@ -197,7 +197,7 @@ class CellarController extends UserController
             'success' => true
         ]);
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 
     public function delete_handler(Request $request)
@@ -232,6 +232,6 @@ class CellarController extends UserController
             'success' => true
         ]);
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 }
