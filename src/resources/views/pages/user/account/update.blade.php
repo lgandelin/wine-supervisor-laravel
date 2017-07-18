@@ -11,8 +11,9 @@
                 <!-- BANNER -->
         <div class="banner">
             <h1>
-                <span class="subtitle">Mes caves</span>
-                <span class="title">Accessibles partout</span>
+                {{--<span class="subtitle">Mes caves</span>
+                <span class="title">Accessibles partout</span>--}}
+                <span class="title">Mon compte</span>
             </h1>
         </div>
         <!-- BANNER -->

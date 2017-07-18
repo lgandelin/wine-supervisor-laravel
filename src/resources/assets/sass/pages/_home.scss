@@ -64,13 +64,14 @@
 		}
 
 		.title {
+			margin-bottom: 2rem;
 			display: inline-block;
 
 			font-size: 6rem;
 			color: $blue;
 
 			&:after {
-				background: $blue;
+				display: none;
 			}
 		}
 
@@ -99,6 +100,13 @@
 			.btn-supervision, .btn-discover {
 				float:left;
 				margin-right: 5rem;
+			}
+			
+			.btn-supervision {
+				background: $blue;
+				&:hover {
+					opacity: 0.8;
+				}
 			}
 		}
 	}
