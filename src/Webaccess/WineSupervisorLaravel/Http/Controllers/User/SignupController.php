@@ -36,10 +36,10 @@ class SignupController
 
     public function signup_handler(Request $request)
     {
-        /*if ($request->get('email') != $request->get('email_confirm')) {
-            $request->session()->flash('error', trans('wine-supervisor::signup.user_email_confirmation'));
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
             return redirect()->back()->withInput();
-        }*/
+        }
 
         if (!UserRepository::checkLogin(null, $request->get('login'))) {
             $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
@@ -53,7 +53,7 @@ class SignupController
             'phone' => $request->get('phone'),
             'login' => $request->get('login'),
             'password' => $request->get('password'),
-            'opt_in' => $request->get('opt_in') === 'on' ? true : false,
+            'opt_in' => $request->get('opt_in') == 1 ? true : false,
         ]));
 
         return redirect()->route('user_signup_cellar');

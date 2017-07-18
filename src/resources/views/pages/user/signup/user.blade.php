@@ -93,6 +93,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="password_confirm">Confirmation mot de passe</label>
+                        <input type="password" name="password_confirm" id="password_confirm" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="opt_in" style="display: inline-block; margin-right: 1rem; vertical-align: middle;">Recevoir la Newsletter du Club</label><i>(modifiable dans votre espace utilisateur)</i><br>
                         <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in === true || $opt_in === null)checked="checked"@endif /> Oui</div>
                         <div class="radio"><input type="radio" name="opt_in" value="0" @if ($opt_in === false)checked="checked"@endif /> Non</div>
@@ -138,6 +143,11 @@
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirm">Confirmation mot de passe</label>
+                        <input type="password" name="password_confirm" id="password_confirm" />
                     </div>
 
                     <div class="form-group">
