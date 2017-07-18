@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <input disabled style="float:left; width: 50%;" type="text" name="image" id="image" value="{{ $content->image }}" />
+                        <input style="float:left; width: 50%;" type="text" name="image" id="image" value="{{ $content->image }}" />
 
                         @if (isset($content->image))
                             <img style="float:right; margin-left: 10%; width: 40%; height: auto" class="thumbnail" src="{{ asset($content->image) }}" />

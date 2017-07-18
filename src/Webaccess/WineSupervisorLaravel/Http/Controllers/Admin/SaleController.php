@@ -62,7 +62,7 @@ class SaleController extends AdminController
             $request->get('title'),
             $request->get('description'),
             $request->get('image'),
-            $wines,
+            json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         )) {

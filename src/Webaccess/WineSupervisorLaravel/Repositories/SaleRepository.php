@@ -100,7 +100,15 @@ class SaleRepository extends BaseRepository
      */
     public static function getSalesHistory()
     {
-        return Sale::orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
+        $now = new DateTime();
+
+        $sales = Sale::where('end_date', '<', $now)->orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
+
+        foreach ($sales as $sale) {
+            $sale->wines = json_decode($sale->wines);
+        }
+
+        return $sales;
     }
 
     public static function getCurrentSales()
@@ -111,6 +119,7 @@ class SaleRepository extends BaseRepository
             ->where('end_date', '>=', $now)
             ->orderBy('start_date', 'desc')
             ->get();
+
         foreach ($sales as $sale) {
             $sale->wines = json_decode($sale->wines);
         }

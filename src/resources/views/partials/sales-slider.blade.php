@@ -1,8 +1,8 @@
 @if (isset($sale))
-    <div class="container" @if (isset($display) && $display == 'none')style="display:none"@endif>
+    <div class="container @if ($index == 1)first @endif ">
         <div class="slider-container">
-            <div class="sales-slider-arrows"></div>
-            <ul class="sales-slider" data-slider="@if (isset($index)){{ $index }}@else{{ '1' }}@endif">
+            <div class="sales-slider-arrows sales-slider-arrows-@if (isset($index)){{ $index }}@else{{ '1' }}@endif"></div>
+            <ul class="sales-slider sales-slider-@if (isset($index)){{ $index }}@else{{ '1' }}@endif" data-slider="@if (isset($index)){{ $index }}@else{{ '1' }}@endif">
 
                 @if (isset($sale->image))
                     <li>

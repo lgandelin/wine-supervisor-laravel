@@ -57,69 +57,65 @@
 
                     <div class="form-group">
                         <label for="image">Image</label>
-                        <input disabled style="float:left; width: 50%" type="text" name="image" id="image" value="{{ $sale->image }}" />
+                        <input style="float:left; width: 50%" type="text" name="image" id="image" value="{{ $sale->image }}" />
 
                         @if ($sale->image)
                             <img style="float:left; width: 40%; margin-left: 10%;" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }}" />
-                        @else
-                            Aucune image actuellement
                         @endif
                     </div>
 
-                    <div class="form-group">
-                        @for($i = 0; $i < 10; $i++)
-                            <section style="border-bottom: 1px solid #333; margin-bottom: 3rem; padding-bottom: 1rem">
-                                <h3 style="font-weight: bold; margin-bottom: 1rem;">Vin n°{{ $i+1 }}</h3>
-                                <div class="form-group">
-                                    <label for="name[]">Nom</label>
-                                    <input type="text" name="wine_name[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->name)){{ $sale->wines[$i]->name }}@endif" />
-                                </div>
+                    @for($i = 0; $i < 10; $i++)
+                        <section style="clear: both; border-bottom: 1px solid #333; margin-bottom: 3rem; padding-bottom: 1rem; margin-top: 10rem;">
+                            <h3 style="font-weight: bold; margin-bottom: 1rem;">Vin n°{{ $i+1 }}</h3>
+                            <div class="form-group">
+                                <label for="name[]">Nom</label>
+                                <input type="text" name="wine_name[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->name)){{ $sale->wines[$i]->name }}@endif" />
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="variety[]">Cépages</label>
-                                    <input type="text" name="wine_variety[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->variety)){{ $sale->wines[$i]->variety }}@endif" />
-                                </div>
+                            <div class="form-group">
+                                <label for="variety[]">Cépages</label>
+                                <input type="text" name="wine_variety[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->variety)){{ $sale->wines[$i]->variety }}@endif" />
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="text[]">Texte</label>
-                                    <textarea class="editor" name="wine_text[]" id="text_{{ $i }}">@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->text)){{ $sale->wines[$i]->text }}@endif</textarea>
-                                </div>
+                            <div class="form-group">
+                                <label for="text[]">Texte</label>
+                                <textarea class="editor" name="wine_text[]" id="text_{{ $i }}">@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->text)){{ $sale->wines[$i]->text }}@endif</textarea>
+                            </div>
 
-                                <div class="form-group" style="overflow: hidden;">
-                                    <label for="image[]">Image de fond</label>
-                                    <input disabled style="float:left; width: 50%" type="text" name="wine_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image)){{ $sale->wines[$i]->image }}@endif" />
+                            <div class="form-group" style="overflow: hidden;">
+                                <label for="image[]">Image de fond</label>
+                                <input style="float:left; width: 50%" type="text" name="wine_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image)){{ $sale->wines[$i]->image }}@endif" />
 
-                                    @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image))
-                                        <img style="float:left; margin-left: 10%; width: 40%" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->image) }}" />
-                                    @endif
-                                </div>
+                                @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image))
+                                    <img style="float:left; margin-left: 10%; width: 40%" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->image) }}" />
+                                @endif
+                            </div>
 
-                                <div class="form-group" style="overflow: hidden;">
-                                    <label for="bottle_image[]">Image de la bouteille</label>
-                                    <input disabled style="float:left; width: 50%" type="text" name="wine_bottle_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image)){{ $sale->wines[$i]->bottle_image }}@endif" />
+                            <div class="form-group" style="overflow: hidden;">
+                                <label for="bottle_image[]">Image de la bouteille</label>
+                                <input style="float:left; width: 50%" type="text" name="wine_bottle_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image)){{ $sale->wines[$i]->bottle_image }}@endif" />
 
-                                    @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image))
-                                        <img style="float:right; margin-left: 10%; width: 75px; height: auto" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->bottle_image) }}" />
-                                    @endif
-                                </div>
+                                @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image))
+                                    <img style="float:right; margin-left: 10%; width: 75px; height: auto" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->bottle_image) }}" />
+                                @endif
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="standard_price[]">Prix standard</label>
-                                    <input type="text" name="wine_standard_price[]" placeholder="ex: 12.5" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->standard_price)){{ $sale->wines[$i]->standard_price }}@endif" />
-                                </div>
+                            <div class="form-group">
+                                <label for="standard_price[]">Prix standard</label>
+                                <input type="text" name="wine_standard_price[]" placeholder="ex: 12.5" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->standard_price)){{ $sale->wines[$i]->standard_price }}@endif" />
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="club_premium_price[]">Prix Club Avantage</label>
-                                    <input type="text" name="wine_club_premium_price[]" placeholder="ex: 8.5" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->club_premium_price)){{ $sale->wines[$i]->club_premium_price }}@endif" />
-                                </div>
+                            <div class="form-group">
+                                <label for="club_premium_price[]">Prix Club Avantage</label>
+                                <input type="text" name="wine_club_premium_price[]" placeholder="ex: 8.5" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->club_premium_price)){{ $sale->wines[$i]->club_premium_price }}@endif" />
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="link[]">Lien de commande</label>
-                                    <input type="text" name="wine_link[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->link)){{ $sale->wines[$i]->link }}@endif" />
-                                </div>
-                            </section>
-                        @endfor
-                    </div>
+                            <div class="form-group">
+                                <label for="link[]">Lien de commande</label>
+                                <input type="text" name="wine_link[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->link)){{ $sale->wines[$i]->link }}@endif" />
+                            </div>
+                        </section>
+                    @endfor
 
                     <div class="submit-container">
                         <input type="submit" value="Valider" />
