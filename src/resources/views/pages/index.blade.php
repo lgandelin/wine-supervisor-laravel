@@ -71,24 +71,19 @@
 
         <!-- SALES -->
         <div class="sales">
-            @include('wine-supervisor::partials.sales-slider')
+
+            @foreach ($sales as $i => $sale)
+                @include('wine-supervisor::partials.sales-slider', ['sale' => $sale, 'index' => $i, 'display' => ($i != 0) ? 'none' : 'block'])
+            @endforeach
 
             <div class="container">
                 <ul class="sales-navigation">
-                    <li data-slider="1" class="active">
-                        <span class="sale-background"><img src="{{ asset('img/sales/1/0/background.jpg') }}" alt="En cours" /></span>
-                        <span class="sale-name">En cours</span>
-                    </li>
-
-                    <!--<li data-slider="2">
-                        <span class="sale-background"><img src="img/home/sales/2.jpg" alt="Sale 2" /></span>
-                        <span class="sale-name">06 Juin - 21 Juin</span>
-                    </li>
-
-                    <li data-slider="3">
-                        <span class="sale-background"><img src="img/home/sales/3.jpg" alt="Sale 3" /></span>
-                        <span class="sale-name">12 Juillet - 26 Juillet</span>
-                    </li>-->
+                    @foreach ($sales as $i => $sale)
+                        <li data-slider="{{ $i }}" @if ($i == 0)class="active"@endif>
+                            <span class="sale-background"><img src="{{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }}" alt="En cours" /></span>
+                            <span class="sale-name">En cours</span>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

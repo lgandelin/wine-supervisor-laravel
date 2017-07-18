@@ -33,11 +33,36 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
+        $names = $request->get('wine_name');
+        $varieties = $request->get('wine_variety');
+        $texts = $request->get('wine_text');
+        $images = $request->get('wine_image');
+        $bottle_images = $request->get('wine_bottle_image');
+        $links = $request->get('wine_link');
+        $standard_prices = $request->get('wine_standard_price');
+        $club_premium_prices = $request->get('wine_club_premium_price');
+
+        $wines = [];
+        for ($i = 0; $i < 10; $i++) {
+            if (isset($names[$i])) {
+                $wines[] = [
+                    'name' => $names[$i],
+                    'variety' => isset($varieties[$i]) ? $varieties[$i] : '',
+                    'text' => isset($texts[$i]) ? $texts[$i] : '',
+                    'image' => isset($images[$i]) ? $images[$i] : '',
+                    'bottle_image' => isset($bottle_images[$i]) ? $bottle_images[$i] : '',
+                    'link' => isset($links[$i]) ? $links[$i] : '',
+                    'standard_price' => isset($standard_prices[$i]) ? $standard_prices[$i] : '',
+                    'club_premium_price' => isset($club_premium_prices[$i]) ? $club_premium_prices[$i] : '',
+                ];
+            }
+        }
+
         if (SaleRepository::create(
             $request->get('title'),
             $request->get('description'),
             $request->get('image'),
-            $request->get('link'),
+            $wines,
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         )) {
@@ -65,12 +90,37 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
+        $names = $request->get('wine_name');
+        $varieties = $request->get('wine_variety');
+        $texts = $request->get('wine_text');
+        $images = $request->get('wine_image');
+        $bottle_images = $request->get('wine_bottle_image');
+        $links = $request->get('wine_link');
+        $standard_prices = $request->get('wine_standard_price');
+        $club_premium_prices = $request->get('wine_club_premium_price');
+
+        $wines = [];
+        for ($i = 0; $i < 10; $i++) {
+            if (isset($names[$i])) {
+                $wines[] = [
+                    'name' => $names[$i],
+                    'variety' => isset($varieties[$i]) ? $varieties[$i] : '',
+                    'text' => isset($texts[$i]) ? $texts[$i] : '',
+                    'image' => isset($images[$i]) ? $images[$i] : '',
+                    'bottle_image' => isset($bottle_images[$i]) ? $bottle_images[$i] : '',
+                    'link' => isset($links[$i]) ? $links[$i] : '',
+                    'standard_price' => isset($standard_prices[$i]) ? $standard_prices[$i] : '',
+                    'club_premium_price' => isset($club_premium_prices[$i]) ? $club_premium_prices[$i] : '',
+                ];
+            }
+        }
+
         if (SaleRepository::update(
             $request->get('sale_id'),
             $request->get('title'),
             $request->get('description'),
             $request->get('image'),
-            $request->get('link'),
+            json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         )) {

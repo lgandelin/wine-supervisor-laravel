@@ -22,7 +22,7 @@ class Sale extends Model
         'jury_note',
         'jury_opinion',
         'description',
-        'link',
+        'image',
         'start_date',
         'end_date'
     ];

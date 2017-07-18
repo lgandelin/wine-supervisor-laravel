@@ -82,11 +82,25 @@
 					z-index: 5;
 					position: absolute;
 					bottom: 11rem;
-					right: 8rem;
+					right: 6rem;
 
-					.value {
+					text-align: center;
+
+					.club_premium_price_label {
+						display: block;
+						margin-bottom: 0.5rem;
+						text-transform: uppercase;
+						font-style: italic;
+						font-size: 1.2rem;
+					}
+
+					.prices {
 						font-size: 2.5rem;
 						font-weight: 700;
+					}
+
+					.standard {
+						text-decoration: line-through;
 					}
 				}
 

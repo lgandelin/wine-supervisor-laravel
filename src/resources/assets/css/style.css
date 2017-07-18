@@ -2052,14 +2052,27 @@ footer a, footer a:visited {
   z-index: 5;
   position: absolute;
   bottom: 11rem;
-  right: 8rem;
+  right: 6rem;
+  text-align: center;
 }
-/* line 87, ../sass/partials/_sales-slider.scss */
-.sales .slider-container .sales-slider .slick-slide .sale-price .value {
+/* line 89, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .sale-price .club_premium_price_label {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+/* line 97, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .sale-price .prices {
   font-size: 2.5rem;
   font-weight: 700;
 }
-/* line 93, ../sass/partials/_sales-slider.scss */
+/* line 102, ../sass/partials/_sales-slider.scss */
+.sales .slider-container .sales-slider .slick-slide .sale-price .standard {
+  text-decoration: line-through;
+}
+/* line 107, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .button {
   z-index: 5;
   position: absolute;
@@ -2069,11 +2082,11 @@ footer a, footer a:visited {
   border: 2px solid white;
   color: white;
 }
-/* line 103, ../sass/partials/_sales-slider.scss */
+/* line 117, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider .slick-slide .button:hover {
   color: black;
 }
-/* line 111, ../sass/partials/_sales-slider.scss */
+/* line 125, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow {
   position: absolute;
   width: 2.7rem;
@@ -2085,27 +2098,27 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 124, ../sass/partials/_sales-slider.scss */
+/* line 138, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow.slick-prev {
   left: 3rem;
   background: url(../img/home/sales/prev.png) no-repeat center center;
 }
-/* line 129, ../sass/partials/_sales-slider.scss */
+/* line 143, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow.slick-next {
   right: 3rem;
   background: url(../img/home/sales/next.png) no-repeat center center;
 }
-/* line 134, ../sass/partials/_sales-slider.scss */
+/* line 148, ../sass/partials/_sales-slider.scss */
 .sales .slider-container .sales-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }
 
-/* line 142, ../sass/partials/_sales-slider.scss */
+/* line 156, ../sass/partials/_sales-slider.scss */
 .sales-navigation {
   overflow: hidden;
   margin-bottom: 7.3rem;
 }
-/* line 146, ../sass/partials/_sales-slider.scss */
+/* line 160, ../sass/partials/_sales-slider.scss */
 .sales-navigation li {
   float: left;
   margin-right: 3rem;
@@ -2119,7 +2132,7 @@ footer a, footer a:visited {
   text-transform: uppercase;
   cursor: pointer;
 }
-/* line 160, ../sass/partials/_sales-slider.scss */
+/* line 174, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:before {
   content: "";
   display: block;
@@ -2131,25 +2144,25 @@ footer a, footer a:visited {
   top: 0.75rem;
   border: 1px solid #eee;
 }
-/* line 173, ../sass/partials/_sales-slider.scss */
+/* line 187, ../sass/partials/_sales-slider.scss */
 .sales-navigation li.active {
   opacity: 1;
 }
-/* line 177, ../sass/partials/_sales-slider.scss */
+/* line 191, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:hover {
   opacity: 1;
 }
-/* line 181, ../sass/partials/_sales-slider.scss */
+/* line 195, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background {
   position: absolute;
   z-index: 1;
 }
-/* line 182, ../sass/partials/_sales-slider.scss */
+/* line 196, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background img {
   width: 100%;
   height: auto;
 }
-/* line 190, ../sass/partials/_sales-slider.scss */
+/* line 204, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-name {
   padding-top: 7rem;
   display: block;

@@ -30,7 +30,9 @@
 
             <!-- SALES -->
             <div class="sales">
-                @include('wine-supervisor::partials.sales-slider')
+                @foreach ($sales as $i => $sale)
+                    @include('wine-supervisor::partials.sales-slider', ['sale' => $sale, 'index' => $i, 'display' => ($i != 0) ? 'none' : 'block'])
+                @endforeach
             </div>
             <!-- SALES -->
 

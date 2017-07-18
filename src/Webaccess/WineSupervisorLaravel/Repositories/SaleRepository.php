@@ -14,7 +14,10 @@ class SaleRepository extends BaseRepository
      */
     public static function getByID($saleID)
     {
-        return Sale::find($saleID);
+        $sale = Sale::find($saleID);
+        $sale->wines = json_decode($sale->wines);
+
+        return $sale;
     }
 
     /**
@@ -22,26 +25,31 @@ class SaleRepository extends BaseRepository
      */
     public static function getAll()
     {
-        return Sale::orderBy('created_at', 'desc')->get();
+        $sales = Sale::orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
+        foreach ($sales as $sale) {
+            $sale->wines = json_decode($sale->wines);
+        }
+
+        return $sales;
     }
 
     /**
      * @param $title
      * @param $description
      * @param $image
-     * @param $link
+     * @param $wines
      * @param $startDate
      * @param $endDate
      * @return bool
      */
-    public static function create($title, $description, $image, $link, $startDate, $endDate)
+    public static function create($title, $description, $image, $wines, $startDate, $endDate)
     {
         $sale = new Sale();
         $sale->id = Uuid::uuid4()->toString();
         $sale->title = $title;
         $sale->description = $description;
         $sale->image = $image;
-        $sale->link = $link;
+        $sale->wines = $wines;
         $sale->start_date = $startDate;
         $sale->end_date = $endDate;
 
@@ -53,18 +61,18 @@ class SaleRepository extends BaseRepository
      * @param $title
      * @param $description
      * @param $image
-     * @param $link
+     * @param $wines
      * @param $startDate
      * @param $endDate
      * @return bool
      */
-    public static function update($saleID, $title, $description, $image, $link, $startDate, $endDate)
+    public static function update($saleID, $title, $description, $image, $wines, $startDate, $endDate)
     {
         if ($sale = Sale::find($saleID)) {
             $sale->title = $title;
             $sale->description = $description;
             $sale->image = $image;
-            $sale->link = $link;
+            $sale->wines = $wines;
             $sale->start_date = $startDate;
             $sale->end_date = $endDate;
 
@@ -90,20 +98,23 @@ class SaleRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public static function getCurrentSales()
-    {
-        $now = new DateTime();
-        return Sale::where('start_date', '<=', $now)
-            ->where('end_date', '>=', $now)
-            ->orderBy('start_date', 'desc')
-            ->get();
-    }
-
-    /**
-     * @return mixed
-     */
     public static function getSalesHistory()
     {
         return Sale::orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
+    }
+
+    public static function getCurrentSales()
+    {
+        $now = new DateTime();
+
+        $sales = Sale::where('start_date', '<=', $now)
+            ->where('end_date', '>=', $now)
+            ->orderBy('start_date', 'desc')
+            ->get();
+        foreach ($sales as $sale) {
+            $sale->wines = json_decode($sale->wines);
+        }
+
+        return $sales;
     }
 }

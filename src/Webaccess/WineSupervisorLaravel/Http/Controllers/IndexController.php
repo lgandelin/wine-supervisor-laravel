@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Webaccess\WineSupervisorLaravel\Repositories\ContentRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
 
@@ -21,6 +22,7 @@ class IndexController
             'is_guest' => AccountService::isGuest(),
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(3),
+            'sales' => SaleRepository::getAll(),
         ]);
     }
 
