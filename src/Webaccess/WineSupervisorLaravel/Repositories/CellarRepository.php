@@ -37,6 +37,15 @@ class CellarRepository extends BaseRepository
     }
 
     /**
+     * @param $technicianID
+     * @return mixed
+     */
+    public static function getByTechnician($technicianID)
+    {
+        return Cellar::where('technician_id', '=', $technicianID)->get();
+    }
+
+    /**
      * @param $userID
      * @param $idWS
      * @param $technicianID

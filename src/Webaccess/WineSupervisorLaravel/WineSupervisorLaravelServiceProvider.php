@@ -11,6 +11,7 @@ use Webaccess\WineSupervisorLaravel\Commands\CreateAdministratorCommand;
 use Illuminate\Support\Facades\Route;
 use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
 use Webaccess\WineSupervisorLaravel\Commands\DeleteInactiveUsersCommand;
+use Webaccess\WineSupervisorLaravel\Commands\TestCellierDomesticusAPICommand;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\ClubPremiumMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\GuestMiddleware;
@@ -60,7 +61,8 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
         $this->commands([
             CreateUserCommand::class,
             CreateAdministratorCommand::class,
-            DeleteInactiveUsersCommand::class
+            DeleteInactiveUsersCommand::class,
+            TestCellierDomesticusAPICommand::class
         ]);
 
         $this->app->register(

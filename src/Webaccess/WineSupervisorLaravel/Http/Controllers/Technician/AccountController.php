@@ -13,7 +13,6 @@ class AccountController
 {
     public function __construct()
     {
-        view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
         view()->share('is_technician', true);
     }
 
@@ -26,7 +25,7 @@ class AccountController
     {
         return view('wine-supervisor::pages.technician.account.update', [
             'technician' => TechnicianRepository::getByID($this->getTechnicianID()),
-
+            'is_eligible_to_supervision' => AccountService::isUserEligibleToSupervision(),
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
