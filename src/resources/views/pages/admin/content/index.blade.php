@@ -35,17 +35,13 @@
                 <table class="table-list less-padding">
                     <tr class="table-row">
                         <th class="table-cell table-cell-header">Titre</th>
-                        <th class="table-cell table-cell-header">URI</th>
-                        <th class="table-cell table-cell-header">Date de création</th>
-                        <th class="table-cell table-cell-header">Date de mise à jour</th>
+                        <th class="table-cell table-cell-header">Date de publication</th>
                         <th class="table-cell table-cell-header">Action</th>
                     </tr>
                     @foreach ($contents as $content)
                         <tr class="table-row">
                             <td class="table-cell align-left">{{ $content->title }}</td>
-                            <td class="table-cell align-left">{{ $content->slug }}</td>
-                            <td class="table-cell align-left">{{ \DateTime::createFromFormat('Y-m-d H:i:s', $content->created_at)->format('d/m/Y H:i:s') }}</td>
-                            <td class="table-cell align-left">{{ \DateTime::createFromFormat('Y-m-d H:i:s', $content->updated_at)->format('d/m/Y H:i:s') }}</td>
+                            <td class="table-cell align-left">{{ \DateTime::createFromFormat('Y-m-d', $content->publication_date)->format('d/m/Y') }}</td>
                             <td class="table-cell align-left action">
                                 <a href="{{ route('admin_content_update', $content->id) }}"><button class="edit">Modifier</button></a>
                                 <a href="{{ route('admin_content_delete_handler', $content->id) }}"><button class="delete">Supprimer</button></a>

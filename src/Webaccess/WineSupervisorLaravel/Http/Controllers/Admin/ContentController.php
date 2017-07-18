@@ -36,7 +36,9 @@ class ContentController extends AdminController
         if (ContentRepository::create(
             $request->get('title'),
             $request->get('slug'),
-            $request->get('text')
+            $request->get('text'),
+            $request->get('image'),
+            $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::content.content_create_success'));
         } else {
@@ -66,7 +68,9 @@ class ContentController extends AdminController
             $request->get('content_id'),
             $request->get('title'),
             $request->get('slug'),
-            $request->get('text')
+            $request->get('text'),
+            $request->get('image'),
+            $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::content.content_update_success'));
         } else {

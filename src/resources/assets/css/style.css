@@ -2398,45 +2398,47 @@ footer a, footer a:visited {
   position: relative;
   margin-bottom: -4.5rem;
   overflow: hidden;
+  background: white;
   -webkit-box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
   -moz-box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
 }
-/* line 238, ../sass/pages/_home.scss */
+/* line 239, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide {
   max-height: 27.3rem;
   overflow: hidden;
   background: white;
 }
-/* line 244, ../sass/pages/_home.scss */
+/* line 245, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .image {
   float: left;
 }
-/* line 248, ../sass/pages/_home.scss */
+/* line 249, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content {
   overflow: hidden;
   padding: 3rem;
   text-align: left;
   color: #000;
 }
-/* line 255, ../sass/pages/_home.scss */
+/* line 256, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content .date {
   display: block;
   margin-bottom: 1.5rem;
   color: #1e95c9;
   font-style: italic;
+  text-transform: capitalize;
 }
-/* line 262, ../sass/pages/_home.scss */
+/* line 264, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content h3 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
 }
-/* line 271, ../sass/pages/_home.scss */
+/* line 273, ../sass/pages/_home.scss */
 .home-template .news .slick-dots {
   margin-bottom: 2.8rem;
 }
-/* line 273, ../sass/pages/_home.scss */
+/* line 275, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li {
   cursor: pointer;
   display: inline-block;
@@ -2446,57 +2448,57 @@ footer a, footer a:visited {
   background: url(../img/home/news/dot.png) no-repeat center center;
   border: none;
 }
-/* line 283, ../sass/pages/_home.scss */
+/* line 285, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li button {
   display: none;
 }
-/* line 287, ../sass/pages/_home.scss */
+/* line 289, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li:hover, .home-template .news .slick-dots li.slick-active {
   background: url(../img/home/news/dot-active.png) no-repeat center center;
 }
-/* line 295, ../sass/pages/_home.scss */
+/* line 297, ../sass/pages/_home.scss */
 .home-template .our-partners {
   padding-top: 10rem;
   padding-bottom: 3rem;
   text-align: center;
 }
-/* line 300, ../sass/pages/_home.scss */
+/* line 302, ../sass/pages/_home.scss */
 .home-template .our-partners .container {
   position: relative;
 }
-/* line 304, ../sass/pages/_home.scss */
+/* line 306, ../sass/pages/_home.scss */
 .home-template .our-partners .subtitle {
   color: #e0363d;
 }
-/* line 308, ../sass/pages/_home.scss */
+/* line 310, ../sass/pages/_home.scss */
 .home-template .our-partners .title {
   font-size: 6rem;
   color: #1e95c9;
 }
-/* line 312, ../sass/pages/_home.scss */
+/* line 314, ../sass/pages/_home.scss */
 .home-template .our-partners .title:after {
   margin-left: auto;
   margin-right: auto;
   background: #1e95c9;
 }
-/* line 320, ../sass/pages/_home.scss */
+/* line 322, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider {
   width: 83%;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
 }
-/* line 326, ../sass/pages/_home.scss */
+/* line 328, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner {
   display: inline-block;
 }
-/* line 329, ../sass/pages/_home.scss */
+/* line 331, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 338, ../sass/pages/_home.scss */
+/* line 340, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow {
   width: 2.2rem;
   height: 4.5rem;
@@ -2508,17 +2510,17 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 351, ../sass/pages/_home.scss */
+/* line 353, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-prev {
   left: 0;
   background: url(../img/home/partners/previous.png) no-repeat center center;
 }
-/* line 356, ../sass/pages/_home.scss */
+/* line 358, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-next {
   right: 0;
   background: url(../img/home/partners/next.png) no-repeat center center;
 }
-/* line 361, ../sass/pages/_home.scss */
+/* line 363, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }

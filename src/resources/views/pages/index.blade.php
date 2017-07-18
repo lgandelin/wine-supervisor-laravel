@@ -95,27 +95,29 @@
         <!-- SALES -->
 
         <!-- NEWS -->
-        <div class="news" id="actualites">
-            <div class="container">
-                <span class="subtitle">Suivez nos</span>
-                <h2 class="title">Actualités</h2>
-                <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Aenean non lobortis nisi</strong>. Nullam nec convallis magna.</p>-->
+        @if ($contents)
+            <div class="news" id="actualites">
+                <div class="container">
+                    <span class="subtitle">Suivez nos</span>
+                    <h2 class="title">Actualités</h2>
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Aenean non lobortis nisi</strong>. Nullam nec convallis magna.</p>-->
 
-                <div class="news-slider-dots"></div>
-                <ul class="news-slider">
-                    <li>
-                        <img class="image" src="img/home/news/1.jpg" alt="Actualité 1" width="350" height="273" />
-                        <div class="content">
-                            <span class="date">4 Juillet 2017</span>
-                            <h3>Premier comité de dégustation</h3>
-                            <p>Le premier comité de dégustation du Club Avantage WineSupervisor s’est réuni le 4 Juillet.
-                                Sylvie Coudurier, sommelier conseil a animé la soirée qui a vu mettre en avant les vins
-                                du domaine Grand Chêne de Aristide Lacombe.</p>
-                        </div>
-                    </li>
-                </ul>
+                    <div class="news-slider-dots"></div>
+                    <ul class="news-slider">
+                        @foreach ($contents as $content)
+                            <li>
+                                @if ($content->image)<img class="image" src="{{ asset($content->image) }}" alt="{{ $content->title }}" width="350" height="273" />@endif
+                                <div class="content">
+                                    @if ($content->publication_date)<span class="date">{{ strftime('%d %B %Y', DateTime::createFromFormat('Y-m-d', $content->publication_date)->getTimestamp()) }}</span>@endif
+                                    @if ($content->title)<h3>{{ $content->title }}</h3>@endif
+                                    @if ($content->text)<p>{!! $content->text !!}</p>@endif
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-        </div>
+        @endif
         <!-- NEWS -->
 
 

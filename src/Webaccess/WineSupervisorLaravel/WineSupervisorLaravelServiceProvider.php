@@ -24,6 +24,8 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
 
     public function boot(Router $router)
     {
+        setlocale(LC_TIME, 'fr_FR.utf8');
+
         $basePath = __DIR__.'/../../';
 
         $this->loadViewsFrom($basePath.'resources/views/', 'wine-supervisor');

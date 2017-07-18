@@ -39,7 +39,7 @@
                         <input type="text" name="title" id="title" value="{{ $content->title }}" />
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display:none;">
                         <label for="slug">URI</label>
                         <input type="text" name="slug" id="slug" value="{{ $content->slug }}" />
                     </div>
@@ -47,6 +47,16 @@
                     <div class="form-group">
                         <label for="text">Texte</label>
                         <textarea class="editor" name="text" id="text">{{ $content->text }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="publication_date">Date de publication</label>
+                        <input type="text" name="publication_date" id="publication_date" value="{{ \DateTime::createFromFormat('Y-m-d', $content->publication_date)->format('d/m/Y') }}" class="datepicker" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="text" name="image" id="image" value="{{ $content->image }}" />
                     </div>
 
                     <div class="submit-container">
