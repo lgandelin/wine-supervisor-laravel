@@ -23,10 +23,14 @@ class SignupController
             'last_name' => isset($session_user) && $session_user->last_name ? $session_user->last_name : old('last_name'),
             'first_name' => isset($session_user) && $session_user->first_name ? $session_user->first_name : old('first_name'),
             'email' => isset($session_user) && $session_user->email ? $session_user->email : old('email'),
-            //'email_confirm' => old('email_confirm'),
             'phone' => isset($session_user) && $session_user->phone ? $session_user->phone : old('phone'),
-            'login' => isset($session_user) && $session_user->login? $session_user->login : old('login'),
-            'opt_in' => isset($session_user) && $session_user->opt_in? $session_user->opt_in : old('opt_in'),
+            'login' => isset($session_user) && $session_user->login ? $session_user->login : old('login'),
+            'opt_in' => isset($session_user) && $session_user->opt_in ? $session_user->opt_in : old('opt_in'),
+            'address' => isset($session_user) && $session_user->address ? $session_user->address : old('address'),
+            'address2' => isset($session_user) && $session_user->address2 ? $session_user->address2 : old('address2'),
+            'zipcode' => isset($session_user) && $session_user->zipcode ? $session_user->zipcode : old('zipcode'),
+            'city' => isset($session_user) && $session_user->city ? $session_user->city : old('city'),
+            'country' => isset($session_user) && $session_user->country ? $session_user->country : old('country'),
             'route' => $request->route()->getName(),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
@@ -54,6 +58,11 @@ class SignupController
             'login' => $request->get('login'),
             'password' => $request->get('password'),
             'opt_in' => $request->get('opt_in') == 1 ? true : false,
+            'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
+            'zipcode' => $request->get('zipcode'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]));
 
         return redirect()->route('user_signup_cellar');
@@ -71,7 +80,7 @@ class SignupController
     {
         $requestID = Uuid::uuid4()->toString();
 
-        list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($request->get('id_ws'), $request->get('technician_id'));
+        list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($request->get('id_ws'), $request->get('technician_id'), $request->get('activation_code'));
 
         if (!$checkSuccess) {
             $request->session()->flash('error', $checkError);
@@ -81,6 +90,8 @@ class SignupController
         if ($session_user = $request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
+
+            //CREATE USER
             Log::info('USER_SIGNUP_CREATE_USER_REQUEST', [
                 'id' => $requestID,
                 'first_name' => $user_data->first_name,
@@ -89,6 +100,11 @@ class SignupController
                 'phone' => $user_data->phone,
                 'login' => $user_data->login,
                 'opt_in' => $user_data->opt_in,
+                'address' => $user_data->address,
+                'address2' => $user_data->address2,
+                'zipcode' => $user_data->zipcode,
+                'city' => $user_data->city,
+                'country' => $user_data->country
             ]);
 
             list($success, $error, $result) = UserRepository::create(
@@ -98,7 +114,12 @@ class SignupController
                 $user_data->phone,
                 $user_data->login,
                 $user_data->password,
-                $user_data->opt_in
+                $user_data->opt_in,
+                $user_data->address,
+                $user_data->address2,
+                $user_data->zipcode,
+                $user_data->city,
+                $user_data->country
             );
 
             if (!$success) {
@@ -111,64 +132,66 @@ class SignupController
                 ]);
 
                 return redirect()->back()->withInput();
-            } else {
-                Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
+            }
+
+            Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
+                'id' => $requestID,
+                'success' => true
+            ]);
+
+            $userID = $result;
+
+
+            //CREATE CELLAR
+            Log::info('USER_SIGNUP_CREATE_CELLAR_REQUEST', [
+                'id' => $requestID,
+                'user_id' => $userID,
+                'id_ws' => $request->get('id_ws'),
+                'technician_id' => $request->get('technician_id'),
+                'name' => $request->get('name'),
+                'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION,
+                'serial_number' => $request->get('serial_number'),
+                'address' => $request->get('address'),
+                'address2' => $request->get('address2'),
+                'zipcode' => $request->get('zipcode'),
+                'city' => $request->get('city'),
+                'country' => $request->get('country')
+            ]);
+
+            list($success, $error) = CellarRepository::create(
+                $userID,
+                $request->get('id_ws'),
+                $request->get('technician_id'),
+                $request->get('name'),
+                Subscription::DEFAULT_SUBSCRIPTION,
+                $request->get('serial_number'),
+                $request->get('address'),
+                $request->get('address2'),
+                $request->get('zipcode'),
+                $request->get('city'),
+                $request->get('country')
+            );
+
+            if (!$success) {
+                $request->session()->flash('error', $error);
+
+                Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
                     'id' => $requestID,
-                    'success' => true
+                    'error' => $error,
+                    'success' => false
                 ]);
 
-                $userID = $result;
+                return redirect()->back()->withInput();
+            }
 
-                Log::info('USER_SIGNUP_CREATE_CELLAR_REQUEST', [
-                    'id' => $requestID,
-                    'user_id' => $userID,
-                    'id_ws' => $request->get('id_ws'),
-                    'technician_id' => $request->get('technician_id'),
-                    'name' => $request->get('name'),
-                    'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION,
-                    'serial_number' => $request->get('serial_number'),
-                    'address' => $request->get('address'),
-                    'address2' => $request->get('address2'),
-                    'zipcode' => $request->get('zipcode'),
-                    'city' => $request->get('city'),
-                    'country' => $request->get('country')
-                ]);
+            Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
+                'id' => $requestID,
+                'success' => true
+            ]);
 
-                list($success, $error) = CellarRepository::create(
-                    $userID,
-                    $request->get('id_ws'),
-                    $request->get('technician_id'),
-                    $request->get('name'),
-                    Subscription::DEFAULT_SUBSCRIPTION,
-                    $request->get('serial_number'),
-                    $request->get('address'),
-                    $request->get('address2'),
-                    $request->get('zipcode'),
-                    $request->get('city'),
-                    $request->get('country')
-                );
-
-                if (!$success) {
-                    $request->session()->flash('error', $error);
-
-                    Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
-                        'id' => $requestID,
-                        'error' => $error,
-                        'success' => false
-                    ]);
-
-                    return redirect()->back()->withInput();
-                } else {
-                    Log::info('USER_SIGNUP_CREATE_CELLAR_RESPONSE', [
-                        'id' => $requestID,
-                        'success' => true
-                    ]);
-
-                    //Log user in and redirect
-                    if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
-                        return redirect()->route('user_update_account');
-                    }
-                }
+            //Log user in and redirect
+            if (Auth::attempt(['email' => $user_data->email, 'password' => $user_data->password])) {
+                return redirect()->route('user_update_account');
             }
         } else {
             $request->session()->flash('error', trans('wine-supervisor::signup.session_error'));

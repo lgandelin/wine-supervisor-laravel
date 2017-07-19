@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Repositories;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
+use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
 
 class TechnicianRepository extends BaseRepository
 {
@@ -41,8 +42,6 @@ class TechnicianRepository extends BaseRepository
      */
     public static function create($company, $registration, $phone, $email, $login, $password, $address, $address2, $zipcode, $city, $country)
     {
-        //TODO : CALL CDO
-
         $technician = new Technician();
         $technician->id = Uuid::uuid4()->toString();
         $technician->company = $company;
@@ -80,6 +79,10 @@ class TechnicianRepository extends BaseRepository
             }
         } else {
             return self::error(trans('wine-supervisor::technician.id_not_found'));
+        }
+
+        if ($status) {
+            (new CellierDomesticusAPI())->create_technician($technician);
         }
 
         return self::success();

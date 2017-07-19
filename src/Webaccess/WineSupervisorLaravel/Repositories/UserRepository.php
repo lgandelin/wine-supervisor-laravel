@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Administrator;
 use Webaccess\WineSupervisorLaravel\Models\User;
+use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
 
 class UserRepository extends BaseRepository
 {
@@ -27,9 +28,14 @@ class UserRepository extends BaseRepository
      * @param $login
      * @param $password
      * @param $opt_in
+     * @param $address
+     * @param $address2
+     * @param $city
+     * @param $zipcode
+     * @param $country
      * @return User
      */
-    public static function create($firstName, $lastName, $email, $phone, $login, $password, $opt_in)
+    public static function create($firstName, $lastName, $email, $phone, $login, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
     {
         if (!self::checkLogin(null, $login)) {
             return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
@@ -44,11 +50,19 @@ class UserRepository extends BaseRepository
         $user->login = $login;
         $user->password = Hash::make($password);
         $user->opt_in = $opt_in;
+        $user->address = $address;
+        $user->address2 = $address2;
+        $user->city = $city;
+        $user->zipcode = $zipcode;
+        $user->country = $country;
         $user->last_connection_date = new DateTime();
 
         if (!$user->save()) {
             return self::error(trans('wine-supervisor::signup.create_user_error'));
         }
+
+        //Call API
+        (new CellierDomesticusAPI())->create_user($user);
 
         return self::success($user->id);
     }
@@ -82,9 +96,14 @@ class UserRepository extends BaseRepository
      * @param $login
      * @param $password
      * @param $opt_in
+     * @param $address
+     * @param $address2
+     * @param $city
+     * @param $zipcode
+     * @param $country
      * @return User
      */
-    public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in)
+    public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
     {
         if (!self::checkLogin($userID, $login)) {
             return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
@@ -99,6 +118,11 @@ class UserRepository extends BaseRepository
             $user->login = $login;
             if ($password !== null) $user->password = Hash::make($password);
             $user->opt_in = $opt_in;
+            $user->address = $address;
+            $user->address2 = $address2;
+            $user->city = $city;
+            $user->zipcode = $zipcode;
+            $user->country = $country;
 
             if (!$user->save())
                 return self::error(trans('wine-supervisor::user.database_error'));

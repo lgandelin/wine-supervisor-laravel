@@ -69,6 +69,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="activation_code">Code d'activation</label>
+                        <input type="text" name="activation_code" id="activation_code" value="{{ old('activation_code') }}" required />
+                    </div>
+
+                    <div class="form-group">
                         <label for="address">Adresse de la cave</label>
                         <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>

@@ -98,9 +98,38 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <input type="text" name="address" id="address" value="{{ $address }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address2">Complément d'adresse</label>
+                        <input type="text" name="address2" id="address2" value="{{ $address2 }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Code postal</label>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $zipcode }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Ville</label>
+                        <input type="text" name="city" id="city" value="{{ $city }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Pays</label>
+                        <select name="country" id="country">
+                            @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                <option value="{{ $key }}" @if ($country == $key)selected="selected"@endif @if (!$country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="opt_in" style="display: inline-block; margin-right: 1rem; vertical-align: middle;">Recevoir la Newsletter du Club</label><i>(modifiable dans votre espace utilisateur)</i><br>
-                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in === true || $opt_in === null)checked="checked"@endif /> Oui</div>
-                        <div class="radio"><input type="radio" name="opt_in" value="0" @if ($opt_in === false)checked="checked"@endif /> Non</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in === "1" || $opt_in === null)checked="checked"@endif /> Oui</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="0" @if ($opt_in === "0")checked="checked"@endif /> Non</div>
                     </div>
 
                     <div class="submit-container">
@@ -152,7 +181,7 @@
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ old('address') }}" required />
+                        <input type="text" name="address" id="address" value="{{ old('address') }}" />
                     </div>
 
                     <div class="form-group">

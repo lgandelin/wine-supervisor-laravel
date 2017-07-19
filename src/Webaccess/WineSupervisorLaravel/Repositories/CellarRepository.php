@@ -9,6 +9,7 @@ use Webaccess\WineSupervisorLaravel\Models\Cellar;
 use Webaccess\WineSupervisorLaravel\Models\CellarHistory;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\WS;
+use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
 use Webaccess\WineSupervisorLaravel\Tools\GPSTool;
 
 class CellarRepository extends BaseRepository
@@ -69,8 +70,6 @@ class CellarRepository extends BaseRepository
             return self::error(trans('wine-supervisor::technician.id_not_found'));
         }
 
-        //TODO : CALL CDO
-
         //Fetch GPS coordinates from address
         $complete_address = implode(' ', [$address, $zipcode, $city]);
         list($latitude, $longitude) = GPSTool::getGPSCoordinates($complete_address);
@@ -110,6 +109,9 @@ class CellarRepository extends BaseRepository
                 return self::error(trans('wine-supervisor::cellar.create_error'));
             }
         }
+
+        //Call API
+        (new CellierDomesticusAPI())->activate_cellar($userID, $ws->activation_code, $cellar->name);
 
         return self::success();
     }
@@ -322,9 +324,10 @@ class CellarRepository extends BaseRepository
     /**
      * @param $idWS
      * @param $technicianID
+     * @param $activationCode
      * @return array
      */
-    public static function doPreliminaryChecks($idWS, $technicianID)
+    public static function doPreliminaryChecks($idWS, $technicianID, $activationCode)
     {
         if (!CellarRepository::checkIDWS($idWS)) {
             return self::error(trans('wine-supervisor::cellar.id_ws_error'));
@@ -332,6 +335,11 @@ class CellarRepository extends BaseRepository
 
         if ($technicianID && !CellarRepository::checkTechnicianID($technicianID)) {
             return self::error(trans('wine-supervisor::technician.id_not_found'));
+        }
+
+        $ws = WSRepository::getByID($idWS);
+        if ($ws->activation_code != $activationCode) {
+            return self::error(trans('wine-supervisor::ws.invalid_activation_code'));
         }
 
         return self::success();
