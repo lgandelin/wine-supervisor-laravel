@@ -1402,7 +1402,7 @@ form .form-group {
   margin-bottom: 2rem;
 }
 /* line 5, ../sass/includes/_forms.scss */
-form .form-group input[type="text"], form .form-group input[type="password"], form .form-group select {
+form .form-group input[type="text"], form .form-group input[type="password"], form .form-group select, form .form-group textarea {
   padding: 2rem;
   width: 100%;
   font-family: "Roboto";
@@ -1416,12 +1416,12 @@ form .form-group input[type="text"], form .form-group input[type="password"], fo
   outline: 0;
 }
 /* line 20, ../sass/includes/_forms.scss */
-form .form-group input[type="text"]:not([disabled]):focus, form .form-group input[type="text"]:not([disabled]):hover, form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:not([disabled]):focus, form .form-group input[type="password"]:not([disabled]):hover, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:not([disabled]):focus, form .form-group select:not([disabled]):hover, form .form-group select:disabled, form .form-group select:disabled {
+form .form-group input[type="text"]:not([disabled]):focus, form .form-group input[type="text"]:not([disabled]):hover, form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:not([disabled]):focus, form .form-group input[type="password"]:not([disabled]):hover, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:not([disabled]):focus, form .form-group select:not([disabled]):hover, form .form-group select:disabled, form .form-group select:disabled, form .form-group textarea:not([disabled]):focus, form .form-group textarea:not([disabled]):hover, form .form-group textarea:disabled, form .form-group textarea:disabled {
   border-color: #f1f4f7;
   background-color: #fdfdfd;
 }
 /* line 25, ../sass/includes/_forms.scss */
-form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:disabled, form .form-group select:disabled {
+form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:disabled, form .form-group select:disabled, form .form-group textarea:disabled, form .form-group textarea:disabled {
   color: #a9b2ba;
   cursor: default;
 }
@@ -2856,6 +2856,13 @@ footer a, footer a:visited {
   margin-top: 1rem;
   font-style: italic;
   color: #cfdbe6;
+}
+
+/* line 3, ../sass/pages/_contact.scss */
+.contact-template .page-header {
+  float: left;
+  width: 44%;
+  margin-right: 7%;
 }
 
 /* line 3, ../sass/pages/admin/_admin.scss */
