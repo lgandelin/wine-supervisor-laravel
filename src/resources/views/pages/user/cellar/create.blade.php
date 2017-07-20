@@ -57,7 +57,7 @@
                     <label for="serial_number">N° de série</label>
                     <input type="text" name="serial_number" id="serial_number" value="{{ old('serial_number') }}" />
                 </div>
-                
+
                 <div class="form-group">
                     <label for="activation_code">Code d'activation</label>
                     <input type="text" name="activation_code" id="activation_code" value="{{ old('activation_code') }}" required />

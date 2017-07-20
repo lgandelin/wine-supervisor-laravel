@@ -65,30 +65,30 @@
                         <i>Laisser vide pour ne pas modifier le mot de passe</i>
                     </div>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ $guest->email }}" />
-                    </div>
+                    {{--<div class="form-group">
+                         <label for="email">Email</label>
+                         <input type="text" name="email" id="email" value="{{ $guest->email }}" />
+                     </div>
 
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="text" name="phone" id="phone" value="{{ $guest->phone }}" />
-                    </div>
+                     <div class="form-group">
+                         <label for="phone">Téléphone</label>
+                         <input type="text" name="phone" id="phone" value="{{ $guest->phone }}" />
+                     </div>
 
-                    <div class="form-group">
-                        <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ $guest->address }}" />
-                    </div>
+                     <div class="form-group">
+                         <label for="address">Adresse</label>
+                         <input type="text" name="address" id="address" value="{{ $guest->address }}" />
+                     </div>
 
-                    <div class="form-group">
-                        <label for="zipcode">Code postal</label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ $guest->zipcode }}" />
-                    </div>
+                     <div class="form-group">
+                         <label for="zipcode">Code postal</label>
+                         <input type="text" name="zipcode" id="zipcode" value="{{ $guest->zipcode }}" />
+                     </div>
 
-                    <div class="form-group">
-                        <label for="city">Ville</label>
-                        <input type="text" name="city" id="city" value="{{ $guest->city }}" />
-                    </div>
+                     <div class="form-group">
+                         <label for="city">Ville</label>
+                         <input type="text" name="city" id="city" value="{{ $guest->city }}" />
+                     </div>--}}
 
                     <div class="submit-container">
                         <input type="submit" value="Valider" />
