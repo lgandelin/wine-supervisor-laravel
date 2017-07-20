@@ -64,7 +64,7 @@
                         <input type="password" name="password" id="password" value="" autocomplete="off" />
                     </div>
 
-                    <div class="form-group">
+                    {{--<div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" name="email" id="email" value="{{ old('email') }}" />
                     </div>
@@ -87,7 +87,7 @@
                     <div class="form-group">
                         <label for="city">Ville</label>
                         <input type="text" name="city" id="city" value="{{ old('city') }}" />
-                    </div>
+                    </div>--}}
 
                     <div class="submit-container">
                         <input type="submit" value="Valider" />

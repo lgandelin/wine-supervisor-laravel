@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\User;
+use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class CellierDomesticusAPI
 {
@@ -55,13 +56,12 @@ class CellierDomesticusAPI
                 'plainPassword' => $user->password,
                 'type' => 'user',
                 'lastName' => $user->last_name,
-                'firstName' => $user->fisrt_name,
+                'firstName' => $user->first_name,
                 'address' => $user->address . ' ' . $user->address2,
                 'zipcode' => $user->zipcode,
                 'city' => $user->city,
                 'country' => $user->country,
                 'phone' => $user->phone,
-                'mobile' => '',
             ],
             'headers' => [
                 'Authorization' => 'profile="UsernameToken"',
@@ -71,9 +71,11 @@ class CellierDomesticusAPI
 
         Log::info('API_CREATE_USER_REQUEST', $requestData);
 
-        /*if ($response = $this->client->request('POST', '/api/users', $requestData)) {
+        if ($response = $this->client->request('POST', '/api/users', $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
+
+            $data = json_decode($resultObject->data);
 
             Log::info('API_CREATE_USER_RESPONSE', [
                 'success' => $resultObject->status,
@@ -82,14 +84,16 @@ class CellierDomesticusAPI
             ]);
 
             //Store the CD userID and password
-            $user->cd_user_id = $resultObject->data->id;
-            $user->cd_password = $resultObject->data->password;
+            $user->cd_user_id = $data->id;
+            $user->cd_password = $data->password;
             $user->save();
+
+            return $user->cd_user_id;
         } else {
             Log::info('API_CREATE_USER_RESPONSE', [
                 'success' => false,
             ]);
-        }*/
+        }
     }
 
     public function create_technician(Technician $technician)
@@ -100,14 +104,12 @@ class CellierDomesticusAPI
                 'email' => $technician->email,
                 'plainPassword' => $technician->password,
                 'type' => 'technician',
-                'lastName' => $technician->last_name,
-                'firstName' => $technician->first_name,
+                'lastName' => $technician->company,
                 'address' => $technician->address . ' ' . $technician->address2,
                 'zipcode' => $technician->zipcode,
                 'city' => $technician->city,
                 'country' => $technician->country,
                 'phone' => $technician->phone,
-                'mobile' => $technician->phone,
             ],
             'headers' => [
                 'Authorization' => 'profile="UsernameToken"',
@@ -117,9 +119,11 @@ class CellierDomesticusAPI
 
         Log::info('API_CREATE_TECHNICIAN_REQUEST', $requestData);
 
-        /*if ($response = $this->client->request('POST', '/api/users', $requestData)) {
+        if ($response = $this->client->request('POST', '/api/users', $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
+
+            $data = json_decode($resultObject->data);
 
             Log::info('API_CREATE_TECHNICIAN_RESPONSE', [
                 'success' => $resultObject->status,
@@ -128,21 +132,21 @@ class CellierDomesticusAPI
             ]);
 
             //Store the CD userID and password
-            $technician->cd_user_id = $resultObject->data->id;
-            $technician->cd_password = $resultObject->data->password;
+            $technician->cd_user_id = $data->id;
+            $technician->cd_password = $data->password;
             $technician->save();
         } else {
             Log::info('API_CREATE_TECHNICIAN_RESPONSE', [
                 'success' => false,
             ]);
-        }*/
+        }
     }
 
-    public function activate_cellar($userID, $activationCode, $cellarName)
+    public function activate_cellar($userID, $cellarID, $activationCode, $cellarName)
     {
         $requestData = [
             'json' => [
-                'name' => $cellarName,
+                'name' => $cellarName ? $cellarName : 'Ma cave',
                 'timezone' => DateTimeZone::EUROPE,
                 'degreeType' => 'celcius',
             ],
@@ -152,11 +156,18 @@ class CellierDomesticusAPI
             ]
         ];
 
-        Log::info('API_ACTIVATE_CELLAR_REQUEST', ['request' => $requestData, 'user_id' => $userID, 'activation_code' => $activationCode]);
+        Log::info('API_ACTIVATE_CELLAR_REQUEST', [
+            'request' => $requestData,
+            'user_id' => $userID,
+            'cellar_id' => $cellarID,
+            'activation_code' => $activationCode
+        ]);
 
-        /*if ($response = $this->client->request('POST', sprintf('/api/users/%s/activate-cellar/%s', $userID, $activationCode), $requestData)) {
+        if ($response = $this->client->request('POST', sprintf('/api/users/%s/activate-cellar/%s', $userID, $activationCode), $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
+
+            $data = json_decode($resultObject->data);
 
             Log::info('API_ACTIVATE_CELLAR_RESPONSE', [
                 'success' => $resultObject->status,
@@ -165,13 +176,15 @@ class CellierDomesticusAPI
             ]);
 
             //Store the CD userID and password
-            $cellar->cd_cellar_id = $resultObject->data->id;
-            $cellar->save();
+            if ($cellar = CellarRepository::getByID($cellarID)) {
+                $cellar->cd_cellar_id = $data->id;
+                $cellar->save();
+            }
         } else {
             Log::info('API_ACTIVATE_CELLAR_RESPONSE', [
                 'success' => false,
             ]);
-        }*/
+        }
     }
 
     public function login_user($user)
@@ -185,7 +198,7 @@ class CellierDomesticusAPI
 
         Log::info('API_LOGIN_USER_REQUEST', $requestData);
 
-        /*if ($response = $this->client->request('POST', '/api/login', $requestData)) {
+        if ($response = $this->client->request('POST', '/api/login', $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
 
@@ -200,6 +213,81 @@ class CellierDomesticusAPI
             Log::info('API_LOGIN_USER_RESPONSE', [
                 'success' => false,
             ]);
-        }*/
+        }
+    }
+
+    public function update_user(User $user)
+    {
+        $requestData = [
+            'json' => [
+                'username' => $user->login,
+                'email' => $user->email,
+                'lastName' => $user->last_name,
+                'firstName' => $user->first_name,
+                'address' => $user->address . ' ' . $user->address2,
+                'zipcode' => $user->zipcode,
+                'city' => $user->city,
+                'country' => $user->country,
+                'phone' => $user->phone,
+            ],
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_UPDATE_USER_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/users/%s', $user->cd_user_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_UPDATE_USER_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_UPDATE_USER_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function update_technician(Technician $technician)
+    {
+        $requestData = [
+            'json' => [
+                'username' => $technician->login,
+                'email' => $technician->email,
+                'lastName' => $technician->company,
+                'address' => $technician->address . ' ' . $technician->address2,
+                'zipcode' => $technician->zipcode,
+                'city' => $technician->city,
+                'country' => $technician->country,
+                'phone' => $technician->phone,
+            ],
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_UPDATE_TECHNICIAN_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/users/%s', $technician->cd_user_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_UPDATE_TECHNICIAN_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_UPDATE_TECHNICIAN_RESPONSE', [
+                'success' => false,
+            ]);
+        }
     }
 }

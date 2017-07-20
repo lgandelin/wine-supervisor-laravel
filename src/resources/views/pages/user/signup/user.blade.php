@@ -99,7 +99,7 @@
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ $address }}" />
+                        <input type="text" name="address" id="address" value="{{ $address }}" required />
                     </div>
 
                     <div class="form-group">
@@ -109,17 +109,17 @@
 
                     <div class="form-group">
                         <label for="zipcode">Code postal</label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ $zipcode }}" />
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $zipcode }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="city">Ville</label>
-                        <input type="text" name="city" id="city" value="{{ $city }}" />
+                        <input type="text" name="city" id="city" value="{{ $city }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="country">Pays</label>
-                        <select name="country" id="country">
+                        <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if ($country == $key)selected="selected"@endif @if (!$country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
                             @endforeach
@@ -181,7 +181,7 @@
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ old('address') }}" />
+                        <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>
 
                     <div class="form-group">
@@ -191,17 +191,17 @@
 
                     <div class="form-group">
                         <label for="zipcode">Code postal</label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
+                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="city">Ville</label>
-                        <input type="text" name="city" id="city" value="{{ old('city') }}" />
+                        <input type="text" name="city" id="city" value="{{ old('city') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="country">Pays</label>
-                        <select name="country" id="country">
+                        <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if (old('country') == $key)selected="selected"@endif @if (!old('country') && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
                             @endforeach

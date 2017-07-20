@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Webaccess\WineSupervisorLaravel\Repositories\ContentRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
@@ -69,17 +70,32 @@ class IndexController
         if (AccountService::isUserEligibleToSupervision()) {
             if (AccountService::isUser()) {
                 $user = Auth::guard('users')->getUser();
-                $result = (new CellierDomesticusAPI())->login_user($user);
-                if ($result->status == 'success') {
-                    return Redirect::to(sprintf('%s/manager?authToken=%s', env('CD_API_URL'), $result->authToken));
+                try {
+                    $result = (new CellierDomesticusAPI())->login_user($user);
+                    if ($result->status == 'success') {
+                        return Redirect::to(sprintf('%s/manager?authToken=%s', env('CD_API_URL'), $result->authToken));
+                    }
+                } catch (\Exception $e) {
+                    Log::info('API_USER_LOGIN_ERROR', [
+                        'user' => $user->id,
+                        'error' => $e->getMessage(),
+                    ]);
                 }
             }
 
             if (AccountService::isTechnician()) {
-                $technician= Auth::guard('technicians')->getUser();
-                $result = (new CellierDomesticusAPI())->login_user($technician);
-                if ($result->status == 'success') {
-                    return Redirect::to(sprintf('%s/manager?authToken=%s', env('CD_API_URL'), $result->authToken));
+                $technician = Auth::guard('technicians')->getUser();
+
+                try {
+                    $result = (new CellierDomesticusAPI())->login_user($technician);
+                    if ($result->status == 'success') {
+                        return Redirect::to(sprintf('%s/manager?authToken=%s', env('CD_API_URL'), $result->authToken));
+                    }
+                } catch (\Exception $e) {
+                    Log::info('API_TECHNICIAN_LOGIN_ERROR', [
+                        'user' => $technician->id,
+                        'error' => $e->getMessage(),
+                    ]);
                 }
             }
         }

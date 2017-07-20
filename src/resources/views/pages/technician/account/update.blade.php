@@ -36,27 +36,27 @@
 
                     <div class="form-group">
                         <label for="company">Nom de la société</label>
-                        <input type="text" name="company" id="company" value="{{ $technician->company }}" />
+                        <input type="text" name="company" id="company" value="{{ $technician->company }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="registration">Immatriculation</label>
-                        <input type="text" name="registration" id="registration" value="{{ $technician->registration }}" />
+                        <input type="text" name="registration" id="registration" value="{{ $technician->registration }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Téléphone</label>
-                        <input type="text" name="phone" id="phone" value="{{ $technician->phone }}" />
+                        <input type="text" name="phone" id="phone" value="{{ $technician->phone }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ $technician->email }}" />
+                        <input type="text" name="email" id="email" value="{{ $technician->email }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $technician->login }}" />
+                        <input type="text" name="login" id="login" value="{{ $technician->login }}" required />
                     </div>
 
                     <div class="form-group">
@@ -67,17 +67,32 @@
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ $technician->address }}" />
+                        <input type="text" name="address" id="address" value="{{ $technician->address }}" required />
                     </div>
 
                     <div class="form-group">
+                        <label for="address2">Complément d'adresse</label>
+                        <input type="text" name="address2" id="address2" value="{{ $technician->address2 }}" />
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="zipcode">Code postal</label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ $technician->zipcode }}" />
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $technician->zipcode }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="city">Ville</label>
-                        <input type="text" name="city" id="city" value="{{ $technician->city }}" />
+                        <input type="text" name="city" id="city" value="{{ $technician->city }}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Pays</label>
+                        <select name="country" id="country" required>
+                            @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                <option value="{{ $key }}" @if ($technician->country == $key)selected="selected"@endif @if (!$technician->country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="submit-container">

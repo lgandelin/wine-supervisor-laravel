@@ -3,6 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Repositories;
 
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
@@ -71,7 +72,9 @@ class TechnicianRepository extends BaseRepository
      */
     public static function update_status($technicianID, $status)
     {
+        $oldStatus = 0;
         if ($technician = Technician::find($technicianID)) {
+            $oldStatus = $technician->status;
             $technician->status = $status;
 
             if (!$technician->save()) {
@@ -81,8 +84,17 @@ class TechnicianRepository extends BaseRepository
             return self::error(trans('wine-supervisor::technician.id_not_found'));
         }
 
-        if ($status) {
-            (new CellierDomesticusAPI())->create_technician($technician);
+        if (!$oldStatus && $status) {
+            try {
+                (new CellierDomesticusAPI())->create_technician($technician);
+            } catch (\Exception $e) {
+                Log::info('API_CREATE_TECHNICIAN_ERROR', [
+                    'technician_id' => $technician->id,
+                    'error' => $e->getMessage(),
+                ]);
+
+                return self::error(trans('wine-supervisor::generic.api_error'));
+            }
         }
 
         return self::success();
@@ -105,8 +117,6 @@ class TechnicianRepository extends BaseRepository
      */
     public static function update($technicianID, $company, $registration, $phone, $email, $login, $password, $address, $address2, $zipcode, $city, $country)
     {
-        //TODO : CALL CDO
-
         if ($technician = Technician::find($technicianID)) {
             $technician->company = $company;
             $technician->registration = $registration;
@@ -127,6 +137,37 @@ class TechnicianRepository extends BaseRepository
             return self::error(trans('wine-supervisor::technician.id_not_found'));
         }
 
+        try {
+            (new CellierDomesticusAPI())->update_technician($technician);
+        } catch (\Exception $e) {
+            Log::info('API_UPDATE_TECHNICIAN_ERROR', [
+                'technician_id' => $technician->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
+
         return self::success();
+    }
+
+    /**
+     * @param $technicianID
+     * @param $login
+     * @return bool
+     */
+    public static function checkLogin($technicianID, $login)
+    {
+        $existingTechnician = Technician::where('login', '=', $login);
+
+        if ($technicianID) {
+            $existingTechnician->where('id', '!=', $technicianID);
+        }
+
+        if ($existingTechnician->first()) {
+            return false;
+        }
+
+        return true;
     }
 }

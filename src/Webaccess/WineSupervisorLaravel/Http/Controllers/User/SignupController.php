@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
+use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
@@ -45,7 +46,7 @@ class SignupController
             return redirect()->back()->withInput();
         }
 
-        if (!UserRepository::checkLogin(null, $request->get('login'))) {
+        if (!UserRepository::checkLogin(null, $request->get('login')) || !TechnicianRepository::checkLogin(null, $request->get('login'))) {
             $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
             return redirect()->back()->withInput();
         }
@@ -139,7 +140,7 @@ class SignupController
                 'success' => true
             ]);
 
-            $userID = $result;
+            $userID = $result['user_id'];
 
 
             //CREATE CELLAR
@@ -203,6 +204,16 @@ class SignupController
     public function technician_signup_handler(Request $request)
     {
         $requestID = Uuid::uuid4()->toString();
+
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
+        if (!UserRepository::checkLogin(null, $request->get('login')) || !TechnicianRepository::checkLogin(null, $request->get('login'))) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
+            return redirect()->back()->withInput();
+        }
 
         Log::info('TECHNICIAN_SIGNUP_REQUEST', [
             'id' => $requestID,

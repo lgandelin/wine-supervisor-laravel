@@ -43,32 +43,32 @@
 
                     <div class="form-group">
                         <label for="technician_id">ID Professionnel</label>
-                        <input type="text" name="technician_id" id="technician_id" value="{{ $cellar->technician_id }}" />
+                        <input type="text" name="technician_id" id="technician_id" value="{{ $cellar->technician_id }}" disabled />
                     </div>
 
                     <div class="form-group">
                         <label for="name">Nom de la cave (optionnel)</label>
-                        <input type="text" name="name" id="name" value="{{ $cellar->name }}"/>
+                        <input type="text" name="name" id="name" value="{{ $cellar->name }}" disabled />
                     </div>
 
                     <div class="form-group">
                         <label for="serial_number">N° de série</label>
-                        <input type="text" name="serial_number" id="serial_number" value="{{ $cellar->serial_number }}" />
+                        <input type="text" name="serial_number" id="serial_number" value="{{ $cellar->serial_number }}" disabled />
                     </div>
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ $cellar->address }}"/>
+                        <input type="text" name="address" id="address" value="{{ $cellar->address }}" disabled />
                     </div>
 
                     <div class="form-group">
                         <label for="zipcode">Code postal</label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}"/>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" disabled />
                     </div>
 
                     <div class="form-group">
                         <label for="city">Ville</label>
-                        <input type="text" name="city" id="city" value="{{ $cellar->city }}"/>
+                        <input type="text" name="city" id="city" value="{{ $cellar->city }}" disabled />
                     </div>
 
                     <h2 style="margin-top: 7.5rem;">Infos utilisateur</h2>

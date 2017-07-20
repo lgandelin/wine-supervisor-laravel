@@ -71,8 +71,8 @@
 
                         <div class="form-group">
                             <label for="subscription_type">Type d'abonnement</label>
-                            <select name="subscription_type" id="subscription_type">
-                                <option value="-1">Sélectionner</option>
+                            <select name="subscription_type" id="subscription_type" required>
+                                <option value="">Sélectionner</option>
                                 <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION }}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)selected="selected"@endif>Standard</option>
                                 {{--<option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>Premium</option>--}}
                             </select>
@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <label for="address">Adresse de la cave</label>
-                            <input type="text" name="address" value="{{ $cellar->address }}" />
+                            <input type="text" name="address" value="{{ $cellar->address }}" required />
                         </div>
 
                         <div class="form-group">
@@ -90,17 +90,17 @@
 
                         <div class="form-group">
                             <label for="zipcode">Code postal</label>
-                            <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}"/>
+                            <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" required />
                         </div>
 
                         <div class="form-group">
                             <label for="city">Ville</label>
-                            <input type="text" name="city" id="city" value="{{ $cellar->city }}"/>
+                            <input type="text" name="city" id="city" value="{{ $cellar->city }}" required />
                         </div>
 
                         <div class="form-group">
                             <label for="country">Pays</label>
-                            <select name="country" id="country">
+                            <select name="country" id="country" required>
                                 @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                     <option value="{{ $key }}" @if ($cellar->country == $key)selected="selected"@endif>{{ $label }}</option>
                                 @endforeach

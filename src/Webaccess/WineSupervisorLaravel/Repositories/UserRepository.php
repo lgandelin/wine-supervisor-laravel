@@ -62,9 +62,18 @@ class UserRepository extends BaseRepository
         }
 
         //Call API
-        (new CellierDomesticusAPI())->create_user($user);
+        try {
+            (new CellierDomesticusAPI())->create_user($user);
+        } catch (\Exception $e) {
+            Log::info('API_CREATE_USER_ERROR', [
+                'user_id' => $user->id,
+                'error' => $e->getMessage(),
+            ]);
 
-        return self::success($user->id);
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
+
+        return self::success(['user_id' => $user->id, 'cd_user_id' => $user->cd_user_id]);
     }
 
     /**
@@ -109,8 +118,6 @@ class UserRepository extends BaseRepository
             return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
         }
 
-        //TODO : CALL CDO
-
         if ($user = User::find($userID)) {
             $user->first_name = $firstName;
             $user->last_name = $lastName;
@@ -128,6 +135,18 @@ class UserRepository extends BaseRepository
                 return self::error(trans('wine-supervisor::user.database_error'));
         } else {
             return self::error(trans('wine-supervisor::user.user_not_found'));
+        }
+
+        //Call API
+        try {
+            (new CellierDomesticusAPI())->update_user($user);
+        } catch (\Exception $e) {
+            Log::info('API_UPDATE_USER_ERROR', [
+                'user_id' => $userID,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
         }
 
         return self::success();

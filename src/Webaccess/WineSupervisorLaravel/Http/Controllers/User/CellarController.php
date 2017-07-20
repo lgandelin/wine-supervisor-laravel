@@ -39,6 +39,13 @@ class CellarController extends UserController
 
         $requestID = Uuid::uuid4()->toString();
 
+        list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($request->get('id_ws'), $request->get('technician_id'), $request->get('activation_code'));
+
+        if (!$checkSuccess) {
+            $request->session()->flash('error', $checkError);
+            return redirect()->back()->withInput();
+        }
+
         Log::info('USER_CREATE_CELLAR_REQUEST', [
             'id' => $requestID,
             'user_id' => $this->getUserID(),
@@ -68,7 +75,7 @@ class CellarController extends UserController
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_creation_error'));
+            $request->session()->flash('error', $error);
 
             Log::info('USER_CREATE_CELLAR_RESPONSE', [
                 'id' => $requestID,

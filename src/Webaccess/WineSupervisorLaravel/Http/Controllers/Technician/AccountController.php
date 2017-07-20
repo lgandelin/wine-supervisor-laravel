@@ -44,8 +44,10 @@ class AccountController
             'email' => $request->get('email'),
             'login' => $request->get('login'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
             'city' => $request->get('city'),
+            'country' => $request->get('country'),
         ]);
 
         list($success, $error) = TechnicianRepository::update(
@@ -57,8 +59,10 @@ class AccountController
             $request->get('login'),
             $request->get('password') ? $request->get('password') : null,
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {

@@ -62,6 +62,10 @@ class CellarRepository extends BaseRepository
      */
     public static function create($userID, $idWS, $technicianID, $name, $subscriptionType, $serialNumber, $address, $address2, $zipcode, $city, $country)
     {
+        if (!$user = UserRepository::getByID($userID)) {
+            return self::error(trans('wine-supervisor::user.id_not_found'));
+        }
+
         if (!CellarRepository::checkIDWS($idWS)) {
             return self::error(trans('wine-supervisor::cellar.id_ws_error'));
         }
@@ -111,7 +115,18 @@ class CellarRepository extends BaseRepository
         }
 
         //Call API
-        (new CellierDomesticusAPI())->activate_cellar($userID, $ws->activation_code, $cellar->name);
+        try {
+            (new CellierDomesticusAPI())->activate_cellar($user->cd_user_id, $cellar->id, $ws->activation_code, $cellar->name);
+        } catch (\Exception $e) {
+            Log::info('API_ACTIVATE_CELLAR_ERROR', [
+                'user_id' => $userID,
+                'cd_user_id' => $user->cd_user_id,
+                'ws_activation_code' => $ws->activation_code,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
 
         return self::success();
     }
