@@ -47,8 +47,10 @@ class CellarController extends AdminController
             'subscription_type' => $request->get('subscription_type'),
             'serial_number' => $request->get('serial_number'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
-            'city' => $request->get('city')
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
         ]);
 
         list ($success, $error) = CellarRepository::update(
@@ -60,8 +62,10 @@ class CellarController extends AdminController
             $request->get('subscription_type'),
             $request->get('serial_number'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {
@@ -71,7 +75,7 @@ class CellarController extends AdminController
                 'success' => false
             ]);
 
-            $request->session()->flash('error', trans('wine-supervisor::admin.cellar_update_error'));
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_update_error'));
 
             return redirect()->back()->withInput();
         }
@@ -81,7 +85,7 @@ class CellarController extends AdminController
             'success' => true
         ]);
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.cellar_update_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_update_success'));
 
         return redirect()->route('admin_cellar_list');
     }

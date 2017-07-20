@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Services;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
+use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 
 class AccountService
@@ -49,6 +50,11 @@ class AccountService
         return false;
     }
 
+    public static function isTechnician()
+    {
+        return Auth::guard('technicians')->check();
+    }
+
     public static function isGuest()
     {
         return Auth::guard('guests')->check();
@@ -67,7 +73,8 @@ class AccountService
     {
         return
             (self::isAdministrator()) ||
-            (self::isUser() && self::hasAValidUserAccountForSupervision());
+            (self::isUser() && self::hasAValidUserAccountForSupervision()) ||
+            (self::isTechnician() && self::hasAValidTechnicianAccountForSupervision());
     }
 
     public static function hasAValidUserAccountForSupervision()
@@ -91,5 +98,49 @@ class AccountService
         }
 
         return false;
+    }
+
+    public static function hasAValidTechnicianAccount()
+    {
+        if ($technician = Auth::guard('technicians')->user()) {
+            return $technician->status == Technician::STATUS_ENABLED;
+        }
+
+        return false;
+    }
+
+    private static function hasAValidTechnicianAccountForSupervision()
+    {
+        $isEligible = false;
+
+        if ($technician = Auth::guard('technicians')->user()) {
+
+            //Récupération des caves associées
+            if ($cellars = CellarRepository::getByTechnician($technician->id)) {
+                foreach ($cellars as $cellar) {
+                    if ($cellar->subscription_type != Subscription::NO_SUBSCRIPTION) {
+                        if (new DateTime() >= new DateTime($cellar->subscription_start_date) && new DateTime() <= new DateTime($cellar->subscription_end_date)) {
+                            $isEligible = true;
+                        }
+                    }
+                }
+            }
+
+            return $isEligible;
+        }
+
+        return false;
+    }
+
+    public static function getFirstName()
+    {
+        if (self::isTechnician())
+            return Auth::guard('technicians')->user()->first_name;
+        if (self::isGuest())
+            return Auth::guard('guests')->user()->first_name;
+        if (self::isUser())
+            return Auth::guard('users')->user()->first_name;
+
+        return null;
     }
 }

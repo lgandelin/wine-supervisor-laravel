@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Informations sur le Club Avantage | WineSupervisor @endsection
+
 @section('page-content')
 
     <div class="club-premium-template">
@@ -7,15 +9,11 @@
 
         <!-- BANNER -->
         <div class="banner">
-            <h1>
-                <span class="subtitle">Aux membres du</span>
-                <span class="title">Club Avantage</span>
-            </h1>
-            <span class="border"></span>
+            <h1><img class="logo-club-premium" src="{{ asset('img/club-premium/logo-club-avantage.png') }}" width="350" height="205" alt="Aux membres du Club Avantage" /></h1>
         </div>
         <!-- BANNER -->
 
-        <div class="main-content container">
+        <div class="main-content container" id="top">
 
             <!-- LEFT NAVIGATION -->
             <nav class="left-navigation">
@@ -45,7 +43,7 @@
 
                 <section>
                     <div class="right-image" style="margin-top:6rem"><img src="{{ asset('img/club-premium/right-image.jpg') }}" width="541" height="361" /></div>
-                    <div class="text" style="padding-top: 0;">
+                    <div class="text" style="padding-top: 0rem;">
                         <h2>Le Programme des ventes </h2>
                         <p>
                             L’ objectif du CLUB AVANTAGE WineSupervisor est de vous permettre de découvrir, c’est pourquoi nous allons proposer dans cette espace des vins confidentiels qui demandent à
@@ -61,13 +59,6 @@
                     </div>
                 </section>
 
-                <section>
-                    <h2>Comité de dégustation</h2>
-
-                    <p>Les produits sont sélectionnés par notre comité de dégustation indépendant qui est représentatif des adeptes de la climatisation de cave.</p>
-                    <p>Composé de sommeliers, de cavistes, de chefs, de spécialistes et d’amateurs de vins en général, le comité valide une sélection exclusivement destinée à vous faire faire de belles découvertes à prix avantageux.</p>
-                </section>
-
             </div>
             <!-- PAGE CONTENT -->
 
@@ -75,23 +66,5 @@
 
         @include('wine-supervisor::partials.legal-notices')
     </div>
-
-    <!--
-    @foreach ($sales as $sale)
-        <div class="sale">
-            <h2>{{ $sale->title }}</h2>
-
-            <strong>Note :</strong> {{ $sale->jury_note }} / 20 <br/>
-            <strong>Avis du jury :</strong> {!! $sale->jury_opinion !!}
-            <strong>Commentaires : </strong> {!! $sale->description !!}
-
-            @if ($sale->link)
-                <a href="{{ $sale->link }}" target="_blank">COMMANDER</a>
-            @endif
-
-            <hr/>
-        </div>
-    @endforeach
-    -->
 
 @stop

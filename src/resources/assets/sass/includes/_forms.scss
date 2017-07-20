@@ -2,7 +2,7 @@ form {
 	.form-group {
 		margin-bottom: 2rem;
 
-		input[type="text"], input[type="password"], select {
+		input[type="text"], input[type="password"], select, textarea {
 		    padding: 2rem;
 		    width: 100%;
 
@@ -17,10 +17,15 @@ form {
 		    box-shadow: none;
 			outline: 0;
 
-		    &:focus, &:hover {
-		    	border-color: #f1f4f7;
+		    &:not([disabled]):focus, &:not([disabled]):hover, &:disabled, &:disabled {
+				border-color: #f1f4f7;
 		    	background-color: #fdfdfd;
 		    }
+
+			&:disabled, &:disabled {
+				color: #a9b2ba;
+				cursor: default;
+			}
 		}
 
 		select {
@@ -35,6 +40,12 @@ form {
 		    display: block;
 
 		    color: black;
+		}
+
+		i {
+			font-style: italic;
+			font-size: 1.25rem;
+			color: $gray;
 		}
 
 		.radio {

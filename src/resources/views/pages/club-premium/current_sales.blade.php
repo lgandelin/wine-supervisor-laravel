@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Ventes en cours du Club Avantage | WineSupervisor @endsection
+
 @section('page-content')
 
     <div class="club-premium-template">
@@ -7,15 +9,11 @@
 
         <!-- BANNER -->
         <div class="banner">
-            <h1>
-                <span class="subtitle">Aux membres du</span>
-                <span class="title">Club Avantage</span>
-            </h1>
-            <span class="border"></span>
+            <h1><img class="logo-club-premium" src="{{ asset('img/club-premium/logo-club-avantage.png') }}" width="350" height="205" alt="Aux membres du Club Avantage" /></h1>
         </div>
         <!-- BANNER -->
 
-        <div class="main-content container">
+        <div class="main-content container" id="top">
 
             <!-- LEFT NAVIGATION -->
             <nav class="left-navigation">
@@ -30,10 +28,11 @@
             </div>
             <!-- PAGE HEADER -->
 
-
             <!-- SALES -->
             <div class="sales">
-                @include('wine-supervisor::partials.sales-slider')
+                @foreach ($sales as $i => $sale)
+                    @include('wine-supervisor::partials.sales-slider', ['sale' => $sale, 'index' => ($i+1), 'display' => ($i != 0) ? 'none' : 'block'])
+                @endforeach
             </div>
             <!-- SALES -->
 
@@ -41,23 +40,4 @@
 
         @include('wine-supervisor::partials.legal-notices')
     </div>
-
-    <!--
-    @foreach ($sales as $sale)
-            <div class="sale">
-                <h2>{{ $sale->title }}</h2>
-
-            <strong>Note :</strong> {{ $sale->jury_note }} / 20 <br/>
-            <strong>Avis du jury :</strong> {!! $sale->jury_opinion !!}
-            <strong>Commentaires : </strong> {!! $sale->description !!}
-
-    @if ($sale->link)
-            <a href="{{ $sale->link }}" target="_blank">COMMANDER</a>
-            @endif
-
-            <hr/>
-        </div>
-    @endforeach
-            -->
-
 @stop

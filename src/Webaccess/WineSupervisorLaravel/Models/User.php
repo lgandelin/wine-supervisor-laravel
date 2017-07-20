@@ -25,12 +25,16 @@ class User extends Authenticatable
         'last_name',
         'email',
         'login',
-        'address',
-        'zipcode',
-        'city',
         'phone',
         'last_connection_date',
-        'opt_in'
+        'opt_in',
+        'address',
+        'address2',
+        'zipcode',
+        'city',
+        'country',
+        'cd_user_id',
+        'cd_password',
     ];
 
     /**

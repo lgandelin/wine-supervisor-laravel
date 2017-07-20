@@ -24,6 +24,7 @@ class WS extends Model
      */
     protected $fillable = [
         'board_type',
+        'activation_code',
         'first_activation_date',
         'deactivation_date',
     ];

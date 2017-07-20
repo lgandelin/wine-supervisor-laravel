@@ -1,0 +1,29 @@
+.admin-template {
+
+    .page-header {
+        margin-bottom: 4rem;
+
+        h1 {
+            &:after {
+                display: none;
+            }
+        }
+    }
+
+    table.table-list {
+
+        .table-row {
+            .table-cell {
+                float: none;
+            }
+        }
+    }
+
+    h2 {
+        margin-bottom: 2.5rem;
+
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 3.5rem;
+    }
+}

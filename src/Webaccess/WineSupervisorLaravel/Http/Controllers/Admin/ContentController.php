@@ -36,11 +36,13 @@ class ContentController extends AdminController
         if (ContentRepository::create(
             $request->get('title'),
             $request->get('slug'),
-            $request->get('text')
+            $request->get('text'),
+            $request->get('image'),
+            $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_create_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::content.content_create_success'));
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::admin.content_create_error'));
+            $request->session()->flash('error', trans('wine-supervisor::content.content_create_error'));
         }
 
         return redirect()->route('admin_content_list');
@@ -66,11 +68,13 @@ class ContentController extends AdminController
             $request->get('content_id'),
             $request->get('title'),
             $request->get('slug'),
-            $request->get('text')
+            $request->get('text'),
+            $request->get('image'),
+            $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_update_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::content.content_update_success'));
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::admin.content_update_error'));
+            $request->session()->flash('error', trans('wine-supervisor::content.content_update_error'));
         }
 
         return redirect()->route('admin_content_list');
@@ -81,9 +85,9 @@ class ContentController extends AdminController
         parent::__construct($request);
 
         if (ContentRepository::delete($contentID)) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::admin.content_delete_success'));
+            $request->session()->flash('confirmation', trans('wine-supervisor::content.content_delete_success'));
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::admin.content_delete_error'));
+            $request->session()->flash('error', trans('wine-supervisor::content.content_delete_error'));
         }
 
         return redirect()->route('admin_content_list');

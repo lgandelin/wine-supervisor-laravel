@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Administrator;
 use Webaccess\WineSupervisorLaravel\Models\User;
+use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
 
 class UserRepository extends BaseRepository
 {
@@ -27,9 +28,14 @@ class UserRepository extends BaseRepository
      * @param $login
      * @param $password
      * @param $opt_in
+     * @param $address
+     * @param $address2
+     * @param $city
+     * @param $zipcode
+     * @param $country
      * @return User
      */
-    public static function create($firstName, $lastName, $email, $phone, $login, $password, $opt_in)
+    public static function create($firstName, $lastName, $email, $phone, $login, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
     {
         if (!self::checkLogin(null, $login)) {
             return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
@@ -44,13 +50,30 @@ class UserRepository extends BaseRepository
         $user->login = $login;
         $user->password = Hash::make($password);
         $user->opt_in = $opt_in;
+        $user->address = $address;
+        $user->address2 = $address2;
+        $user->city = $city;
+        $user->zipcode = $zipcode;
+        $user->country = $country;
         $user->last_connection_date = new DateTime();
 
         if (!$user->save()) {
             return self::error(trans('wine-supervisor::signup.create_user_error'));
         }
 
-        return self::success($user->id);
+        //Call API
+        try {
+            (new CellierDomesticusAPI())->create_user($user);
+        } catch (\Exception $e) {
+            Log::info('API_CREATE_USER_ERROR', [
+                'user_id' => $user->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
+
+        return self::success(['user_id' => $user->id, 'cd_user_id' => $user->cd_user_id]);
     }
 
     /**
@@ -82,15 +105,18 @@ class UserRepository extends BaseRepository
      * @param $login
      * @param $password
      * @param $opt_in
+     * @param $address
+     * @param $address2
+     * @param $city
+     * @param $zipcode
+     * @param $country
      * @return User
      */
-    public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in)
+    public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
     {
         if (!self::checkLogin($userID, $login)) {
             return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
         }
-
-        //TODO : CALL CDO
 
         if ($user = User::find($userID)) {
             $user->first_name = $firstName;
@@ -99,11 +125,28 @@ class UserRepository extends BaseRepository
             $user->login = $login;
             if ($password !== null) $user->password = Hash::make($password);
             $user->opt_in = $opt_in;
+            $user->address = $address;
+            $user->address2 = $address2;
+            $user->city = $city;
+            $user->zipcode = $zipcode;
+            $user->country = $country;
 
             if (!$user->save())
                 return self::error(trans('wine-supervisor::user.database_error'));
         } else {
             return self::error(trans('wine-supervisor::user.user_not_found'));
+        }
+
+        //Call API
+        try {
+            (new CellierDomesticusAPI())->update_user($user);
+        } catch (\Exception $e) {
+            Log::info('API_UPDATE_USER_ERROR', [
+                'user_id' => $userID,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
         }
 
         return self::success();

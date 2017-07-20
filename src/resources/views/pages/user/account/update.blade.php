@@ -1,5 +1,7 @@
 @extends('wine-supervisor::default')
 
+@section('page-title')Mon compte | WineSupervisor @endsection
+
 @section('page-content')
 
     <div class="cellars-template">
@@ -9,10 +11,10 @@
                 <!-- BANNER -->
         <div class="banner">
             <h1>
-                <span class="subtitle">Mes caves</span>
-                <span class="title">Accessibles partout</span>
+                {{--<span class="subtitle">Mes caves</span>
+                <span class="title">Accessibles partout</span>--}}
+                <span class="title">Mon compte</span>
             </h1>
-            <span class="border"></span>
         </div>
         <!-- BANNER -->
 
@@ -76,7 +78,7 @@
                     </div>
                 @endif
 
-                <a href="{{ route('user_cellar_create') }}" class="add-cellar-button">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
+                <a href="{{ route('user_cellar_create') }}" class="add">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
             </div>
             <!-- PAGE CONTENT -->
 
@@ -127,18 +129,47 @@
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ $user->email }}" autocomplete="off" />
+                        <input type="text" name="email" id="email" value="{{ $user->email }}" autocomplete="off" required />
                     </div>
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $user->login }}" autocomplete="off" />
+                        <input type="text" name="login" id="login" value="{{ $user->login }}" autocomplete="off" required />
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" autocomplete="new-password" />
                         <i>Laisser vide pour ne pas modifier le mot de passe</i>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Adresse</label>
+                        <input type="text" name="address" id="address" value="{{ $user->address }}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address2">Complément d'adresse</label>
+                        <input type="text" name="address2" id="address2" value="{{ $user->address2 }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipcode">Code postal</label>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $user->zipcode }}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">Ville</label>
+                        <input type="text" name="city" id="city" value="{{ $user->city }}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Pays</label>
+                        <select name="country" id="country" required>
+                            @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                <option value="{{ $key }}" @if ($user->country == $key)selected="selected"@endif @if (!$user->country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">

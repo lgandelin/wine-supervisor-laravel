@@ -39,6 +39,11 @@ class AccountController extends UserController
             'email' => $request->get('email'),
             'login' => $request->get('login'),
             'opt_in' => $request->get('opt_in'),
+            'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
+            'city' => $request->get('city'),
+            'zipcode' => $request->get('zipcode'),
+            'country' => $request->get('country'),
         ]);
 
         list($success, $error) = UserRepository::update(
@@ -48,7 +53,12 @@ class AccountController extends UserController
             $request->get('email'),
             $request->get('login'),
             $request->get('password') ? $request->get('password') : null,
-            $request->get('opt_in') == '1' ? true : false
+            $request->get('opt_in') == '1' ? true : false,
+            $request->get('address'),
+            $request->get('address2'),
+            $request->get('city'),
+            $request->get('zipcode'),
+            $request->get('country')
         );
 
         if (!$success) {

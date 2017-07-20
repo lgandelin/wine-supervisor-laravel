@@ -1,6 +1,6 @@
 @extends('wine-supervisor::master')
 
-@section('page-title') Connexion @endsection
+@section('page-title') Connexion | WineSupervisor @endsection
 
 @section('main-content')
 
@@ -11,7 +11,7 @@
         <div class="main-content container">
 
             @if (isset($error))
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" style="margin-top: 10rem;">
                     {{ $error }}
                 </div>
             @endif
@@ -33,6 +33,7 @@
                         <input type="submit" value="{{ trans('wine-supervisor::login.login') }}" />
                         <a class="forgotten-password" href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password') }}</a>
 
+                        <input type="hidden" name="route" @if (isset($next_route) && $next_route)value="{{ $next_route }}"@endif />
                         {!! csrf_field() !!}
                     </form>
                 </div>

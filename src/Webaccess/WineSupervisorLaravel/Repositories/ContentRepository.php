@@ -19,24 +19,34 @@ class ContentRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public static function getAll()
+    public static function getAll($limit = null)
     {
-        return Content::all();
+        $contents = Content::orderBy('publication_date', 'desc');
+
+        if ($limit) {
+            $contents->limit($limit);
+        }
+
+        return $contents->where('publication_date', '<=', date('Y-m-d'))->get();
     }
 
     /**
      * @param $title
      * @param $slug
      * @param $text
+     * @param $image
+     * @param $publication_date
      * @return bool
      */
-    public static function create($title, $slug, $text)
+    public static function create($title, $slug, $text, $image, $publication_date)
     {
         $sale = new Content();
         $sale->id = Uuid::uuid4()->toString();
         $sale->title = $title;
         $sale->slug = $slug;
         $sale->text = $text;
+        $sale->image = $image;
+        $sale->publication_date = $publication_date;
 
         return $sale->save();
     }
@@ -48,12 +58,14 @@ class ContentRepository extends BaseRepository
      * @param $text
      * @return bool
      */
-    public static function update($saleID, $title, $slug, $text)
+    public static function update($saleID, $title, $slug, $text, $image, $publication_date)
     {
         if ($sale = Content::find($saleID)) {
             $sale->title = $title;
             $sale->slug = $slug;
             $sale->text = $text;
+            $sale->image = $image;
+            $sale->publication_date = $publication_date;
 
             return $sale->save();
         }

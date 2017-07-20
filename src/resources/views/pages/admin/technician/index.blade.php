@@ -1,40 +1,60 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Gestion des professionnels < Administration | WineSupervisor @endsection
+
 @section('page-content')
 
-    @include('wine-supervisor::pages.admin.includes.menu')
+    @include('wine-supervisor::pages.admin.includes.header')
 
-    <div class="technician-template">
+    <div class="technician-template admin-template">
 
-        @if (isset($error))
-            <div class="alert alert-danger">
-                {{ $error }}
+        <!-- MAIN CONTENT -->
+        <div class="main-content container">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Gestion des professionnels</h1>
             </div>
-        @endif
+            <!-- PAGE HEADER -->
 
-        @if (isset($confirmation))
-            <div class="alert alert-success">
-                {{ $confirmation }}
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                @if (isset($error))
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endif
+
+                @if (isset($confirmation))
+                    <div class="alert alert-success">
+                        {{ $confirmation }}
+                    </div>
+                @endif
+
+                <table class="table-list">
+                    <tr class="table-row">
+                        <td class="table-cell table-cell-header align-left">Nom de la société</td>
+                        <td class="table-cell table-cell-header align-left">Email</td>
+                        <td class="table-cell table-cell-header align-left">Statut</td>
+                        <td class="table-cell table-cell-header align-left">Action</td>
+                    </tr>
+
+                    @foreach ($technicians as $technician)
+                        <tr class="table-row">
+                            <td class="table-cell align-left">{{ $technician->company }}</td>
+                            <td class="table-cell align-left"><a href="mailto:{{ $technician->email }}">{{ $technician->email }}</a></td>
+                            <td class="table-cell align-left">@if ($technician->status == Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED) Activé @else Désactivé @endif
+                            <td class="table-cell align-left action"><a href="{{ route('admin_technician_update', $technician->id) }}"><button class="edit">Modifier</button></a></td>
+                        </tr>
+                    @endforeach
+                </table>
+
             </div>
-        @endif
+            <!-- PAGE CONTENT -->
 
-        <h1>Gestion des professionnels</h1>
+        </div>
+        <!-- MAIN CONTENT -->
 
-        <table>
-            <tr>
-                <th>Nom de la société</th>
-                <th>Email</th>
-                <th>Statut</th>
-                <th>Action</th>
-            </tr>
-            @foreach ($technicians as $technician)
-                <tr>
-                    <td>{{ $technician->company }}</td>
-                    <td><a href="mailto:{{ $technician->email }}">{{ $technician->email }}</a></td>
-                    <td>@if ($technician->status == Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED) Activé @else Désactivé @endif
-                    <td><a href="{{ route('admin_technician_update', $technician->id) }}">Modifier</a></td>
-                </tr>
-            @endforeach
-        </table>
     </div>
 @stop

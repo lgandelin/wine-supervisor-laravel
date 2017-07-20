@@ -21,5 +21,7 @@ class Content extends Model
         'title',
         'text',
         'slug',
+        'image',
+        'publication_date',
     ];
 }

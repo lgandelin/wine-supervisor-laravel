@@ -2,15 +2,20 @@
 
 namespace Webaccess\WineSupervisorLaravel;
 
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use Webaccess\WineSupervisorLaravel\Exceptions\WineSupervisorLaravelExceptionHandler;
 use Webaccess\WineSupervisorLaravel\Commands\CreateAdministratorCommand;
 use Illuminate\Support\Facades\Route;
 use Webaccess\WineSupervisorLaravel\Commands\CreateUserCommand;
 use Webaccess\WineSupervisorLaravel\Commands\DeleteInactiveUsersCommand;
+use Webaccess\WineSupervisorLaravel\Commands\TestCellierDomesticusAPICommand;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\AdminMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\ClubPremiumMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\GuestMiddleware;
+use Webaccess\WineSupervisorLaravel\Http\Middlewares\TechnicianMiddleware;
 use Webaccess\WineSupervisorLaravel\Http\Middlewares\UserMiddleware;
 
 class WineSupervisorLaravelServiceProvider extends ServiceProvider
@@ -19,6 +24,8 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
 
     public function boot(Router $router)
     {
+        setlocale(LC_TIME, 'fr_FR.utf8');
+
         $basePath = __DIR__.'/../../';
 
         $this->loadViewsFrom($basePath.'resources/views/', 'wine-supervisor');
@@ -37,12 +44,18 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
 
         $router->aliasMiddleware('user', UserMiddleware::class);
         $router->aliasMiddleware('admin', AdminMiddleware::class);
+        $router->aliasMiddleware('technician', TechnicianMiddleware::class);
         $router->aliasMiddleware('guest', GuestMiddleware::class);
         $router->aliasMiddleware('club-premium', ClubPremiumMiddleware::class);
 
         Route::middleware('web')
             ->namespace('Webaccess\WineSupervisorLaravel\Http\Controllers')
             ->group($basePath . 'routes/web.php');
+
+        App::singleton(
+            ExceptionHandler::class,
+            WineSupervisorLaravelExceptionHandler::class
+        );
     }
 
     public function register()
@@ -50,7 +63,8 @@ class WineSupervisorLaravelServiceProvider extends ServiceProvider
         $this->commands([
             CreateUserCommand::class,
             CreateAdministratorCommand::class,
-            DeleteInactiveUsersCommand::class
+            DeleteInactiveUsersCommand::class,
+            TestCellierDomesticusAPICommand::class
         ]);
 
         $this->app->register(

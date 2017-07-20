@@ -22,6 +22,7 @@
 			}*/
 			
 			.slick-slide {
+				height: 58.5rem;
 				padding: 5rem 8rem 0rem 8rem;
 				position: relative;
 
@@ -75,19 +76,46 @@
 						    background: white;
 						}
 					}
+				}
 
-					.button {
-						float: right;
-						position: relative;
-						top: -7rem;
+				.sale-price {
+					z-index: 5;
+					position: absolute;
+					bottom: 11rem;
+					right: 6rem;
 
-						border-radius: 0;
-						border: 2px solid white;
-						color: white;
+					text-align: center;
 
-						&:hover {
-							color: black;
-						}
+					.club_premium_price_label {
+						display: block;
+						margin-bottom: 0.5rem;
+						text-transform: uppercase;
+						font-style: italic;
+						font-size: 1.2rem;
+					}
+
+					.prices {
+						font-size: 2.5rem;
+						font-weight: 700;
+					}
+
+					.standard {
+						text-decoration: line-through;
+					}
+				}
+
+				.button {
+					z-index: 5;
+					position: absolute;
+					bottom: 4rem;
+					right: 4rem;
+
+					border-radius: 0;
+					border: 2px solid white;
+					color: white;
+
+					&:hover {
+						color: black;
 					}
 				}
 			}
@@ -99,7 +127,7 @@
 			    width: 2.7rem;
 			    height: 6.1rem;
 			    z-index: 5;
-			    top: 35%;
+			    top: 40%;
 
 				text-indent: -9999px;
 				cursor: pointer;
@@ -134,7 +162,7 @@
 		margin-right: 3rem;
 		margin-bottom: 3rem;
 		width: 350px;
-		height: 157px;
+		height: 180px;
 		position: relative;
 		opacity: 0.5;
 
@@ -150,7 +178,7 @@
 			z-index: 2;
 			left: 0.75rem;
 			right: 0.75rem;
-			bottom: 0;
+			bottom: 0.75rem;
 			top: 0.75rem;
 
 			border: 1px solid #eee;

@@ -1,23 +1,45 @@
 @extends('wine-supervisor::default')
 
+@section('page-title') Tableau de bord < Administration | WineSupervisor @endsection
+
 @section('page-content')
 
-    @include('wine-supervisor::pages.admin.includes.menu')
+    @include('wine-supervisor::pages.admin.includes.header')
 
-    <div class="dashboard-template">
+    <div class="dashboard-template admin-template">
 
-        @if (isset($error))
-            <div class="alert alert-danger">
-                {{ $error }}
+        <!-- MAIN CONTENT -->
+        <div class="main-content container">
+
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>Tableau de bord</h1>
             </div>
-        @endif
+            <!-- PAGE HEADER -->
 
-        @if (isset($confirmation))
-            <div class="alert alert-success">
-                {{ $confirmation }}
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                @if (isset($error))
+                    <div class="alert alert-danger">
+                        {{ $error }}
+                    </div>
+                @endif
+
+                @if (isset($confirmation))
+                    <div class="alert alert-success">
+                        {{ $confirmation }}
+                    </div>
+                @endif
+
+                <div class="container">
+
+                </div>
             </div>
-        @endif
+            <!-- PAGE CONTENT -->
 
-        <h1>Tableau de bord</h1>
+        </div>
+        <!-- MAIN CONTENT -->
+
     </div>
 @stop

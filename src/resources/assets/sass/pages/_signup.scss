@@ -61,5 +61,16 @@
 		width: 44%;
 		margin-right: 7%;
 	}
+
+	.subtitle {
+		display: block;
+		margin-bottom: 0.5rem;
+
+		color: $red;
+		text-transform: uppercase;
+		font-family: $main-font;
+		font-size: 1.8rem;
+		font-style: italic;
+	}
 }
 

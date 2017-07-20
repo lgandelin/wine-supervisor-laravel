@@ -12,7 +12,9 @@ class UserController
     public function __construct(Request $request)
     {
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium());
+        view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
         view()->share('is_user', true);
+        view()->share('first_name', AccountService::getFirstName());
         view()->share('route', $request->route()->getName());
     }
 

@@ -14,27 +14,20 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/utilisateur/inscription', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
     Route::get('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
     Route::post('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
-
-    Route::get('professionnel/inscription', array('as' => 'technician_signup', 'uses' => 'Technician\SignupController@signup'));
-    Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'Technician\SignupController@signup_handler'));
-
-    Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'LoginController@admin_login'));
-    Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'LoginController@admin_authenticate'));
-    Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'LoginController@admin_logout'));
+    Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'User\SignupController@technician_signup_handler'));
+    Route::get('/professionnel/inscription', array('as' => 'technician_signup_success', 'uses' => 'User\SignupController@technician_signup_success'));
 
     Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
 
-    Route::get('/club-avantages', array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'))->middleware('club-premium');
-    Route::get('/club-avantages/ventes-en-cours', array('as' => 'club_premium_current_sales', 'uses' => 'ClubPremium\IndexController@current_sales'))->middleware('club-premium');
-    Route::get('/club-avantages/historique-des-ventes', array('as' => 'club_premium_sales_history', 'uses' => 'ClubPremium\IndexController@sales_history'))->middleware('club-premium');
+    Route::get('/club-avantages', array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'));
+    Route::get('/club-avantages/comite', array('as' => 'club_premium_comity', 'uses' => 'ClubPremium\IndexController@comity'));
+    Route::get('/club-avantages/ventes-en-cours', array('as' => 'club_premium_current_sales', 'uses' => 'ClubPremium\IndexController@current_sales'));
+    Route::get('/club-avantages/historique-des-ventes', array('as' => 'club_premium_sales_history', 'uses' => 'ClubPremium\IndexController@sales_history'));
 
-    Route::get('/supervision', function() {
-        return redirect('http://supervision.fr');
-    });
+    Route::get('/supervision', array('as' => 'supervision', 'uses' => 'IndexController@supervision'));
 
-    Route::group(['middleware' => ['guest']], function () {
-        Route::get('/invite', array('as' => 'guest_index', 'uses' => 'Guest\IndexController@index'));
-    });
+    Route::get('/contact', array('as' => 'contact', 'uses' => 'IndexController@contact'));
+    Route::post('/contact', array('as' => 'contact_handler', 'uses' => 'IndexController@contact_handler'));
 
     Route::group(['middleware' => ['user']], function () {
         Route::get('/utilisateur/mes-caves', array('as' => 'user_cellar_list', 'uses' => 'User\CellarController@index'));
@@ -48,6 +41,15 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/utilisateur/mon-compte', array('as' => 'user_update_account', 'uses' => 'User\AccountController@update'));
         Route::post('/utilisateur/mon-compte', array('as' => 'user_update_account_handler', 'uses' => 'User\AccountController@update_handler'));
     });
+
+    Route::group(['middleware' => ['technician']], function () {
+        Route::get('/professionnel/mon-compte', array('as' => 'technician_update_account', 'uses' => 'Technician\AccountController@update'));
+        Route::post('/professionnel/mon-compte', array('as' => 'technician_update_account_handler', 'uses' => 'Technician\AccountController@update_handler'));
+    });
+
+    Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'Admin\LoginController@login'));
+    Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'Admin\LoginController@authenticate'));
+    Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'Admin\LoginController@logout'));
 
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/admin', array('as' => 'admin_index', 'uses' => 'Admin\IndexController@index'));
@@ -78,11 +80,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/modifier-vente', array('as' => 'admin_sale_update_handler', 'uses' => 'Admin\SaleController@update_handler'));
         Route::get('/admin/supprimer-vente/{uuid}', array('as' => 'admin_sale_delete_handler', 'uses' => 'Admin\SaleController@delete_handler'));
 
-        Route::get('/admin/contenus', array('as' => 'admin_content_list', 'uses' => 'Admin\ContentController@index'));
-        Route::get('/admin/creer-contenu', array('as' => 'admin_content_create', 'uses' => 'Admin\ContentController@create'));
-        Route::post('/admin/creer-contenu', array('as' => 'admin_content_create_handler', 'uses' => 'Admin\ContentController@create_handler'));
-        Route::get('/admin/modifier-contenu/{uuid}', array('as' => 'admin_content_update', 'uses' => 'Admin\ContentController@update'));
-        Route::post('/admin/modifier-contenu', array('as' => 'admin_content_update_handler', 'uses' => 'Admin\ContentController@update_handler'));
-        Route::get('/admin/supprimer-contenu/{uuid}', array('as' => 'admin_content_delete_handler', 'uses' => 'Admin\ContentController@delete_handler'));
+        Route::get('/admin/actualites', array('as' => 'admin_content_list', 'uses' => 'Admin\ContentController@index'));
+        Route::get('/admin/creer-actualite', array('as' => 'admin_content_create', 'uses' => 'Admin\ContentController@create'));
+        Route::post('/admin/creer-actualite', array('as' => 'admin_content_create_handler', 'uses' => 'Admin\ContentController@create_handler'));
+        Route::get('/admin/modifier-actualite/{uuid}', array('as' => 'admin_content_update', 'uses' => 'Admin\ContentController@update'));
+        Route::post('/admin/modifier-actualite', array('as' => 'admin_content_update_handler', 'uses' => 'Admin\ContentController@update_handler'));
+        Route::get('/admin/supprimer-actualite/{uuid}', array('as' => 'admin_content_delete_handler', 'uses' => 'Admin\ContentController@delete_handler'));
     });
 });

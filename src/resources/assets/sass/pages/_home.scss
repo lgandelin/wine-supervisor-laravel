@@ -64,13 +64,14 @@
 		}
 
 		.title {
+			margin-bottom: 2rem;
 			display: inline-block;
 
 			font-size: 6rem;
 			color: $blue;
 
 			&:after {
-				background: $blue;
+				display: none;
 			}
 		}
 
@@ -84,11 +85,29 @@
 		.container {
 			position: relative;
 		}
+		
 		.box-image {
 			right: 0;
 			position: absolute;
 			top: -15rem;
 			z-index: 2;
+		}
+
+		.buttons {
+			margin-top: 5rem;
+			margin-left: 10rem;
+
+			.btn-supervision, .btn-discover {
+				float:left;
+				margin-right: 5rem;
+			}
+			
+			.btn-supervision {
+				background: $blue;
+				&:hover {
+					opacity: 0.8;
+				}
+			}
 		}
 	}
 
@@ -102,9 +121,12 @@
 		color: white;
 		text-align: center;
 
-		background: url(../img/home/club/club.jpg) no-repeat center center;
+		/*background: url(../img/home/club/club.jpg) no-repeat center center;
 		-webkit-background-size: cover;
-	  	background-size: cover;
+	  	background-size: cover;*/
+
+		background: url(../img/home/club/club.jpg) no-repeat center center fixed;
+		background-size: cover;
 		
 		&:before {
 			position: absolute;
@@ -163,6 +185,12 @@
 			margin-top: 3rem;
 			overflow: hidden;
 		}
+		
+		.btn {
+			float: right;
+			margin-top: 5rem;
+			margin-right: 19.5rem;
+		}
 	}
 
 	//SALES
@@ -211,6 +239,7 @@
 			margin-bottom: -4.5rem;
 			overflow: hidden;
 
+			background: white;
 	  		-webkit-box-shadow: 0px 1px 24px 0px rgba(0,0,0,0.58);
 			-moz-box-shadow: 0px 1px 24px 0px rgba(0,0,0,0.58);
 			box-shadow: 0px 1px 24px 0px rgba(0,0,0,0.58);
@@ -237,6 +266,7 @@
 						margin-bottom: 1.5rem;
 						color: $blue;
 						font-style: italic;
+						text-transform: capitalize;
 					}
 
 					h3 {
@@ -305,7 +335,6 @@
 
 	  		.partner {
 	  			display: inline-block;
-	  			width: 25%;
 
 	  			img {
 	  				display: block;

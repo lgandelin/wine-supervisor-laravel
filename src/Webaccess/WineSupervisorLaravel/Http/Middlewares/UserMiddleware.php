@@ -36,12 +36,9 @@ class UserMiddleware
     {
         if (!$this->auth->user())
         {
-            if ($request->ajax())
-            {
+            if ($request->ajax()) {
                 return response('Forbbiden.', 403);
-            }
-            else
-            {
+            } else {
                 return redirect()->route('user_login');
             }
         }

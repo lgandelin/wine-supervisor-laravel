@@ -47,13 +47,13 @@ class TechnicianController extends AdminController
             'status' => $request->get('status'),
         ]);
 
-        list($success, $error) = TechnicianRepository::update(
+        list($success, $error) = TechnicianRepository::update_status(
             $request->get('technician_id'),
             $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::admin.technician_update_error'));
+            $request->session()->flash('error', trans('wine-supervisor::technician.technician_update_error'));
 
             Log::info('ADMIN_UPDATE_TECHNICIAN_RESPONSE', [
                 'id' => $requestID,
@@ -64,7 +64,7 @@ class TechnicianController extends AdminController
             return redirect()->back()->withInput();
         }
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::admin.technician_update_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::technician.technician_update_success'));
 
         Log::info('ADMIN_UPDATE_TECHNICIAN_RESPONSE', [
             'id' => $requestID,

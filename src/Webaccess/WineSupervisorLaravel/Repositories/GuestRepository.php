@@ -138,9 +138,13 @@ class GuestRepository extends BaseRepository
     public static function delete($guestID)
     {
         if ($guest = Guest::find($guestID)) {
-            return $guest->delete();
+            if (!$guest->delete()) {
+                return self::error(trans('wine-supervisor::guest.database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::guest.id_not_found'));
         }
 
-        return false;
+        return self::success();
     }
 }

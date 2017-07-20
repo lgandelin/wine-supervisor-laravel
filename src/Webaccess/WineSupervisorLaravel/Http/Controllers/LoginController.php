@@ -8,18 +8,20 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Webaccess\WineSupervisorLaravel\Models\User;
-use Webaccess\WineSupervisorLaravel\Repositories\AccountService;
+use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
 class LoginController extends Controller
 {
     public function __construct(Request $request)
     {
         $this->request = $request;
+        view()->share('route', $request->route()->getName());
     }
 
     public function login()
     {
         return view('wine-supervisor::pages.user.auth.login', [
+            'next_route' => $this->request->input('route'),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
         ]);
     }
@@ -39,7 +41,23 @@ class LoginController extends Controller
             Auth::user()->last_connection_date = new DateTime();
             Auth::user()->save();
 
-            return redirect()->route('user_cellar_list');
+            $route = ($this->request->input('route') && !preg_match('/login/', $this->request->input('route'))) ? $this->request->input('route') : 'user_update_account';
+
+            return redirect()->route($route);
+        }
+
+        //Technician authentication
+        if (Auth::guard('technicians')->attempt([
+            'login' => $this->request->input('login'),
+            'password' => $this->request->input('password'),
+        ])) {
+            if (!AccountService::hasAValidTechnicianAccount()) {
+                return redirect()->route('user_login')->with([
+                    'error' => trans('wine-supervisor::login.technician_access_error'),
+                ]);
+            }
+
+            return redirect()->route('technician_update_account');
         }
 
         //Guest authentication
@@ -53,7 +71,9 @@ class LoginController extends Controller
                 ]);
             }
 
-            return redirect()->route('guest_index');
+            $route = $this->request->input('route') ? $this->request->input('route') : 'club_premium';
+
+            return redirect()->route($route);
         }
 
         return redirect()->route('user_login')->with([
@@ -67,44 +87,10 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::guard('users')->logout();
+        Auth::guard('technicians')->logout();
         Auth::guard('guests')->logout();
 
-        return redirect()->route('user_login');
-    }
-
-    public function admin_login()
-    {
-        return view('wine-supervisor::pages.admin.auth.login', [
-            'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
-        ]);
-    }
-
-    /**
-     * @param 
-     * @return mixed
-     */
-    public function admin_authenticate()
-    {
-        if (Auth::guard('administrators')->attempt([
-            'email' => $this->request->input('email'),
-            'password' => $this->request->input('password'),
-        ])) {
-            return redirect()->route('admin_index');
-        }
-
-        return redirect()->route('admin_login')->with([
-            'error' => trans('wine-supervisor::login.login_or_password_error'),
-        ]);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function admin_logout()
-    {
-        Auth::guard('administrators')->logout();
-
-        return redirect()->route('admin_login');
+        return redirect()->route('index');
     }
 
     /**

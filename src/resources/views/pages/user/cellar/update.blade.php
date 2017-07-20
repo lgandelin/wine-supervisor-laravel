@@ -1,10 +1,8 @@
 @extends('wine-supervisor::default')
 
-@section('page-content')
+@section('page-title') Modifier une cave | WineSupervisor @endsection
 
-    <!--
-    @include('wine-supervisor::pages.user.includes.menu')
-    -->
+@section('page-content')
 
     <div class="cellar-update-template">
 
@@ -16,7 +14,6 @@
                 <span class="subtitle">Mes caves</span>
                 <span class="title">Accessibles partout</span>
             </h1>
-            <span class="border"></span>
         </div>
         <!-- BANNER -->
 
@@ -46,7 +43,7 @@
 
                 <!-- LEFT COLUMN -->
                 <div class="left-column">
-                    <h2>Adresse Mak</h2>
+                    <h2>Identifiant WineSupervisor</h2>
                     <span class="mak">{{ $cellar->id_ws }}</span>
 
                     <h2>N° de série de l'appareil</h2>
@@ -74,27 +71,40 @@
 
                         <div class="form-group">
                             <label for="subscription_type">Type d'abonnement</label>
-                            <select name="subscription_type" id="subscription_type">
-                                <option value="-1">Sélectionner</option>
+                            <select name="subscription_type" id="subscription_type" required>
+                                <option value="">Sélectionner</option>
                                 <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION }}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)selected="selected"@endif>Standard</option>
-                                <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>Premium</option>
-                                <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION)selected="selected"@endif>Gratuit</option>
+                                {{--<option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>Premium</option>--}}
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="address">Adresse de la cave</label>
-                            <input type="text" name="address" value="{{ $cellar->address }}" />
+                            <input type="text" name="address" value="{{ $cellar->address }}" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address2">Complément d'adresse</label>
+                            <input type="text" name="address2" id="address2" value="{{ $cellar->address2 }}"/>
                         </div>
 
                         <div class="form-group">
                             <label for="zipcode">Code postal</label>
-                            <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}"/>
+                            <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" required />
                         </div>
 
                         <div class="form-group">
                             <label for="city">Ville</label>
-                            <input type="text" name="city" id="city" value="{{ $cellar->city }}"/>
+                            <input type="text" name="city" id="city" value="{{ $cellar->city }}" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Pays</label>
+                            <select name="country" id="country" required>
+                                @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                    <option value="{{ $key }}" @if ($cellar->country == $key)selected="selected"@endif>{{ $label }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="submit-container">

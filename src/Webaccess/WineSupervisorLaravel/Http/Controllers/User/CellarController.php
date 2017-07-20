@@ -39,6 +39,13 @@ class CellarController extends UserController
 
         $requestID = Uuid::uuid4()->toString();
 
+        list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($request->get('id_ws'), $request->get('technician_id'), $request->get('activation_code'));
+
+        if (!$checkSuccess) {
+            $request->session()->flash('error', $checkError);
+            return redirect()->back()->withInput();
+        }
+
         Log::info('USER_CREATE_CELLAR_REQUEST', [
             'id' => $requestID,
             'user_id' => $this->getUserID(),
@@ -47,8 +54,10 @@ class CellarController extends UserController
             'name' => $request->get('name'),
             'serial_number' => $request->get('serial_number'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
             'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]);
 
         list($success, $error) = CellarRepository::create(
@@ -56,15 +65,17 @@ class CellarController extends UserController
             $request->get('id_ws'),
             $request->get('technician_id'),
             $request->get('name'),
-            Subscription::DEFAULT_SUBSCRIPTION, //TODO : HANDLE OTHER SUBSCRIPTION TYPES
+            Subscription::DEFAULT_SUBSCRIPTION,
             $request->get('serial_number'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_creation_error'));
+            $request->session()->flash('error', $error);
 
             Log::info('USER_CREATE_CELLAR_RESPONSE', [
                 'id' => $requestID,
@@ -82,7 +93,7 @@ class CellarController extends UserController
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_creation_success'));
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 
     public function update(Request $request, $cellarID)
@@ -112,8 +123,10 @@ class CellarController extends UserController
             'subscription_type' => $request->get('subscription_type'),
             'serial_number' => $request->get('serial_number'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
-            'city' => $request->get('city')
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]);
 
         list($success, $error) = CellarRepository::update(
@@ -125,8 +138,10 @@ class CellarController extends UserController
             $request->get('subscription_type'),
             $request->get('serial_number'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {
@@ -148,7 +163,7 @@ class CellarController extends UserController
             'success' => true
         ]);
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 
     public function sav_handler(Request $request)
@@ -189,7 +204,7 @@ class CellarController extends UserController
             'success' => true
         ]);
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 
     public function delete_handler(Request $request)
@@ -224,6 +239,6 @@ class CellarController extends UserController
             'success' => true
         ]);
 
-        return redirect()->route('user_cellar_list');
+        return redirect()->route('user_update_account');
     }
 }
