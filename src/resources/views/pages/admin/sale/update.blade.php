@@ -32,7 +32,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin_sale_update_handler') }}" method="POST">
+                <form action="{{ route('admin_sale_update_handler') }}" method="POST" enctype="multipart/form-data">
 
                     <h3><strong>Informations générales</strong></h3><br>
                     <div class="form-group">
@@ -56,12 +56,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input style="float:left; width: 50%" type="text" name="image" id="image" value="{{ $sale->image }}" />
+                        <label for="image">Image (1140x585)</label>
+                        <input style="display: none;" type="text" name="image" id="image" value="{{ $sale->image }}" />
 
                         @if ($sale->image)
-                            <img style="float:left; width: 40%; margin-left: 10%;" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }}" />
+                            <img style="float:right; width: 40%; margin-left: 10%;" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }}" />
                         @endif
+                        
+                        <input type="file" name="image_file" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
+
                     </div>
 
                     @for($i = 0; $i < 10; $i++)
@@ -84,7 +87,8 @@
 
                             <div class="form-group" style="overflow: hidden;">
                                 <label for="image[]">Image de fond</label>
-                                <input style="float:left; width: 50%" type="text" name="wine_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image)){{ $sale->wines[$i]->image }}@endif" />
+                                <input style="display: none;" type="text" name="wine_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image)){{ $sale->wines[$i]->image }}@endif" />
+                                <input type="file" name="image_wine_background_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
 
                                 @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image))
                                     <img style="float:left; margin-left: 10%; width: 40%" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->image) }}" />
@@ -93,8 +97,9 @@
 
                             <div class="form-group" style="overflow: hidden;">
                                 <label for="bottle_image[]">Image de la bouteille</label>
-                                <input style="float:left; width: 50%" type="text" name="wine_bottle_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image)){{ $sale->wines[$i]->bottle_image }}@endif" />
-
+                                <input style="display:none" type="text" name="wine_bottle_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image)){{ $sale->wines[$i]->bottle_image }}@endif" />
+                                <input type="file" name="image_wine_bottle_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
+                                
                                 @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image))
                                     <img style="float:right; margin-left: 10%; width: 75px; height: auto" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->bottle_image) }}" />
                                 @endif

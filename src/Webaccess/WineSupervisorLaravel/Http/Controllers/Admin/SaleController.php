@@ -90,6 +90,19 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
+        //Upload main image
+        $imageWineBackground = $request->get('image');
+        if ($request->image_file) {
+            $imageName = time() . '.' . $request->image_file->getClientOriginalExtension();
+            $saleImagesDirectory = public_path('img/sales/' . $request->get('sale_id') . '/0/');
+            if (!is_dir($saleImagesDirectory)) {
+                mkdir($saleImagesDirectory);
+            }
+            if ($request->image_file->move($saleImagesDirectory, $imageName)) {
+                $imageWineBackground = basename($imageName);
+            }
+        }
+
         $names = $request->get('wine_name');
         $varieties = $request->get('wine_variety');
         $texts = $request->get('wine_text');
@@ -102,12 +115,44 @@ class SaleController extends AdminController
         $wines = [];
         for ($i = 0; $i < 10; $i++) {
             if (isset($names[$i])) {
+
+                //Upload background image
+                $imageWineBackground = isset($images[$i]) ? $images[$i] : '';
+                $imageWineBottle = isset($bottle_images[$i]) ? $bottle_images[$i] : '';
+
+                $wineBackgroundName = 'image_wine_background_' . $i;
+                if ($request->$wineBackgroundName) {
+                    $imageName = time() . '.' . $request->$wineBackgroundName->getClientOriginalExtension();
+                    $saleImagesDirectory = public_path('img/sales/' . $request->get('sale_id') . '/' . ($i+1) . '/');
+                    if (!is_dir($saleImagesDirectory)) {
+                        mkdir($saleImagesDirectory);
+                    }
+                    if ($request->$wineBackgroundName->move($saleImagesDirectory, $imageName)) {
+                        $imageWineBackground = basename($imageName);
+                    }
+                }
+
+                //Upload bottle image
+                $imageWineBottle = isset($bottle_images[$i]) ? $bottle_images[$i] : '';
+
+                $wineBottleName = 'image_wine_bottle_' . $i;
+                if ($request->$wineBottleName) {
+                    $imageName = time() . '.' . $request->$wineBottleName->getClientOriginalExtension();
+                    $saleImagesDirectory = public_path('img/sales/' . $request->get('sale_id') . '/' . ($i+1) . '/');
+                    if (!is_dir($saleImagesDirectory)) {
+                        mkdir($saleImagesDirectory);
+                    }
+                    if ($request->$wineBottleName->move($saleImagesDirectory, $imageName)) {
+                        $imageWineBottle = basename($imageName);
+                    }
+                }
+
                 $wines[] = [
                     'name' => $names[$i],
                     'variety' => isset($varieties[$i]) ? $varieties[$i] : '',
                     'text' => isset($texts[$i]) ? $texts[$i] : '',
-                    'image' => isset($images[$i]) ? $images[$i] : '',
-                    'bottle_image' => isset($bottle_images[$i]) ? $bottle_images[$i] : '',
+                    'image' => $imageWineBackground,
+                    'bottle_image' => $imageWineBottle,
                     'link' => isset($links[$i]) ? $links[$i] : '',
                     'standard_price' => isset($standard_prices[$i]) ? $standard_prices[$i] : '',
                     'club_premium_price' => isset($club_premium_prices[$i]) ? $club_premium_prices[$i] : '',
@@ -119,7 +164,7 @@ class SaleController extends AdminController
             $request->get('sale_id'),
             $request->get('title'),
             $request->get('description'),
-            $request->get('image'),
+            $imageWineBackground,
             json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
