@@ -60,7 +60,7 @@
                         <input style="display: none;" type="text" name="image" id="image" value="{{ $sale->image }}" />
 
                         @if ($sale->image)
-                            <img style="float:right; width: 40%; margin-left: 10%;" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }}" />
+                            <img style="float:right; width: 40%; margin-left: 10%;" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/0/' . $sale->image) }}" />
                         @endif
                         
                         <input type="file" name="image_file" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
@@ -91,7 +91,7 @@
                                 <input type="file" name="image_wine_background_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
 
                                 @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image))
-                                    <img style="float:left; margin-left: 10%; width: 40%" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->image) }}" />
+                                    <img style="float:left; margin-left: 10%; width: 40%" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->image) }}" />
                                 @endif
                             </div>
 
@@ -101,7 +101,7 @@
                                 <input type="file" name="image_wine_bottle_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
                                 
                                 @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image))
-                                    <img style="float:right; margin-left: 10%; width: 75px; height: auto" class="thumbnail" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->bottle_image) }}" />
+                                    <img style="float:right; margin-left: 10%; width: 75px; height: auto" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->bottle_image) }}" />
                                 @endif
                             </div>
 

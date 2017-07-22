@@ -35,14 +35,14 @@ class SaleController extends AdminController
         parent::__construct($request);
 
         $imageTempFolderName = 'temp-' . time();
-        $imageTempFolder = public_path('img/sales/' . $imageTempFolderName);
+        $imageTempFolder = public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$imageTempFolderName);
         mkdir($imageTempFolder);
 
         //Upload main image
         $imageSaleBackground = $request->get('image');
 
         if ($request->image_file) {
-            if ($imageName = UploadTool::uploadImage($request->image_file, public_path('img/sales/' . $imageTempFolder . '/0/'))) {
+            if ($imageName = UploadTool::uploadImage($request->image_file, $imageTempFolder . '/0/')) {
                 $imageSaleBackground = basename($imageName);
             }
         }
@@ -65,7 +65,7 @@ class SaleController extends AdminController
 
                 $wineBackgroundName = 'image_wine_background_' . $i;
                 if ($request->$wineBackgroundName) {
-                    if ($imageName = UploadTool::uploadImage($request->$wineBackgroundName, public_path('img/sales/' . $imageTempFolder . '/' . ($i+1) . '/'))) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBackgroundName, $imageTempFolder . '/' . ($i+1) . '/')) {
                         $imageWineBackground = basename($imageName);
                     }
                 }
@@ -75,7 +75,7 @@ class SaleController extends AdminController
 
                 $wineBottleName = 'image_wine_bottle_' . $i;
                 if ($request->$wineBottleName) {
-                    if ($imageName = UploadTool::uploadImage($request->$wineBottleName, public_path('img/sales/' . $imageTempFolder . '/' . ($i+1) . '/'))) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBottleName, $imageTempFolder . '/' . ($i+1) . '/')) {
                         $imageWineBottle = basename($imageName);
                     }
                 }
@@ -101,7 +101,7 @@ class SaleController extends AdminController
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
         )) {
-            rename($imageTempFolder, public_path('img/sales/' . $saleID));
+            rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' . $saleID));
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_create_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::sale.sale_create_error'));
@@ -130,7 +130,7 @@ class SaleController extends AdminController
         $imageSaleBackground = $request->get('image');
 
         if ($request->image_file) {
-            if ($imageName = UploadTool::uploadImage($request->image_file, public_path('img/sales/' . $request->get('sale_id') . '/0/'))) {
+            if ($imageName = UploadTool::uploadImage($request->image_file, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$request->get('sale_id') . '/0/'))) {
                 $imageSaleBackground = basename($imageName);
             }
         }
@@ -153,7 +153,7 @@ class SaleController extends AdminController
 
                 $wineBackgroundName = 'image_wine_background_' . $i;
                 if ($request->$wineBackgroundName) {
-                    if ($imageName = UploadTool::uploadImage($request->$wineBackgroundName, public_path('img/sales/' . $request->get('sale_id') . '/' . ($i+1) . '/'))) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBackgroundName, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$request->get('sale_id') . '/' . ($i+1) . '/'))) {
                         $imageWineBackground = basename($imageName);
                     }
                 }
@@ -163,7 +163,7 @@ class SaleController extends AdminController
 
                 $wineBottleName = 'image_wine_bottle_' . $i;
                 if ($request->$wineBottleName) {
-                    if ($imageName = UploadTool::uploadImage($request->$wineBottleName, public_path('img/sales/' . $request->get('sale_id') . '/' . ($i+1) . '/'))) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBottleName, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$request->get('sale_id') . '/' . ($i+1) . '/'))) {
                         $imageWineBottle = basename($imageName);
                     }
                 }

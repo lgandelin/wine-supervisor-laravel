@@ -6,15 +6,15 @@
 
                 @if (isset($sale->image))
                     <li>
-                        <div class="background" style="background-image: url({{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }})"></div>
+                        <div class="background" style="background-image: url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/0/' . $sale->image) }})"></div>
                     </li>
                 @endif
 
                 @if (is_array($sale->wines) && sizeof($sale->wines) > 0)
                     @foreach ($sale->wines as $i => $wine)
                         <li>
-                            <div class="background" style="background-image:url({{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->image) }})"></div>
-                            <img class="bottle" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->bottle_image) }}" alt="{{ $wine->name }}" />
+                            <div class="background" style="background-image:url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->image) }})"></div>
+                            <img class="bottle" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->bottle_image) }}" alt="{{ $wine->name }}" />
                             <div class="content">
                                 @if (isset($wine->variety))<span class="sale-subtitle">{{ $wine->variety }}</span>@endif
                                 @if (isset($wine->name))<h3 class="sale-name">{{ $wine->name }}</h3>@endif
