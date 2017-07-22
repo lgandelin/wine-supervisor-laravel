@@ -33,29 +33,14 @@
                 <section>
                     <div class="left-image"><img src="{{ asset('img/club-premium/left-image.jpg') }}" width="350" height="400" /></div>
                     <div class="text">
-                        <h2>Qu’est ce que le Club Avantage ?</h2>
-
-                        <p>En devanant utilisateur WineSupervisor II, vous devenez un membre priviligié du CLUB AVANTAGE, vous donnant alors accès à des ventes de vins très privées.</p>
-                        <p>L’offre limitée dans le temps, n’est toutefois pas une vente flash et permet de se laisser le temps de la dégustation pour pouvoir revenir et en faire profiter ses amis...</p>
-                        <p>Les ventes se font directement auprès des partenaires sélectionnés.</p>
+                        <?php include base_path() . '/contents/club-avantage/qu-est-ce-que-le-club-avantage.html' ?>
                     </div>
                 </section>
 
                 <section>
                     <div class="right-image" style="margin-top:6rem"><img src="{{ asset('img/club-premium/right-image.jpg') }}" width="541" height="361" /></div>
                     <div class="text" style="padding-top: 0rem;">
-                        <h2>Le Programme des ventes </h2>
-                        <p>
-                            L’ objectif du CLUB AVANTAGE WineSupervisor est de vous permettre de découvrir, c’est pourquoi nous allons proposer dans cette espace des vins confidentiels qui demandent à
-                            obtenir la reconnaissance pour devenir des références dans l’avenir. Mais nous allons aussi vous présenter des sélections de vins dont vous connaissez la renommée mais vers
-                            lesquels vous n’êtes pas encore allés ou qu’il vous interessera de retrouver.
-                        </p>
-
-                        <p>
-                            Pour 2017 nous démarrons le CLUB AVANTAGE avec un jeune vigneron de l’appellation Gaillac dans le Tarn. C’est un véritable technicien du vin du fait de sa double formation de
-                            vigneron et de frigoriste, ce qui lui à permis de développer un système de vinification thermodnamique breveté très performant. Aristide Lacombe du Domaine Grand Chêne à
-                            Senouillac va nous régaler...
-                        </p>
+                        <?php include base_path() . '/contents/club-avantage/programme-des-ventes.html' ?>
                     </div>
                 </section>
 

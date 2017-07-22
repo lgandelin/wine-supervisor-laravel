@@ -33,10 +33,7 @@
                 <section>
                     <div class="left-image"><img src="{{ asset('img/club-premium/comite.jpg') }}" width="541" height="361" /></div>
                     <div class="text" style="padding-top: 4rem">
-                        <h2>Comité de dégustation</h2>
-
-                        <p>Les produits sont sélectionnés par notre comité de dégustation indépendant qui est représentatif des adeptes de la climatisation de cave.</p>
-                        <p>Composé de sommeliers, de cavistes, de chefs, de spécialistes et d’amateurs de vins en général, le comité valide une sélection exclusivement destinée à vous faire faire de belles découvertes à prix avantageux.</p>
+                        <?php include base_path() . '/contents/club-avantage/comite-de-degustation.html' ?>
                     </div>
                 </section>
                 <p>&nbsp;</p>
@@ -48,23 +45,5 @@
 
         @include('wine-supervisor::partials.legal-notices')
     </div>
-
-    <!--
-    @foreach ($sales as $sale)
-            <div class="sale">
-                <h2>{{ $sale->title }}</h2>
-
-            <strong>Note :</strong> {{ $sale->jury_note }} / 20 <br/>
-            <strong>Avis du jury :</strong> {!! $sale->jury_opinion !!}
-            <strong>Commentaires : </strong> {!! $sale->description !!}
-
-    @if ($sale->link)
-            <a href="{{ $sale->link }}" target="_blank">COMMANDER</a>
-            @endif
-
-            <hr/>
-        </div>
-    @endforeach
-            -->
 
 @stop

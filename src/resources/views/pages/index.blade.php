@@ -20,16 +20,9 @@
         <div class="box" id="wine-supervisor">
             <div class="container">
                 <img class="box-image" src="{{ asset('img/home/box/box.png') }}" width="390" height="453" alt="Boitier WineSupervisor" />
-                <!--<span class="subtitle">Boitier</span>
-                <h2 class="title">WineSupervisor</h2>-->
                 <h2 class="title"><img class="logo-wine-supervisor-ii" src="{{ asset('img/home/box/logo-winesupervisor-ii.png') }}" width="450" height="100" alt="WineSupervisor" /></h2>
-                <p>
-                    CAVE 100% CONNECTÉE<br/>
-                    Votre cave accessible tout le temps et partout !<br/><br/>
-
-                    Surveillez température et humidité, configurez et recevez des alertes en temps réel.
-                    Optimisez la consommation énergétique de votre cave grâce à WineSupervisor II.<br/>
-                </p>
+                
+                <?php include base_path() . '/contents/home/wine-supervisor.html' ?>
 
                 <div class="buttons">
                     <a href="http://friax.fr/winesupervisor" target="_blank" class="btn red-button btn-discover">Découvrir</a>
@@ -58,15 +51,7 @@
                     <img src="{{ asset('img/club-premium/logo-club-avantage.png') }}" alt="Wine Supervisor - Club Avantage" width="300" height="205" />
                 </div>
                 <div class="text">
-                    <p>
-                        WineSupervisor CLUB AVANTAGE donne accès à des ventes très privées à durée
-                        limitée aux utilisateurs de WineSupervisor II.
-                    </p>
-                    <p>
-                        Des produits exclusifs à prix avantageux sont négociés par le club et validés par un
-                        comité de sélection indépendant représentatif de la clientèle des produits de
-                        climatisation de cave : Oenologues, cavistes, chefs, spécialistes...
-                    </p>
+                    <?php include base_path() . '/contents/home/club-avantage.html' ?>
                 </div>
 
                 <a href="{{ route('club_premium') }}" class="btn red-button">Découvrez le Club Avantage</a>
