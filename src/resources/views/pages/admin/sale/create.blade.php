@@ -32,7 +32,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin_sale_create_handler') }}" method="POST">
+                <form action="{{ route('admin_sale_create_handler') }}" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="title">Titre</label>
@@ -55,8 +55,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="text" name="image" id="image" />
+                        <label for="image">Image (1140x585)</label>
+                        <input style="display: none;" type="text" name="image" id="image" />
+                        
+                        <input type="file" name="image_file" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
                     </div>
 
                     @for($i = 0; $i < 10; $i++)
@@ -78,13 +80,15 @@
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
-                                <label for="image[]">Image de fond</label>
-                                <input style="float:left; width: 50%" type="text" name="wine_image[]" />
+                                <label for="wine_image[]">Image de fond</label>
+                                <input style="display:none" type="text" name="wine_image[]" />
+                                <input type="file" name="image_wine_background_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
-                                <label for="bottle_image[]">Image de la bouteille</label>
-                                <input style="float:left; width: 50%" type="text" name="wine_bottle_image[]" />
+                                <label for="wine_bottle_image[]">Image de la bouteille</label>
+                                <input style="display:none" type="text" name="wine_bottle_image[]" />
+                                <input type="file" name="image_wine_bottle_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
                             </div>
 
                             <div class="form-group">

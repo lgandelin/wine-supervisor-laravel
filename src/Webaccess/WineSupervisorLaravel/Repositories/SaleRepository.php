@@ -53,7 +53,11 @@ class SaleRepository extends BaseRepository
         $sale->start_date = $startDate;
         $sale->end_date = $endDate;
 
-        return $sale->save();
+        if ($sale->save()) {
+            return $sale->id;
+        }
+
+        return false;
     }
 
     /**

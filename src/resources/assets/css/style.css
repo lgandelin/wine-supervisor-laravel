@@ -2131,6 +2131,7 @@ footer a, footer a:visited {
   color: #eeeeee;
   text-transform: uppercase;
   cursor: pointer;
+  overflow: hidden;
 }
 /* line 174, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:before {
