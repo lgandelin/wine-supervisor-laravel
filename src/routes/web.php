@@ -3,6 +3,7 @@
 Route::group(['middleware' => ['web']], function () {
 
     Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
+    Route::pattern('id_ws', '[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}');
 
     Route::get('/login', array('as' => 'user_login', 'uses' => 'LoginController@login'));
     Route::post('/login', array('as' => 'user_login_handler', 'uses' => 'LoginController@authenticate'));
@@ -59,7 +60,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/admin/modifier-professionnel/', array('as' => 'admin_technician_update_handler', 'uses' => 'Admin\TechnicianController@update_handler'));
 
         Route::get('/admin/ws', array('as' => 'admin_ws_list', 'uses' => 'Admin\WSController@index'));
-        Route::get('/admin/modifier-ws/{uuid}', array('as' => 'admin_ws_update', 'uses' => 'Admin\WSController@update'));
+        Route::get('/admin/modifier-ws/{id_ws}', array('as' => 'admin_ws_update', 'uses' => 'Admin\WSController@update'));
         Route::post('/admin/modifier-ws', array('as' => 'admin_ws_update_handler', 'uses' => 'Admin\WSController@update_handler'));
 
         Route::get('/admin/invites', array('as' => 'admin_guest_list', 'uses' => 'Admin\GuestController@index'));

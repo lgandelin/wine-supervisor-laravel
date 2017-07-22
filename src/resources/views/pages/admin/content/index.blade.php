@@ -13,7 +13,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Gestion des contenus</h1>
+                <h1>Gestion des actualités</h1>
             </div>
             <!-- PAGE HEADER -->
 

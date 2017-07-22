@@ -11,7 +11,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Créer un contenu</h1>
+                <h1>Créer une actualité</h1>
             </div>
             <!-- PAGE HEADER -->
 
