@@ -31,7 +31,7 @@
                 @endif
 
 
-                <form action="{{ route('admin_content_create_handler') }}" method="POST">
+                <form action="{{ route('admin_content_create_handler') }}" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="title">Titre</label>
@@ -54,8 +54,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="text" name="image" id="image" value="{{ old('image') }}" />
+                        <label for="image">Image (350x273)</label>
+                        <input style="display:none" type="text" name="image" id="image" value="" />
+
+                        <input type="file" name="image_file" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
                     </div>
 
                     <div class="submit-container">

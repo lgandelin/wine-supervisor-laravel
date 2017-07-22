@@ -35,7 +35,7 @@ class SaleController extends AdminController
         parent::__construct($request);
 
         $imageTempFolderName = 'temp-' . time();
-        $imageTempFolder = public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$imageTempFolderName);
+        $imageTempFolder = public_path(env('WS_UPLOADS_FOLDER') . 'sales/' . $imageTempFolderName);
         mkdir($imageTempFolder);
 
         //Upload main image

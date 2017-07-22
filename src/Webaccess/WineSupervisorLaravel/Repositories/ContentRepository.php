@@ -48,7 +48,11 @@ class ContentRepository extends BaseRepository
         $sale->image = $image;
         $sale->publication_date = $publication_date;
 
-        return $sale->save();
+        if ($sale->save()) {
+            return $sale->id;
+        }
+
+        return false;
     }
 
     /**
