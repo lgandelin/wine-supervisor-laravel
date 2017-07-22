@@ -79,12 +79,21 @@ class ContentController extends AdminController
     {
         parent::__construct($request);
 
+        //Upload main image
+        $imageNews = $request->get('image');
+
+        if ($request->image_file) {
+            if ($imageName = UploadTool::uploadImage($request->image_file, public_path(env('WS_UPLOADS_FOLDER') . 'contents/' .$request->get('content_id')))) {
+                $imageNews = basename($imageName);
+            }
+        }
+
         if (ContentRepository::update(
             $request->get('content_id'),
             $request->get('title'),
             $request->get('slug'),
             $request->get('text'),
-            $request->get('image'),
+            $imageNews,
             $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::content.content_update_success'));
