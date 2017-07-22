@@ -13,7 +13,7 @@ class ContentController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.content.index', [
-            'contents' => ContentRepository::getAll(),
+            'contents' => ContentRepository::getAll(null, false),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,

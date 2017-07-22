@@ -46,12 +46,12 @@
 
                     <div class="form-group">
                         <label for="access_start_date">Date de début d'accès</label>
-                        <input type="text" name="access_start_date" id="access_start_date" value="{{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/Y') }}" class="datepicker" />
+                        <input type="text" name="access_start_date" id="access_start_date" value="@if ($guest->access_start_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/Y') }}@endif" class="datepicker" />
                     </div>
 
                     <div class="form-group">
                         <label for="access_end_date">Date de fin d'accès</label>
-                        <input type="text" name="access_end_date" id="access_end_date" value="{{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/Y') }}" class="datepicker" />
+                        <input type="text" name="access_end_date" id="access_end_date" value="@if ($guest->access_end_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/Y') }}@endif" class="datepicker" />
                     </div>
 
                     <div class="form-group">

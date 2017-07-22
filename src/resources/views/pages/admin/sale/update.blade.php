@@ -47,12 +47,12 @@
 
                     <div class="form-group">
                         <label for="start_date">Date de début</label>
-                        <input type="text" name="start_date" id="start_date" value="{{ \DateTime::createFromFormat('Y-m-d', $sale->start_date)->format('d/m/Y') }}" class="datepicker" />
+                        <input type="text" name="start_date" id="start_date" value="@if ($sale->start_date){{ \DateTime::createFromFormat('Y-m-d', $sale->start_date)->format('d/m/Y') }}@endif" class="datepicker" />
                     </div>
 
                     <div class="form-group">
                         <label for="end_date">Date de fin</label>
-                        <input type="text" name="end_date" id="end_date" value="{{ \DateTime::createFromFormat('Y-m-d', $sale->end_date)->format('d/m/Y') }}" class="datepicker" />
+                        <input type="text" name="end_date" id="end_date" value="@if ($sale->end_date){{ \DateTime::createFromFormat('Y-m-d', $sale->end_date)->format('d/m/Y') }}@endif" class="datepicker" />
                     </div>
 
                     <div class="form-group">

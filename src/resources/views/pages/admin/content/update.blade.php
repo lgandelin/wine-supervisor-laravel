@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="publication_date">Date de publication</label>
-                        <input type="text" name="publication_date" id="publication_date" value="{{ \DateTime::createFromFormat('Y-m-d', $content->publication_date)->format('d/m/Y') }}" class="datepicker" />
+                        <input type="text" name="publication_date" id="publication_date" value="@if ($content->publication_date){{ \DateTime::createFromFormat('Y-m-d', $content->publication_date)->format('d/m/Y') }}@endif" class="datepicker" />
                     </div>
 
                     <div class="form-group">
