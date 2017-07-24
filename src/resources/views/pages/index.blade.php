@@ -10,7 +10,7 @@
         <!-- BANNER -->
         <div class="banner" id="top">
             <h2>
-                <span class="your-cellar subtitle">La cave</span>
+                <span class="your-cellar subtitle">La cave,</span>
                 <span class="title">partout</span>
             </h2>
         </div>
