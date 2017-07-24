@@ -22,7 +22,7 @@
                             </div>
 
                             @if ($is_user || $is_guest)
-                                @if ($wine->club_premium_price)
+                                @if ($wine->club_premium_price && $sale->is_active)
                                     <span class="sale-price">
                                         <span class="club_premium_price_label">Prix Club Avantage</span>
                                         <span class="prices">
@@ -32,7 +32,14 @@
                                     </span>
                                 @endif
                             @endif
-                            <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ $wine->link }}@endif" class="button">Commander</a>
+
+                            @if ($sale->is_active)
+                                @if (!$is_user && !$is_guest)
+                                    <a target="_blank" href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">Accès vente</a>
+                                @elseif ($wine->link)
+                                    <a target="_blank" href="{{ $wine->link }}" class="button">Commander</a>
+                                @endif
+                            @endif
                         </li>
                     @endforeach
                 @endif

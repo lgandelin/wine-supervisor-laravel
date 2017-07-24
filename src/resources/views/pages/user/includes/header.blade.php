@@ -6,7 +6,7 @@
     <div class="top-bar">
         <div class="container">
             @if (isset($first_name) && $first_name)
-                <span class="welcome">Bienvenue, {{ $first_name }}</span>
+                <span class="welcome">@if (isset($route) && preg_match('/club_premium/', $route)){{'Bonne dégustation'}}@else{{'Bienvenue'}}@endif, <span class="first-name">{{ $first_name }}</span></span>
             @endif
 
             <div class="nav">

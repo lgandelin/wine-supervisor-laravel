@@ -1734,9 +1734,8 @@ header .top-bar {
 /* line 12, ../sass/partials/_header.scss */
 header .top-bar .welcome {
   display: inline-block;
-  margin-top: 0.7rem;
-  font-size: 2.4rem;
-  font-family: "AgencyFB";
+  margin-top: 1rem;
+  font-size: 2.8rem;
   color: #114a83;
 }
 /* line 20, ../sass/partials/_header.scss */
@@ -2127,13 +2126,13 @@ footer a, footer a:visited {
   height: 180px;
   position: relative;
   opacity: 0.5;
+  overflow: hidden;
   font-size: 1.8rem;
   color: #eeeeee;
   text-transform: uppercase;
   cursor: pointer;
-  overflow: hidden;
 }
-/* line 174, ../sass/partials/_sales-slider.scss */
+/* line 175, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:before {
   content: "";
   display: block;
@@ -2145,25 +2144,25 @@ footer a, footer a:visited {
   top: 0.75rem;
   border: 1px solid #eee;
 }
-/* line 187, ../sass/partials/_sales-slider.scss */
+/* line 188, ../sass/partials/_sales-slider.scss */
 .sales-navigation li.active {
   opacity: 1;
 }
-/* line 191, ../sass/partials/_sales-slider.scss */
+/* line 192, ../sass/partials/_sales-slider.scss */
 .sales-navigation li:hover {
   opacity: 1;
 }
-/* line 195, ../sass/partials/_sales-slider.scss */
+/* line 196, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background {
   position: absolute;
   z-index: 1;
 }
-/* line 196, ../sass/partials/_sales-slider.scss */
+/* line 197, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-background img {
   width: 100%;
   height: auto;
 }
-/* line 204, ../sass/partials/_sales-slider.scss */
+/* line 205, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-name {
   padding-top: 7rem;
   display: block;

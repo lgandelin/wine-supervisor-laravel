@@ -15,7 +15,7 @@ class SaleRepository extends BaseRepository
     public static function getByID($saleID)
     {
         $sale = Sale::find($saleID);
-        $sale->wines = json_decode($sale->wines);
+        $sale = self::getAdditionalInfo($sale);
 
         return $sale;
     }
@@ -27,7 +27,7 @@ class SaleRepository extends BaseRepository
     {
         $sales = Sale::orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
         foreach ($sales as $sale) {
-            $sale->wines = json_decode($sale->wines);
+            $sale = self::getAdditionalInfo($sale);
         }
 
         return $sales;
@@ -109,7 +109,7 @@ class SaleRepository extends BaseRepository
         $sales = Sale::where('end_date', '<', $now)->orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
 
         foreach ($sales as $sale) {
-            $sale->wines = json_decode($sale->wines);
+            $sale = self::getAdditionalInfo($sale);
         }
 
         return $sales;
@@ -125,9 +125,19 @@ class SaleRepository extends BaseRepository
             ->get();
 
         foreach ($sales as $sale) {
-            $sale->wines = json_decode($sale->wines);
+            $sale = self::getAdditionalInfo($sale);
         }
 
         return $sales;
+    }
+
+    private static function getAdditionalInfo($sale)
+    {
+        $sale->wines = json_decode($sale->wines);
+        if (new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date) && new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date)) {
+            $sale->is_active = true;
+        }
+
+        return $sale;
     }
 }

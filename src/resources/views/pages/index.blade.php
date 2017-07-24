@@ -27,7 +27,7 @@
                 <div class="buttons">
                     <a href="http://friax.fr/winesupervisor" target="_blank" class="btn red-button btn-discover">Découvrir</a>
                     @if (!$is_user && !$is_technician && !$is_guest)
-                        <a href="{{ route('user_login') }}" class="btn red-button btn-supervision">Se connecter</a>
+                        <a href="{{ route('user_login') }}?route=index" class="btn red-button btn-supervision">Se connecter</a>
                     @elseif ($is_eligible_to_supervision)
                         <a href="{{ route('supervision') }}" target="_blank" class="btn red-button btn-supervision">Se connecter</a>
                     @endif

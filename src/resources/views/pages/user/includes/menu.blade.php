@@ -3,7 +3,7 @@
         <li @if (isset($route) && $route == 'technician_update_account')class="active"@endif><a href="{{ route('technician_update_account') }}">Gérer mon compte</a></li>
 
         @if ($is_eligible_to_supervision)
-            <li><a href="{{ route('supervision') }}">Supervision</a></li>
+            <li><a target="_blank" href="{{ route('supervision') }}">Supervision</a></li>
         @endif
 
         <li class="account logout">
@@ -14,7 +14,7 @@
         <li @if (isset($route) && preg_match('/club_premium/', $route))class="active"@endif><a href="{{ route('club_premium') }}">Club Avantage</a></li>
 
         @if ($is_eligible_to_supervision)
-            <li><a href="{{ route('supervision') }}">Supervision</a></li>
+            <li><a target="_blank" href="{{ route('supervision') }}">Supervision</a></li>
         @endif
 
         <li class="account logout">
