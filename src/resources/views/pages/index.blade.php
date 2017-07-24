@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Votre cave, accessible partout | WineSupervisor @endsection
+@section('page-title') La cave, partout | WineSupervisor @endsection
 
 @section('page-content')
     <div class="home-template">
@@ -10,8 +10,8 @@
         <!-- BANNER -->
         <div class="banner" id="top">
             <h2>
-                <span class="your-cellar subtitle">Votre cave</span>
-                <span class="title">Accessible partout</span>
+                <span class="your-cellar subtitle">La cave</span>
+                <span class="title">partout</span>
             </h2>
         </div>
         <!-- BANNER -->
@@ -29,7 +29,7 @@
                     @if (!$is_user && !$is_technician && !$is_guest)
                         <a href="{{ route('user_login') }}?route=index" class="btn red-button btn-supervision">Se connecter</a>
                     @elseif ($is_eligible_to_supervision)
-                        <a href="{{ route('supervision') }}" target="_blank" class="btn red-button btn-supervision">Se connecter</a>
+                        <a href="{{ route('supervision') }}" target="_blank" class="btn red-button btn-supervision">Supervision</a>
                     @endif
                 </div>
             </div>
@@ -108,12 +108,16 @@
                 <ul class="partners-slider">
                     <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
                     <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
+                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
                     <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
                     <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
+                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
                     <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
                     <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
+                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
                     <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
                     <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
+                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
                 </ul>
             </div>
         </div>

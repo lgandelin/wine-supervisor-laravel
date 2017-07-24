@@ -41,7 +41,7 @@ class LoginController extends Controller
             Auth::user()->last_connection_date = new DateTime();
             Auth::user()->save();
 
-            $route = ($this->request->input('route') && !preg_match('/login/', $this->request->input('route'))) ? $this->request->input('route') : 'user_update_account';
+            $route = $this->request->input('route') ? $this->request->input('route') : 'user_update_account';
 
             return redirect()->route($route);
         }

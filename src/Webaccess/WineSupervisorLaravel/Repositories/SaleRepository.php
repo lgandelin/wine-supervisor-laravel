@@ -40,9 +40,10 @@ class SaleRepository extends BaseRepository
      * @param $wines
      * @param $startDate
      * @param $endDate
+     * @param $comments
      * @return bool
      */
-    public static function create($title, $description, $image, $wines, $startDate, $endDate)
+    public static function create($title, $description, $image, $wines, $startDate, $endDate, $comments)
     {
         $sale = new Sale();
         $sale->id = Uuid::uuid4()->toString();
@@ -52,6 +53,7 @@ class SaleRepository extends BaseRepository
         $sale->wines = $wines;
         $sale->start_date = $startDate;
         $sale->end_date = $endDate;
+        $sale->comments = $comments;
 
         if ($sale->save()) {
             return $sale->id;
@@ -68,9 +70,10 @@ class SaleRepository extends BaseRepository
      * @param $wines
      * @param $startDate
      * @param $endDate
+     * @param $comments
      * @return bool
      */
-    public static function update($saleID, $title, $description, $image, $wines, $startDate, $endDate)
+    public static function update($saleID, $title, $description, $image, $wines, $startDate, $endDate, $comments)
     {
         if ($sale = Sale::find($saleID)) {
             $sale->title = $title;
@@ -79,6 +82,7 @@ class SaleRepository extends BaseRepository
             $sale->wines = $wines;
             $sale->start_date = $startDate;
             $sale->end_date = $endDate;
+            $sale->comments = $comments;
 
             return $sale->save();
         }

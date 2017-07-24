@@ -56,6 +56,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="comments">Commentaires</label>
+                        <textarea name="comments" id="comments">@if ($sale->comments){{ $sale->comments }}@endif</textarea>
+                    </div>
+
+                    <div class="form-group">
                         <label for="image">Image (1140x585)</label>
                         <input style="display: none;" type="text" name="image" id="image" value="{{ $sale->image }}" />
 
@@ -86,7 +91,7 @@
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
-                                <label for="image[]">Image de fond</label>
+                                <label for="image[]">Image de fond (1140x585)</label>
                                 <input style="display: none;" type="text" name="wine_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image)){{ $sale->wines[$i]->image }}@endif" />
                                 <input type="file" name="image_wine_background_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
 
@@ -96,7 +101,7 @@
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
-                                <label for="bottle_image[]">Image de la bouteille</label>
+                                <label for="bottle_image[]">Image de la bouteille (181x550)</label>
                                 <input style="display:none" type="text" name="wine_bottle_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image)){{ $sale->wines[$i]->bottle_image }}@endif" />
                                 <input type="file" name="image_wine_bottle_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
                                 

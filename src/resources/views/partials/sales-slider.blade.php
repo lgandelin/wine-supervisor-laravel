@@ -16,10 +16,17 @@
                             <div class="background" style="background-image:url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->image) }})"></div>
                             <img class="bottle" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->bottle_image) }}" alt="{{ $wine->name }}" />
                             <div class="content">
+                                @if ($is_user || $is_guest)
+                                    @if ($sale->is_active && $sale->comments)
+                                        <div class="sale-comments">{!! nl2br($sale->comments) !!}</div>
+                                    @endif
+                                @endif
+
                                 @if (isset($wine->variety))<span class="sale-subtitle">{{ $wine->variety }}</span>@endif
                                 @if (isset($wine->name))<h3 class="sale-name">{{ $wine->name }}</h3>@endif
+
                                 {!! $wine->text !!}
-                            </div>
+                            </div>t
 
                             @if ($is_user || $is_guest)
                                 @if ($wine->club_premium_price && $sale->is_active)

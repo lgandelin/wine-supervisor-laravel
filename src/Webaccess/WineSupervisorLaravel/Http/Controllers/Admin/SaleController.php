@@ -99,7 +99,8 @@ class SaleController extends AdminController
             $imageSaleBackground,
             json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
-            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
+            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
+            $request->get('comments')
         )) {
             rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' . $saleID));
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_create_success'));
@@ -188,7 +189,8 @@ class SaleController extends AdminController
             $imageSaleBackground,
             json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
-            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
+            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
+            $request->get('comments')
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_update_success'));
         } else {

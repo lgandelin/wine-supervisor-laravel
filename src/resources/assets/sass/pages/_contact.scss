@@ -1,8 +1,16 @@
 .contact-template {
 
-    .page-header {
+    .left-content {
         float: left;
         width: 44%;
         margin-right: 7%;
+
+        .page-header {
+            margin-bottom: 5rem;
+        }
+
+        .info {
+            font-size: 2.2rem;
+        }
     }
 }
