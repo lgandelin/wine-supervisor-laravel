@@ -30,6 +30,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/contact', array('as' => 'contact', 'uses' => 'IndexController@contact'));
     Route::post('/contact', array('as' => 'contact_handler', 'uses' => 'IndexController@contact_handler'));
 
+    Route::get('/mentions-legales', array('as' => 'legal_notices', 'uses' => 'IndexController@legal_notices'));
+
     Route::group(['middleware' => ['user']], function () {
         Route::get('/utilisateur/mes-caves', array('as' => 'user_cellar_list', 'uses' => 'User\CellarController@index'));
         Route::get('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create', 'uses' => 'User\CellarController@create'));

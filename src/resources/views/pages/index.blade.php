@@ -10,8 +10,7 @@
         <!-- BANNER -->
         <div class="banner" id="top">
             <h2>
-                <span class="your-cellar subtitle">La cave,</span>
-                <span class="title">partout</span>
+                <span class="title">La Cave, partout.</span>
             </h2>
         </div>
         <!-- BANNER -->
@@ -39,8 +38,7 @@
         <!-- CLUB -->
         <div class="club" id="club-avantage">
             <div class="container">
-                <span class="subtitle">Des vins d'exception grâce au</span>
-                <h2 class="title">Club Avantage</h2>
+                <h2 class="title">Le Club Avantage</h2>
             </div>
         </div>
         <!-- CLUB -->
@@ -75,9 +73,7 @@
         @if ($contents)
             <div class="news" id="actualites">
                 <div class="container">
-                    <span class="subtitle">Suivez nos</span>
                     <h2 class="title">Actualités</h2>
-                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Aenean non lobortis nisi</strong>. Nullam nec convallis magna.</p>-->
 
                     <div class="news-slider-dots"></div>
                     <ul class="news-slider">
@@ -101,7 +97,6 @@
         <!-- OUR PARTNERS -->
         <div class="our-partners" id="nos-partenaires">
             <div class="container">
-                <span class="subtitle">Nos</span>
                 <h2 class="title">Partenaires</h2>
 
                 <div class="partners-slider-arrows"></div>

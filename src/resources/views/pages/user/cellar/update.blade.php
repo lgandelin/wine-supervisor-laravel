@@ -11,8 +11,7 @@
         <!-- BANNER -->
         <div class="banner">
             <h1>
-                <span class="subtitle">La cave,</span>
-                <span class="title">partout</span>
+                <span class="title">La Cave, partout.</span>
             </h1>
         </div>
         <!-- BANNER -->

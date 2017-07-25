@@ -2244,71 +2244,66 @@ footer a, footer a:visited {
   z-index: 2;
 }
 /* line 43, ../sass/pages/_home.scss */
-.home-template .banner h2 .your-cellar {
-  margin-bottom: 2rem;
-  display: block;
-  text-transform: uppercase;
-  font-family: "Roboto";
-  font-size: 2.4rem;
-  font-style: italic;
+.home-template .banner h2 .title {
+  margin-top: 3rem;
 }
-/* line 56, ../sass/pages/_home.scss */
+/* line 50, ../sass/pages/_home.scss */
 .home-template .box {
   padding-top: 5.5rem;
   padding-bottom: 5.5rem;
   background: url(../img/home/box/pattern.jpg) repeat;
 }
-/* line 62, ../sass/pages/_home.scss */
+/* line 56, ../sass/pages/_home.scss */
 .home-template .box .subtitle {
   color: #e0363d;
 }
-/* line 66, ../sass/pages/_home.scss */
+/* line 60, ../sass/pages/_home.scss */
 .home-template .box .title {
   margin-bottom: 2rem;
   display: inline-block;
   font-size: 6rem;
   color: #1e95c9;
 }
-/* line 73, ../sass/pages/_home.scss */
+/* line 67, ../sass/pages/_home.scss */
 .home-template .box .title:after {
   display: none;
 }
-/* line 78, ../sass/pages/_home.scss */
+/* line 72, ../sass/pages/_home.scss */
 .home-template .box p {
   width: 57%;
   margin-right: 3%;
   text-align: justify;
 }
-/* line 85, ../sass/pages/_home.scss */
+/* line 79, ../sass/pages/_home.scss */
 .home-template .box .container {
   position: relative;
 }
-/* line 89, ../sass/pages/_home.scss */
+/* line 83, ../sass/pages/_home.scss */
 .home-template .box .box-image {
   right: 0;
   position: absolute;
   top: -15rem;
   z-index: 2;
 }
-/* line 96, ../sass/pages/_home.scss */
+/* line 90, ../sass/pages/_home.scss */
 .home-template .box .buttons {
   margin-top: 5rem;
   margin-left: 10rem;
 }
-/* line 100, ../sass/pages/_home.scss */
+/* line 94, ../sass/pages/_home.scss */
 .home-template .box .buttons .btn-supervision, .home-template .box .buttons .btn-discover {
   float: left;
   margin-right: 5rem;
 }
-/* line 105, ../sass/pages/_home.scss */
+/* line 99, ../sass/pages/_home.scss */
 .home-template .box .buttons .btn-supervision {
   background: #1e95c9;
 }
-/* line 107, ../sass/pages/_home.scss */
+/* line 101, ../sass/pages/_home.scss */
 .home-template .box .buttons .btn-supervision:hover {
   opacity: 0.8;
 }
-/* line 114, ../sass/pages/_home.scss */
+/* line 108, ../sass/pages/_home.scss */
 .home-template .club {
   clear: both;
   padding-top: 8rem;
@@ -2323,7 +2318,7 @@ footer a, footer a:visited {
   background: url(../img/home/club/club.jpg) no-repeat center center fixed;
   background-size: cover;
 }
-/* line 131, ../sass/pages/_home.scss */
+/* line 125, ../sass/pages/_home.scss */
 .home-template .club:before {
   position: absolute;
   content: "";
@@ -2334,7 +2329,7 @@ footer a, footer a:visited {
   bottom: 0;
   background: rgba(0, 0, 0, 0.25);
 }
-/* line 143, ../sass/pages/_home.scss */
+/* line 137, ../sass/pages/_home.scss */
 .home-template .club .border {
   position: relative;
   z-index: 2;
@@ -2347,80 +2342,75 @@ footer a, footer a:visited {
   opacity: 0.5;
   background: white;
 }
-/* line 157, ../sass/pages/_home.scss */
-.home-template .club .subtitle {
-  position: relative;
-  z-index: 2;
-  margin-top: 8rem;
-  font-size: 2.4rem;
-}
-/* line 165, ../sass/pages/_home.scss */
+/* line 151, ../sass/pages/_home.scss */
 .home-template .club .title {
+  margin-top: 13rem;
   position: relative;
   z-index: 2;
 }
-/* line 169, ../sass/pages/_home.scss */
+/* line 156, ../sass/pages/_home.scss */
 .home-template .club .title:after {
   display: none;
 }
-/* line 175, ../sass/pages/_home.scss */
+/* line 162, ../sass/pages/_home.scss */
 .home-template .club-contents {
   margin-top: 10rem;
   margin-bottom: 10rem;
 }
-/* line 179, ../sass/pages/_home.scss */
+/* line 166, ../sass/pages/_home.scss */
 .home-template .club-contents .image {
   float: left;
   margin-right: 10rem;
 }
-/* line 184, ../sass/pages/_home.scss */
+/* line 171, ../sass/pages/_home.scss */
 .home-template .club-contents .text {
   margin-top: 3rem;
   overflow: hidden;
 }
-/* line 189, ../sass/pages/_home.scss */
+/* line 176, ../sass/pages/_home.scss */
 .home-template .club-contents .btn {
   float: right;
   margin-top: 5rem;
   margin-right: 19.5rem;
 }
-/* line 197, ../sass/pages/_home.scss */
+/* line 184, ../sass/pages/_home.scss */
 .home-template .sales {
   color: white;
 }
-/* line 200, ../sass/pages/_home.scss */
+/* line 187, ../sass/pages/_home.scss */
 .home-template .sales .slider-container {
   position: relative;
 }
-/* line 204, ../sass/pages/_home.scss */
+/* line 191, ../sass/pages/_home.scss */
 .home-template .sales .sales-slider {
   margin-bottom: 10rem;
   padding-bottom: 1.5rem;
 }
-/* line 212, ../sass/pages/_home.scss */
+/* line 199, ../sass/pages/_home.scss */
 .home-template .news {
   padding-top: 4rem;
   text-align: center;
   color: white;
   background: #1e95c9;
 }
-/* line 220, ../sass/pages/_home.scss */
+/* line 207, ../sass/pages/_home.scss */
 .home-template .news .title {
+  margin-top: 2rem;
   font-size: 6rem;
 }
-/* line 223, ../sass/pages/_home.scss */
+/* line 211, ../sass/pages/_home.scss */
 .home-template .news .title:after {
   margin-left: auto;
   margin-right: auto;
   background: white;
 }
-/* line 231, ../sass/pages/_home.scss */
+/* line 219, ../sass/pages/_home.scss */
 .home-template .news .container > p {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 237, ../sass/pages/_home.scss */
+/* line 225, ../sass/pages/_home.scss */
 .home-template .news .news-slider {
   position: relative;
   margin-bottom: -4.5rem;
@@ -2430,24 +2420,24 @@ footer a, footer a:visited {
   -moz-box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
   box-shadow: 0px 1px 24px 0px rgba(0, 0, 0, 0.58);
 }
-/* line 247, ../sass/pages/_home.scss */
+/* line 235, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide {
   max-height: 27.3rem;
   overflow: hidden;
   background: white;
 }
-/* line 253, ../sass/pages/_home.scss */
+/* line 241, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .image {
   float: left;
 }
-/* line 257, ../sass/pages/_home.scss */
+/* line 245, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content {
   overflow: hidden;
   padding: 3rem;
   text-align: left;
   color: #000;
 }
-/* line 264, ../sass/pages/_home.scss */
+/* line 252, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content .date {
   display: block;
   margin-bottom: 1.5rem;
@@ -2455,17 +2445,17 @@ footer a, footer a:visited {
   font-style: italic;
   text-transform: capitalize;
 }
-/* line 272, ../sass/pages/_home.scss */
+/* line 260, ../sass/pages/_home.scss */
 .home-template .news .news-slider .slick-slide .content h3 {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 3rem;
 }
-/* line 281, ../sass/pages/_home.scss */
+/* line 269, ../sass/pages/_home.scss */
 .home-template .news .slick-dots {
   margin-bottom: 2.8rem;
 }
-/* line 283, ../sass/pages/_home.scss */
+/* line 271, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li {
   cursor: pointer;
   display: inline-block;
@@ -2475,57 +2465,54 @@ footer a, footer a:visited {
   background: url(../img/home/news/dot.png) no-repeat center center;
   border: none;
 }
-/* line 293, ../sass/pages/_home.scss */
+/* line 281, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li button {
   display: none;
 }
-/* line 297, ../sass/pages/_home.scss */
+/* line 285, ../sass/pages/_home.scss */
 .home-template .news .slick-dots li:hover, .home-template .news .slick-dots li.slick-active {
   background: url(../img/home/news/dot-active.png) no-repeat center center;
 }
-/* line 305, ../sass/pages/_home.scss */
+/* line 293, ../sass/pages/_home.scss */
 .home-template .our-partners {
   padding-top: 10rem;
   padding-bottom: 3rem;
   text-align: center;
 }
-/* line 310, ../sass/pages/_home.scss */
+/* line 298, ../sass/pages/_home.scss */
 .home-template .our-partners .container {
   position: relative;
 }
-/* line 314, ../sass/pages/_home.scss */
-.home-template .our-partners .subtitle {
-  color: #e0363d;
-}
-/* line 318, ../sass/pages/_home.scss */
+/* line 302, ../sass/pages/_home.scss */
 .home-template .our-partners .title {
+  margin-top: 2rem;
   font-size: 6rem;
   color: #1e95c9;
 }
-/* line 322, ../sass/pages/_home.scss */
+/* line 307, ../sass/pages/_home.scss */
 .home-template .our-partners .title:after {
   margin-left: auto;
   margin-right: auto;
   background: #1e95c9;
 }
-/* line 330, ../sass/pages/_home.scss */
+/* line 315, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider {
   width: 83%;
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
 }
-/* line 336, ../sass/pages/_home.scss */
+/* line 321, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner {
   display: inline-block;
 }
-/* line 339, ../sass/pages/_home.scss */
+/* line 324, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider .partner img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-/* line 348, ../sass/pages/_home.scss */
+/* line 333, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow {
   width: 2.2rem;
   height: 4.5rem;
@@ -2537,17 +2524,17 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 361, ../sass/pages/_home.scss */
+/* line 346, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-prev {
   left: 0;
   background: url(../img/home/partners/previous.png) no-repeat center center;
 }
-/* line 366, ../sass/pages/_home.scss */
+/* line 351, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow.slick-next {
   right: 0;
   background: url(../img/home/partners/next.png) no-repeat center center;
 }
-/* line 371, ../sass/pages/_home.scss */
+/* line 356, ../sass/pages/_home.scss */
 .home-template .our-partners .partners-slider-arrows .slick-arrow:hover {
   opacity: 0.8;
 }
@@ -2876,6 +2863,16 @@ footer a, footer a:visited {
 /* line 12, ../sass/pages/_contact.scss */
 .contact-template .left-content .info {
   font-size: 2.2rem;
+}
+
+/* line 1, ../sass/pages/_legal-notices.scss */
+.legal-notices {
+  padding-bottom: 10rem;
+  text-align: center;
+}
+/* line 6, ../sass/pages/_legal-notices.scss */
+.legal-notices p {
+  margin-bottom: 4rem;
 }
 
 /* line 3, ../sass/pages/admin/_admin.scss */

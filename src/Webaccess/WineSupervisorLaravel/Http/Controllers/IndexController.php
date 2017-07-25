@@ -102,4 +102,10 @@ class IndexController
 
         return redirect()->back();
     }
+
+    public function legal_notices(Request $request)
+    {
+        return view('wine-supervisor::pages.legal-notices');
+    }
+
 }

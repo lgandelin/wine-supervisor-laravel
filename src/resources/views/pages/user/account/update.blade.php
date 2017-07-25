@@ -11,8 +11,6 @@
                 <!-- BANNER -->
         <div class="banner">
             <h1>
-                {{--<span class="subtitle">Mes caves</span>
-                <span class="title">Accessibles partout</span>--}}
                 <span class="title">Mon compte</span>
             </h1>
         </div>
@@ -173,7 +171,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="opt_in" style="display: inline-block; margin-right: 1rem; vertical-align: middle;">Recevoir la Newsletter du Club</label><i style="display: inline-block; vertical-align: middle; margin-top: 0">(modifiable dans votre espace utilisateur)</i><br>
+                        <label for="opt_in">Recevoir la Newsletter du Club</label>
                         <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($user->opt_in == true || $user->opt_in === null)checked="checked"@endif /> Oui</div>
                         <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$user->opt_in)checked="checked"@endif /> Non</div>
                     </div>
