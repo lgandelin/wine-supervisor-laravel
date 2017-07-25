@@ -2896,8 +2896,14 @@ footer a, footer a:visited {
 }
 
 @media screen and (max-width: 1200px) {
-  /* line 6, ../sass/includes/_responsive.scss */
+  /* line 6, ../sass/responsive/_responsive.scss */
   .home-template .logo-navigation nav ul li {
     margin-right: 2rem;
+  }
+}
+@media only screen and (max-width: 1800px) {
+  /* line 21, ../sass/responsive/_responsive.scss */
+  .banner {
+    background-size: inherit;
   }
 }
