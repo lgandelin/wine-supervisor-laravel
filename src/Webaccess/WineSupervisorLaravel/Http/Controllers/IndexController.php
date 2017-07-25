@@ -25,6 +25,7 @@ class IndexController
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(3),
             'sales' => SaleRepository::getAll(),
+            'route' => $request->route()->getName(),
         ]);
     }
 
