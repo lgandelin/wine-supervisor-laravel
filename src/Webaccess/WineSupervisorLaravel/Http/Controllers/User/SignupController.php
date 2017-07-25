@@ -91,54 +91,58 @@ class SignupController
         if ($session_user = $request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
+            if (!$request->session()->has('user_signed_up_' . $user_data->login)) {
 
-            //CREATE USER
-            Log::info('USER_SIGNUP_CREATE_USER_REQUEST', [
-                'id' => $requestID,
-                'first_name' => $user_data->first_name,
-                'last_name' => $user_data->last_name,
-                'email' => $user_data->email,
-                'phone' => $user_data->phone,
-                'login' => $user_data->login,
-                'opt_in' => $user_data->opt_in,
-                'address' => $user_data->address,
-                'address2' => $user_data->address2,
-                'zipcode' => $user_data->zipcode,
-                'city' => $user_data->city,
-                'country' => $user_data->country
-            ]);
+                //CREATE USER
+                Log::info('USER_SIGNUP_CREATE_USER_REQUEST', [
+                    'id' => $requestID,
+                    'first_name' => $user_data->first_name,
+                    'last_name' => $user_data->last_name,
+                    'email' => $user_data->email,
+                    'phone' => $user_data->phone,
+                    'login' => $user_data->login,
+                    'opt_in' => $user_data->opt_in,
+                    'address' => $user_data->address,
+                    'address2' => $user_data->address2,
+                    'zipcode' => $user_data->zipcode,
+                    'city' => $user_data->city,
+                    'country' => $user_data->country
+                ]);
 
-            list($success, $error, $result) = UserRepository::create(
-                $user_data->first_name,
-                $user_data->last_name,
-                $user_data->email,
-                $user_data->phone,
-                $user_data->login,
-                $user_data->password,
-                $user_data->opt_in,
-                $user_data->address,
-                $user_data->address2,
-                $user_data->zipcode,
-                $user_data->city,
-                $user_data->country
-            );
+                list($success, $error, $result) = UserRepository::create(
+                    $user_data->first_name,
+                    $user_data->last_name,
+                    $user_data->email,
+                    $user_data->phone,
+                    $user_data->login,
+                    $user_data->password,
+                    $user_data->opt_in,
+                    $user_data->address,
+                    $user_data->address2,
+                    $user_data->zipcode,
+                    $user_data->city,
+                    $user_data->country
+                );
 
-            if (!$success) {
-                $request->session()->flash('error', $error);
+                if (!$success) {
+                    $request->session()->flash('error', $error);
+
+                    Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
+                        'id' => $requestID,
+                        'error' => $error,
+                        'success' => false
+                    ]);
+
+                    return redirect()->back()->withInput();
+                }
 
                 Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
                     'id' => $requestID,
-                    'error' => $error,
-                    'success' => false
+                    'success' => true
                 ]);
 
-                return redirect()->back()->withInput();
+                $request->session()->put('user_signed_up_' . $user_data->login, true);
             }
-
-            Log::info('USER_SIGNUP_CREATE_USER_RESPONSE', [
-                'id' => $requestID,
-                'success' => true
-            ]);
 
             $userID = $result['user_id'];
 

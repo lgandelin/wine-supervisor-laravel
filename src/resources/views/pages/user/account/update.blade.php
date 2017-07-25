@@ -47,7 +47,7 @@
                             <div class="table-cell table-cell-header status">Statut abonnement</div>
                             <div class="table-cell table-cell-header date">Date d'expiration</div>
                             <div class="table-cell table-cell-header type">Type d'abonnement</div>
-                            <div class="table-cell table-cell-header price">€</div>
+                            {{--<div class="table-cell table-cell-header price">€</div>--}}
                             <div class="table-cell table-cell-header action">&nbsp;</div>
                         </div>
 
@@ -63,13 +63,13 @@
                                     @else Aucun
                                     @endif
                                 </div>
-                                <div class="table-cell price">
+                                {{--<div class="table-cell price">
                                     @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)20€
                                     @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)45€
                                     @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION)-
                                     @else -
                                     @endif
-                                </div>
+                                </div>--}}
                                 <div class="table-cell action"><a href="{{ route('user_cellar_update', ['id' => $cellar->id]) }}"><button class="edit">Modifier</button></a></div>
                             </div>
                         @endforeach
@@ -132,13 +132,17 @@
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $user->login }}" autocomplete="off" required />
+                        <input disabled type="text" name="login" id="login" value="{{ $user->login }}" autocomplete="off" required />
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password" autocomplete="new-password" />
-                        <i>Laisser vide pour ne pas modifier le mot de passe</i>
+                        <input type="password" name="password" id="password" autocomplete="new-password" value="********" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirm">Confirmation du mot de passe</label>
+                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
                     </div>
 
                     <div class="form-group">

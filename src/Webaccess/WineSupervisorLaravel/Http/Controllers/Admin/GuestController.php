@@ -37,6 +37,11 @@ class GuestController extends AdminController
 
         $requestID = Uuid::uuid4()->toString();
 
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
         Log::info('ADMIN_CREATE_GUEST_REQUEST', [
             'id' => $requestID,
             'admin_id' => $this->getAdministratorID(),
@@ -47,9 +52,12 @@ class GuestController extends AdminController
             'login' => $request->get('login'),
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
+            'company' => $request->get('company'),
             'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
-            'city' => $request->get('city')
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]);
 
         list($success, $error) = GuestRepository::create(
@@ -61,9 +69,12 @@ class GuestController extends AdminController
             $request->get('password'),
             $request->get('email'),
             $request->get('phone'),
+            $request->get('company'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {
@@ -106,6 +117,11 @@ class GuestController extends AdminController
 
         $requestID = Uuid::uuid4()->toString();
 
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
         Log::info('ADMIN_UPDATE_GUEST_REQUEST', [
             'id' => $requestID,
             'guest_id' => $request->get('guest_id'),
@@ -117,9 +133,12 @@ class GuestController extends AdminController
             'login' => $request->get('login'),
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
+            'company' => $request->get('company'),
             'address' => $request->get('address'),
+            'address' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
-            'city' => $request->get('city')
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
         ]);
 
         list($success, $error) = GuestRepository::update(
@@ -129,12 +148,15 @@ class GuestController extends AdminController
             $request->get('access_start_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d') : null,
             $request->get('access_end_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d') : null,
             $request->get('login'),
-            $request->get('password') ? $request->get('password') : null,
+            $request->get('password') != "********" ? $request->get('password') : null,
             $request->get('email'),
             $request->get('phone'),
+            $request->get('company'),
             $request->get('address'),
+            $request->get('address2'),
             $request->get('zipcode'),
-            $request->get('city')
+            $request->get('city'),
+            $request->get('country')
         );
 
         if (!$success) {

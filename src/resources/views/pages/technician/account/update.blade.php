@@ -56,13 +56,17 @@
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $technician->login }}" required />
+                        <input disabled type="text" name="login" id="login" value="{{ $technician->login }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password" autocomplete="new-password" />
-                        <i>Laisser vide pour ne pas modifier le mot de passe</i>
+                        <input type="password" name="password" id="password" value="********" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirm">Confirmation du mot de passe</label>
+                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
                     </div>
 
                     <div class="form-group">

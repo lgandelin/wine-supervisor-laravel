@@ -34,13 +34,16 @@ class GuestRepository extends BaseRepository
      * @param $password
      * @param $email
      * @param $phone
+     * @param $company
      * @param $address
+     * @param $address2
      * @param $zipcode
      * @param $city
-     * @internal param $idGuest
+     * @param $country
      * @return bool
+     * @internal param $idGuest
      */
-    public static function create($firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $address, $zipcode, $city)
+    public static function create($firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $company, $address, $address2, $zipcode, $city, $country)
     {
         if (!GuestRepository::checkLogin(null, $login)) {
             return self::error(trans('wine-supervisor::guest.existing_login_error'));
@@ -56,9 +59,12 @@ class GuestRepository extends BaseRepository
         $guest->password = Hash::make($password);
         $guest->email = $email;
         $guest->phone = $phone;
+        $guest->company = $company;
         $guest->address = $address;
+        $guest->address2 = $address2;
         $guest->zipcode = $zipcode;
         $guest->city = $city;
+        $guest->country = $country;
 
         if (!$guest->save()) {
             return self::error(trans('wine-supervisor::guest.database_create_error'));
@@ -77,12 +83,15 @@ class GuestRepository extends BaseRepository
      * @param $password
      * @param $email
      * @param $phone
+     * @param $company
      * @param $address
+     * @param $address2
      * @param $zipcode
      * @param $city
+     * @param $country
      * @return bool
      */
-    public static function update($guestID, $firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $address, $zipcode, $city)
+    public static function update($guestID, $firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $company, $address, $address2, $zipcode, $city, $country)
     {
         if (!GuestRepository::checkLogin($guestID, $login)) {
             return self::error(trans('wine-supervisor::guest.existing_login_error'));
@@ -97,9 +106,12 @@ class GuestRepository extends BaseRepository
             if ($password) $guest->password = Hash::make($password);
             $guest->email = $email;
             $guest->phone = $phone;
+            $guest->company = $company;
             $guest->address = $address;
+            $guest->address2 = $address2;
             $guest->zipcode = $zipcode;
             $guest->city = $city;
+            $guest->country = $country;
 
             if (!$guest->save()) {
                 return self::error(trans('wine-supervisor::guest.database_update_error'));

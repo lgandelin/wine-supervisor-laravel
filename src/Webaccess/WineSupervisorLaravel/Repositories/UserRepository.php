@@ -102,7 +102,6 @@ class UserRepository extends BaseRepository
      * @param $firstName
      * @param $lastName
      * @param $email
-     * @param $login
      * @param $password
      * @param $opt_in
      * @param $address
@@ -112,17 +111,12 @@ class UserRepository extends BaseRepository
      * @param $country
      * @return User
      */
-    public static function update($userID, $firstName, $lastName, $email, $login, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
+    public static function update($userID, $firstName, $lastName, $email, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
     {
-        if (!self::checkLogin($userID, $login)) {
-            return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
-        }
-
         if ($user = User::find($userID)) {
             $user->first_name = $firstName;
             $user->last_name = $lastName;
             $user->email = $email;
-            $user->login = $login;
             if ($password !== null) $user->password = Hash::make($password);
             $user->opt_in = $opt_in;
             $user->address = $address;
@@ -138,7 +132,7 @@ class UserRepository extends BaseRepository
         }
 
         //Call API
-        try {
+        /*try {
             (new CellierDomesticusAPI())->update_user($user);
         } catch (\Exception $e) {
             Log::info('API_UPDATE_USER_ERROR', [
@@ -147,7 +141,7 @@ class UserRepository extends BaseRepository
             ]);
 
             return self::error(trans('wine-supervisor::generic.api_error'));
-        }
+        }*/
 
         return self::success();
     }

@@ -35,13 +35,13 @@
                 <form action="{{ route('admin_guest_create_handler') }}" method="POST">
 
                     <div class="form-group">
-                        <label for="first_name">Prénom</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" />
+                        <label for="last_name">Nom</label>
+                        <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="last_name">Nom</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" />
+                        <label for="first_name">Prénom</label>
+                        <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" />
                     </div>
 
                     <div class="form-group">
@@ -56,15 +56,20 @@
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ old('login') }}" />
+                        <input type="text" name="login" id="login" value="{{ old('login') }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="login">Mot de passe</label>
-                        <input type="password" name="password" id="password" value="" autocomplete="off" />
+                        <input type="password" name="password" id="password" value="" autocomplete="new-password" required />
                     </div>
 
-                    {{--<div class="form-group">
+                    <div class="form-group">
+                        <label for="password_confirm">Confirmation du mot de passe</label>
+                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" name="email" id="email" value="{{ old('email') }}" />
                     </div>
@@ -75,8 +80,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="company">Société</label>
+                        <input type="text" name="company" id="company" value="{{ old('company') }}" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="address">Adresse</label>
                         <input type="text" name="address" id="address" value="{{ old('address') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address2">Complément d'adresse</label>
+                        <input type="text" name="address2" id="address2" value="{{ old('address2') }}" />
                     </div>
 
                     <div class="form-group">
@@ -87,7 +102,16 @@
                     <div class="form-group">
                         <label for="city">Ville</label>
                         <input type="text" name="city" id="city" value="{{ old('city') }}" />
-                    </div>--}}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Pays</label>
+                        <select name="country" id="country" required>
+                            @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                <option value="{{ $key }}" @if (old('country') == $key)selected="selected"@endif @if (!old('country') && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="submit-container">
                         <input type="submit" value="Valider" />

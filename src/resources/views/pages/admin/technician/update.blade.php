@@ -75,6 +75,15 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="country">Pays</label>
+                        <select name="country" id="country" required>
+                            @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                <option value="{{ $key }}" @if ($technician->country == $key)selected="selected"@endif @if (!$technician->country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="city">Statut</label>
                         <div class="radio"><input type="radio" name="status" @if ($technician->status === Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED)checked="checked"@endif value="on" /> Activé</div>
                         <div class="radio"><input type="radio" name="status"   @if (!$technician->status)checked="checked"@endif value="off" /> Désactivé</div>

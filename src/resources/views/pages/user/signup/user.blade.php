@@ -77,11 +77,6 @@
                         <input type="text" name="email" id="email" value="{{ $email }}" required />
                     </div>
 
-                    <!--<div class="form-group">
-                        <label for="email_confirm">Confirmation email</label>
-                        <input type="text" name="email_confirm" id="email_confirm" value="{{ $email }}"/>
-                    </div>-->
-
                     <div class="form-group">
                         <label for="login">Login</label>
                         <input type="text" name="login" id="login" value="{{ $login }}" required />

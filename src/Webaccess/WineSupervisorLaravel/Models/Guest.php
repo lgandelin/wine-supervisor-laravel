@@ -23,14 +23,17 @@ class Guest extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
-        'email',
+        'access_start_date',
+        'access_end_date',
         'login',
+        'email',
+        'phone',
+        'company',
         'address',
+        'address2',
         'zipcode',
         'city',
-        'phone',
-        'access_start_date',
-        'access_end_date'
+        'country',
     ];
 
     /**

@@ -2622,11 +2622,11 @@ footer a, footer a:visited {
 }
 /* line 13, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .cellar {
-  width: 23.9%;
+  width: 25.9%;
 }
 /* line 17, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .status {
-  width: 18%;
+  width: 20%;
 }
 /* line 20, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .status .icon {
@@ -2647,12 +2647,12 @@ footer a, footer a:visited {
 }
 /* line 38, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .type {
-  width: 18%;
+  width: 22%;
   text-align: center;
 }
 /* line 43, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .date {
-  width: 18%;
+  width: 25%;
   text-align: center;
 }
 /* line 48, ../sass/pages/_cellars.scss */

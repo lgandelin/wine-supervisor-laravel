@@ -106,7 +106,6 @@ class TechnicianRepository extends BaseRepository
      * @param $registration
      * @param $phone
      * @param $email
-     * @param $login
      * @param $password
      * @param $address
      * @param $address2
@@ -115,13 +114,12 @@ class TechnicianRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function update($technicianID, $company, $registration, $phone, $email, $login, $password, $address, $address2, $zipcode, $city, $country)
+    public static function update($technicianID, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
     {
         if ($technician = Technician::find($technicianID)) {
             $technician->company = $company;
             $technician->registration = $registration;
             $technician->phone = $phone;
-            $technician->login = $login;
             $technician->email = $email;
             if ($password !== null) $technician->password = Hash::make($password);
             $technician->address = $address;
@@ -137,7 +135,7 @@ class TechnicianRepository extends BaseRepository
             return self::error(trans('wine-supervisor::technician.id_not_found'));
         }
 
-        try {
+        /*try {
             (new CellierDomesticusAPI())->update_technician($technician);
         } catch (\Exception $e) {
             Log::info('API_UPDATE_TECHNICIAN_ERROR', [
@@ -146,7 +144,7 @@ class TechnicianRepository extends BaseRepository
             ]);
 
             return self::error(trans('wine-supervisor::generic.api_error'));
-        }
+        }*/
 
         return self::success();
     }
