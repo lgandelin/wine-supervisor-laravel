@@ -1397,11 +1397,24 @@ em, strong {
   font-weight: 700;
 }
 
-/* line 2, ../sass/includes/_forms.scss */
+/* line 3, ../sass/includes/_forms.scss */
+form .required {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: #e0363d;
+  vertical-align: middle;
+}
+/* line 12, ../sass/includes/_forms.scss */
+form .legend {
+  vertical-align: middle;
+  font-size: 1.4rem;
+}
+/* line 17, ../sass/includes/_forms.scss */
 form .form-group {
   margin-bottom: 2rem;
 }
-/* line 5, ../sass/includes/_forms.scss */
+/* line 20, ../sass/includes/_forms.scss */
 form .form-group input[type="text"], form .form-group input[type="password"], form .form-group select, form .form-group textarea {
   padding: 2rem;
   width: 100%;
@@ -1415,41 +1428,41 @@ form .form-group input[type="text"], form .form-group input[type="password"], fo
   box-shadow: none;
   outline: 0;
 }
-/* line 20, ../sass/includes/_forms.scss */
+/* line 35, ../sass/includes/_forms.scss */
 form .form-group input[type="text"]:not([disabled]):focus, form .form-group input[type="text"]:not([disabled]):hover, form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:not([disabled]):focus, form .form-group input[type="password"]:not([disabled]):hover, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:not([disabled]):focus, form .form-group select:not([disabled]):hover, form .form-group select:disabled, form .form-group select:disabled, form .form-group textarea:not([disabled]):focus, form .form-group textarea:not([disabled]):hover, form .form-group textarea:disabled, form .form-group textarea:disabled {
   border-color: #f1f4f7;
   background-color: #fdfdfd;
 }
-/* line 25, ../sass/includes/_forms.scss */
+/* line 40, ../sass/includes/_forms.scss */
 form .form-group input[type="text"]:disabled, form .form-group input[type="text"]:disabled, form .form-group input[type="password"]:disabled, form .form-group input[type="password"]:disabled, form .form-group select:disabled, form .form-group select:disabled, form .form-group textarea:disabled, form .form-group textarea:disabled {
   color: #a9b2ba;
   cursor: default;
 }
-/* line 31, ../sass/includes/_forms.scss */
+/* line 46, ../sass/includes/_forms.scss */
 form .form-group select {
   -webkit-appearance: none;
   color: #a9b2ba;
   background: #f8f7fa url("../img/signup/bg-select.png") no-repeat right 2rem center;
 }
-/* line 39, ../sass/includes/_forms.scss */
+/* line 54, ../sass/includes/_forms.scss */
 form .form-group label {
   display: block;
   color: black;
 }
-/* line 45, ../sass/includes/_forms.scss */
+/* line 60, ../sass/includes/_forms.scss */
 form .form-group i {
   font-style: italic;
   font-size: 1.25rem;
   color: #8f8f8f;
 }
-/* line 51, ../sass/includes/_forms.scss */
+/* line 66, ../sass/includes/_forms.scss */
 form .form-group .radio {
   display: inline-block;
   margin-right: 6rem;
   color: #a9b2ba;
   font-style: italic;
 }
-/* line 58, ../sass/includes/_forms.scss */
+/* line 73, ../sass/includes/_forms.scss */
 form .form-group .radio input[type="radio"] {
   width: 2rem;
   height: 2rem;
@@ -1463,7 +1476,7 @@ form .form-group .radio input[type="radio"] {
   border: 1px solid #a9b2ba;
   outline: 0;
 }
-/* line 73, ../sass/includes/_forms.scss */
+/* line 88, ../sass/includes/_forms.scss */
 form .form-group .radio input[type="radio"]:checked, form .form-group .radio input[type="radio"]:hover {
   background-color: #114a83;
 }
@@ -1564,7 +1577,7 @@ header {
 /* line 41, ../sass/includes/_structure.scss */
 .main-content .page-content .submit-container {
   clear: both;
-  margin-top: 15rem;
+  margin-top: 10rem;
   overflow: hidden;
 }
 /* line 46, ../sass/includes/_structure.scss */
@@ -2717,6 +2730,32 @@ footer a, footer a:visited {
   overflow: hidden;
 }
 
+/* line 3, ../sass/pages/_technician.scss */
+.technician-template .left-column {
+  float: left;
+  width: 42%;
+  margin-right: 7%;
+}
+/* line 8, ../sass/pages/_technician.scss */
+.technician-template .left-column h2 {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  font-size: 3rem;
+  text-transform: uppercase;
+  border-bottom: 5px solid black;
+}
+/* line 16, ../sass/pages/_technician.scss */
+.technician-template .left-column .id {
+  display: block;
+  margin-bottom: 6rem;
+  font-size: 2rem;
+  color: #8f8f8f;
+}
+/* line 25, ../sass/pages/_technician.scss */
+.technician-template .right-column {
+  overflow: hidden;
+}
+
 /* line 3, ../sass/pages/_club-premium.scss */
 .club-premium-template .page-header {
   overflow: hidden;
@@ -2840,14 +2879,6 @@ footer a, footer a:visited {
 /* line 107, ../sass/pages/_club-premium.scss */
 .club-premium-template .sales .sales-navigation {
   margin-top: 5rem;
-}
-
-/* line 2, ../sass/pages/_my-account.scss */
-.my-account-template i {
-  display: block;
-  margin-top: 1rem;
-  font-style: italic;
-  color: #cfdbe6;
 }
 
 /* line 3, ../sass/pages/_contact.scss */

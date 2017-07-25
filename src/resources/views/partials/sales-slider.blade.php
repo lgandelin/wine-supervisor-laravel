@@ -42,7 +42,7 @@
 
                             @if ($sale->is_active)
                                 @if (!$is_user && !$is_guest)
-                                    <a target="_blank" href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">Accès vente</a>
+                                    <a href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">Accès vente</a>
                                 @elseif ($wine->link)
                                     <a target="_blank" href="{{ $wine->link }}" class="button">Commander</a>
                                 @endif

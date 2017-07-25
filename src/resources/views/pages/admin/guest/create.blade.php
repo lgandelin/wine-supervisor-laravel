@@ -45,33 +45,33 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="access_start_date">Date de début d'accès</label>
-                        <input type="text" name="access_start_date" id="access_start_date" value="{{ old('access_start_date') }}" class="datepicker" />
+                        <label for="access_start_date">Date de début d'accès <span class="required">*</span></label>
+                        <input type="text" name="access_start_date" id="access_start_date" value="{{ old('access_start_date') }}" class="datepicker" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="access_end_date">Date de fin d'accès</label>
-                        <input type="text" name="access_end_date" id="access_end_date" value="{{ old('access_end_date') }}" class="datepicker" />
+                        <label for="access_end_date">Date de fin d'accès <span class="required">*</span></label>
+                        <input type="text" name="access_end_date" id="access_end_date" value="{{ old('access_end_date') }}" class="datepicker" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="login">Login</label>
+                        <label for="login">Login <span class="required">*</span></label>
                         <input type="text" name="login" id="login" value="{{ old('login') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="login">Mot de passe</label>
+                        <label for="login">Mot de passe <span class="required">*</span></label>
                         <input type="password" name="password" id="password" value="" autocomplete="new-password" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirmation du mot de passe</label>
-                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
+                        <label for="password_confirm">Confirmation du mot de passe <span class="required">*</span></label>
+                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ old('email') }}" />
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="text" name="email" id="email" value="{{ old('email') }}" required />
                     </div>
 
                     <div class="form-group">
@@ -112,6 +112,8 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                     <div class="submit-container">
                         <input type="submit" value="Valider" />

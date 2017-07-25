@@ -116,17 +116,17 @@
                 <form action="{{ route('user_update_account_handler') }}" method="POST">
 
                     <div class="form-group">
-                        <label for="last_name">Nom</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" />
+                        <label for="last_name">Nom <span class="required">*</span></label>
+                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">Prénom</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}"/>
+                        <label for="first_name">Prénom </label>
+                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email <span class="required">*</span></label>
                         <input type="text" name="email" id="email" value="{{ $user->email }}" autocomplete="off" required />
                     </div>
 
@@ -136,17 +136,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe</label>
+                        <label for="password">Mot de passe <span class="required">*</span></label>
                         <input type="password" name="password" id="password" autocomplete="new-password" value="********" />
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirmation du mot de passe</label>
+                        <label for="password_confirm">Confirmation du mot de passe <span class="required">*</span></label>
                         <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Adresse</label>
+                        <label for="address">Adresse <span class="required">*</span></label>
                         <input type="text" name="address" id="address" value="{{ $user->address }}" required />
                     </div>
 
@@ -156,17 +156,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal</label>
+                        <label for="zipcode">Code postal <span class="required">*</span></label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ $user->zipcode }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Ville</label>
+                        <label for="city">Ville <span class="required">*</span></label>
                         <input type="text" name="city" id="city" value="{{ $user->city }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Pays</label>
+                        <label for="country">Pays <span class="required">*</span></label>
                         <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if ($user->country == $key)selected="selected"@endif @if (!$user->country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
@@ -179,6 +179,8 @@
                         <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($user->opt_in == true || $user->opt_in === null)checked="checked"@endif /> Oui</div>
                         <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$user->opt_in)checked="checked"@endif /> Non</div>
                     </div>
+
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                     <div class="submit-container">
                         <input type="submit" class="button red-button" value="Valider" />

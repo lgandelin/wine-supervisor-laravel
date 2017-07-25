@@ -58,42 +58,42 @@
                 <form id="user_signup" action="{{ route('user_signup_handler') }}" method="post">
 
                     <div class="form-group">
-                        <label for="last_name">Nom</label>
+                        <label for="last_name">Nom <span class="required">*</span></label>
                         <input type="text" name="last_name" id="last_name" value="{{ $last_name }}" required />
                     </div>
 
                     <div class="form-group">
                         <label for="first_name">Prénom</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ $first_name }}"/>
+                        <input type="text" name="first_name" id="first_name" value="{{ $first_name }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Téléphone</label>
+                        <label for="phone">Téléphone <span class="required">*</span></label>
                         <input type="text" name="phone" id="phone" value="{{ $phone }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email <span class="required">*</span></label>
                         <input type="text" name="email" id="email" value="{{ $email }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="login">Login</label>
+                        <label for="login">Login <span class="required">*</span></label>
                         <input type="text" name="login" id="login" value="{{ $login }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe</label>
+                        <label for="password">Mot de passe <span class="required">*</span></label>
                         <input type="password" name="password" id="password" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirmation mot de passe</label>
-                        <input type="password" name="password_confirm" id="password_confirm" />
+                        <label for="password_confirm">Confirmation mot de passe <span class="required">*</span></label>
+                        <input type="password" name="password_confirm" id="password_confirm" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Adresse</label>
+                        <label for="address">Adresse <span class="required">*</span></label>
                         <input type="text" name="address" id="address" value="{{ $address }}" required />
                     </div>
 
@@ -103,17 +103,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal</label>
+                        <label for="zipcode">Code postal <span class="required">*</span></label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ $zipcode }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Ville</label>
+                        <label for="city">Ville <span class="required">*</span></label>
                         <input type="text" name="city" id="city" value="{{ $city }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Pays</label>
+                        <label for="country">Pays <span class="required">*</span></label>
                         <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if ($country == $key)selected="selected"@endif @if (!$country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
@@ -123,9 +123,11 @@
 
                     <div class="form-group">
                         <label for="opt_in" style="display: inline-block; margin-right: 1rem; vertical-align: middle;">Recevoir la Newsletter du Club</label><i>(modifiable dans votre espace utilisateur)</i><br>
-                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in === "1" || $opt_in === null)checked="checked"@endif /> Oui</div>
-                        <div class="radio"><input type="radio" name="opt_in" value="0" @if ($opt_in === "0")checked="checked"@endif /> Non</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in == true || $opt_in === null)checked="checked"@endif /> Oui</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$opt_in)checked="checked"@endif /> Non</div>
                     </div>
+
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                     <div class="submit-container">
                         <input type="submit" class="button red-button" value="Valider" />
@@ -140,42 +142,42 @@
                 <form id="technician_signup" action="{{ route('technician_signup_handler') }}" method="post" style="display:none">
 
                     <div class="form-group">
-                        <label for="company">Nom de la société</label>
+                        <label for="company">Nom de la société <span class="required">*</span></label>
                         <input type="text" name="company" id="company" value="{{ old('company') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="registration">Immatriculation</label>
+                        <label for="registration">Immatriculation <span class="required">*</span></label>
                         <input type="text" name="registration" id="registration" value="{{ old('registration') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Téléphone</label>
+                        <label for="phone">Téléphone <span class="required">*</span></label>
                         <input type="text" name="phone" id="phone" value="{{ old('phone') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ old('email') }}" />
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="text" name="email" id="email" value="{{ old('email') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="login">Login</label>
+                        <label for="login">Login <span class="required">*</span></label>
                         <input type="text" name="login" id="login" value="{{ old('login') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe</label>
+                        <label for="password">Mot de passe <span class="required">*</span></label>
                         <input type="password" name="password" id="password" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirmation mot de passe</label>
-                        <input type="password" name="password_confirm" id="password_confirm" />
+                        <label for="password_confirm">Confirmation mot de passe <span class="required">*</span></label>
+                        <input type="password" name="password_confirm" id="password_confirm" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Adresse</label>
+                        <label for="address">Adresse <span class="required">*</span></label>
                         <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>
 
@@ -185,23 +187,25 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal</label>
+                        <label for="zipcode">Code postal <span class="required">*</span></label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Ville</label>
+                        <label for="city">Ville <span class="required">*</span></label>
                         <input type="text" name="city" id="city" value="{{ old('city') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Pays</label>
+                        <label for="country">Pays <span class="required">*</span></label>
                         <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if (old('country') == $key)selected="selected"@endif @if (!old('country') && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
                             @endforeach
                         </select>
                     </div>
+
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                     <div class="submit-container">
                         <input type="submit" class="button red-button" value="Valider" />

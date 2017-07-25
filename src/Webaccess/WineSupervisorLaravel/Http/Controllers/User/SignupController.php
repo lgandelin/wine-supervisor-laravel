@@ -20,13 +20,15 @@ class SignupController
             $session_user = json_decode($session_user);
         }
 
+        $old_opt_in = old('opt_in') ? old('opt_in') : 1;
+
         return view('wine-supervisor::pages.user.signup.user', [
             'last_name' => isset($session_user) && $session_user->last_name ? $session_user->last_name : old('last_name'),
             'first_name' => isset($session_user) && $session_user->first_name ? $session_user->first_name : old('first_name'),
             'email' => isset($session_user) && $session_user->email ? $session_user->email : old('email'),
             'phone' => isset($session_user) && $session_user->phone ? $session_user->phone : old('phone'),
             'login' => isset($session_user) && $session_user->login ? $session_user->login : old('login'),
-            'opt_in' => isset($session_user) && $session_user->opt_in ? $session_user->opt_in : old('opt_in'),
+            'opt_in' => isset($session_user) ? $session_user->opt_in : $old_opt_in,
             'address' => isset($session_user) && $session_user->address ? $session_user->address : old('address'),
             'address2' => isset($session_user) && $session_user->address2 ? $session_user->address2 : old('address2'),
             'zipcode' => isset($session_user) && $session_user->zipcode ? $session_user->zipcode : old('zipcode'),
@@ -58,7 +60,7 @@ class SignupController
             'phone' => $request->get('phone'),
             'login' => $request->get('login'),
             'password' => $request->get('password'),
-            'opt_in' => $request->get('opt_in') == 1 ? true : false,
+            'opt_in' => $request->get('opt_in') == '1' ? true : false,
             'address' => $request->get('address'),
             'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),

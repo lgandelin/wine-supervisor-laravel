@@ -45,33 +45,33 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $guest->login }}" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="login">Mot de passe</label>
-                        <input type="password" name="password" id="password" value="********" autocomplete="new-password" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password_confirm">Confirmation du mot de passe</label>
-                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="access_start_date">Date de début d'accès</label>
+                        <label for="access_start_date">Date de début d'accès <span class="required">*</span></label>
                         <input type="text" name="access_start_date" id="access_start_date" value="@if ($guest->access_start_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/Y') }}@endif" class="datepicker" />
                     </div>
 
                     <div class="form-group">
-                        <label for="access_end_date">Date de fin d'accès</label>
+                        <label for="access_end_date">Date de fin d'accès <span class="required">*</span></label>
                         <input type="text" name="access_end_date" id="access_end_date" value="@if ($guest->access_end_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/Y') }}@endif" class="datepicker" />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ $guest->email }}" />
+                        <label for="login">Login <span class="required">*</span></label>
+                        <input type="text" name="login" id="login" value="{{ $guest->login }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login">Mot de passe <span class="required">*</span></label>
+                        <input type="password" name="password" id="password" value="********" autocomplete="new-password" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password_confirm">Confirmation du mot de passe <span class="required">*</span></label>
+                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="text" name="email" id="email" value="{{ $guest->email }}" required />
                     </div>
 
                     <div class="form-group">
@@ -112,6 +112,8 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                     <div class="submit-container">
                         <input type="submit" value="Valider" />

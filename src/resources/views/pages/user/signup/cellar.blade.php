@@ -54,8 +54,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="id_ws">Identifiant WineSupervisor</label>
+                        <label for="id_ws">Identifiant WineSupervisor <span class="required">*</span></label>
                         <input type="text" name="id_ws" id="id_ws" value="{{ old('id_ws') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="activation_code">Code d'activation <span class="required">*</span></label>
+                        <input type="text" name="activation_code" id="activation_code" value="{{ old('activation_code') }}" required />
                     </div>
 
                     <div class="form-group">
@@ -69,12 +74,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="activation_code">Code d'activation</label>
-                        <input type="text" name="activation_code" id="activation_code" value="{{ old('activation_code') }}" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Adresse de la cave</label>
+                        <label for="address">Adresse de la cave <span class="required">*</span></label>
                         <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>
 
@@ -84,23 +84,25 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal</label>
+                        <label for="zipcode">Code postal <span class="required">*</span></label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Ville</label>
+                        <label for="city">Ville <span class="required">*</span></label>
                         <input type="text" name="city" id="city" value="{{ old('city') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Pays</label>
+                        <label for="country">Pays <span class="required">*</span></label>
                         <select name="country" id="country">
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if (old('country') == $key)selected="selected"@endif @if (!old('country') && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
                             @endforeach
                         </select>
                     </div>
+
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                     <div class="submit-container">
                         <input type="submit" class="button red-button" value="Valider" />
