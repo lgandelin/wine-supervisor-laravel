@@ -2856,16 +2856,16 @@ footer a, footer a:visited {
 /* line 84, ../sass/pages/_club-premium.scss */
 .club-premium-template .text-content .left-image {
   float: left;
-  margin-right: 3rem;
+  margin-right: 4rem;
 }
 /* line 89, ../sass/pages/_club-premium.scss */
 .club-premium-template .text-content .right-image {
   float: right;
-  margin-left: 3rem;
+  margin-left: 4rem;
 }
 /* line 94, ../sass/pages/_club-premium.scss */
 .club-premium-template .text-content .text {
-  padding-top: 6rem;
+  padding-top: 5rem;
   overflow: hidden;
 }
 /* line 100, ../sass/pages/_club-premium.scss */

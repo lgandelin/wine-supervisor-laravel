@@ -24,15 +24,15 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Comité de dégustation</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Le comité de dégustation du Club Avantage WineSupervisor va vous faire rêver.</p>
             </div>
             <!-- PAGE HEADER -->
 
             <!-- PAGE CONTENT -->
             <div class="page-content text-content">
                 <section>
-                    <div class="left-image"><img src="{{ asset('img/club-premium/comite.jpg') }}" width="541" height="361" /></div>
-                    <div class="text" style="padding-top: 4rem">
+                    <div class="left-image"><img src="{{ asset('img/club-premium/comite.jpg') }}" width="541" height="379" /></div>
+                    <div class="text" style="padding-top: 6rem">
                         <?php include base_path() . '/contents/club-avantage/comite-de-degustation.html' ?>
                     </div>
                 </section>
