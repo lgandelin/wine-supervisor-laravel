@@ -21,7 +21,8 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Modification de cave</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Vous pouvez modifier les informations sur votre cave si vous le désirez.<br/>
+                    L’ID professionnel peut-être ajouté si toutefois vous n’en disposiez pas lors de l’enregistrement initial.</p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -45,8 +46,10 @@
                     <h2>Identifiant WineSupervisor</h2>
                     <span class="mak">{{ $cellar->id_ws }}</span>
 
-                    <h2>N° de série de l'appareil</h2>
-                    <span class="serial-number">{{ $cellar->serial_number }}</span>
+                    @if ($cellar->serial_number)
+                        <h2>N° de série de l'appareil</h2>
+                        <span class="serial-number">{{ $cellar->serial_number }}</span>
+                    @endif
 
                     <div class="links">
                         <a class="link" href="#">SAV</a>
@@ -106,6 +109,8 @@
                             </select>
                         </div>
 
+                        <i class="legend"><span class="required">*</span> : champs obligatoires</i>
+
                         <div class="submit-container">
                             <input type="submit" class="button red-button" value="Valider" />
                         </div>
@@ -119,7 +124,7 @@
             </div>
             <!-- PAGE CONTENT -->
 
-            <a class="button red-button back-button" href="{{ route('user_cellar_list') }}">Retour</a>
+            <a class="button red-button back-button" href="{{ route('user_update_account') }}">Retour</a>
         </div>
 
         @include('wine-supervisor::partials.legal-notices')

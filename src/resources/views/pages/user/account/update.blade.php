@@ -21,7 +21,7 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Mes caves</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Voici ci-dessous la liste de vos caves connectées. Pour chacune, vous avez la possibilité d’en compléter ou d’en modifier les informations.</p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -94,7 +94,9 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Mon compte</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Retrouvez les informations sur votre compte.<br/>
+                    Vous pouvez les modifier chaque fois que c’est nécessaire.
+                </p>
             </div>
             <!-- PAGE HEADER -->
 
