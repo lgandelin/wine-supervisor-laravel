@@ -1552,15 +1552,16 @@ header {
   padding: 4.5rem 4rem 4.5rem 5rem;
   font-size: 2rem;
   color: white;
+  text-align: justify;
   background: #1e95c9;
 }
-/* line 20, ../sass/includes/_structure.scss */
+/* line 21, ../sass/includes/_structure.scss */
 .main-content .page-header h1 {
   font-size: 4.5rem;
   font-weight: 700;
   line-height: 5rem;
 }
-/* line 25, ../sass/includes/_structure.scss */
+/* line 26, ../sass/includes/_structure.scss */
 .main-content .page-header h1:after {
   content: " ";
   width: 1.8rem;
@@ -1570,21 +1571,21 @@ header {
   margin-bottom: 3.5rem;
   background: white;
 }
-/* line 38, ../sass/includes/_structure.scss */
+/* line 39, ../sass/includes/_structure.scss */
 .main-content .page-content {
   overflow: hidden;
 }
-/* line 41, ../sass/includes/_structure.scss */
+/* line 42, ../sass/includes/_structure.scss */
 .main-content .page-content .submit-container {
   clear: both;
   margin-top: 10rem;
   overflow: hidden;
 }
-/* line 46, ../sass/includes/_structure.scss */
+/* line 47, ../sass/includes/_structure.scss */
 .main-content .page-content .submit-container input[type="submit"] {
   float: right;
 }
-/* line 52, ../sass/includes/_structure.scss */
+/* line 53, ../sass/includes/_structure.scss */
 .main-content .back-button {
   position: relative;
   top: -4rem;
@@ -2867,16 +2868,17 @@ footer a, footer a:visited {
 .club-premium-template .text-content .text {
   padding-top: 5rem;
   overflow: hidden;
+  text-align: justify;
 }
-/* line 100, ../sass/pages/_club-premium.scss */
+/* line 101, ../sass/pages/_club-premium.scss */
 .club-premium-template .sales {
   background: url(../img/club-premium/background-sale-1.jpg) no-repeat center top;
 }
-/* line 103, ../sass/pages/_club-premium.scss */
+/* line 104, ../sass/pages/_club-premium.scss */
 .club-premium-template .sales .slider-container {
   padding-bottom: 7.5rem;
 }
-/* line 107, ../sass/pages/_club-premium.scss */
+/* line 108, ../sass/pages/_club-premium.scss */
 .club-premium-template .sales .sales-navigation {
   margin-top: 5rem;
 }
