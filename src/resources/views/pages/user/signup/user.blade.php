@@ -25,9 +25,19 @@
 
 
             <!-- PAGE HEADER -->
-            <div class="page-header">
+            <div class="page-header" id="user_header">
                 <h1>Créer un compte</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit.</p>
+                <p>Vous venez d’acquérir un WineSupervisor II et désirez le connecter. Rien de plus simple.<br>
+                    Remplissez le formulaire en cochant la case utilisateur. Indiquez les codes fournis avec votre produit. Validez, vous êtes connectés sur le superviseur.<br>
+                    Si vous avez déjà un compte et que vous désirez ajouter une nouvelle cave alors connectez-vous et créez votre nouvelle cave dans ce compte.</p>
+            </div>
+
+            <div class="page-header" id="technician_header" style="display:none">
+                <h1>Créer un compte</h1>
+                <p>Vous êtes installateurs de systèmes WineSupervisor II. Cochez la case installateur et remplissez le formulaire. Après validation par notre équipe vous
+                    obtiendrez un identifiant que vous communiquerez aux utilisateurs dont vous avez le suivi des caves. Vous pourrez ainsi suivre le bon fonctionnement
+                    de l’ensemble des installations réalisées chez vos clients.
+                </p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -230,11 +240,15 @@
             $('input[name="type"]').change(function() {
                 if ($(this).val() == 1) {
                     $('#user_signup').show();
+                    $('#user_header').show();
                     $('#technician_signup').hide();
+                    $('#technician_header').hide();
                     $('.steps .step').show();
                 } else if ($(this).val() == 2) {
                     $('#user_signup').hide();
+                    $('#user_header').hide();
                     $('#technician_signup').show();
+                    $('#technician_header').show();
                     $('.steps .step').hide();
                 }
             });
