@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Services;
 use DateTimeZone;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
+use Webaccess\WineSupervisorLaravel\Models\Cellar;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\User;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
@@ -286,6 +287,42 @@ class CellierDomesticusAPI
             ]);
         } else {
             Log::info('API_UPDATE_TECHNICIAN_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function update_cellar(User $user, Cellar $cellar)
+    {
+        $requestData = [
+            'json' => [
+                'name' => $cellar->name ? $cellar->name : 'Ma cave',
+                'address' => $cellar->address . ' ' . $cellar->address2,
+                'zipcode' => $cellar->zipcode,
+                'city' => $cellar->city,
+                'country' => $cellar->country,
+                'lat' => $cellar->latitude,
+                'lng' => $cellar->longitude,
+            ],
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_UPDATE_CELLAR_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s', $cellar->cd_cellar_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_UPDATE_CELLAR_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_UPDATE_CELLAR_RESPONSE', [
                 'success' => false,
             ]);
         }

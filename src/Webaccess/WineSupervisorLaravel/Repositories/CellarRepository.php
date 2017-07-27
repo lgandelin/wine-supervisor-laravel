@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Repositories;
 use DateInterval;
 use DateTime;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Log;
 use Webaccess\WineSupervisorLaravel\Models\Cellar;
 use Webaccess\WineSupervisorLaravel\Models\CellarHistory;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
@@ -152,8 +153,6 @@ class CellarRepository extends BaseRepository
             return self::error(trans('wine-supervisor::technician.id_not_found'));
         }
 
-        //TODO : CALL CDO
-
         //Fetch GPS coordinates from address
         $complete_address = implode(' ', [$address, $zipcode, $city]);
         list($latitude, $longitude) = GPSTool::getGPSCoordinates($complete_address);
@@ -193,6 +192,22 @@ class CellarRepository extends BaseRepository
                 if (!self::updateCellarHistory($cellarID, $userID, $adminID, $update['column'], $update['old_value'], $update['new_value'])) {
                     return self::error(trans('wine-supervisor::cellar.update_error_history'));
                 }
+            }
+
+            //Call API
+            try {
+                $user = UserRepository::getByID($userID);
+                (new CellierDomesticusAPI())->update_cellar($user, $cellar);
+            } catch (\Exception $e) {
+                Log::info('API_UPDATE_CELLAR_ERROR', [
+                    'user_id' => $userID,
+                    'cd_user_id' => $user->cd_user_id,
+                    'cellar_id' => $cellarID,
+                    'cellar_cd_id' => $cellar->cd_cellar_id,
+                    'error' => $e->getMessage(),
+                ]);
+
+                return self::error(trans('wine-supervisor::generic.api_error'));
             }
         }
 
