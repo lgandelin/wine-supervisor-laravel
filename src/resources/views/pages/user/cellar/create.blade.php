@@ -22,7 +22,7 @@
             <div class="page-header">
                 <h1>Ajouter une cave</h1>
                 <p>Vous connectez une nouvelle cave, inscrivez vos informations dans le formulaire.<br/>
-                    L’identifiants WineSupervisor et  le code d’activation sont inscrits sur votre boitier WineSupervisor II ils permettent de connecter votre cave au superviseur.<br/>
+                    L’identifiant WineSupervisor et le code d’activation sont inscrits sur votre boitier WineSupervisor II. Ils permettent de connecter votre cave au superviseur.<br/>
                     L’ID Professionnel vous est remis par l’installateur en charge du suivi de l’installation. Cette information peut être renseignée ultérieurement.
                 </p>
             </div>

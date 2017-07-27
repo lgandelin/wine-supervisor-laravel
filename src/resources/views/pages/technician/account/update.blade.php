@@ -13,7 +13,10 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Mon compte</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>
+                    Votre compte professionnel vous permet de suivre l’intégralité des climatiseurs de cave connectés que vous avez installés et dont vous avez la charge soit pendant la période de garantie ou lors d’un contrat d’entretien établi avec votre client.<br>
+                    Lorsque celui-ci enregistre sur sa cave votre ID Professionnel vous êtes en mesure de la retrouver d’un coût d’œil sur la carte de WineSupervisor ou en tapant le nom du client.
+                </p>
             </div>
             <!-- PAGE HEADER -->
 

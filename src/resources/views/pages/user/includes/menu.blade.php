@@ -2,7 +2,7 @@
     @if (isset($is_technician) && $is_technician)
         <li @if (isset($route) && $route == 'technician_update_account')class="active"@endif><a href="{{ route('technician_update_account') }}">Gérer mon compte</a></li>
 
-        @if ($is_eligible_to_supervision)
+        @if (isset($is_eligible_to_supervision) && $is_eligible_to_supervision)
             <li><a href="{{ route('supervision') }}">Supervision</a></li>
         @endif
 
