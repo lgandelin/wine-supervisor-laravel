@@ -1,10 +1,10 @@
 Bonjour,<br><br>
 
-l'équipe de WineSupervisor est ravie de pouvoir vous compter parmi ses membres du Club Avantage.<br><br>
+l'équipe de WineSupervisor est ravie de pouvoir vous compter parmi ses membres du <a href="{{ $urlClubPremium }}">Club Avantage</a>.<br><br>
 
-Vous trouverez ci-dessous votre accès privé afin de vous connecter à l'espace <a href="{{ $urlClubPremium }}">Club Avantage</a>.<br><br>
+Vous trouverez ci-dessous votre accès privé afin de vous y connecter.<br><br>
 
-Il vous permettra d'accéder aux ventes en cours, à partir du {{ $startDate->format('d/m/Y') }} jusqu'au {{ $endDate->format('d/m/Y') }}.
+Il vous permettra d'accéder aux ventes en cours, à partir du {{ $startDate->format('d/m/Y') }} jusqu'au {{ $endDate->format('d/m/Y') }}.<br/><br/>
 
 <strong>Login : </strong>{{ $login }}<br><br>
 

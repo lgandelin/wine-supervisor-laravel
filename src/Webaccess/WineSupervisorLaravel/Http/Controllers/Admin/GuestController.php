@@ -69,7 +69,7 @@ class GuestController extends AdminController
             $request->get('first_name'),
             $request->get('last_name'),
             $request->get('access_start_date') ? $startDate->format('Y-m-d') : null,
-            $request->get('access_end_date') ? $endDate : null,
+            $request->get('access_end_date') ? $endDate->format('Y-m-d') : null,
             $request->get('login'),
             $request->get('password'),
             $request->get('email'),
@@ -113,8 +113,7 @@ class GuestController extends AdminController
                 'endDate' => $endDate
             ), function ($message) use ($guestEmail) {
                 $message->to($guestEmail)
-                    ->from(env('WS_SENDER_EMAIL'))
-                    ->subject('[WineSupervisor] Votre demande de contact a bien été envoyée');
+                    ->subject('[WineSupervisor] Votre accès au Club Avantage');
             });
             $request->session()->flash('confirmation', trans('wine-supervisor::guest.guest_create_success'));
 
@@ -186,8 +185,8 @@ class GuestController extends AdminController
             $request->get('guest_id'),
             $request->get('first_name'),
             $request->get('last_name'),
-            $request->get('access_start_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_start_date'))->format('Y-m-d') : null,
-            $request->get('access_end_date') ? \DateTime::createFromformat('d/m/Y', $request->get('access_end_date'))->format('Y-m-d') : null,
+            $request->get('access_start_date') ? $startDate->format('Y-m-d') : null,
+            $request->get('access_end_date') ? $endDate->format('Y-m-d') : null,
             $request->get('login'),
             $request->get('password') != "********" ? $request->get('password') : null,
             $request->get('email'),
@@ -218,41 +217,6 @@ class GuestController extends AdminController
             'id' => $requestID,
             'success' => true
         ]);
-
-        $guestEmail = $request->get('email');
-        $login = $request->get('login');
-        $password = $request->get('password');
-        $urlClubPremium = route('club_premium');
-
-        try {
-            Mail::send('wine-supervisor::emails.guest_account', array(
-                'login' => $login,
-                'password' => $password,
-                'urlClubPremium' => $urlClubPremium,
-                'startDate' => $startDate,
-                'endDate' => $endDate
-            ), function ($message) use ($guestEmail) {
-                $message->to($guestEmail)
-                    ->from(env('WS_SENDER_EMAIL'))
-                    ->subject('[WineSupervisor] Votre demande de contact a bien été envoyée');
-            });
-            $request->session()->flash('confirmation', trans('wine-supervisor::guest.guest_create_success'));
-
-            Log::info('ADMIN_CREATE_GUEST_EMAIL_SEND_RESPONSE', [
-                'id' => $requestID,
-                'guest_email' => $guestEmail,
-                'success' => true
-            ]);
-        } catch (\Exception $e) {
-            $request->session()->flash('error', trans('wine-supervisor::guest.guest_create_email_error'));
-
-            Log::info('ADMIN_CREATE_GUEST_EMAIL_SEND_RESPONSE', [
-                'id' => $requestID,
-                'guest_email' => $guestEmail,
-                'error' => $e->getMessage(),
-                'success' => false
-            ]);
-        }
 
         return redirect()->route('admin_guest_list');
     }
