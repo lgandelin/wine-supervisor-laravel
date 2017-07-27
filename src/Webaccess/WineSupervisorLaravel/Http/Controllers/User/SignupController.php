@@ -83,7 +83,13 @@ class SignupController
     {
         $requestID = Uuid::uuid4()->toString();
 
-        list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($request->get('id_ws'), $request->get('technician_id'), $request->get('activation_code'));
+        $idWS = '';
+        for ($i = 1; $i <= 6; $i++) {
+            $idWS .= strtoupper($request->get('id_ws_' . $i));
+            if ($i < 6) $idWS .= ':';
+        }
+
+        list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($idWS, $request->get('technician_id'), $request->get('activation_code'));
 
         if (!$checkSuccess) {
             $request->session()->flash('error', $checkError);
@@ -153,7 +159,7 @@ class SignupController
             Log::info('USER_SIGNUP_CREATE_CELLAR_REQUEST', [
                 'id' => $requestID,
                 'user_id' => $userID,
-                'id_ws' => $request->get('id_ws'),
+                'id_ws' => $idWS,
                 'technician_id' => $request->get('technician_id'),
                 'name' => $request->get('name'),
                 'subscription_type' => Subscription::DEFAULT_SUBSCRIPTION,
@@ -167,7 +173,7 @@ class SignupController
 
             list($success, $error) = CellarRepository::create(
                 $userID,
-                $request->get('id_ws'),
+                $idWS,
                 $request->get('technician_id'),
                 $request->get('name'),
                 Subscription::DEFAULT_SUBSCRIPTION,

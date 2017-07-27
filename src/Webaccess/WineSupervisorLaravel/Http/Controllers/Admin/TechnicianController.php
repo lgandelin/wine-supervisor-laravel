@@ -55,7 +55,7 @@ class TechnicianController extends AdminController
             $request->get('technician_id'),
             $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
         );
-        
+
         if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::technician.technician_update_error'));
 
