@@ -10,18 +10,6 @@
 
         <div class="main-content container">
 
-            @if ($message)
-                <div class="alert alert-info">
-                    {{ $message }}
-                </div>
-            @endif
-
-            @if ($error)
-                <div class="alert alert-danger">
-                    {{ $error }}
-                </div>
-            @endif
-
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Mot de passe oublié</h1>
@@ -29,7 +17,7 @@
                 <div class="login">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('forgotten_password_handler') }}">
                         <div class="input-login">
-                            <input type="text" name="login" value="{{ old('login') }}" placeholder="Votre login" />
+                            <input type="text" name="email" value="{{ old('email') }}" placeholder="Votre email" />
                         </div>
 
                         <input type="submit" class="btn btn-valid" value="M'envoyer un nouveau mot de passe" />
@@ -40,6 +28,18 @@
                 </div>
             </div>
             <!-- PAGE HEADER -->
+
+            @if ($message)
+                <div class="alert alert-success">
+                    {{ $message }}
+                </div>
+            @endif
+
+            @if ($error)
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endif
 
         </div>
     </div>

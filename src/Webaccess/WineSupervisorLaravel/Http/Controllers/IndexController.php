@@ -55,13 +55,11 @@ class IndexController
         try {
             Mail::send('wine-supervisor::emails.contact', array('subject' => $subject, 'email' => $clientEmail, 'text' => $text), function ($message) use ($contactEmail) {
                 $message->to($contactEmail)
-                    ->from('no-reply@winesupervisor.fr')
                     ->subject('[WineSupervisor] Une nouvelle demande vient d\'être envoyée depuis le formulaire du site');
             });
 
             Mail::send('wine-supervisor::emails.contact_confirmation', array('subject' => $subject, 'email' => $clientEmail, 'text' => $text), function ($message) use ($clientEmail) {
                 $message->to($clientEmail)
-                    ->from('no-reply@winesupervisor.fr')
                     ->subject('[WineSupervisor] Votre demande de contact a bien été envoyée');
             });
 
