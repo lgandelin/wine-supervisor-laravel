@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
@@ -181,6 +182,22 @@ class GuestController extends AdminController
             'country' => $request->get('country')
         ]);
 
+        //Fetch the old login and password
+        $emailNeeded = false;
+        $loginUpdated = false;
+        $passwordUpdated = false;
+        if ($guest = GuestRepository::getByID($request->get('guest_id'))) {
+            if ($guest->login != $request->get('login')) {
+                $loginUpdated = true;
+                $emailNeeded = true;
+            }
+
+            if ($request->get('password') != "********" && $guest->password != Hash::make($request->get('password'))) {
+                $passwordUpdated = true;
+                $emailNeeded = true;
+            }
+        }
+
         list($success, $error) = GuestRepository::update(
             $request->get('guest_id'),
             $request->get('first_name'),
@@ -217,6 +234,44 @@ class GuestController extends AdminController
             'id' => $requestID,
             'success' => true
         ]);
+
+        if ($emailNeeded) {
+            $guestEmail = $request->get('email');
+            $login = $request->get('login');
+            $password = $request->get('password');
+            $urlClubPremium = route('club_premium');
+
+            try {
+                Mail::send('wine-supervisor::emails.guest_account_updated', array(
+                    'login' => $login,
+                    'password' => $password,
+                    'urlClubPremium' => $urlClubPremium,
+                    'startDate' => $startDate,
+                    'endDate' => $endDate,
+                    'loginUpdated' => $loginUpdated,
+                    'passwordUpdated' => $passwordUpdated
+                ), function ($message) use ($guestEmail) {
+                    $message->to($guestEmail)
+                        ->subject('[WineSupervisor] Votre accès au Club Avantage a été modifié');
+                });
+                $request->session()->flash('confirmation', trans('wine-supervisor::guest.guest_create_success'));
+
+                Log::info('ADMIN_UPDATE_GUEST_EMAIL_SEND_RESPONSE', [
+                    'id' => $requestID,
+                    'guest_email' => $guestEmail,
+                    'success' => true
+                ]);
+            } catch (\Exception $e) {
+                $request->session()->flash('error', trans('wine-supervisor::guest.guest_create_email_error'));
+
+                Log::info('ADMIN_UPDATE_GUEST_EMAIL_SEND_RESPONSE', [
+                    'id' => $requestID,
+                    'guest_email' => $guestEmail,
+                    'error' => $e->getMessage(),
+                    'success' => false
+                ]);
+            }
+        }
 
         return redirect()->route('admin_guest_list');
     }
