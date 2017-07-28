@@ -5,9 +5,9 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
-use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
@@ -241,7 +241,7 @@ class SignupController
             'country' => $request->get('country')
         ]);
 
-        list($success, $error) = TechnicianRepository::create(
+        list($success, $error, $technicianID) = TechnicianRepository::create(
             $request->get('company'),
             $request->get('registration'),
             $request->get('phone'),
@@ -273,6 +273,27 @@ class SignupController
             'id' => $requestID,
             'success' => true
         ]);
+
+        if ($techician = TechnicianRepository::getByID($technicianID)) {
+
+            try {
+                Mail::send('wine-supervisor::emails.technician_signup_admin', array('technician' => $techician), function ($message) {
+                    $message->to(env('WS_ADMIN_EMAIL'))
+                        ->subject('[WineSupervisor] Un nouvel installateur s\'est inscrit sur le site');
+                });
+
+                Log::info('TECHNICIAN_SIGNUP_ADMIN_EMAIL', [
+                    'id' => $requestID,
+                    'success' => true
+                ]);
+            } catch (\Exception $e) {
+                Log::info('TECHNICIAN_SIGNUP_ADMIN_EMAIL', [
+                    'id' => $requestID,
+                    'error' => $e->getMessage(),
+                    'success' => false
+                ]);
+            }
+        }
 
         return redirect()->route('technician_signup_success');
     }

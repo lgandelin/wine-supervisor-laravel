@@ -62,7 +62,7 @@ class TechnicianRepository extends BaseRepository
             return self::error(trans('wine-supervisor::technician.create_database_error'));
         }
 
-        return self::success();
+        return self::success($technician->id);
     }
 
     /**

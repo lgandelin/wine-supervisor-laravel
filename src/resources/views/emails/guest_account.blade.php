@@ -16,4 +16,6 @@ Cordialement,<br><br>
 
 L'équipe WineSupervisor<br/><br/>
 
+---<br><br>
+
 <i>Ceci est un mail automatique, merci de ne pas y répondre.</i>
