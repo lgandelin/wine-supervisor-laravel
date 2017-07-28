@@ -36,6 +36,11 @@ class AccountController extends UserController
             return redirect()->back()->withInput();
         }
 
+        if (!UserRepository::checkPassword($request->get('password'))) {
+            $request->session()->flash('error', trans('wine-supervisor::generic.password_not_secured'));
+            return redirect()->back()->withInput();
+        }
+
         Log::info('USER_UPDATE_ACCOUNT_REQUEST', [
             'id' => $requestID,
             'user_id' => $this->getUserID(),

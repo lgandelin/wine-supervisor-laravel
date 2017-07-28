@@ -165,4 +165,13 @@ class UserRepository extends BaseRepository
 
         return true;
     }
+
+    /**
+     * @param $password
+     * @return bool
+     */
+    public static function checkPassword($password)
+    {
+        return strlen($password) >= 7;
+    }
 }

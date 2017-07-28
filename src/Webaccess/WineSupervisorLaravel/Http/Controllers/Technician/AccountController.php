@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
 class AccountController
@@ -37,6 +38,11 @@ class AccountController
 
         if ($request->get('password') != $request->get('password_confirm')) {
             $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
+        if (!UserRepository::checkPassword($request->get('password'))) {
+            $request->session()->flash('error', trans('wine-supervisor::generic.password_not_secured'));
             return redirect()->back()->withInput();
         }
 
