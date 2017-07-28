@@ -6,23 +6,30 @@
 
                 @if (isset($sale->image))
                     <li>
-                        <div class="background" style="background-image: url({{ asset('img/sales/' . $sale->id . '/0/' . $sale->image) }})"></div>
+                        <div class="background" style="background-image: url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/0/' . $sale->image) }})"></div>
                     </li>
                 @endif
 
                 @if (is_array($sale->wines) && sizeof($sale->wines) > 0)
                     @foreach ($sale->wines as $i => $wine)
                         <li>
-                            <div class="background" style="background-image:url({{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->image) }})"></div>
-                            <img class="bottle" src="{{ asset('img/sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->bottle_image) }}" alt="{{ $wine->name }}" />
+                            <div class="background" style="background-image:url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->image) }})"></div>
+                            <img class="bottle" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->bottle_image) }}" alt="{{ $wine->name }}" />
                             <div class="content">
+                                @if ($is_user || $is_guest)
+                                    @if ($sale->is_active && $sale->comments)
+                                        <div class="sale-comments">{!! nl2br($sale->comments) !!}</div>
+                                    @endif
+                                @endif
+
                                 @if (isset($wine->variety))<span class="sale-subtitle">{{ $wine->variety }}</span>@endif
                                 @if (isset($wine->name))<h3 class="sale-name">{{ $wine->name }}</h3>@endif
+
                                 {!! $wine->text !!}
-                            </div>
+                            </div>t
 
                             @if ($is_user || $is_guest)
-                                @if ($wine->club_premium_price)
+                                @if ($wine->club_premium_price && $sale->is_active)
                                     <span class="sale-price">
                                         <span class="club_premium_price_label">Prix Club Avantage</span>
                                         <span class="prices">
@@ -32,7 +39,14 @@
                                     </span>
                                 @endif
                             @endif
-                            <a href="@if (!$is_user && !$is_guest){{ route('user_login_handler') }}?route=club_premium @else{{ $wine->link }}@endif" class="button">Commander</a>
+
+                            @if ($sale->is_active)
+                                @if (!$is_user && !$is_guest)
+                                    <a href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">Accès vente</a>
+                                @elseif ($wine->link)
+                                    <a target="_blank" href="{{ $wine->link }}" class="button">Commander</a>
+                                @endif
+                            @endif
                         </li>
                     @endforeach
                 @endif

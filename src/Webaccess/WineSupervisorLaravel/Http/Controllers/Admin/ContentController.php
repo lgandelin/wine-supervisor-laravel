@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Webaccess\WineSupervisorLaravel\Repositories\ContentRepository;
+use Webaccess\WineSupervisorLaravel\Tools\UploadTool;
 
 class ContentController extends AdminController
 {
@@ -12,7 +13,7 @@ class ContentController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.content.index', [
-            'contents' => ContentRepository::getAll(),
+            'contents' => ContentRepository::getAll(null, false),
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -33,16 +34,30 @@ class ContentController extends AdminController
     {
         parent::__construct($request);
 
-        if (ContentRepository::create(
+        $imageTempFolderName = 'temp-' . time();
+        $imageTempFolder = public_path(env('WS_UPLOADS_FOLDER') . 'contents/' . $imageTempFolderName);
+        @mkdir($imageTempFolder);
+
+        //Upload main image
+        $imageNews = $request->get('image');
+
+        if ($request->image_file) {
+            if ($imageName = UploadTool::uploadImage($request->image_file, $imageTempFolder)) {
+                $imageNews = basename($imageName);
+            }
+        }
+
+        if ($contentID = ContentRepository::create(
             $request->get('title'),
             $request->get('slug'),
             $request->get('text'),
-            $request->get('image'),
+            $imageNews,
             $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
-            $request->session()->flash('confirmation', trans('wine-supervisor::content.content_create_success'));
+            rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'contents/' . $contentID));
+            $request->session()->flash('confirmation', trans('wine-supervisor::content.content_creation_success'));
         } else {
-            $request->session()->flash('error', trans('wine-supervisor::content.content_create_error'));
+            $request->session()->flash('error', trans('wine-supervisor::content.content_creation_error'));
         }
 
         return redirect()->route('admin_content_list');
@@ -64,12 +79,21 @@ class ContentController extends AdminController
     {
         parent::__construct($request);
 
+        //Upload main image
+        $imageNews = $request->get('image');
+
+        if ($request->image_file) {
+            if ($imageName = UploadTool::uploadImage($request->image_file, public_path(env('WS_UPLOADS_FOLDER') . 'contents/' .$request->get('content_id')))) {
+                $imageNews = basename($imageName);
+            }
+        }
+
         if (ContentRepository::update(
             $request->get('content_id'),
             $request->get('title'),
             $request->get('slug'),
             $request->get('text'),
-            $request->get('image'),
+            $imageNews,
             $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::content.content_update_success'));

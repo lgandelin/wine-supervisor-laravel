@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
+use Webaccess\WineSupervisorLaravel\Tools\UploadTool;
 
 class SaleController extends AdminController
 {
@@ -33,6 +34,19 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
+        $imageTempFolderName = 'temp-' . time();
+        $imageTempFolder = public_path(env('WS_UPLOADS_FOLDER') . 'sales/' . $imageTempFolderName);
+        mkdir($imageTempFolder);
+
+        //Upload main image
+        $imageSaleBackground = $request->get('image');
+
+        if ($request->image_file) {
+            if ($imageName = UploadTool::uploadImage($request->image_file, $imageTempFolder . '/0/')) {
+                $imageSaleBackground = basename($imageName);
+            }
+        }
+
         $names = $request->get('wine_name');
         $varieties = $request->get('wine_variety');
         $texts = $request->get('wine_text');
@@ -45,12 +59,33 @@ class SaleController extends AdminController
         $wines = [];
         for ($i = 0; $i < 10; $i++) {
             if (isset($names[$i])) {
+
+                //Upload background image
+                $imageWineBackground = isset($images[$i]) ? $images[$i] : '';
+
+                $wineBackgroundName = 'image_wine_background_' . $i;
+                if ($request->$wineBackgroundName) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBackgroundName, $imageTempFolder . '/' . ($i+1) . '/')) {
+                        $imageWineBackground = basename($imageName);
+                    }
+                }
+
+                //Upload bottle image
+                $imageWineBottle = isset($bottle_images[$i]) ? $bottle_images[$i] : '';
+
+                $wineBottleName = 'image_wine_bottle_' . $i;
+                if ($request->$wineBottleName) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBottleName, $imageTempFolder . '/' . ($i+1) . '/')) {
+                        $imageWineBottle = basename($imageName);
+                    }
+                }
+
                 $wines[] = [
                     'name' => $names[$i],
                     'variety' => isset($varieties[$i]) ? $varieties[$i] : '',
                     'text' => isset($texts[$i]) ? $texts[$i] : '',
-                    'image' => isset($images[$i]) ? $images[$i] : '',
-                    'bottle_image' => isset($bottle_images[$i]) ? $bottle_images[$i] : '',
+                    'image' => $imageWineBackground,
+                    'bottle_image' => $imageWineBottle,
                     'link' => isset($links[$i]) ? $links[$i] : '',
                     'standard_price' => isset($standard_prices[$i]) ? $standard_prices[$i] : '',
                     'club_premium_price' => isset($club_premium_prices[$i]) ? $club_premium_prices[$i] : '',
@@ -58,14 +93,16 @@ class SaleController extends AdminController
             }
         }
 
-        if (SaleRepository::create(
+        if ($saleID = SaleRepository::create(
             $request->get('title'),
             $request->get('description'),
-            $request->get('image'),
+            $imageSaleBackground,
             json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
-            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
+            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
+            $request->get('comments')
         )) {
+            rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' . $saleID));
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_create_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::sale.sale_create_error'));
@@ -90,6 +127,15 @@ class SaleController extends AdminController
     {
         parent::__construct($request);
 
+        //Upload main image
+        $imageSaleBackground = $request->get('image');
+
+        if ($request->image_file) {
+            if ($imageName = UploadTool::uploadImage($request->image_file, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$request->get('sale_id') . '/0/'))) {
+                $imageSaleBackground = basename($imageName);
+            }
+        }
+
         $names = $request->get('wine_name');
         $varieties = $request->get('wine_variety');
         $texts = $request->get('wine_text');
@@ -102,12 +148,33 @@ class SaleController extends AdminController
         $wines = [];
         for ($i = 0; $i < 10; $i++) {
             if (isset($names[$i])) {
+
+                //Upload background image
+                $imageWineBackground = isset($images[$i]) ? $images[$i] : '';
+
+                $wineBackgroundName = 'image_wine_background_' . $i;
+                if ($request->$wineBackgroundName) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBackgroundName, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$request->get('sale_id') . '/' . ($i+1) . '/'))) {
+                        $imageWineBackground = basename($imageName);
+                    }
+                }
+
+                //Upload bottle image
+                $imageWineBottle = isset($bottle_images[$i]) ? $bottle_images[$i] : '';
+
+                $wineBottleName = 'image_wine_bottle_' . $i;
+                if ($request->$wineBottleName) {
+                    if ($imageName = UploadTool::uploadImage($request->$wineBottleName, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' .$request->get('sale_id') . '/' . ($i+1) . '/'))) {
+                        $imageWineBottle = basename($imageName);
+                    }
+                }
+
                 $wines[] = [
                     'name' => $names[$i],
                     'variety' => isset($varieties[$i]) ? $varieties[$i] : '',
                     'text' => isset($texts[$i]) ? $texts[$i] : '',
-                    'image' => isset($images[$i]) ? $images[$i] : '',
-                    'bottle_image' => isset($bottle_images[$i]) ? $bottle_images[$i] : '',
+                    'image' => $imageWineBackground,
+                    'bottle_image' => $imageWineBottle,
                     'link' => isset($links[$i]) ? $links[$i] : '',
                     'standard_price' => isset($standard_prices[$i]) ? $standard_prices[$i] : '',
                     'club_premium_price' => isset($club_premium_prices[$i]) ? $club_premium_prices[$i] : '',
@@ -119,10 +186,11 @@ class SaleController extends AdminController
             $request->get('sale_id'),
             $request->get('title'),
             $request->get('description'),
-            $request->get('image'),
+            $imageSaleBackground,
             json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
-            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d')
+            \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
+            $request->get('comments')
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_update_success'));
         } else {

@@ -19,7 +19,7 @@ class ContentRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public static function getAll($limit = null)
+    public static function getAll($limit = null, $publication_date_filter = true)
     {
         $contents = Content::orderBy('publication_date', 'desc');
 
@@ -27,7 +27,11 @@ class ContentRepository extends BaseRepository
             $contents->limit($limit);
         }
 
-        return $contents->where('publication_date', '<=', date('Y-m-d'))->get();
+        if ($publication_date_filter) {
+            $contents->where('publication_date', '<=', date('Y-m-d'));
+        }
+
+        return $contents->get();
     }
 
     /**
@@ -48,7 +52,11 @@ class ContentRepository extends BaseRepository
         $sale->image = $image;
         $sale->publication_date = $publication_date;
 
-        return $sale->save();
+        if ($sale->save()) {
+            return $sale->id;
+        }
+
+        return false;
     }
 
     /**

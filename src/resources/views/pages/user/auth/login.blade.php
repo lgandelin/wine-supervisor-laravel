@@ -20,6 +20,13 @@
             <div class="page-header">
                 <h1>Se connecter</h1>
 
+                @if (isset($is_technician) && $is_technician)
+                    <p>Votre accès professionnel ne vous donne pas droit aux ventes du Club Avantage Wine Supervisor. Si vous désirez un code pour accédez à une vente, faites-nous
+                        une demande avec le formulaire de l’onglet <a style="font-weight:bold; color: white" href="{{ route('contact') }}">contact</a> du site en précisant votre nom, prénom, votre société et le nom de la vente qui vous intéresse.
+                        En tant que partenaire WineSupervisor nous vous communiquerons un code personnel pour y accéder.
+                    </p>
+                @endif
+
                 <div class="login">
                     <form class="login form-horizontal" role="form" method="POST" action="{{ route('user_login_handler') }}">
                         <div class="input-login">

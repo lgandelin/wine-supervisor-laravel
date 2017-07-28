@@ -14,6 +14,7 @@ header {
 
 		font-size: 2rem;
 		color: white;
+		text-align: justify;
 
 		background: $blue;
 
@@ -40,7 +41,7 @@ header {
 
 		.submit-container {
 			clear: both;
-			margin-top: 15rem;
+			margin-top: 10rem;
 			overflow: hidden;
 
 			input[type="submit"] {

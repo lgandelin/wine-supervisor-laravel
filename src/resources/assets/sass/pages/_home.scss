@@ -40,15 +40,9 @@
 			position: relative;
 			z-index: 2;
 
-		  	.your-cellar {
-		  		margin-bottom: 2rem;
-		  		display: block;
-
-		  		text-transform: uppercase;
-		  		font-family: $main-font;
-		  		font-size: 2.4rem;
-		  		font-style: italic;
-		  	}
+		  	.title {
+				margin-top: 3rem;
+			}
 		}
 	}
 	
@@ -154,15 +148,8 @@
 			background: white;
 		}
 
-	  	.subtitle {
-	  		position: relative;
-	  		z-index: 2;
-	  		margin-top: 8rem;
-
-	  		font-size: 2.4rem;
-	  	}
-
 	  	.title {
+			margin-top: 13rem;
 	  		position: relative;
 	  		z-index: 2;
 
@@ -218,6 +205,7 @@
 		background: $blue;
 
 	  	.title {
+			margin-top: 2rem;
 	  		font-size: 6rem;
 
 	  		&:after {
@@ -311,11 +299,8 @@
 			position: relative;
 		}
 
-		.subtitle {
-			color: $red;
-		}
-
 		.title {
+			margin-top: 2rem;
 			font-size: 6rem;
 			color: $blue;
 

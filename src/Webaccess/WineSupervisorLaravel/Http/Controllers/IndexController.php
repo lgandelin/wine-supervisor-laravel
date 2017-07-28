@@ -25,6 +25,7 @@ class IndexController
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(3),
             'sales' => SaleRepository::getAll(),
+            'route' => $request->route()->getName(),
         ]);
     }
 
@@ -46,15 +47,20 @@ class IndexController
 
     public function contact_handler(Request $request)
     {
-        $contactEmail = env('WINE_SUPERVISOR_CONTACT_EMAIL');
+        $contactEmail = env('WS_CONTACT_EMAIL');
+        $clientEmail = $request->get('email');
         $subject = $request->get('subject') ? $request->get('subject') : 'Aucun objet';
         $text = nl2br($request->get('message'));
 
         try {
-            Mail::send('wine-supervisor::emails.contact', array('subject' => $subject, 'email' => $request->get('email'), 'text' => $text), function ($message) use ($contactEmail) {
+            Mail::send('wine-supervisor::emails.contact', array('subject' => $subject, 'email' => $clientEmail, 'text' => $text), function ($message) use ($contactEmail) {
                 $message->to($contactEmail)
-                    ->from('no-reply@winesupervisor.fr')
                     ->subject('[WineSupervisor] Une nouvelle demande vient d\'être envoyée depuis le formulaire du site');
+            });
+
+            Mail::send('wine-supervisor::emails.contact_confirmation', array('subject' => $subject, 'email' => $clientEmail, 'text' => $text), function ($message) use ($clientEmail) {
+                $message->to($clientEmail)
+                    ->subject('[WineSupervisor] Votre demande de contact a bien été envoyée');
             });
 
             $request->session()->flash('confirmation', trans('wine-supervisor::contact.contact_form_success'));
@@ -102,4 +108,10 @@ class IndexController
 
         return redirect()->back();
     }
+
+    public function legal_notices(Request $request)
+    {
+        return view('wine-supervisor::pages.legal-notices');
+    }
+
 }

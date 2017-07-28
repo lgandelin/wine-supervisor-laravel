@@ -24,7 +24,7 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Historique des ventes</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Vous avez apprécié les produits sélectionnés par le Club Avantage. Retrouvez ici les liens avec les acteurs des ventes précédentes et rendez-leur visite à nouveau.</p>
             </div>
             <!-- PAGE HEADER -->
 

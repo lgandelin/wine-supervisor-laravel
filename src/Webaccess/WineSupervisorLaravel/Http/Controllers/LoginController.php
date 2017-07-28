@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Webaccess\WineSupervisorLaravel\Models\Guest;
+use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\User;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
@@ -21,6 +23,7 @@ class LoginController extends Controller
     public function login()
     {
         return view('wine-supervisor::pages.user.auth.login', [
+            'is_technician' => AccountService::isTechnician(),
             'next_route' => $this->request->input('route'),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
         ]);
@@ -41,7 +44,7 @@ class LoginController extends Controller
             Auth::user()->last_connection_date = new DateTime();
             Auth::user()->save();
 
-            $route = ($this->request->input('route') && !preg_match('/login/', $this->request->input('route'))) ? $this->request->input('route') : 'user_update_account';
+            $route = $this->request->input('route') ? $this->request->input('route') : 'user_update_account';
 
             return redirect()->route($route);
         }
@@ -111,20 +114,30 @@ class LoginController extends Controller
      */
     public function forgotten_password_handler()
     {
-        $login = $this->request->input('login');
+        $email = $this->request->input('email');
 
         try {
-            if ($user = User::where('login', '=', $login)->first()) {
+            $user = User::where('email', '=', $email)->first();
+            if (!$user) {
+                $user = Technician::where('email', '=', $email)->first();
+            }
+
+            if (!$user) {
+                $user = Guest::where('email', '=', $email)->first();
+            }
+
+            if ($user) {
                 $newPassword = self::generate(8);
                 $user->password = bcrypt($newPassword);
                 $user->save();
-                $this->sendNewPasswordToUser($newPassword, $user->email);
+                $this->sendNewPasswordToUser($newPassword, $user->login, $user->email);
+
                 $this->request->session()->flash('message', trans('wine-supervisor::login.forgotten_password_email_success'));
             } else {
                 $this->request->session()->flash('error', trans('wine-supervisor::login.forgotten_password_email_not_found_error'));
             }
         } catch (\Exception $e) {
-            $this->request->session()->flash('error', trans('wine-supervisor::login.forgotten_password_generic_error'));
+            $this->request->session()->flash('error', trans('wine-supervisor::login.forgotten_password_email_error'));
         }
 
         return redirect()->route('forgotten_password');
@@ -132,14 +145,13 @@ class LoginController extends Controller
 
     /**
      * @param $newPassword
+     * @param $userLogin
      * @param $userEmail
      */
-    private function sendNewPasswordToUser($newPassword, $userEmail)
+    private function sendNewPasswordToUser($newPassword, $userLogin, $userEmail)
     {
-        Mail::send('wine-supervisor::emails.password', array('password' => $newPassword), function ($message) use ($userEmail) {
-
+        Mail::send('wine-supervisor::emails.password', array('login' => $userLogin, 'password' => $newPassword), function ($message) use ($userEmail) {
             $message->to($userEmail)
-                ->from('no-reply@winesupervisor.com')
                 ->subject('[WineSupervisor] Votre nouveau mot de passe pour accéder à votre compte');
         });
     }

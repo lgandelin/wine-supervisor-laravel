@@ -35,6 +35,11 @@ class AccountController
     {
         $requestID = Uuid::uuid4()->toString();
 
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
         Log::info('TECHNICIAN_UPDATE_ACCOUNT_REQUEST', [
             'id' => $requestID,
             'technician_id' => $this->getTechnicianID(),
@@ -42,7 +47,6 @@ class AccountController
             'registration' => $request->get('registration'),
             'phone' => $request->get('phone'),
             'email' => $request->get('email'),
-            'login' => $request->get('login'),
             'address' => $request->get('address'),
             'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
@@ -56,8 +60,7 @@ class AccountController
             $request->get('registration'),
             $request->get('phone'),
             $request->get('email'),
-            $request->get('login'),
-            $request->get('password') ? $request->get('password') : null,
+            $request->get('password') != "********" ? $request->get('password') : null,
             $request->get('address'),
             $request->get('address2'),
             $request->get('zipcode'),

@@ -76,6 +76,11 @@
 						    background: white;
 						}
 					}
+
+					.sale-comments {
+						margin-right: -4rem;
+						float: right;
+					}
 				}
 
 				.sale-price {
@@ -165,6 +170,7 @@
 		height: 180px;
 		position: relative;
 		opacity: 0.5;
+		overflow: hidden;
 
 		font-size: 1.8rem;
 		color: #eeeeee;

@@ -42,8 +42,8 @@
                     @foreach ($sales as $sale)
                         <tr class="table-row">
                             <td class="table-cell align-left">{{ $sale->title }}</td>
-                            <td class="table-cell align-left">{{ \DateTime::createFromFormat('Y-m-d', $sale->start_date)->format('d/m/Y') }}</td>
-                            <td class="table-cell align-left">{{ \DateTime::createFromFormat('Y-m-d', $sale->end_date)->format('d/m/Y') }}</td>
+                            <td class="table-cell align-left">@if ($sale->start_date){{ \DateTime::createFromFormat('Y-m-d', $sale->start_date)->format('d/m/Y') }}@endif</td>
+                            <td class="table-cell align-left">@if ($sale->end_date){{ \DateTime::createFromFormat('Y-m-d', $sale->end_date)->format('d/m/Y') }}@endif</td>
                             <td class="table-cell align-left action">
                                 <a href="{{ route('admin_sale_update', $sale->id) }}"><button class="edit">Modifier</button></a>
                                 <a href="{{ route('admin_sale_delete_handler', $sale->id) }}"><button class="delete">Supprimer</button></a>

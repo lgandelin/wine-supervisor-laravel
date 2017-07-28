@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
@@ -40,6 +41,9 @@ class TechnicianController extends AdminController
 
         $requestID = Uuid::uuid4()->toString();
 
+        $technician = TechnicianRepository::getByID($request->get('technician_id'));
+        $oldStatus = $technician->status;
+
         Log::info('ADMIN_UPDATE_TECHNICIAN_REQUEST', [
             'id' => $requestID,
             'admin_id' => $this->getAdministratorID(),
@@ -64,12 +68,38 @@ class TechnicianController extends AdminController
             return redirect()->back()->withInput();
         }
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::technician.technician_update_success'));
-
         Log::info('ADMIN_UPDATE_TECHNICIAN_RESPONSE', [
             'id' => $requestID,
             'success' => true
         ]);
+
+        $technicianEmail = $technician->email;
+
+        if (!$oldStatus && $request->get('status')) {
+            try {
+                Mail::send('wine-supervisor::emails.technician_account', array('login' => $technician->login, 'url' => route('index')), function ($message) use ($technicianEmail) {
+                    $message->to($technicianEmail)
+                        ->subject('[WineSupervisor] Votre compte installateur a été validé');
+                });
+
+                $request->session()->flash('confirmation', trans('wine-supervisor::technician.technician_update_success'));
+
+                Log::info('ADMIN_CREATE_TECHNICIAN_EMAIL_SEND_RESPONSE', [
+                    'id' => $requestID,
+                    'technician_email' => $technicianEmail,
+                    'success' => true
+                ]);
+            } catch (\Exception $e) {
+                $request->session()->flash('error', trans('wine-supervisor::technician.technician_update_email_error'));
+
+                Log::info('ADMIN_CREATE_TECHNICIAN_EMAIL_SEND_RESPONSE', [
+                    'id' => $requestID,
+                    'technician_email' => $technicianEmail,
+                    'error' => $e->getMessage(),
+                    'success' => false
+                ]);
+            }
+        }
 
         return redirect()->route('admin_technician_list');
     }

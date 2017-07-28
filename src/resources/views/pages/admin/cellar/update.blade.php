@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="submit-container">
-                        <input type="submit" value="Valider" />
+                        <input type="submit" value="Valider" style="display:none" />
                     </div>
 
                     <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
@@ -129,7 +129,7 @@
                                     @if ($history->user) {{ $history->user->last_name }} {{ $history->user->first_name }} [Utilisateur] @endif
                                     @if ($history->admin) {{ $history->admin->last_name }} {{ $history->admin->first_name }} [Administrateur] @endif
                                 </td>
-                                <td class="table-cell align-left">{{ DateTime::createFromFormat('Y-m-d H:i:s', $history->created_at)->format('d/m/Y H:i:s') }}</td>
+                                <td class="table-cell align-left">@if ($history->created_at){{ DateTime::createFromFormat('Y-m-d H:i:s', $history->created_at)->format('d/m/Y H:i:s') }}@endif</td>
                             </tr>
                         @endforeach
                     </table>

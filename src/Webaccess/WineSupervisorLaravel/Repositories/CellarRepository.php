@@ -256,7 +256,7 @@ class CellarRepository extends BaseRepository
      */
     public static function delete($cellarID, $boardType)
     {
-        //TODO : CALL CDO ?
+        //TODO : CALL CDO
 
         if ($cellar = Cellar::find($cellarID)) {
 

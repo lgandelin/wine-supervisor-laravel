@@ -1,0 +1,28 @@
+.technician-template {
+
+    .left-column {
+        float: left;
+        width: 42%;
+        margin-right: 7%;
+
+        h2 {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            font-size: 3rem;
+            text-transform: uppercase;
+            border-bottom: 5px solid black;
+        }
+
+        .id {
+            display: block;
+            margin-bottom: 6rem;
+
+            font-size: 2rem;
+            color: #8f8f8f;
+        }
+    }
+
+    .right-column {
+        overflow: hidden;
+    }
+}

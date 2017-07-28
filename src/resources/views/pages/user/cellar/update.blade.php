@@ -11,8 +11,7 @@
         <!-- BANNER -->
         <div class="banner">
             <h1>
-                <span class="subtitle">Mes caves</span>
-                <span class="title">Accessibles partout</span>
+                <span class="title">La Cave, partout.</span>
             </h1>
         </div>
         <!-- BANNER -->
@@ -22,7 +21,8 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Modification de cave</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Vous pouvez modifier les informations sur votre cave si vous le désirez.<br/>
+                    L’ID professionnel peut-être ajouté si toutefois vous n’en disposiez pas lors de l’enregistrement initial.</p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -46,8 +46,10 @@
                     <h2>Identifiant WineSupervisor</h2>
                     <span class="mak">{{ $cellar->id_ws }}</span>
 
-                    <h2>N° de série de l'appareil</h2>
-                    <span class="serial-number">{{ $cellar->serial_number }}</span>
+                    @if ($cellar->serial_number)
+                        <h2>N° de série de l'appareil</h2>
+                        <span class="serial-number">{{ $cellar->serial_number }}</span>
+                    @endif
 
                     <div class="links">
                         <a class="link" href="#">SAV</a>
@@ -70,7 +72,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="subscription_type">Type d'abonnement</label>
+                            <label for="subscription_type">Type d'abonnement <span class="required">*</span></label>
                             <select name="subscription_type" id="subscription_type" required>
                                 <option value="">Sélectionner</option>
                                 <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION }}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)selected="selected"@endif>Standard</option>
@@ -79,7 +81,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="address">Adresse de la cave</label>
+                            <label for="address">Adresse de la cave <span class="required">*</span></label>
                             <input type="text" name="address" value="{{ $cellar->address }}" required />
                         </div>
 
@@ -89,23 +91,25 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="zipcode">Code postal</label>
+                            <label for="zipcode">Code postal <span class="required">*</span></label>
                             <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="city">Ville</label>
+                            <label for="city">Ville <span class="required">*</span></label>
                             <input type="text" name="city" id="city" value="{{ $cellar->city }}" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="country">Pays</label>
+                            <label for="country">Pays <span class="required">*</span></label>
                             <select name="country" id="country" required>
                                 @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                     <option value="{{ $key }}" @if ($cellar->country == $key)selected="selected"@endif>{{ $label }}</option>
                                 @endforeach
                             </select>
                         </div>
+
+                        <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                         <div class="submit-container">
                             <input type="submit" class="button red-button" value="Valider" />
@@ -120,7 +124,7 @@
             </div>
             <!-- PAGE CONTENT -->
 
-            <a class="button red-button back-button" href="{{ route('user_cellar_list') }}">Retour</a>
+            <a class="button red-button back-button" href="{{ route('user_update_account') }}">Retour</a>
         </div>
 
         @include('wine-supervisor::partials.legal-notices')

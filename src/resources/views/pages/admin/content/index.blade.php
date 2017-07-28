@@ -13,7 +13,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Gestion des contenus</h1>
+                <h1>Gestion des actualités</h1>
             </div>
             <!-- PAGE HEADER -->
 
@@ -41,7 +41,7 @@
                     @foreach ($contents as $content)
                         <tr class="table-row">
                             <td class="table-cell align-left">{{ $content->title }}</td>
-                            <td class="table-cell align-left">{{ \DateTime::createFromFormat('Y-m-d', $content->publication_date)->format('d/m/Y') }}</td>
+                            <td class="table-cell align-left">@if ($content->publication_date){{ \DateTime::createFromFormat('Y-m-d', $content->publication_date)->format('d/m/Y') }}@endif</td>
                             <td class="table-cell align-left action">
                                 <a href="{{ route('admin_content_update', $content->id) }}"><button class="edit">Modifier</button></a>
                                 <a href="{{ route('admin_content_delete_handler', $content->id) }}"><button class="delete">Supprimer</button></a>

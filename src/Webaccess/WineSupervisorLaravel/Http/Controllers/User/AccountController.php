@@ -31,13 +31,17 @@ class AccountController extends UserController
 
         $requestID = Uuid::uuid4()->toString();
 
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
         Log::info('USER_UPDATE_ACCOUNT_REQUEST', [
             'id' => $requestID,
             'user_id' => $this->getUserID(),
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'email' => $request->get('email'),
-            'login' => $request->get('login'),
             'opt_in' => $request->get('opt_in'),
             'address' => $request->get('address'),
             'address2' => $request->get('address2'),
@@ -51,8 +55,7 @@ class AccountController extends UserController
             $request->get('first_name'),
             $request->get('last_name'),
             $request->get('email'),
-            $request->get('login'),
-            $request->get('password') ? $request->get('password') : null,
+            $request->get('password') != "********" ? $request->get('password') : null,
             $request->get('opt_in') == '1' ? true : false,
             $request->get('address'),
             $request->get('address2'),

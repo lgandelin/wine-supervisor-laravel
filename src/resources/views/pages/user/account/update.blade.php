@@ -11,8 +11,6 @@
                 <!-- BANNER -->
         <div class="banner">
             <h1>
-                {{--<span class="subtitle">Mes caves</span>
-                <span class="title">Accessibles partout</span>--}}
                 <span class="title">Mon compte</span>
             </h1>
         </div>
@@ -23,7 +21,7 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Mes caves</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Voici ci-dessous la liste de vos caves connectées. Pour chacune, vous avez la possibilité d’en compléter ou d’en modifier les informations.</p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -49,7 +47,7 @@
                             <div class="table-cell table-cell-header status">Statut abonnement</div>
                             <div class="table-cell table-cell-header date">Date d'expiration</div>
                             <div class="table-cell table-cell-header type">Type d'abonnement</div>
-                            <div class="table-cell table-cell-header price">€</div>
+                            {{--<div class="table-cell table-cell-header price">€</div>--}}
                             <div class="table-cell table-cell-header action">&nbsp;</div>
                         </div>
 
@@ -65,13 +63,13 @@
                                     @else Aucun
                                     @endif
                                 </div>
-                                <div class="table-cell price">
+                                {{--<div class="table-cell price">
                                     @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)20€
                                     @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)45€
                                     @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::FREE_SUBSCRIPTION)-
                                     @else -
                                     @endif
-                                </div>
+                                </div>--}}
                                 <div class="table-cell action"><a href="{{ route('user_cellar_update', ['id' => $cellar->id]) }}"><button class="edit">Modifier</button></a></div>
                             </div>
                         @endforeach
@@ -96,7 +94,9 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Mon compte</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Retrouvez les informations sur votre compte.<br/>
+                    Vous pouvez les modifier chaque fois que c’est nécessaire.
+                </p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -118,33 +118,37 @@
                 <form action="{{ route('user_update_account_handler') }}" method="POST">
 
                     <div class="form-group">
-                        <label for="last_name">Nom</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" />
+                        <label for="last_name">Nom <span class="required">*</span></label>
+                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">Prénom</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}"/>
+                        <label for="first_name">Prénom </label>
+                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email <span class="required">*</span></label>
                         <input type="text" name="email" id="email" value="{{ $user->email }}" autocomplete="off" required />
                     </div>
 
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $user->login }}" autocomplete="off" required />
+                        <input disabled type="text" name="login" id="login" value="{{ $user->login }}" autocomplete="off" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" name="password" id="password" autocomplete="new-password" />
-                        <i>Laisser vide pour ne pas modifier le mot de passe</i>
+                        <label for="password">Mot de passe <span class="required">*</span></label>
+                        <input type="password" name="password" id="password" autocomplete="new-password" value="********" />
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Adresse</label>
+                        <label for="password_confirm">Confirmation du mot de passe <span class="required">*</span></label>
+                        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Adresse <span class="required">*</span></label>
                         <input type="text" name="address" id="address" value="{{ $user->address }}" required />
                     </div>
 
@@ -154,17 +158,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal</label>
+                        <label for="zipcode">Code postal <span class="required">*</span></label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ $user->zipcode }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Ville</label>
+                        <label for="city">Ville <span class="required">*</span></label>
                         <input type="text" name="city" id="city" value="{{ $user->city }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Pays</label>
+                        <label for="country">Pays <span class="required">*</span></label>
                         <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if ($user->country == $key)selected="selected"@endif @if (!$user->country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
@@ -173,10 +177,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="opt_in">Infos Club</label>
+                        <label for="opt_in">Recevoir la Newsletter du Club</label>
                         <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($user->opt_in == true || $user->opt_in === null)checked="checked"@endif /> Oui</div>
                         <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$user->opt_in)checked="checked"@endif /> Non</div>
                     </div>
+
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
                     <div class="submit-container">
                         <input type="submit" class="button red-button" value="Valider" />

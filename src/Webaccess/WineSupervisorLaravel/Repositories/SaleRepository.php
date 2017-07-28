@@ -15,7 +15,7 @@ class SaleRepository extends BaseRepository
     public static function getByID($saleID)
     {
         $sale = Sale::find($saleID);
-        $sale->wines = json_decode($sale->wines);
+        $sale = self::getAdditionalInfo($sale);
 
         return $sale;
     }
@@ -27,7 +27,7 @@ class SaleRepository extends BaseRepository
     {
         $sales = Sale::orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
         foreach ($sales as $sale) {
-            $sale->wines = json_decode($sale->wines);
+            $sale = self::getAdditionalInfo($sale);
         }
 
         return $sales;
@@ -40,9 +40,10 @@ class SaleRepository extends BaseRepository
      * @param $wines
      * @param $startDate
      * @param $endDate
+     * @param $comments
      * @return bool
      */
-    public static function create($title, $description, $image, $wines, $startDate, $endDate)
+    public static function create($title, $description, $image, $wines, $startDate, $endDate, $comments)
     {
         $sale = new Sale();
         $sale->id = Uuid::uuid4()->toString();
@@ -52,8 +53,13 @@ class SaleRepository extends BaseRepository
         $sale->wines = $wines;
         $sale->start_date = $startDate;
         $sale->end_date = $endDate;
+        $sale->comments = $comments;
 
-        return $sale->save();
+        if ($sale->save()) {
+            return $sale->id;
+        }
+
+        return false;
     }
 
     /**
@@ -64,9 +70,10 @@ class SaleRepository extends BaseRepository
      * @param $wines
      * @param $startDate
      * @param $endDate
+     * @param $comments
      * @return bool
      */
-    public static function update($saleID, $title, $description, $image, $wines, $startDate, $endDate)
+    public static function update($saleID, $title, $description, $image, $wines, $startDate, $endDate, $comments)
     {
         if ($sale = Sale::find($saleID)) {
             $sale->title = $title;
@@ -75,6 +82,7 @@ class SaleRepository extends BaseRepository
             $sale->wines = $wines;
             $sale->start_date = $startDate;
             $sale->end_date = $endDate;
+            $sale->comments = $comments;
 
             return $sale->save();
         }
@@ -105,7 +113,7 @@ class SaleRepository extends BaseRepository
         $sales = Sale::where('end_date', '<', $now)->orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
 
         foreach ($sales as $sale) {
-            $sale->wines = json_decode($sale->wines);
+            $sale = self::getAdditionalInfo($sale);
         }
 
         return $sales;
@@ -121,9 +129,19 @@ class SaleRepository extends BaseRepository
             ->get();
 
         foreach ($sales as $sale) {
-            $sale->wines = json_decode($sale->wines);
+            $sale = self::getAdditionalInfo($sale);
         }
 
         return $sales;
+    }
+
+    private static function getAdditionalInfo($sale)
+    {
+        $sale->wines = json_decode($sale->wines);
+        if (new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date) && new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date)) {
+            $sale->is_active = true;
+        }
+
+        return $sale;
     }
 }

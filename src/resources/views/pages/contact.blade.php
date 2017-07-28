@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Votre cave, accessible partout | WineSupervisor @endsection
+@section('page-title') Nous contacter | WineSupervisor @endsection
 
 @section('page-content')
     <div class="contact-template">
@@ -31,9 +31,16 @@
                 </div>
             @endif
 
-            <div class="page-header">
-                <h1>Nous contacter</h1>
-                <p>N'hésitez pas à nous contacter via ce formulaire pour n'importe quelle demande.</p>
+            <div class="left-content">
+                <div class="page-header">
+                    <h1>Nous contacter</h1>
+                    <p>N'hésitez pas à nous contacter via ce formulaire pour n'importe quelle demande.</p>
+                </div>
+
+                <div class="info" style="margin-left: 4.5rem;">
+                    <strong style="display:block; margin-bottom: 1rem;">WineSupervisor</strong>
+                    +33 (0)4 79 34 91 84
+                </div>
             </div>
 
             <div class="page-content">

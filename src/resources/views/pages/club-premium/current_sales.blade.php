@@ -24,7 +24,7 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Ventes en cours</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit. A hendrerit justo curabitur nteger a hendrerit justo. Curabitur rhoncus faucibus elit. </p>
+                <p>Tous les trimestres retrouvez la nouvelle sélection du Club Avantage WineSupervisor validée par le comité de dégustation.</p>
             </div>
             <!-- PAGE HEADER -->
 
