@@ -69,7 +69,7 @@ $(document).ready(function() {
 				$('.account .login').fadeOut();
 			}
 		}, 300);
-	})
+	});
 
 	//SUPPRESSION CONFIRMATION
 	$('.delete').click(function(e) {
@@ -78,5 +78,12 @@ $(document).ready(function() {
 			return false;
 		}
 		return true;
+	});
+
+	//ID WS FIELDS
+	$('input.id_ws').keyup(function(){
+		if($(this).val().length==$(this).attr("maxlength")){
+			$(this).next().next().focus();
+		}
 	});
 });

@@ -58,7 +58,7 @@
                     <div class="form-group">
                         <label for="id_ws">Identifiant WineSupervisor <span class="required">*</span></label>
                         @for ($i = 1; $i <= 6; $i++)
-                            <input type="text" name="id_ws_{{ $i }}" value="{{ old('id_ws_' . $i) }}" style="width:6.5rem; display: inline-block;" maxlength="2" required />
+                            <input class="id_ws" type="text" name="id_ws_{{ $i }}" value="{{ old('id_ws_' . $i) }}" style="width:6.5rem; display: inline-block;" maxlength="2" required />
                             @if ($i < 6)
                                 <span class="separator" style="display: inline-block; margin-left: 1rem; margin-right: 1rem;">:</span>
                             @endif
