@@ -31,7 +31,8 @@ class Cellar extends Model
         'zipcode',
         'city',
         'latitude',
-        'longitude'
+        'longitude',
+        'cd_cellar_id',
     ];
 
     public function user()

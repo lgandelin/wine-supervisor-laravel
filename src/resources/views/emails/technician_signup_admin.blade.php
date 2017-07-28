@@ -3,7 +3,7 @@ Bonjour,<br><br>
 un nouveau compte installateur WineSupervisor a été créé depuis le site.<br>
 Il est en attente de votre validation.<br><br>
 
-<strong>Email : </strong>{{ $technician->company }}<br><br>
+<strong>Email : </strong>{{ $technician->email }}<br><br>
 
 <strong>Téléphone : </strong>{{ $technician->phone }}<br><br>
 

@@ -327,4 +327,58 @@ class CellierDomesticusAPI
             ]);
         }
     }
+
+    public function affect_cellar(Cellar $cellar, Technician $technician)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_AFFECT_CELLAR_REQUEST', $requestData);
+
+        if ($response = $this->client->request('POST', sprintf('/api/users/%s/affect-cellar/%s', $technician->cd_user_id, $cellar->cd_cellar_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_AFFECT_CELLAR_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_AFFECT_CELLAR_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function unaffect_cellar(Cellar $cellar, Technician $technician)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_UNAFFECT_CELLAR_REQUEST', $requestData);
+
+        if ($response = $this->client->request('POST', sprintf('/api/users/%s/unaffect-cellar/%s', $technician->cd_user_id, $cellar->cd_cellar_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_UNAFFECT_CELLAR_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_UNAFFECT_CELLAR_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
 }

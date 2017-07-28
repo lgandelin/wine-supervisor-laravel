@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
-use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
 class AccountController extends UserController
 {
