@@ -32,7 +32,6 @@ class TechnicianRepository extends BaseRepository
      * @param $registration
      * @param $phone
      * @param $email
-     * @param $login
      * @param $password
      * @param $address
      * @param $address2
@@ -41,14 +40,13 @@ class TechnicianRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function create($company, $registration, $phone, $email, $login, $password, $address, $address2, $zipcode, $city, $country)
+    public static function create($company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
     {
         $technician = new Technician();
         $technician->id = Uuid::uuid4()->toString();
         $technician->company = $company;
         $technician->registration = $registration;
         $technician->phone = $phone;
-        $technician->login = $login;
         $technician->email = $email;
         $technician->password = Hash::make($password);
         $technician->address = $address;
@@ -135,7 +133,7 @@ class TechnicianRepository extends BaseRepository
             return self::error(trans('wine-supervisor::technician.id_not_found'));
         }
 
-        /*try {
+        try {
             (new CellierDomesticusAPI())->update_technician($technician);
         } catch (\Exception $e) {
             Log::info('API_UPDATE_TECHNICIAN_ERROR', [
@@ -144,19 +142,19 @@ class TechnicianRepository extends BaseRepository
             ]);
 
             return self::error(trans('wine-supervisor::generic.api_error'));
-        }*/
+        }
 
         return self::success();
     }
 
     /**
      * @param $technicianID
-     * @param $login
+     * @param $email
      * @return bool
      */
-    public static function checkLogin($technicianID, $login)
+    public static function checkEmail($technicianID, $email)
     {
-        $existingTechnician = Technician::where('login', '=', $login);
+        $existingTechnician = Technician::where('email', '=', $email);
 
         if ($technicianID) {
             $existingTechnician->where('id', '!=', $technicianID);

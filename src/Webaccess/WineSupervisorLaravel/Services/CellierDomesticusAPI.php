@@ -52,7 +52,7 @@ class CellierDomesticusAPI
     {
         $requestData = [
             'json' => [
-                'username' => $user->login,
+                'username' => $user->email,
                 'email' => $user->email,
                 'plainPassword' => $user->password,
                 'type' => 'user',
@@ -101,7 +101,7 @@ class CellierDomesticusAPI
     {
         $requestData = [
             'json' => [
-                'username' => $technician->login,
+                'username' => $technician->email,
                 'email' => $technician->email,
                 'plainPassword' => $technician->password,
                 'type' => 'technician',
@@ -193,7 +193,7 @@ class CellierDomesticusAPI
         $requestData = [
             'headers' => [
                 'Authorization' => 'profile="UsernameToken"',
-                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken($user->login, $user->cd_password)
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken($user->email, $user->cd_password)
             ]
         ];
 
@@ -221,7 +221,7 @@ class CellierDomesticusAPI
     {
         $requestData = [
             'json' => [
-                'username' => $user->login,
+                'username' => $user->email,
                 'email' => $user->email,
                 'lastName' => $user->last_name,
                 'firstName' => $user->first_name,
@@ -259,7 +259,7 @@ class CellierDomesticusAPI
     {
         $requestData = [
             'json' => [
-                'username' => $technician->login,
+                'username' => $technician->email,
                 'email' => $technician->email,
                 'lastName' => $technician->company,
                 'address' => $technician->address . ' ' . $technician->address2,

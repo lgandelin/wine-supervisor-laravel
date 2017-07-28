@@ -25,7 +25,6 @@ class UserRepository extends BaseRepository
      * @param $lastName
      * @param $email
      * @param $phone
-     * @param $login
      * @param $password
      * @param $opt_in
      * @param $address
@@ -35,10 +34,10 @@ class UserRepository extends BaseRepository
      * @param $country
      * @return User
      */
-    public static function create($firstName, $lastName, $email, $phone, $login, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
+    public static function create($firstName, $lastName, $email, $phone, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
     {
-        if (!self::checkLogin(null, $login)) {
-            return self::error(trans('wine-supervisor::signup.user_existing_login_error'));
+        if (!self::checkEmail(null, $email)) {
+            return self::error(trans('wine-supervisor::signup.user_existing_email_error'));
         }
 
         $user = new User();
@@ -47,7 +46,6 @@ class UserRepository extends BaseRepository
         $user->last_name = $lastName;
         $user->email = $email;
         $user->phone = $phone;
-        $user->login = $login;
         $user->password = Hash::make($password);
         $user->opt_in = $opt_in;
         $user->address = $address;
@@ -132,7 +130,7 @@ class UserRepository extends BaseRepository
         }
 
         //Call API
-        /*try {
+        try {
             (new CellierDomesticusAPI())->update_user($user);
         } catch (\Exception $e) {
             Log::info('API_UPDATE_USER_ERROR', [
@@ -141,19 +139,19 @@ class UserRepository extends BaseRepository
             ]);
 
             return self::error(trans('wine-supervisor::generic.api_error'));
-        }*/
+        }
 
         return self::success();
     }
 
     /**
      * @param $userID
-     * @param $login
+     * @param $email
      * @return bool
      */
-    public static function checkLogin($userID, $login)
+    public static function checkEmail($userID, $email)
     {
-        $existingUser = User::where('login', '=', $login);
+        $existingUser = User::where('email', '=', $email);
 
         if ($userID) {
             $existingUser->where('id', '!=', $userID);

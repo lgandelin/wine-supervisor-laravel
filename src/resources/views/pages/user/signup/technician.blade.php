@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Création de votre compte professionnel effectuée | WineSupervisor @endsection
+@section('page-title') Création de votre compte installateur effectuée | WineSupervisor @endsection
 
 @section('page-content')
     <div class="signup-template">
@@ -12,7 +12,7 @@
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>Créer un compte</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a hendrerit justo. Curabitur rhoncus faucibus elit.</p>
+                <p>Compte installateur créé avec succès</p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -21,7 +21,7 @@
 
                 <h2 class="subtitle">Confirmation</h2>
                 <p>
-                    Votre compte professionnel a été créé avec succès. Nous vous avertirons par mail une fois votre compte validé.<br/><br/>
+                    Votre compte installateur a été créé avec succès. Nous vous avertirons par mail une fois votre compte validé.<br/><br/>
                     Cordialement,<br/><br/>
                     L'équipe de WineSupervisor
                 </p>

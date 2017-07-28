@@ -25,7 +25,6 @@ class Guest extends Authenticatable
         'last_name',
         'access_start_date',
         'access_end_date',
-        'login',
         'email',
         'phone',
         'company',

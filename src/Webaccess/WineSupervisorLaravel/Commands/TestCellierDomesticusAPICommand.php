@@ -25,10 +25,10 @@ class TestCellierDomesticusAPICommand extends Command
         //$api->activate_cellar(Cellar::find('fdb3364e-4da7-4fa2-be80-86e3583d76f1'));
         //$api->login_user(User::find('b1d5d675-38ad-475a-b3f2-cb7e01380781'));
         //$api->update_user(User::find('6b50eb1e-e419-436c-bab3-2bb7bc743f08'));
-        /*$api->update_cellar(
-            UserRepository::getByID('68653c79-a5b7-458c-8800-0cacc0e87419'),
-            CellarRepository::getByID('49a142e5-dcc0-4ba9-84e5-313147fcd370')
-        );*/
+        $api->update_cellar(
+            UserRepository::getByID('3da66073-6248-431f-bcf5-fe00fc4440a4'),
+            CellarRepository::getByID('407b0986-381e-476c-baed-b31a439b796e')
+        );
         //$api->affect_cellar(CellarRepository::getByID('49a142e5-dcc0-4ba9-84e5-313147fcd370'), TechnicianRepository::getByID('10ca6bcd-ea68-4189-af93-a71930f24eb3'));
         //$api->unaffect_cellar(CellarRepository::getByID('49a142e5-dcc0-4ba9-84e5-313147fcd370'), TechnicianRepository::getByID('10ca6bcd-ea68-4189-af93-a71930f24eb3'));
     }

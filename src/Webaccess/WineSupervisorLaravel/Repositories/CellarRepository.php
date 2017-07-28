@@ -129,6 +129,8 @@ class CellarRepository extends BaseRepository
             return self::error(trans('wine-supervisor::generic.api_error'));
         }
 
+        sleep(2);
+
         //Call API : Update cellar address
         try {
             $user = UserRepository::getByID($userID);
@@ -149,6 +151,9 @@ class CellarRepository extends BaseRepository
 
         //Call API : Affect cellar to a technician
         if ($technicianID) {
+
+            sleep(2);
+
             try {
                 $technician = TechnicianRepository::getByID($technicianID);
                 $cellar = CellarRepository::getByID($cellar->id);

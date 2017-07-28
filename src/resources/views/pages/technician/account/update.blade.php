@@ -67,11 +67,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="login">Login <span class="required">*</span></label>
-                            <input disabled type="text" name="login" id="login" value="{{ $technician->login }}" required />
-                        </div>
-
-                        <div class="form-group">
                             <label for="password">Mot de passe <span class="required">*</span> <i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">(7 caractères minimum)</i></label>
                             <input type="password" name="password" id="password" value="********" />
                         </div>
