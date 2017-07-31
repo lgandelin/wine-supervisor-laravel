@@ -263,6 +263,8 @@ class CellarRepository extends BaseRepository
 
             //Call API : Affect cellar to a technician
             if ($technicianID && !$oldTechnicianID) {
+                sleep(2);
+
                 try {
                     $technician = TechnicianRepository::getByID($technicianID);
                     $cellar = CellarRepository::getByID($cellar->id);
@@ -285,6 +287,8 @@ class CellarRepository extends BaseRepository
 
             //Call API : Unaffect cellar to a technician
             if (!$technicianID && $oldTechnicianID) {
+                sleep(2);
+                
                 try {
                     $technician = TechnicianRepository::getByID($oldTechnicianID);
                     $cellar = CellarRepository::getByID($cellar->id);
