@@ -294,16 +294,19 @@ class CellierDomesticusAPI
 
     public function update_cellar(User $user, Cellar $cellar)
     {
+        $parameters = [
+            'name' => $cellar->name ? $cellar->name : 'Ma cave',
+            'address' => $cellar->address . ' ' . $cellar->address2,
+            'zipcode' => $cellar->zipcode,
+            'city' => $cellar->city,
+            'country' => $cellar->country,
+        ];
+
+        if ($cellar->latitude) $parameters['lat'] = $cellar->latitude;
+        if ($cellar->longitude) $parameters['lng'] = $cellar->longitude;
+
         $requestData = [
-            'json' => [
-                'name' => $cellar->name ? $cellar->name : 'Ma cave',
-                'address' => $cellar->address . ' ' . $cellar->address2,
-                'zipcode' => $cellar->zipcode,
-                'city' => $cellar->city,
-                'country' => $cellar->country,
-                'lat' => $cellar->latitude,
-                'lng' => $cellar->longitude,
-            ],
+            'json' => $parameters,
             'headers' => [
                 'Authorization' => 'profile="UsernameToken"',
                 'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
