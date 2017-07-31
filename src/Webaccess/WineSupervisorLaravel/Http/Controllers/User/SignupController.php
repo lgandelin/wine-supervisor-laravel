@@ -150,11 +150,10 @@ class SignupController
                     'success' => true
                 ]);
 
-                $request->session()->put('user_signed_up_' . $user_data->email, true);
+                $request->session()->put('user_signed_up_' . $user_data->email, isset($result['user_id']) ? $result['user_id'] : false);
             }
 
-            $userID = $result['user_id'];
-
+            $userID = $request->session()->get('user_signed_up_' . $user_data->email);
 
             //CREATE CELLAR
             Log::info('USER_SIGNUP_CREATE_CELLAR_REQUEST', [
