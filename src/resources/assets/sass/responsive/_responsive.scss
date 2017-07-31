@@ -24,11 +24,15 @@
 
 @media screen and (max-width: 768px) {
     body {
-        padding-top: 14.6rem;
+        padding-top: 13.6rem;
     }
 
     .red-button {
         padding: 1rem 3rem;
+    }
+
+    form .form-group .radio {
+        margin-right: 3rem;
     }
     
     header {
@@ -47,6 +51,14 @@
         }
 
         .top-bar {
+
+            .welcome {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                padding-left: 1rem;
+                display: none;
+            }
+            
             .container {
                 padding: 0;
             }
@@ -57,6 +69,12 @@
                 li {
                     font-family: $main-font;
                     font-size: 1.5rem;
+                    margin-right: 1rem;
+
+                    a {
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                    }
                 }
 
                 .account {
@@ -73,6 +91,28 @@
                             }
                         }
                     }
+
+                    &.logout {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+
+                        a {
+                            padding-top: 0;
+                            padding-bottom: 0;
+                        }
+
+                        .logout-icon {
+                            width: 4rem;
+                            height: 3.6rem;
+                        }
+                    }
+                }
+            }
+
+            .welcome + .nav {
+                nav {
+                    margin-right: 4rem;
                 }
             }
         }
@@ -109,6 +149,29 @@
         }
     }
 
+    .main-content {
+        .page-header {
+            text-align: left;
+            padding: 2rem 3.5rem 1rem 3.5rem;
+            margin-bottom: 5rem;
+
+            h1 {
+                font-size: 3rem;
+
+                &:after {
+                    margin-top: 1rem;
+                    margin-bottom: 2.5rem;
+                }
+            }
+        }
+        
+        .page-content {
+            .submit-container {
+                margin-top: 5rem;
+            }
+        }
+    }
+
     .banner {
         padding-top: 1.5rem;
         height: 15.5rem;
@@ -116,6 +179,11 @@
         background-size: cover !important;
         background-position-y: top !important;
         background-attachment: local !important;
+
+        .title {
+            margin-top: 2rem;
+            font-size: 3rem;
+        }
 
         h2 {
             .title {
@@ -177,7 +245,7 @@
             background-size: cover !important;
             background-position-y: top !important;
             background-attachment: local !important;
-            
+
             .title {
                 margin-top: 3rem;
             }
@@ -206,6 +274,116 @@
                 display: block;
 
                 text-align: center;
+            }
+        }
+
+        .news {
+            .title {
+                margin-top: 0;
+                font-size: 3rem;
+            }
+
+            .news-slider .slick-slide {
+                max-height: none;
+
+                .image {
+                    float: none;
+                }
+            }
+        }
+
+        .our-partners {
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+            .title {
+                margin-top: 0;
+                font-size: 3rem;
+            }
+        }
+    }
+
+    .contact-template {
+        .left-content {
+            width: 100%;
+            float: none;
+            margin-right: 0;
+
+            .info {
+                margin-bottom: 5rem;
+            }
+        }
+    }
+
+    .id_ws {
+        margin-bottom: 2rem;
+    }
+
+    .signup-template {
+
+        .page-header {
+            width: 100%;
+            float: none;
+            margin-right: 0;
+        }
+
+        .steps {
+            margin-bottom: 5rem;
+            
+            .step {
+                min-height: 10.5rem;
+                padding-top: 1rem;
+                padding-left: 1rem;
+
+                .step-number {
+                    margin-right: 3rem;
+                    font-size: 6rem;
+                }
+
+                .step-title {
+                    font-size: 2rem;
+                }
+
+                &.active {
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .cellars-template {
+
+       .page-content .table-list {
+           .cellar, .status, .date, .type, .action {
+                width: 100%;
+                float: none;
+                border: 1px solid #cfdbe6;
+               border-bottom: none;
+           }
+
+           .action {
+               button {
+                   width: 100%;
+               }
+           }
+       }
+    }
+
+    .cellar-update-template {
+
+        .left-column {
+            width: 100%;
+            float: none;
+            margin-right: 0;
+            
+            .mak {
+                margin-bottom: 2rem;
+            }
+            
+            .links {
+                margin-bottom: 5rem;
             }
         }
     }

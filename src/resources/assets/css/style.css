@@ -1646,26 +1646,27 @@ img {
   float: left;
   padding: 2.5rem 5rem;
   line-height: 3rem;
+  text-overflow: ellipsis;
   background: #f8f7fa;
   border-top: 1px solid #cfdbe6;
   border-bottom: 1px solid #cfdbe6;
 }
-/* line 21, ../sass/includes/_tables.scss */
+/* line 22, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.truncate {
   max-width: 275px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-/* line 28, ../sass/includes/_tables.scss */
+/* line 29, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell:first-child {
   border-left: 1px solid #cfdbe6;
 }
-/* line 32, ../sass/includes/_tables.scss */
+/* line 33, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell:last-child {
   border-right: 1px solid #cfdbe6;
 }
-/* line 36, ../sass/includes/_tables.scss */
+/* line 37, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.table-cell-header {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -1675,22 +1676,22 @@ img {
   font-family: "Open Sans";
   font-weight: 300;
 }
-/* line 47, ../sass/includes/_tables.scss */
+/* line 48, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.align-left {
   text-align: left;
 }
-/* line 50, ../sass/includes/_tables.scss */
+/* line 51, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.align-left:first-child {
   padding-left: 3rem;
 }
-/* line 55, ../sass/includes/_tables.scss */
+/* line 56, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.action {
   padding: 0 !important;
   background: #f83740;
   text-align: center;
   vertical-align: middle;
 }
-/* line 62, ../sass/includes/_tables.scss */
+/* line 63, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button {
   min-width: 7rem;
   min-height: 7rem;
@@ -1703,19 +1704,19 @@ img {
   background-repeat: no-repeat;
   border: none;
 }
-/* line 76, ../sass/includes/_tables.scss */
+/* line 77, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button:hover {
   background-color: #fa686f;
 }
-/* line 81, ../sass/includes/_tables.scss */
+/* line 82, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell .edit {
   background-image: url(../img/generic/edit.png);
 }
-/* line 85, ../sass/includes/_tables.scss */
+/* line 86, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell .delete {
   background-image: url(../img/generic/delete.png);
 }
-/* line 93, ../sass/includes/_tables.scss */
+/* line 94, ../sass/includes/_tables.scss */
 .table-list.less-padding .table-row .table-cell {
   padding: 2rem;
 }
@@ -2980,7 +2981,7 @@ footer a, footer a:visited {
 @media screen and (max-width: 768px) {
   /* line 26, ../sass/responsive/_responsive.scss */
   body {
-    padding-top: 14.6rem;
+    padding-top: 13.6rem;
   }
 
   /* line 30, ../sass/responsive/_responsive.scss */
@@ -2988,7 +2989,12 @@ footer a, footer a:visited {
     padding: 1rem 3rem;
   }
 
-  /* line 36, ../sass/responsive/_responsive.scss */
+  /* line 34, ../sass/responsive/_responsive.scss */
+  form .form-group .radio {
+    margin-right: 3rem;
+  }
+
+  /* line 40, ../sass/responsive/_responsive.scss */
   header .hamburger {
     display: block;
     float: right;
@@ -2999,38 +3005,71 @@ footer a, footer a:visited {
     cursor: pointer;
     background: url("../img/header/hamburger.png") no-repeat center center;
   }
-  /* line 50, ../sass/responsive/_responsive.scss */
+  /* line 55, ../sass/responsive/_responsive.scss */
+  header .top-bar .welcome {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    display: none;
+  }
+  /* line 62, ../sass/responsive/_responsive.scss */
   header .top-bar .container {
     padding: 0;
   }
-  /* line 54, ../sass/responsive/_responsive.scss */
+  /* line 66, ../sass/responsive/_responsive.scss */
   header .top-bar .nav {
     position: static;
   }
-  /* line 57, ../sass/responsive/_responsive.scss */
+  /* line 69, ../sass/responsive/_responsive.scss */
   header .top-bar .nav li {
     font-family: "Roboto";
     font-size: 1.5rem;
+    margin-right: 1rem;
   }
-  /* line 63, ../sass/responsive/_responsive.scss */
+  /* line 74, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav li a {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  /* line 81, ../sass/responsive/_responsive.scss */
   header .top-bar .nav .account .login {
     right: 0;
     left: 0;
     width: 100%;
   }
-  /* line 68, ../sass/responsive/_responsive.scss */
+  /* line 86, ../sass/responsive/_responsive.scss */
   header .top-bar .nav .account .login .input-login, header .top-bar .nav .account .login .input-password {
     width: auto;
   }
-  /* line 71, ../sass/responsive/_responsive.scss */
+  /* line 89, ../sass/responsive/_responsive.scss */
   header .top-bar .nav .account .login .input-login input, header .top-bar .nav .account .login .input-password input {
     width: 30rem;
   }
-  /* line 81, ../sass/responsive/_responsive.scss */
+  /* line 95, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav .account.logout {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  /* line 100, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav .account.logout a {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  /* line 105, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav .account.logout .logout-icon {
+    width: 4rem;
+    height: 3.6rem;
+  }
+  /* line 114, ../sass/responsive/_responsive.scss */
+  header .top-bar .welcome + .nav nav {
+    margin-right: 4rem;
+  }
+  /* line 121, ../sass/responsive/_responsive.scss */
   header .logo-navigation .container {
     padding: 0;
   }
-  /* line 85, ../sass/responsive/_responsive.scss */
+  /* line 125, ../sass/responsive/_responsive.scss */
   header .logo-navigation nav {
     display: none;
     left: 1rem;
@@ -3042,13 +3081,13 @@ footer a, footer a:visited {
     border: 2px solid #ccc;
     border-top: none;
   }
-  /* line 96, ../sass/responsive/_responsive.scss */
+  /* line 136, ../sass/responsive/_responsive.scss */
   header .logo-navigation nav ul {
     padding-top: 3rem;
     padding-bottom: 1rem;
     text-align: center;
   }
-  /* line 101, ../sass/responsive/_responsive.scss */
+  /* line 141, ../sass/responsive/_responsive.scss */
   header .logo-navigation nav ul li {
     display: block;
     float: none;
@@ -3056,7 +3095,27 @@ footer a, footer a:visited {
     margin-right: 0;
   }
 
-  /* line 112, ../sass/responsive/_responsive.scss */
+  /* line 153, ../sass/responsive/_responsive.scss */
+  .main-content .page-header {
+    text-align: left;
+    padding: 2rem 3.5rem 1rem 3.5rem;
+    margin-bottom: 5rem;
+  }
+  /* line 158, ../sass/responsive/_responsive.scss */
+  .main-content .page-header h1 {
+    font-size: 3rem;
+  }
+  /* line 161, ../sass/responsive/_responsive.scss */
+  .main-content .page-header h1:after {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  /* line 169, ../sass/responsive/_responsive.scss */
+  .main-content .page-content .submit-container {
+    margin-top: 5rem;
+  }
+
+  /* line 175, ../sass/responsive/_responsive.scss */
   .banner {
     padding-top: 1.5rem;
     height: 15.5rem;
@@ -3065,27 +3124,32 @@ footer a, footer a:visited {
     background-position-y: top !important;
     background-attachment: local !important;
   }
-  /* line 121, ../sass/responsive/_responsive.scss */
+  /* line 183, ../sass/responsive/_responsive.scss */
+  .banner .title {
+    margin-top: 2rem;
+    font-size: 3rem;
+  }
+  /* line 189, ../sass/responsive/_responsive.scss */
   .banner h2 .title {
     font-size: 3rem;
     margin-top: 0;
   }
 
-  /* line 130, ../sass/responsive/_responsive.scss */
+  /* line 198, ../sass/responsive/_responsive.scss */
   .home-template .title {
     font-size: 3rem;
   }
-  /* line 134, ../sass/responsive/_responsive.scss */
+  /* line 202, ../sass/responsive/_responsive.scss */
   .home-template .box {
     background: none;
     padding-top: 1.5rem;
   }
-  /* line 138, ../sass/responsive/_responsive.scss */
+  /* line 206, ../sass/responsive/_responsive.scss */
   .home-template .box p {
     text-align: left;
     width: 100%;
   }
-  /* line 143, ../sass/responsive/_responsive.scss */
+  /* line 211, ../sass/responsive/_responsive.scss */
   .home-template .box .box-image {
     width: 75%;
     margin-top: 5rem;
@@ -3094,26 +3158,26 @@ footer a, footer a:visited {
     display: block;
     position: static;
   }
-  /* line 152, ../sass/responsive/_responsive.scss */
+  /* line 220, ../sass/responsive/_responsive.scss */
   .home-template .box .buttons {
     overflow: hidden;
     margin-left: 0;
     margin-right: 0;
     text-align: center;
   }
-  /* line 158, ../sass/responsive/_responsive.scss */
+  /* line 226, ../sass/responsive/_responsive.scss */
   .home-template .box .buttons .btn-discover {
     float: none;
     display: inline-block;
     margin-right: 2rem;
   }
-  /* line 164, ../sass/responsive/_responsive.scss */
+  /* line 232, ../sass/responsive/_responsive.scss */
   .home-template .box .buttons .btn-supervision {
     float: none;
     display: inline-block;
     margin-right: 0;
   }
-  /* line 172, ../sass/responsive/_responsive.scss */
+  /* line 240, ../sass/responsive/_responsive.scss */
   .home-template .club {
     height: 15.5rem;
     max-height: 15.5rem;
@@ -3122,27 +3186,27 @@ footer a, footer a:visited {
     background-position-y: top !important;
     background-attachment: local !important;
   }
-  /* line 181, ../sass/responsive/_responsive.scss */
+  /* line 249, ../sass/responsive/_responsive.scss */
   .home-template .club .title {
     margin-top: 3rem;
   }
-  /* line 186, ../sass/responsive/_responsive.scss */
+  /* line 254, ../sass/responsive/_responsive.scss */
   .home-template .club-contents {
     margin-top: 5rem;
     margin-bottom: 7rem;
   }
-  /* line 190, ../sass/responsive/_responsive.scss */
+  /* line 258, ../sass/responsive/_responsive.scss */
   .home-template .club-contents .image {
     width: 100%;
     float: none;
   }
-  /* line 194, ../sass/responsive/_responsive.scss */
+  /* line 262, ../sass/responsive/_responsive.scss */
   .home-template .club-contents .image img {
     display: block;
     margin-right: auto;
     margin-left: auto;
   }
-  /* line 201, ../sass/responsive/_responsive.scss */
+  /* line 269, ../sass/responsive/_responsive.scss */
   .home-template .club-contents .red-button {
     float: none;
     width: 80%;
@@ -3150,5 +3214,101 @@ footer a, footer a:visited {
     margin-top: 5rem;
     display: block;
     text-align: center;
+  }
+  /* line 281, ../sass/responsive/_responsive.scss */
+  .home-template .news .title {
+    margin-top: 0;
+    font-size: 3rem;
+  }
+  /* line 286, ../sass/responsive/_responsive.scss */
+  .home-template .news .news-slider .slick-slide {
+    max-height: none;
+  }
+  /* line 289, ../sass/responsive/_responsive.scss */
+  .home-template .news .news-slider .slick-slide .image {
+    float: none;
+  }
+  /* line 295, ../sass/responsive/_responsive.scss */
+  .home-template .our-partners {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  /* line 299, ../sass/responsive/_responsive.scss */
+  .home-template .our-partners .title {
+    margin-top: 0;
+    font-size: 3rem;
+  }
+
+  /* line 307, ../sass/responsive/_responsive.scss */
+  .contact-template .left-content {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+  /* line 312, ../sass/responsive/_responsive.scss */
+  .contact-template .left-content .info {
+    margin-bottom: 5rem;
+  }
+
+  /* line 318, ../sass/responsive/_responsive.scss */
+  .id_ws {
+    margin-bottom: 2rem;
+  }
+
+  /* line 324, ../sass/responsive/_responsive.scss */
+  .signup-template .page-header {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+  /* line 330, ../sass/responsive/_responsive.scss */
+  .signup-template .steps {
+    margin-bottom: 5rem;
+  }
+  /* line 333, ../sass/responsive/_responsive.scss */
+  .signup-template .steps .step {
+    min-height: 10.5rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+  }
+  /* line 338, ../sass/responsive/_responsive.scss */
+  .signup-template .steps .step .step-number {
+    margin-right: 3rem;
+    font-size: 6rem;
+  }
+  /* line 343, ../sass/responsive/_responsive.scss */
+  .signup-template .steps .step .step-title {
+    font-size: 2rem;
+  }
+  /* line 348, ../sass/responsive/_responsive.scss */
+  .signup-template .steps .step.active:after {
+    display: none;
+  }
+
+  /* line 359, ../sass/responsive/_responsive.scss */
+  .cellars-template .page-content .table-list .cellar, .cellars-template .page-content .table-list .status, .cellars-template .page-content .table-list .date, .cellars-template .page-content .table-list .type, .cellars-template .page-content .table-list .action {
+    width: 100%;
+    float: none;
+    border: 1px solid #cfdbe6;
+    border-bottom: none;
+  }
+  /* line 367, ../sass/responsive/_responsive.scss */
+  .cellars-template .page-content .table-list .action button {
+    width: 100%;
+  }
+
+  /* line 376, ../sass/responsive/_responsive.scss */
+  .cellar-update-template .left-column {
+    width: 100%;
+    float: none;
+    margin-right: 0;
+  }
+  /* line 381, ../sass/responsive/_responsive.scss */
+  .cellar-update-template .left-column .mak {
+    margin-bottom: 2rem;
+  }
+  /* line 385, ../sass/responsive/_responsive.scss */
+  .cellar-update-template .left-column .links {
+    margin-bottom: 5rem;
   }
 }

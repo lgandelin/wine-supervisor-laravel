@@ -20,6 +20,22 @@ $(document).ready(function() {
 		slidesToScroll: 4,
 		arrows: true,
 		appendArrows: $('.partners-slider-arrows'),
+		responsive: [
+			{
+				breakpoint: 780,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
+			}
+		]
 	});
 
 	//SLIDER SALES
