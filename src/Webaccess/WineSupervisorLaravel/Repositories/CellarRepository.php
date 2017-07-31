@@ -132,21 +132,23 @@ class CellarRepository extends BaseRepository
         sleep(2);
 
         //Call API : Update cellar address
-        try {
-            $user = UserRepository::getByID($userID);
-            $cellar = CellarRepository::getByID($cellar->id);
+        if ($cellar->latitude && $cellar->longitude) {
+            try {
+                $user = UserRepository::getByID($userID);
+                $cellar = CellarRepository::getByID($cellar->id);
 
-            (new CellierDomesticusAPI())->update_cellar($user, $cellar);
-        } catch (\Exception $e) {
-            Log::info('API_UPDATE_CELLAR_ERROR', [
-                'user_id' => $userID,
-                'cd_user_id' => $user->cd_user_id,
-                'cellar_id' => $cellar->id,
-                'cellar_cd_id' => $cellar->cd_cellar_id,
-                'error' => $e->getMessage(),
-            ]);
+                (new CellierDomesticusAPI())->update_cellar($user, $cellar);
+            } catch (\Exception $e) {
+                Log::info('API_UPDATE_CELLAR_ERROR', [
+                    'user_id' => $userID,
+                    'cd_user_id' => $user->cd_user_id,
+                    'cellar_id' => $cellar->id,
+                    'cellar_cd_id' => $cellar->cd_cellar_id,
+                    'error' => $e->getMessage(),
+                ]);
 
-            return self::error(trans('wine-supervisor::generic.api_error'));
+                return self::error(trans('wine-supervisor::generic.api_error'));
+            }
         }
 
         //Call API : Affect cellar to a technician
@@ -244,21 +246,23 @@ class CellarRepository extends BaseRepository
             }
 
             //Call API : update cellar
-            try {
-                $user = UserRepository::getByID($userID);
-                $cellar = CellarRepository::getByID($cellar->id);
+            if ($cellar->latitude && $cellar->longitude) {
+                try {
+                    $user = UserRepository::getByID($userID);
+                    $cellar = CellarRepository::getByID($cellar->id);
 
-                (new CellierDomesticusAPI())->update_cellar($user, $cellar);
-            } catch (\Exception $e) {
-                Log::info('API_UPDATE_CELLAR_ERROR', [
-                    'user_id' => $userID,
-                    'cd_user_id' => $user->cd_user_id,
-                    'cellar_id' => $cellarID,
-                    'cellar_cd_id' => $cellar->cd_cellar_id,
-                    'error' => $e->getMessage(),
-                ]);
+                    (new CellierDomesticusAPI())->update_cellar($user, $cellar);
+                } catch (\Exception $e) {
+                    Log::info('API_UPDATE_CELLAR_ERROR', [
+                        'user_id' => $userID,
+                        'cd_user_id' => $user->cd_user_id,
+                        'cellar_id' => $cellarID,
+                        'cellar_cd_id' => $cellar->cd_cellar_id,
+                        'error' => $e->getMessage(),
+                    ]);
 
-                return self::error(trans('wine-supervisor::generic.api_error'));
+                    return self::error(trans('wine-supervisor::generic.api_error'));
+                }
             }
 
             //Call API : Affect cellar to a technician
