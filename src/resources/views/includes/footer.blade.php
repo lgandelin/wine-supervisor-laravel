@@ -28,5 +28,9 @@
     <script src="{{ asset('js/vendor/slick.min.js') }}"></script>
     <script src="{{ asset('js/vendor/smooth-scroll.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+
+    @if (env('GA_TRACKING_ENABLED') && env('GA_TRACKING_ID'))
+        @include('wine-supervisor::partials.ga')
+    @endif
 </body>
 </html>

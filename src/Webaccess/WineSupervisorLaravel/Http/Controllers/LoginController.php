@@ -37,7 +37,7 @@ class LoginController extends Controller
     {
         //User authentication
         if (Auth::guard('users')->attempt([
-            'login' => $this->request->input('login'),
+            'email' => $this->request->input('login'),
             'password' => $this->request->input('password'),
         ])) {
             //Update last connection date
@@ -51,7 +51,7 @@ class LoginController extends Controller
 
         //Technician authentication
         if (Auth::guard('technicians')->attempt([
-            'login' => $this->request->input('login'),
+            'email' => $this->request->input('login'),
             'password' => $this->request->input('password'),
         ])) {
             if (!AccountService::hasAValidTechnicianAccount()) {
@@ -130,7 +130,7 @@ class LoginController extends Controller
                 $newPassword = self::generate(8);
                 $user->password = bcrypt($newPassword);
                 $user->save();
-                $this->sendNewPasswordToUser($newPassword, $user->login, $user->email);
+                $this->sendNewPasswordToUser($newPassword, $user->email);
 
                 $this->request->session()->flash('message', trans('wine-supervisor::login.forgotten_password_email_success'));
             } else {
@@ -145,12 +145,11 @@ class LoginController extends Controller
 
     /**
      * @param $newPassword
-     * @param $userLogin
      * @param $userEmail
      */
-    private function sendNewPasswordToUser($newPassword, $userLogin, $userEmail)
+    private function sendNewPasswordToUser($newPassword, $userEmail)
     {
-        Mail::send('wine-supervisor::emails.password', array('login' => $userLogin, 'password' => $newPassword), function ($message) use ($userEmail) {
+        Mail::send('wine-supervisor::emails.password', array('login' => $userEmail, 'password' => $newPassword), function ($message) use ($userEmail) {
             $message->to($userEmail)
                 ->subject('[WineSupervisor] Votre nouveau mot de passe pour accéder à votre compte');
         });

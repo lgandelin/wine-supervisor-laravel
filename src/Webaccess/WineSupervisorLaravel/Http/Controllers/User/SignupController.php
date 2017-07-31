@@ -5,9 +5,9 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
-use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
@@ -27,7 +27,6 @@ class SignupController
             'first_name' => isset($session_user) && $session_user->first_name ? $session_user->first_name : old('first_name'),
             'email' => isset($session_user) && $session_user->email ? $session_user->email : old('email'),
             'phone' => isset($session_user) && $session_user->phone ? $session_user->phone : old('phone'),
-            'login' => isset($session_user) && $session_user->login ? $session_user->login : old('login'),
             'opt_in' => isset($session_user) ? $session_user->opt_in : $old_opt_in,
             'address' => isset($session_user) && $session_user->address ? $session_user->address : old('address'),
             'address2' => isset($session_user) && $session_user->address2 ? $session_user->address2 : old('address2'),
@@ -48,8 +47,13 @@ class SignupController
             return redirect()->back()->withInput();
         }
 
-        if (!UserRepository::checkLogin(null, $request->get('login')) || !TechnicianRepository::checkLogin(null, $request->get('login'))) {
-            $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
+        if (!UserRepository::checkPassword($request->get('password'))) {
+            $request->session()->flash('error', trans('wine-supervisor::generic.password_not_secured'));
+            return redirect()->back()->withInput();
+        }
+
+        if (!UserRepository::checkEmail(null, $request->get('email')) || !TechnicianRepository::checkEmail(null, $request->get('email'))) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_email_error'));
             return redirect()->back()->withInput();
         }
 
@@ -58,7 +62,6 @@ class SignupController
             'first_name' => $request->get('first_name'),
             'email' => $request->get('email'),
             'phone' => $request->get('phone'),
-            'login' => $request->get('login'),
             'password' => $request->get('password'),
             'opt_in' => $request->get('opt_in') == '1' ? true : false,
             'address' => $request->get('address'),
@@ -99,7 +102,7 @@ class SignupController
         if ($session_user = $request->session()->get('user_signup')) {
             $user_data = json_decode($session_user);
 
-            if (!$request->session()->has('user_signed_up_' . $user_data->login)) {
+            if (!$request->session()->has('user_signed_up_' . $user_data->email)) {
 
                 //CREATE USER
                 Log::info('USER_SIGNUP_CREATE_USER_REQUEST', [
@@ -108,7 +111,6 @@ class SignupController
                     'last_name' => $user_data->last_name,
                     'email' => $user_data->email,
                     'phone' => $user_data->phone,
-                    'login' => $user_data->login,
                     'opt_in' => $user_data->opt_in,
                     'address' => $user_data->address,
                     'address2' => $user_data->address2,
@@ -122,7 +124,6 @@ class SignupController
                     $user_data->last_name,
                     $user_data->email,
                     $user_data->phone,
-                    $user_data->login,
                     $user_data->password,
                     $user_data->opt_in,
                     $user_data->address,
@@ -149,7 +150,7 @@ class SignupController
                     'success' => true
                 ]);
 
-                $request->session()->put('user_signed_up_' . $user_data->login, true);
+                $request->session()->put('user_signed_up_' . $user_data->email, true);
             }
 
             $userID = $result['user_id'];
@@ -222,8 +223,13 @@ class SignupController
             return redirect()->back()->withInput();
         }
 
-        if (!UserRepository::checkLogin(null, $request->get('login')) || !TechnicianRepository::checkLogin(null, $request->get('login'))) {
-            $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_login_error'));
+        if (!UserRepository::checkPassword($request->get('password'))) {
+            $request->session()->flash('error', trans('wine-supervisor::generic.password_not_secured'));
+            return redirect()->back()->withInput();
+        }
+
+        if (!UserRepository::checkEmail(null, $request->get('email')) || !TechnicianRepository::checkEmail(null, $request->get('email'))) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_existing_email_error'));
             return redirect()->back()->withInput();
         }
 
@@ -233,7 +239,6 @@ class SignupController
             'registration' => $request->get('registration'),
             'phone' => $request->get('phone'),
             'email' => $request->get('email'),
-            'login' => $request->get('login'),
             'address' => $request->get('address'),
             'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
@@ -241,12 +246,11 @@ class SignupController
             'country' => $request->get('country')
         ]);
 
-        list($success, $error) = TechnicianRepository::create(
+        list($success, $error, $technicianID) = TechnicianRepository::create(
             $request->get('company'),
             $request->get('registration'),
             $request->get('phone'),
             $request->get('email'),
-            $request->get('login'),
             $request->get('password'),
             $request->get('address'),
             $request->get('address2'),
@@ -273,6 +277,27 @@ class SignupController
             'id' => $requestID,
             'success' => true
         ]);
+
+        if ($techician = TechnicianRepository::getByID($technicianID)) {
+
+            try {
+                Mail::send('wine-supervisor::emails.technician_signup_admin', array('technician' => $techician), function ($message) {
+                    $message->to(env('WS_ADMIN_EMAIL'))
+                        ->subject('[WineSupervisor] Un nouvel installateur s\'est inscrit sur le site');
+                });
+
+                Log::info('TECHNICIAN_SIGNUP_ADMIN_EMAIL', [
+                    'id' => $requestID,
+                    'success' => true
+                ]);
+            } catch (\Exception $e) {
+                Log::info('TECHNICIAN_SIGNUP_ADMIN_EMAIL', [
+                    'id' => $requestID,
+                    'error' => $e->getMessage(),
+                    'success' => false
+                ]);
+            }
+        }
 
         return redirect()->route('technician_signup_success');
     }

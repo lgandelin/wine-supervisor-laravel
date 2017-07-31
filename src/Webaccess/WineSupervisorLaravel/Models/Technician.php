@@ -28,7 +28,6 @@ class Technician extends Authenticatable
         'registration',
         'email',
         'phone',
-        'login',
         'address',
         'address2',
         'zipcode',

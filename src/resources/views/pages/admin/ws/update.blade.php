@@ -54,6 +54,16 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="first_activation_date">Date de <sup>1ère</sup> activation</label>
+                        <input type="text" name="first_activation_date" id="first_activation_date" value="@if ($ws->first_activation_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $ws->first_activation_date)->format('d/m/Y') }}@endif" disabled />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deactivation_date">Date de désactivation</label>
+                        <input type="text" name="deactivation_date" id="deactivation_date" value="@if ($ws->deactivation_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $ws->deactivation_date)->format('d/m/Y') }}@endif" disabled />
+                    </div>
+
                     <div class="submit-container">
                         <input type="submit" value="Valider" />
                     </div>
