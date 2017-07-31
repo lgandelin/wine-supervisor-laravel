@@ -86,4 +86,13 @@ $(document).ready(function() {
 			$(this).next().next().focus();
 		}
 	});
+
+	//MENU MOBILE
+	$('.hamburger').click(function() {
+		$('.logo-navigation nav').toggle();
+	});
+
+	$('.logo-navigation .close').click(function() {
+		$('.logo-navigation nav').hide();
+	});
 });

@@ -2967,8 +2967,188 @@ footer a, footer a:visited {
   }
 }
 @media screen and (max-width: 1200px) {
-  /* line 12, ../sass/responsive/_responsive.scss */
+  /* line 8, ../sass/responsive/_responsive.scss */
+  .hamburger {
+    display: none;
+  }
+
+  /* line 16, ../sass/responsive/_responsive.scss */
   .home-template .logo-navigation nav ul li {
     margin-right: 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  /* line 26, ../sass/responsive/_responsive.scss */
+  body {
+    padding-top: 14.6rem;
+  }
+
+  /* line 30, ../sass/responsive/_responsive.scss */
+  .red-button {
+    padding: 1rem 3rem;
+  }
+
+  /* line 36, ../sass/responsive/_responsive.scss */
+  header .hamburger {
+    display: block;
+    float: right;
+    width: 40px;
+    height: 27px;
+    margin-top: 18px;
+    margin-right: 15px;
+    cursor: pointer;
+    background: url("../img/header/hamburger.png") no-repeat center center;
+  }
+  /* line 50, ../sass/responsive/_responsive.scss */
+  header .top-bar .container {
+    padding: 0;
+  }
+  /* line 54, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav {
+    position: static;
+  }
+  /* line 57, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav li {
+    font-family: "Roboto";
+    font-size: 1.5rem;
+  }
+  /* line 63, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav .account .login {
+    right: 0;
+    left: 0;
+    width: 100%;
+  }
+  /* line 68, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav .account .login .input-login, header .top-bar .nav .account .login .input-password {
+    width: auto;
+  }
+  /* line 71, ../sass/responsive/_responsive.scss */
+  header .top-bar .nav .account .login .input-login input, header .top-bar .nav .account .login .input-password input {
+    width: 30rem;
+  }
+  /* line 81, ../sass/responsive/_responsive.scss */
+  header .logo-navigation .container {
+    padding: 0;
+  }
+  /* line 85, ../sass/responsive/_responsive.scss */
+  header .logo-navigation nav {
+    display: none;
+    left: 1rem;
+    right: 1rem;
+    top: 10.6rem;
+    position: absolute;
+    float: none;
+    background: white;
+    border: 2px solid #ccc;
+    border-top: none;
+  }
+  /* line 96, ../sass/responsive/_responsive.scss */
+  header .logo-navigation nav ul {
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+  /* line 101, ../sass/responsive/_responsive.scss */
+  header .logo-navigation nav ul li {
+    display: block;
+    float: none;
+    margin-bottom: 2rem;
+    margin-right: 0;
+  }
+
+  /* line 112, ../sass/responsive/_responsive.scss */
+  .banner {
+    padding-top: 1.5rem;
+    height: 15.5rem;
+    max-height: 15.5rem;
+    background-size: cover !important;
+    background-position-y: top !important;
+    background-attachment: local !important;
+  }
+  /* line 121, ../sass/responsive/_responsive.scss */
+  .banner h2 .title {
+    font-size: 3rem;
+    margin-top: 0;
+  }
+
+  /* line 130, ../sass/responsive/_responsive.scss */
+  .home-template .title {
+    font-size: 3rem;
+  }
+  /* line 134, ../sass/responsive/_responsive.scss */
+  .home-template .box {
+    background: none;
+    padding-top: 1.5rem;
+  }
+  /* line 138, ../sass/responsive/_responsive.scss */
+  .home-template .box p {
+    text-align: left;
+    width: 100%;
+  }
+  /* line 143, ../sass/responsive/_responsive.scss */
+  .home-template .box .box-image {
+    width: 75%;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: static;
+  }
+  /* line 152, ../sass/responsive/_responsive.scss */
+  .home-template .box .buttons {
+    overflow: hidden;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+  }
+  /* line 158, ../sass/responsive/_responsive.scss */
+  .home-template .box .buttons .btn-discover {
+    float: none;
+    display: inline-block;
+    margin-right: 2rem;
+  }
+  /* line 164, ../sass/responsive/_responsive.scss */
+  .home-template .box .buttons .btn-supervision {
+    float: none;
+    display: inline-block;
+    margin-right: 0;
+  }
+  /* line 172, ../sass/responsive/_responsive.scss */
+  .home-template .club {
+    height: 15.5rem;
+    max-height: 15.5rem;
+    padding-top: 1.5rem;
+    background-size: cover !important;
+    background-position-y: top !important;
+    background-attachment: local !important;
+  }
+  /* line 181, ../sass/responsive/_responsive.scss */
+  .home-template .club .title {
+    margin-top: 3rem;
+  }
+  /* line 186, ../sass/responsive/_responsive.scss */
+  .home-template .club-contents {
+    margin-top: 5rem;
+    margin-bottom: 7rem;
+  }
+  /* line 190, ../sass/responsive/_responsive.scss */
+  .home-template .club-contents .image {
+    width: 100%;
+    float: none;
+  }
+  /* line 194, ../sass/responsive/_responsive.scss */
+  .home-template .club-contents .image img {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  /* line 201, ../sass/responsive/_responsive.scss */
+  .home-template .club-contents .red-button {
+    float: none;
+    width: 80%;
+    margin: auto;
+    margin-top: 5rem;
+    display: block;
+    text-align: center;
   }
 }

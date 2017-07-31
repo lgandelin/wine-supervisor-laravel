@@ -21,6 +21,7 @@
     <!-- LOGO AND NAVIGATION -->
     <div class="logo-navigation">
         <div class="container">
+            <span class="hamburger"></span>
             <nav>
                 <ul>
                     <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#top">Accueil</a></li>

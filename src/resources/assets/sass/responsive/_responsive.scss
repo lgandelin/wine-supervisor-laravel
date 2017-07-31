@@ -5,6 +5,10 @@
 }
 
 @media screen and (max-width: 1200px) {
+    .hamburger {
+        display: none;
+    }
+
     .home-template {
         .logo-navigation {
             nav {
@@ -19,11 +23,194 @@
 }
 
 @media screen and (max-width: 768px) {
+    body {
+        padding-top: 14.6rem;
+    }
 
+    .red-button {
+        padding: 1rem 3rem;
+    }
+    
+    header {
+
+        .hamburger {
+            display: block;
+            float: right;
+            width: 40px;
+            height: 27px;
+            margin-top: 18px;
+            margin-right: 15px;
+
+            cursor: pointer;
+
+            background: url('../img/header/hamburger.png') no-repeat center center;
+        }
+
+        .top-bar {
+            .container {
+                padding: 0;
+            }
+
+            .nav {
+                position: static;
+
+                li {
+                    font-family: $main-font;
+                    font-size: 1.5rem;
+                }
+
+                .account {
+                    .login {
+                        right: 0;
+                        left: 0;
+                        width: 100%;
+
+                        .input-login, .input-password {
+                            width: auto;
+
+                            input {
+                                width: 30rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .logo-navigation {
+            .container {
+                padding: 0;
+            }
+
+            nav {
+                display: none;
+                left: 1rem;
+                right: 1rem;
+                top: 10.6rem;
+                position: absolute;
+                float: none;
+                background: white;
+                border: 2px solid #ccc;
+                border-top: none;
+
+                ul {
+                    padding-top: 3rem;
+                    padding-bottom: 1rem;
+                    text-align: center;
+
+                    li {
+                        display: block;
+                        float: none;
+                        margin-bottom: 2rem;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .banner {
+        padding-top: 1.5rem;
+        height: 15.5rem;
+        max-height: 15.5rem;
+        background-size: cover !important;
+        background-position-y: top !important;
+        background-attachment: local !important;
+
+        h2 {
+            .title {
+                font-size: 3rem;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .home-template {
+
+        .title {
+            font-size: 3rem;
+        }
+
+        .box {
+            background: none;
+            padding-top: 1.5rem;
+
+            p {
+                text-align: left;
+                width: 100%;
+            }
+
+            .box-image {
+                width: 75%;
+                margin-top: 5rem;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                position: static;
+            }
+
+            .buttons {
+                overflow: hidden;
+                margin-left: 0;
+                margin-right: 0;
+                text-align: center;
+
+                .btn-discover {
+                    float: none;
+                    display: inline-block;
+                    margin-right: 2rem;
+                }
+                
+                .btn-supervision {
+                    float: none;
+                    display: inline-block;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .club {
+            height: 15.5rem;
+            max-height: 15.5rem;
+            padding-top: 1.5rem;
+
+            background-size: cover !important;
+            background-position-y: top !important;
+            background-attachment: local !important;
+            
+            .title {
+                margin-top: 3rem;
+            }
+        }
+        
+        .club-contents {
+            margin-top: 5rem;
+            margin-bottom: 7rem;
+            
+            .image {
+                width: 100%;
+                float: none;
+
+                img {
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+            }
+
+            .red-button {
+                float: none;
+                width: 80%;
+                margin: auto;
+                margin-top: 5rem;
+                display: block;
+
+                text-align: center;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 480px) {
-    .container {
 
-    }
 }
