@@ -1,3 +1,9 @@
+@media only screen and (max-width:1800px) {
+    .banner {
+        background-size: inherit;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .home-template {
         .logo-navigation {
@@ -16,9 +22,8 @@
 
 }
 
-@media only screen and (max-width:1800px) {
+@media screen and (max-width: 480px) {
+    .container {
 
-    .banner {
-        background-size: inherit;
     }
 }
