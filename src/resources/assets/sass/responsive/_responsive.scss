@@ -425,14 +425,15 @@
 
                     .background {
                         background: white;
+                        background-repeat: no-repeat;
                         display: none;
                     }
 
                     &:nth-child(2).slick-active {
                         position: static;
-                        background-repeat: no-repeat;
 
                         .background {
+                            background-repeat: no-repeat;
                             display: block;
                         }
                     }

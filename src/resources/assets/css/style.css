@@ -3351,43 +3351,44 @@ footer a, footer a:visited {
   /* line 426, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .background {
     background: white;
+    background-repeat: no-repeat;
     display: none;
   }
-  /* line 431, ../sass/responsive/_responsive.scss */
+  /* line 432, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide:nth-child(2).slick-active {
     position: static;
-    background-repeat: no-repeat;
   }
   /* line 435, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide:nth-child(2).slick-active .background {
+    background-repeat: no-repeat;
     display: block;
   }
-  /* line 440, ../sass/responsive/_responsive.scss */
+  /* line 441, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content {
     margin: 0;
   }
-  /* line 443, ../sass/responsive/_responsive.scss */
+  /* line 444, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content .sale-name {
     font-size: 4rem;
   }
-  /* line 446, ../sass/responsive/_responsive.scss */
+  /* line 447, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content .sale-name:after {
     color: black;
     background: black;
   }
-  /* line 452, ../sass/responsive/_responsive.scss */
+  /* line 453, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content .sale-subtitle {
     font-style: italic;
     font-size: 1.7rem;
     margin-bottom: 0;
   }
-  /* line 459, ../sass/responsive/_responsive.scss */
+  /* line 460, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .bottle {
     position: static;
     margin: auto;
     margin-bottom: 3rem;
   }
-  /* line 465, ../sass/responsive/_responsive.scss */
+  /* line 466, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .button {
     width: 80%;
     display: block;
@@ -3397,12 +3398,12 @@ footer a, footer a:visited {
     text-align: center;
     background: #1e95c9;
   }
-  /* line 476, ../sass/responsive/_responsive.scss */
+  /* line 477, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .button:hover {
     background: #39aee1;
     color: white;
   }
-  /* line 482, ../sass/responsive/_responsive.scss */
+  /* line 483, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .sale-price {
     display: block;
     text-align: left;
@@ -3410,31 +3411,31 @@ footer a, footer a:visited {
     margin-top: 5rem;
     margin-bottom: 2rem;
   }
-  /* line 493, ../sass/responsive/_responsive.scss */
+  /* line 494, ../sass/responsive/_responsive.scss */
   .sales .sales-navigation {
     display: none;
   }
 
-  /* line 500, ../sass/responsive/_responsive.scss */
+  /* line 501, ../sass/responsive/_responsive.scss */
   .club-premium-template .banner {
     margin-bottom: 0;
   }
-  /* line 503, ../sass/responsive/_responsive.scss */
+  /* line 504, ../sass/responsive/_responsive.scss */
   .club-premium-template .banner .logo-club-premium {
     display: none;
   }
-  /* line 508, ../sass/responsive/_responsive.scss */
+  /* line 509, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation {
     width: 100%;
     float: none;
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
   }
-  /* line 514, ../sass/responsive/_responsive.scss */
+  /* line 515, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul {
     text-align: center;
   }
-  /* line 517, ../sass/responsive/_responsive.scss */
+  /* line 518, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul li {
     vertical-align: top;
     display: inline-block;
@@ -3442,30 +3443,30 @@ footer a, footer a:visited {
     margin-right: 2rem;
     text-indent: 0;
   }
-  /* line 525, ../sass/responsive/_responsive.scss */
+  /* line 526, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul li:hover a, .club-premium-template .left-navigation ul li.active a {
     display: inline-block;
   }
-  /* line 529, ../sass/responsive/_responsive.scss */
+  /* line 530, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul li:hover span, .club-premium-template .left-navigation ul li.active span {
     display: none;
   }
-  /* line 534, ../sass/responsive/_responsive.scss */
+  /* line 535, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul li:last-child {
     margin-right: 0;
   }
-  /* line 542, ../sass/responsive/_responsive.scss */
+  /* line 543, ../sass/responsive/_responsive.scss */
   .club-premium-template .text-content section {
     margin-bottom: 5rem;
   }
-  /* line 546, ../sass/responsive/_responsive.scss */
+  /* line 547, ../sass/responsive/_responsive.scss */
   .club-premium-template .text-content .left-image {
     float: none;
     width: 80%;
     margin: auto;
   }
 
-  /* line 555, ../sass/responsive/_responsive.scss */
+  /* line 556, ../sass/responsive/_responsive.scss */
   .login-template .page-header {
     width: 100%;
     overflow: hidden;
