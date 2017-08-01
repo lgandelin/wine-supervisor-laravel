@@ -68,7 +68,7 @@
 
                 li {
                     font-family: $main-font;
-                    font-size: 1.5rem;
+                    font-size: 1.4rem;
                     margin-right: 1rem;
 
                     a {
@@ -253,7 +253,7 @@
         
         .club-contents {
             margin-top: 5rem;
-            margin-bottom: 7rem;
+            margin-bottom: 5rem;
             
             .image {
                 width: 100%;
@@ -385,6 +385,141 @@
             .links {
                 margin-bottom: 5rem;
             }
+        }
+    }
+
+    .sales {
+        border-top: 2px solid #ccc;
+        padding: 0 1rem;
+
+        .container {
+            padding: 0;
+        }
+
+        .slider-container {
+            .sales-slider-arrows .slick-arrow {
+                top: 17%;
+
+                &.slick-next {
+                    right: 1rem;
+                    background: url(../img/home/sales/next-mobile.png) no-repeat center center;
+                }
+
+                &.slick-prev {
+                    left: 1rem;
+                    background: url(../img/home/sales/prev-mobile.png) no-repeat center center;
+                }
+            }
+
+            .sales-slider {
+                margin-bottom: 0;
+
+                .slick-slide {
+
+                    height: auto;
+                    padding: 3rem 1rem;
+                    color: black;
+
+                    .background {
+                        display: none;
+                    }
+
+                    &:nth-child(2).slick-active {
+                        position: static;
+
+                        .background {
+                            display: block;
+                        }
+                    }
+
+                    .content {
+                        margin: 0;
+
+                        .sale-name {
+                            font-size: 4rem;
+                            
+                            &:after {
+                                color: black;
+                                background: black;
+                            }
+                        }
+
+                        .sale-subtitle {
+                            font-style: italic;
+                            font-size: 1.7rem;
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .bottle {
+                        position: static;
+                        margin: auto;
+                        margin-bottom: 3rem;
+                    }
+                }
+            }
+        }
+
+        .sales-navigation {
+            display: none;
+        }
+    }
+
+    .club-premium-template {
+
+        .banner {
+            margin-bottom: 0;
+
+            .logo-club-premium {
+                display: none;
+            }
+        }
+
+        .left-navigation {
+            width: 100%;
+            float: none;
+            margin-top: 3.5rem;
+            margin-bottom: 3.5rem;
+            
+            ul {
+                text-align: center;
+                
+                li {
+                    vertical-align: top;
+                    display: inline-block;
+                    margin-bottom: 0;
+                    margin-right: 2rem;
+                    
+                    &:hover, &.active {
+                        a, span {
+                            display: inline-block;
+                        }
+                    }
+                    
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .text-content {
+            section {
+                margin-bottom: 5rem;
+            }
+            
+            .left-image {
+                float: none;
+                width: 80%;
+                margin: auto;
+            }
+        }
+    }
+
+    .login-template {
+        .page-header {
+            width: 100%;
+            overflow: hidden;
         }
     }
 }

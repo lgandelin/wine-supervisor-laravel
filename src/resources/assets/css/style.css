@@ -3023,7 +3023,7 @@ footer a, footer a:visited {
   /* line 69, ../sass/responsive/_responsive.scss */
   header .top-bar .nav li {
     font-family: "Roboto";
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-right: 1rem;
   }
   /* line 74, ../sass/responsive/_responsive.scss */
@@ -3193,7 +3193,7 @@ footer a, footer a:visited {
   /* line 254, ../sass/responsive/_responsive.scss */
   .home-template .club-contents {
     margin-top: 5rem;
-    margin-bottom: 7rem;
+    margin-bottom: 5rem;
   }
   /* line 258, ../sass/responsive/_responsive.scss */
   .home-template .club-contents .image {
@@ -3310,5 +3310,131 @@ footer a, footer a:visited {
   /* line 385, ../sass/responsive/_responsive.scss */
   .cellar-update-template .left-column .links {
     margin-bottom: 5rem;
+  }
+
+  /* line 391, ../sass/responsive/_responsive.scss */
+  .sales {
+    border-top: 2px solid #ccc;
+    padding: 0 1rem;
+  }
+  /* line 395, ../sass/responsive/_responsive.scss */
+  .sales .container {
+    padding: 0;
+  }
+  /* line 400, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider-arrows .slick-arrow {
+    top: 17%;
+  }
+  /* line 403, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider-arrows .slick-arrow.slick-next {
+    right: 1rem;
+    background: url(../img/home/sales/next-mobile.png) no-repeat center center;
+  }
+  /* line 408, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider-arrows .slick-arrow.slick-prev {
+    left: 1rem;
+    background: url(../img/home/sales/prev-mobile.png) no-repeat center center;
+  }
+  /* line 414, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider {
+    margin-bottom: 0;
+  }
+  /* line 417, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide {
+    height: auto;
+    padding: 3rem 1rem;
+    color: black;
+  }
+  /* line 423, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide .background {
+    display: none;
+  }
+  /* line 427, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide:nth-child(2).slick-active {
+    position: static;
+  }
+  /* line 430, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide:nth-child(2).slick-active .background {
+    display: block;
+  }
+  /* line 435, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide .content {
+    margin: 0;
+  }
+  /* line 438, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide .content .sale-name {
+    font-size: 4rem;
+  }
+  /* line 441, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide .content .sale-name:after {
+    color: black;
+    background: black;
+  }
+  /* line 447, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide .content .sale-subtitle {
+    font-style: italic;
+    font-size: 1.7rem;
+    margin-bottom: 0;
+  }
+  /* line 454, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider .slick-slide .bottle {
+    position: static;
+    margin: auto;
+    margin-bottom: 3rem;
+  }
+  /* line 463, ../sass/responsive/_responsive.scss */
+  .sales .sales-navigation {
+    display: none;
+  }
+
+  /* line 470, ../sass/responsive/_responsive.scss */
+  .club-premium-template .banner {
+    margin-bottom: 0;
+  }
+  /* line 473, ../sass/responsive/_responsive.scss */
+  .club-premium-template .banner .logo-club-premium {
+    display: none;
+  }
+  /* line 478, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation {
+    width: 100%;
+    float: none;
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+  /* line 484, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation ul {
+    text-align: center;
+  }
+  /* line 487, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation ul li {
+    vertical-align: top;
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 2rem;
+  }
+  /* line 494, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation ul li:hover a, .club-premium-template .left-navigation ul li:hover span, .club-premium-template .left-navigation ul li.active a, .club-premium-template .left-navigation ul li.active span {
+    display: inline-block;
+  }
+  /* line 499, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation ul li:last-child {
+    margin-right: 0;
+  }
+  /* line 507, ../sass/responsive/_responsive.scss */
+  .club-premium-template .text-content section {
+    margin-bottom: 5rem;
+  }
+  /* line 511, ../sass/responsive/_responsive.scss */
+  .club-premium-template .text-content .left-image {
+    float: none;
+    width: 80%;
+    margin: auto;
+  }
+
+  /* line 520, ../sass/responsive/_responsive.scss */
+  .login-template .page-header {
+    width: 100%;
+    overflow: hidden;
   }
 }
