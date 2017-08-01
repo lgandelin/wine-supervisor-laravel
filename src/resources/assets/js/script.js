@@ -71,7 +71,7 @@ $(document).ready(function() {
 		}, 300);
 	});
 
-	//SUPPRESSION CONFIRMATION
+	//DELETE CONFIRMATION
 	$('.delete').click(function(e) {
 		if (!confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
 			e.preventDefault();

@@ -55,6 +55,8 @@ class LoginController extends Controller
             'password' => $this->request->input('password'),
         ])) {
             if (!AccountService::hasAValidTechnicianAccount()) {
+                Auth::guard('technicians')->logout();
+
                 return redirect()->route('user_login')->with([
                     'error' => trans('wine-supervisor::login.technician_access_error'),
                 ]);

@@ -234,6 +234,8 @@ class SignupController
 
         Log::info('TECHNICIAN_SIGNUP_REQUEST', [
             'id' => $requestID,
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
             'company' => $request->get('company'),
             'registration' => $request->get('registration'),
             'phone' => $request->get('phone'),
@@ -246,6 +248,8 @@ class SignupController
         ]);
 
         list($success, $error, $technicianID) = TechnicianRepository::create(
+            $request->get('first_name'),
+            $request->get('last_name'),
             $request->get('company'),
             $request->get('registration'),
             $request->get('phone'),

@@ -28,6 +28,8 @@ class TechnicianRepository extends BaseRepository
     }
 
     /**
+     * @param $firstName
+     * @param $lastName
      * @param $company
      * @param $registration
      * @param $phone
@@ -40,10 +42,12 @@ class TechnicianRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function create($company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
+    public static function create($firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
     {
         $technician = new Technician();
         $technician->id = Uuid::uuid4()->toString();
+        $technician->first_name = $firstName;
+        $technician->last_name = $lastName;
         $technician->company = $company;
         $technician->registration = $registration;
         $technician->phone = $phone;
@@ -100,6 +104,8 @@ class TechnicianRepository extends BaseRepository
 
     /**
      * @param $technicianID
+     * @param $firstName
+     * @param $lastName
      * @param $company
      * @param $registration
      * @param $phone
@@ -112,9 +118,11 @@ class TechnicianRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function update($technicianID, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
+    public static function update($technicianID, $firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
     {
         if ($technician = Technician::find($technicianID)) {
+            $technician->first_name = $firstName;
+            $technician->last_name = $lastName;
             $technician->company = $company;
             $technician->registration = $registration;
             $technician->phone = $phone;

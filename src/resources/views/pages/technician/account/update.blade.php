@@ -47,12 +47,22 @@
                     <!-- RIGHT COLUMN -->
                     <div class="right-column">
                         <div class="form-group">
+                            <label for="last_name">Nom</label>
+                            <input type="text" name="last_name" id="last_name" value="{{ $technician->last_name }}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="first_name">Prénom</label>
+                            <input type="text" name="first_name" id="first_name" value="{{ $technician->first_name }}" />
+                        </div>
+
+                        <div class="form-group">
                             <label for="company">Nom de la société <span class="required">*</span></label>
                             <input type="text" name="company" id="company" value="{{ $technician->company }}" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="registration">Immatriculation <span class="required">*</span></label>
+                            <label for="registration">Immatriculation<span class="required">*</span> <i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">(N° de TVA intracommunautaire)</i></label>
                             <input type="text" name="registration" id="registration" value="{{ $technician->registration }}" required />
                         </div>
 
@@ -87,8 +97,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="zipcode">Code postal <span class="required">*</span></label>
-                            <input type="text" name="zipcode" id="zipcode" value="{{ $technician->zipcode }}" required />
+                            <label for="zipcode">Code postal</label>
+                            <input type="text" name="zipcode" id="zipcode" value="{{ $technician->zipcode }}" />
                         </div>
 
                         <div class="form-group">
