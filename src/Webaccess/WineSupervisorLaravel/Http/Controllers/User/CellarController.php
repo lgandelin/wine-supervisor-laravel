@@ -151,7 +151,7 @@ class CellarController extends UserController
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_update_error'));
+            $request->session()->flash('error', $error);
 
             Log::info('USER_UPDATE_CELLAR_RESPONSE', [
                 'id' => $requestID,

@@ -40,6 +40,11 @@ class Cellar extends Model
         return $this->belongsTo('Webaccess\WineSupervisorLaravel\Models\User');
     }
 
+    public function technician()
+    {
+        return $this->belongsTo('Webaccess\WineSupervisorLaravel\Models\Technician');
+    }
+
     public function history()
     {
         return $this->hasMany('Webaccess\WineSupervisorLaravel\Models\CellarHistory')->orderBy('created_at', 'desc');

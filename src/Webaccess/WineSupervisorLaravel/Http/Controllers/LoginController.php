@@ -11,6 +11,7 @@ use Webaccess\WineSupervisorLaravel\Models\Guest;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\User;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
+use Webaccess\WineSupervisorLaravel\Tools\PasswordTool;
 
 class LoginController extends Controller
 {
@@ -129,7 +130,7 @@ class LoginController extends Controller
             }
 
             if ($user) {
-                $newPassword = self::generate(8);
+                $newPassword = PasswordTool::generatePassword(8);
                 $user->password = bcrypt($newPassword);
                 $user->save();
                 $this->sendNewPasswordToUser($newPassword, $user->email);
@@ -155,22 +156,5 @@ class LoginController extends Controller
             $message->to($userEmail)
                 ->subject('[WineSupervisor] Votre nouveau mot de passe pour accéder à votre compte');
         });
-    }
-
-    /**
-     * @param int $length
-     * @return string
-     */
-    private static function generate($length = 8)
-    {
-        $chars = 'abcdefghkmnpqrstuvwxyz23456789';
-        $count = mb_strlen($chars);
-
-        for ($i = 0, $result = ''; $i < $length; ++$i) {
-            $index = rand(0, $count - 1);
-            $result .= mb_substr($chars, $index, 1);
-        }
-
-        return $result;
     }
 }

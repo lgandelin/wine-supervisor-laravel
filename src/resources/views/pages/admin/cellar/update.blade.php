@@ -43,7 +43,7 @@
 
                     <div class="form-group">
                         <label for="technician_id">ID Professionnel</label>
-                        <input type="text" name="technician_id" id="technician_id" value="{{ $cellar->technician_id }}" disabled />
+                        <input type="text" name="technician_id" id="technician_id" value="@if ($cellar->technician){{ $cellar->technician->technician_code }}@endif" disabled />
                     </div>
 
                     <div class="form-group">

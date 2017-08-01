@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
+use Webaccess\WineSupervisorLaravel\Tools\PasswordTool;
 
 class TechnicianRepository extends BaseRepository
 {
@@ -17,6 +18,11 @@ class TechnicianRepository extends BaseRepository
     public static function getByID($technicianID)
     {
         return Technician::find($technicianID);
+    }
+
+    public static function getByCode($technicianCode)
+    {
+        return Technician::where('technician_code', '=', $technicianCode)->first();
     }
 
     /**
@@ -58,6 +64,7 @@ class TechnicianRepository extends BaseRepository
         $technician->zipcode = $zipcode;
         $technician->city = $city;
         $technician->country = $country;
+        $technician->technician_code = PasswordTool::generatePassword(8);
         $technician->status = Technician::STATUS_DISABLED;
 
         if (!$technician->save()) {
