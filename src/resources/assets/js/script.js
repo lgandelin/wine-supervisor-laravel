@@ -67,6 +67,7 @@ $(document).ready(function() {
 
 	//SCROLLTO
     $('a[href^="#"]').click(function() {
+		console.log('ok')
         var id = $(this).attr("href");
         var offset = $(id).offset().top - $('header').height();
         $('html, body').animate({scrollTop: offset}, 800);

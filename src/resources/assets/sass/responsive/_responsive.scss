@@ -399,6 +399,9 @@
         .slider-container {
             .sales-slider-arrows .slick-arrow {
                 top: 17%;
+                border-radius: 50%;
+                width: 8rem;
+                height: 8rem;
 
                 &.slick-next {
                     right: 1rem;
@@ -427,6 +430,7 @@
 
                     &:nth-child(2).slick-active {
                         position: static;
+                        background-repeat: no-repeat;
 
                         .background {
                             display: block;
@@ -515,10 +519,15 @@
                     display: inline-block;
                     margin-bottom: 0;
                     margin-right: 2rem;
+                    text-indent: 0;
                     
                     &:hover, &.active {
-                        a, span {
+                        a {
                             display: inline-block;
+                        }
+
+                        span {
+                            display: none;
                         }
                     }
                     

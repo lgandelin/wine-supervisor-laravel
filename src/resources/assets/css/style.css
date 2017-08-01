@@ -3324,66 +3324,70 @@ footer a, footer a:visited {
   /* line 400, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider-arrows .slick-arrow {
     top: 17%;
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
   }
-  /* line 403, ../sass/responsive/_responsive.scss */
+  /* line 406, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider-arrows .slick-arrow.slick-next {
     right: 1rem;
     background: white url(../img/home/sales/next-mobile.png) no-repeat 2.9rem center;
   }
-  /* line 408, ../sass/responsive/_responsive.scss */
+  /* line 411, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider-arrows .slick-arrow.slick-prev {
     left: 1rem;
     background: white url(../img/home/sales/prev-mobile.png) no-repeat 2.2rem center;
   }
-  /* line 414, ../sass/responsive/_responsive.scss */
+  /* line 417, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider {
     margin-bottom: 0;
   }
-  /* line 417, ../sass/responsive/_responsive.scss */
+  /* line 420, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide {
     height: auto;
     padding: 3rem 1rem;
     color: black;
   }
-  /* line 423, ../sass/responsive/_responsive.scss */
+  /* line 426, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .background {
     background: white;
     display: none;
   }
-  /* line 428, ../sass/responsive/_responsive.scss */
+  /* line 431, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide:nth-child(2).slick-active {
     position: static;
+    background-repeat: no-repeat;
   }
-  /* line 431, ../sass/responsive/_responsive.scss */
+  /* line 435, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide:nth-child(2).slick-active .background {
     display: block;
   }
-  /* line 436, ../sass/responsive/_responsive.scss */
+  /* line 440, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content {
     margin: 0;
   }
-  /* line 439, ../sass/responsive/_responsive.scss */
+  /* line 443, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content .sale-name {
     font-size: 4rem;
   }
-  /* line 442, ../sass/responsive/_responsive.scss */
+  /* line 446, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content .sale-name:after {
     color: black;
     background: black;
   }
-  /* line 448, ../sass/responsive/_responsive.scss */
+  /* line 452, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .content .sale-subtitle {
     font-style: italic;
     font-size: 1.7rem;
     margin-bottom: 0;
   }
-  /* line 455, ../sass/responsive/_responsive.scss */
+  /* line 459, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .bottle {
     position: static;
     margin: auto;
     margin-bottom: 3rem;
   }
-  /* line 461, ../sass/responsive/_responsive.scss */
+  /* line 465, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .button {
     width: 80%;
     display: block;
@@ -3393,12 +3397,12 @@ footer a, footer a:visited {
     text-align: center;
     background: #1e95c9;
   }
-  /* line 472, ../sass/responsive/_responsive.scss */
+  /* line 476, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .button:hover {
     background: #39aee1;
     color: white;
   }
-  /* line 478, ../sass/responsive/_responsive.scss */
+  /* line 482, ../sass/responsive/_responsive.scss */
   .sales .slider-container .sales-slider .slick-slide .sale-price {
     display: block;
     text-align: left;
@@ -3406,57 +3410,62 @@ footer a, footer a:visited {
     margin-top: 5rem;
     margin-bottom: 2rem;
   }
-  /* line 489, ../sass/responsive/_responsive.scss */
+  /* line 493, ../sass/responsive/_responsive.scss */
   .sales .sales-navigation {
     display: none;
   }
 
-  /* line 496, ../sass/responsive/_responsive.scss */
+  /* line 500, ../sass/responsive/_responsive.scss */
   .club-premium-template .banner {
     margin-bottom: 0;
   }
-  /* line 499, ../sass/responsive/_responsive.scss */
+  /* line 503, ../sass/responsive/_responsive.scss */
   .club-premium-template .banner .logo-club-premium {
     display: none;
   }
-  /* line 504, ../sass/responsive/_responsive.scss */
+  /* line 508, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation {
     width: 100%;
     float: none;
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
   }
-  /* line 510, ../sass/responsive/_responsive.scss */
+  /* line 514, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul {
     text-align: center;
   }
-  /* line 513, ../sass/responsive/_responsive.scss */
+  /* line 517, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul li {
     vertical-align: top;
     display: inline-block;
     margin-bottom: 0;
     margin-right: 2rem;
-  }
-  /* line 520, ../sass/responsive/_responsive.scss */
-  .club-premium-template .left-navigation ul li:hover a, .club-premium-template .left-navigation ul li:hover span, .club-premium-template .left-navigation ul li.active a, .club-premium-template .left-navigation ul li.active span {
-    display: inline-block;
+    text-indent: 0;
   }
   /* line 525, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation ul li:hover a, .club-premium-template .left-navigation ul li.active a {
+    display: inline-block;
+  }
+  /* line 529, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation ul li:hover span, .club-premium-template .left-navigation ul li.active span {
+    display: none;
+  }
+  /* line 534, ../sass/responsive/_responsive.scss */
   .club-premium-template .left-navigation ul li:last-child {
     margin-right: 0;
   }
-  /* line 533, ../sass/responsive/_responsive.scss */
+  /* line 542, ../sass/responsive/_responsive.scss */
   .club-premium-template .text-content section {
     margin-bottom: 5rem;
   }
-  /* line 537, ../sass/responsive/_responsive.scss */
+  /* line 546, ../sass/responsive/_responsive.scss */
   .club-premium-template .text-content .left-image {
     float: none;
     width: 80%;
     margin: auto;
   }
 
-  /* line 546, ../sass/responsive/_responsive.scss */
+  /* line 555, ../sass/responsive/_responsive.scss */
   .login-template .page-header {
     width: 100%;
     overflow: hidden;
