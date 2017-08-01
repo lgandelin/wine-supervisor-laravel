@@ -24,7 +24,7 @@
 
 @media screen and (max-width: 768px) {
     body {
-        padding-top: 13.6rem;
+        padding-top: 0;
     }
 
     .red-button {
@@ -36,6 +36,7 @@
     }
     
     header {
+        position: static;
 
         .hamburger {
             display: block;
@@ -79,6 +80,7 @@
 
                 .account {
                     .login {
+                        z-index: 5;
                         right: 0;
                         left: 0;
                         width: 100%;
@@ -109,20 +111,23 @@
                     }
                 }
             }
-
-            .welcome + .nav {
-                nav {
-                    margin-right: 4rem;
-                }
-            }
         }
 
         .logo-navigation {
+
+            .logo {
+                img {
+                    max-width: 70%;
+                    margin-left: 2rem;
+                }
+            }
+
             .container {
                 padding: 0;
             }
 
             nav {
+                z-index: 999;
                 display: none;
                 left: 1rem;
                 right: 1rem;
@@ -331,6 +336,7 @@
             margin-bottom: 5rem;
             
             .step {
+                z-index: 1;
                 min-height: 10.5rem;
                 padding-top: 1rem;
                 padding-left: 1rem;
