@@ -51,10 +51,12 @@
                         <span class="serial-number">{{ $cellar->serial_number }}</span>
                     @endif
 
-                    <div class="links">
-                        <a class="link" href="#">SAV</a>
-                        <a class="link" href="#">Supprimer</a>
-                    </div>
+                    @if (!$cellar->user->read_only)
+                        <div class="links">
+                            <a class="link" href="#">SAV</a>
+                            <a class="link" href="#">Supprimer</a>
+                        </div>
+                    @endif
                 </div>
                 <!-- LEFT COLUMN -->
 
@@ -111,9 +113,11 @@
 
                         <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
-                        <div class="submit-container">
-                            <input type="submit" class="button red-button" value="Valider" />
-                        </div>
+                        @if (!$cellar->user->read_only)
+                            <div class="submit-container">
+                                <input type="submit" class="button red-button" value="Valider" />
+                            </div>
+                        @endif
 
                         <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
                         {{ csrf_field() }}

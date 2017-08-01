@@ -76,7 +76,9 @@
                     </div>
                 @endif
 
-                <a href="{{ route('user_cellar_create') }}" class="add">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
+                @if (!$user->read_only)
+                    <a href="{{ route('user_cellar_create') }}" class="add">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
+                @endif
             </div>
             <!-- PAGE CONTENT -->
 
@@ -179,9 +181,11 @@
 
                     <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
-                    <div class="submit-container">
-                        <input type="submit" class="button red-button" value="Valider" />
-                    </div>
+                    @if (!$user->read_only)
+                        <div class="submit-container">
+                            <input type="submit" class="button red-button" value="Valider" />
+                        </div>
+                    @endif
 
                     {{ csrf_field() }}
                 </form>

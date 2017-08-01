@@ -119,9 +119,11 @@
                     </div>
                     <!-- RIGHT COLUMN -->
 
-                    <div class="submit-container">
-                        <input type="submit" class="button red-button" value="Valider" />
-                    </div>
+                    @if (!$technician->read_only)
+                        <div class="submit-container">
+                            <input type="submit" class="button red-button" value="Valider" />
+                        </div>
+                    @endif
 
                     {{ csrf_field() }}
                 </form>
