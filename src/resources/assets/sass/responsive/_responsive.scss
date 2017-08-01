@@ -402,12 +402,12 @@
 
                 &.slick-next {
                     right: 1rem;
-                    background: url(../img/home/sales/next-mobile.png) no-repeat center center;
+                    background: white url(../img/home/sales/next-mobile.png) no-repeat 2.9rem center;
                 }
 
                 &.slick-prev {
                     left: 1rem;
-                    background: url(../img/home/sales/prev-mobile.png) no-repeat center center;
+                    background: white url(../img/home/sales/prev-mobile.png) no-repeat 2.2rem center;
                 }
             }
 
@@ -421,6 +421,7 @@
                     color: black;
 
                     .background {
+                        background: white;
                         display: none;
                     }
 
@@ -455,6 +456,31 @@
                         position: static;
                         margin: auto;
                         margin-bottom: 3rem;
+                    }
+
+                    .button {
+                        width: 80%;
+                        display: block;
+                        margin: auto;
+                        position: static;
+
+                        color: white;
+                        text-align: center;
+
+                        background: $blue;
+
+                        &:hover {
+                            background: lighten($blue, 10%);
+                            color: white;
+                        }
+                    }
+
+                    .sale-price {
+                        display: block;
+                        text-align: left;
+                        position: static;
+                        margin-top: 5rem;
+                        margin-bottom: 2rem;
                     }
                 }
             }
