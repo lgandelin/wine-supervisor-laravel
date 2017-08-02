@@ -229,7 +229,7 @@ class CellarController extends UserController
         list($success, $error) = CellarRepository::delete($request->get('cellar_id'), $boardType);
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_deletion_error'));
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_delete_error'));
 
             Log::info('USER_SAV_CELLAR_RESPONSE', [
                 'id' => $requestID,
@@ -238,7 +238,7 @@ class CellarController extends UserController
             ]);
         }
 
-        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_deletion_success'));
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_delete_success'));
 
         Log::info('USER_DELETE_CELLAR_RESPONSE', [
             'id' => $requestID,

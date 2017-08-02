@@ -49,7 +49,10 @@
                             <td class="table-cell align-left">@if ($technician->status == Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED) Activé @else Désactivé @endif
                             <td class="table-cell align-left">@if ($technician->created_at){{ DateTime::createFromFormat('Y-m-d H:i:s', $technician->created_at)->format('d/m/y') }}@endif</td>
                             <td class="table-cell align-left">@if ($technician->read_only) Oui @else Non @endif</td>
-                            <td class="table-cell align-left action" width="10%"><a href="{{ route('admin_technician_update', $technician->id) }}"><button class="edit">Modifier</button></a></td>
+                            <td class="table-cell align-left action" width="15%">
+                                <a href="{{ route('admin_technician_update', $technician->id) }}"><button class="edit">Modifier</button></a>
+                                <a href="{{ route('admin_technician_delete_handler', $technician->id) }}"><button class="delete">Supprimer</button></a>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

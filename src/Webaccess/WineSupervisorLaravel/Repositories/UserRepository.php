@@ -180,4 +180,34 @@ class UserRepository extends BaseRepository
     {
         return strlen($password) >= 7;
     }
+
+    /**
+     * @param $userID
+     * @return bool
+     */
+    public static function delete($userID)
+    {
+        if ($user = User::find($userID)) {
+
+            if (!$user->delete()) {
+                return self::error(trans('wine-supervisor::user.database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::user.id_not_found'));
+        }
+
+        try {
+            (new CellierDomesticusAPI())->disable_user($user);
+        } catch (\Exception $e) {
+            Log::info('API_DISABLE_USER_ERROR', [
+                'user_id' => $userID,
+                'cd_user_id' => $user->cd_user_id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
+
+        return self::success();
+    }
 }

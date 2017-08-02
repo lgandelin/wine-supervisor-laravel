@@ -105,4 +105,40 @@ class TechnicianController extends AdminController
 
         return redirect()->route('admin_technician_list');
     }
+
+    public function delete_handler(Request $request, $technicianID)
+    {
+        parent::__construct($request);
+
+        $requestID = Uuid::uuid4()->toString();
+
+        Log::info('ADMIN_DELETE_TECHNICIAN_REQUEST', [
+            'id' => $requestID,
+            'technician_id' => $request->get('technician_id'),
+            'admin_id' => $this->getAdministratorID(),
+        ]);
+
+        list ($success, $error) = TechnicianRepository::delete($technicianID, null);
+
+        if (!$success) {
+            $request->session()->flash('error', trans('wine-supervisor::technician.technician_delete_error'));
+
+            Log::info('ADMIN_DELETE_TECHNICIAN_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
+        }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::technician.technician_delete_success'));
+
+        Log::info('ADMIN_DELETE_TECHNICIAN_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
+
+        return redirect()->route('admin_technician_list');
+    }
 }

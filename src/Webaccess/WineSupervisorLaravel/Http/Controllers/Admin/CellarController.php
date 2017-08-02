@@ -91,4 +91,40 @@ class CellarController extends AdminController
 
         return redirect()->route('admin_cellar_list');
     }
+
+    public function delete_handler(Request $request, $cellarID)
+    {
+        parent::__construct($request);
+
+        $requestID = Uuid::uuid4()->toString();
+
+        Log::info('ADMIN_DELETE_CELLAR_REQUEST', [
+            'id' => $requestID,
+            'cellar_id' => $request->get('cellar_id'),
+            'admin_id' => $this->getAdministratorID(),
+        ]);
+
+        list ($success, $error) = CellarRepository::delete($cellarID, null);
+
+        if (!$success) {
+            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_delete_error'));
+
+            Log::info('ADMIN_DELETE_CELLAR_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
+        }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_delete_success'));
+
+        Log::info('ADMIN_DELETE_CELLAR_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
+
+        return redirect()->route('admin_cellar_list');
+    }
 }

@@ -383,11 +383,15 @@ class CellarRepository extends BaseRepository
         if ($cellar = Cellar::find($cellarID)) {
 
             //Update WS table
-            if ($ws = WS::find($cellar->id_ws)->first()) {
-                $ws->deactivation_date = new DateTime();
-                $ws->board_type = $boardType;
-                if (!$ws->save()) {
-                    return self::error(trans('wine-supervisor::cellar.database_error'));
+            if ($cellar->id_ws) {
+                if ($ws = WS::find($cellar->id_ws)) {
+                    $ws->deactivation_date = new DateTime();
+                    if ($boardType) {
+                        $ws->board_type = $boardType;
+                    }
+                    if (!$ws->save()) {
+                        return self::error(trans('wine-supervisor::cellar.database_error'));
+                    }
                 }
             }
 

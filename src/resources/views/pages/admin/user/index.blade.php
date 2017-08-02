@@ -49,7 +49,10 @@
                             <td class="table-cell align-left">@if ($user->created_at){{ DateTime::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('d/m/y') }}@endif</td>
                             <td class="table-cell align-left">@if ($user->last_connection_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $user->last_connection_date)->format('d/m/y') }}@endif</td>
                             <td class="table-cell align-left">@if ($user->read_only) Oui @else Non @endif</td>
-                            <td class="table-cell align-left action" width="10%"><a href="{{ route('admin_user_update', $user->id) }}"><button class="edit">Modifier</button></a></td>
+                            <td class="table-cell align-left action" width="15%">
+                                <a href="{{ route('admin_user_update', $user->id) }}"><button class="edit">Modifier</button></a>
+                                <a href="{{ route('admin_user_delete_handler', $user->id) }}"><button class="delete">Supprimer</button></a>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

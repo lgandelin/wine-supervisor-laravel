@@ -37,4 +37,40 @@ class UserController extends AdminController
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
         ]);
     }
+
+    public function delete_handler(Request $request, $userID)
+    {
+        parent::__construct($request);
+
+        $requestID = Uuid::uuid4()->toString();
+
+        Log::info('ADMIN_DELETE_USER_REQUEST', [
+            'id' => $requestID,
+            'user_id' => $request->get('user_id'),
+            'admin_id' => $this->getAdministratorID(),
+        ]);
+
+        list ($success, $error) = UserRepository::delete($userID, null);
+
+        if (!$success) {
+            $request->session()->flash('error', trans('wine-supervisor::user.user_delete_error'));
+
+            Log::info('ADMIN_DELETE_USER_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
+        }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::user.user_delete_success'));
+
+        Log::info('ADMIN_DELETE_USER_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
+
+        return redirect()->route('admin_user_list');
+    }
 }

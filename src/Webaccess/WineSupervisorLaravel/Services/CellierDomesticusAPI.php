@@ -388,4 +388,58 @@ class CellierDomesticusAPI
             ]);
         }
     }
+
+    public function disable_user(User $user)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_DISABLE_USER_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/users/%s/disable', $user->cd_user_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_DISABLE_USER_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_DISABLE_USER_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function disable_technician($technician)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_DISABLE_TECHNICIAN_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/users/%s/disable', $technician->cd_user_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_DISABLE_TECHNICIAN_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_DISABLE_TECHNICIAN_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
 }

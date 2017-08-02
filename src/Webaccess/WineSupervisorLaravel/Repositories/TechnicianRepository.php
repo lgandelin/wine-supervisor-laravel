@@ -183,4 +183,34 @@ class TechnicianRepository extends BaseRepository
 
         return true;
     }
+    
+    /**
+     * @param $technicianID
+     * @return bool
+     */
+    public static function delete($technicianID)
+    {
+        if ($technician = Technician::find($technicianID)) {
+
+            if (!$technician->delete()) {
+                return self::error(trans('wine-supervisor::technician.database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        }
+
+        try {
+            (new CellierDomesticusAPI())->disable_technician($technician);
+        } catch (\Exception $e) {
+            Log::info('API_DISABLE_TECHNICIAN_ERROR', [
+                'technician_id' => $technicianID,
+                'cd_technician_id' => $technician->cd_technician_id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
+
+        return self::success();
+    }
 }
