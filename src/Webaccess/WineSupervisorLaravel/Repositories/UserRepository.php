@@ -23,9 +23,9 @@ class UserRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public static function getAll()
+    public static function getAll($sort_column = null, $sort_order = null)
     {
-        return User::orderBy('created_at', 'DESC')->get();
+        return User::orderBy($sort_column ? $sort_column : 'created_at', $sort_order ? $sort_order : 'DESC')->get();
     }
 
     /**

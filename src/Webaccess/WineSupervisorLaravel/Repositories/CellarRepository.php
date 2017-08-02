@@ -24,9 +24,9 @@ class CellarRepository extends BaseRepository
         return Cellar::with('history', 'history.user', 'history.admin', 'technician')->find($cellarID);
     }
 
-    public static function getAll()
+    public static function getAll($sort_column = null, $sort_order = null)
     {
-        return Cellar::orderBy('created_at', 'DESC')->get();
+        return Cellar::orderBy($sort_column ? $sort_column : 'created_at', $sort_order ? $sort_order : 'DESC')->get();
     }
 
     /**

@@ -1466,7 +1466,6 @@ form .form-group .radio {
 form .form-group .radio input[type="radio"] {
   width: 2rem;
   height: 2rem;
-  cursor: pointer;
   vertical-align: middle;
   appearance: button;
   -webkit-appearance: button;
@@ -1476,8 +1475,12 @@ form .form-group .radio input[type="radio"] {
   border: 1px solid #a9b2ba;
   outline: 0;
 }
-/* line 88, ../sass/includes/_forms.scss */
-form .form-group .radio input[type="radio"]:checked, form .form-group .radio input[type="radio"]:hover {
+/* line 87, ../sass/includes/_forms.scss */
+form .form-group .radio input[type="radio"]:enabled {
+  cursor: pointer;
+}
+/* line 91, ../sass/includes/_forms.scss */
+form .form-group .radio input[type="radio"]:checked, form .form-group .radio input[type="radio"]:enabled:hover {
   background-color: #114a83;
 }
 
@@ -2950,6 +2953,11 @@ footer a, footer a:visited {
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 3.5rem;
+}
+/* line 31, ../sass/pages/admin/_admin.scss */
+.admin-template .current-filter a {
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 1200px) {

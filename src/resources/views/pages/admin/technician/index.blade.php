@@ -34,11 +34,11 @@
 
                 <table class="table-list">
                     <tr class="table-row">
-                        <td class="table-cell table-cell-header align-left">Nom de la société</td>
-                        <td class="table-cell table-cell-header align-left">Email</td>
-                        <td class="table-cell table-cell-header align-left">Statut</td>
-                        <td class="table-cell table-cell-header align-left">Date de création</td>
-                        <td class="table-cell table-cell-header align-left">Lecture seule</td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'company') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'company', 'so' => $sort_order]) }}">Nom de la société</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'email') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'email', 'so' => $sort_order]) }}">Email</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'status') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'status', 'so' => $sort_order]) }}">Statut</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'created_at' || !$sort_column) current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'created_at', 'so' => $sort_order]) }}">Date de création</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'read_only') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'read_only', 'so' => $sort_order]) }}">Lecture seule</a></td>
                         <td class="table-cell table-cell-header align-left">Action</td>
                     </tr>
 

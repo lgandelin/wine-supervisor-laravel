@@ -26,11 +26,13 @@ class TechnicianRepository extends BaseRepository
     }
 
     /**
+     * @param null $sort_column
+     * @param null $sort_order
      * @return mixed
      */
-    public static function getAll()
+    public static function getAll($sort_column = null, $sort_order = null)
     {
-        return Technician::orderBy('created_at', 'DESC')->get();
+        return Technician::orderBy($sort_column ? $sort_column : 'created_at', $sort_order ? $sort_order : 'DESC')->get();
     }
 
     /**

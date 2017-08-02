@@ -34,10 +34,10 @@
 
                 <table class="table-list">
                     <tr class="table-row">
-                        <td class="table-cell table-cell-header align-left">ID WS</th>
-                        <td class="table-cell table-cell-header align-left">Utilisateur</th>
-                        <td class="table-cell table-cell-header align-left">Technicien</th>
-                        <td class="table-cell table-cell-header align-left">Date de création</th>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'id_ws') current-filter @endif"><a href="{{ route('admin_cellar_list', ['sc' => 'id_ws', 'so' => $sort_order]) }}">ID WS</a></th>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'user_id') current-filter @endif"><a href="{{ route('admin_cellar_list', ['sc' => 'user_id', 'so' => $sort_order]) }}">Utilisateur</a></th>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'technician_id') current-filter @endif"><a href="{{ route('admin_cellar_list', ['sc' => 'technician_id', 'so' => $sort_order]) }}">Technicien</a></th>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'created_at' || !$sort_column) current-filter @endif"><a href="{{ route('admin_cellar_list', ['sc' => 'created_at', 'so' => $sort_order]) }}">Date de création</a></th>
                         <td class="table-cell table-cell-header">Action</th>
                     </tr>
                     @foreach ($cellars as $cellar)

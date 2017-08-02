@@ -18,11 +18,13 @@ class GuestRepository extends BaseRepository
     }
 
     /**
+     * @param null $sort_column
+     * @param null $sort_order
      * @return mixed
      */
-    public static function getAll()
+    public static function getAll($sort_column = null, $sort_order = null)
     {
-        return Guest::all();
+        return Guest::orderBy($sort_column ? $sort_column : 'access_start_date', $sort_order ? $sort_order : 'DESC')->get();
     }
 
     /**

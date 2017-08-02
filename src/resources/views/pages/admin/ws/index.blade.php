@@ -34,11 +34,12 @@
 
                 <table class="table-list">
                     <tr class="table-row">
-                        <td class="table-cell table-cell-header align-left">ID</td>
-                        <td class="table-cell table-cell-header align-left">Date de <sup>1ère</sup> activation</td>
-                        <td class="table-cell table-cell-header align-left">Type de carte</td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'id') current-filter @endif"><a href="{{ route('admin_ws_list', ['sc' => 'id', 'so' => $sort_order]) }}">ID</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'first_activation_date' || !$sort_column) current-filter @endif"><a href="{{ route('admin_ws_list', ['sc' => 'first_activation_date', 'so' => $sort_order]) }}">Date de <sup>1ère</sup> activation</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'board_type') current-filter @endif"><a href="{{ route('admin_ws_list', ['sc' => 'board_type', 'so' => $sort_order]) }}">Type de carte</a></td>
                         <td class="table-cell table-cell-header">Action</td>
                     </tr>
+
                     @foreach ($wss as $ws)
                         <tr class="table-row">
                             <td class="table-cell">{{ $ws->id }}</td>

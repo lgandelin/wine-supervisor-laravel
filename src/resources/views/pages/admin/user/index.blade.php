@@ -34,11 +34,11 @@
 
                 <table class="table-list">
                     <tr class="table-row">
-                        <td class="table-cell table-cell-header align-left">Nom complet</td>
-                        <td class="table-cell table-cell-header align-left">Email</td>
-                        <td class="table-cell table-cell-header align-left">Date de création</td>
-                        <td class="table-cell table-cell-header align-left">Dernière connexion</td>
-                        <td class="table-cell table-cell-header align-left">Lecture seule</td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'last_name') current-filter @endif"><a href="{{ route('admin_user_list', ['sc' => 'last_name', 'so' => $sort_order]) }}">Nom complet</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'email') current-filter @endif"><a href="{{ route('admin_user_list', ['sc' => 'email', 'so' => $sort_order]) }}">Email</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'created_at' || !$sort_column) current-filter @endif"><a href="{{ route('admin_user_list', ['sc' => 'created_at', 'so' => $sort_order]) }}">Date de création</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'last_connection_date') current-filter @endif"><a href="{{ route('admin_user_list', ['sc' => 'last_connection_date', 'so' => $sort_order]) }}">Dernière connexion</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'read_only') current-filter @endif"><a href="{{ route('admin_user_list', ['sc' => 'read_only', 'so' => $sort_order]) }}">Lecture seule</a></td>
                         <td class="table-cell table-cell-header align-left">Action</td>
                     </tr>
 

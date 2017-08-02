@@ -23,14 +23,9 @@ class SaleRepository extends BaseRepository
     /**
      * @return mixed
      */
-    public static function getAll()
+    public static function getAll($sort_column = null, $sort_order = null)
     {
-        $sales = Sale::orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
-        foreach ($sales as $sale) {
-            $sale = self::getAdditionalInfo($sale);
-        }
-
-        return $sales;
+        return Sale::orderBy($sort_column ? $sort_column : 'start_date', $sort_order ? $sort_order : 'DESC')->get();
     }
 
     /**

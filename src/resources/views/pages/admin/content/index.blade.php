@@ -34,8 +34,8 @@
 
                 <table class="table-list less-padding">
                     <tr class="table-row">
-                        <th class="table-cell table-cell-header">Titre</th>
-                        <th class="table-cell table-cell-header">Date de publication</th>
+                        <th class="table-cell table-cell-header @if ($sort_column == 'title') current-filter @endif"><a href="{{ route('admin_content_list', ['sc' => 'title', 'so' => $sort_order]) }}">Titre</a></th>
+                        <th class="table-cell table-cell-header @if ($sort_column == 'publication_date' || !$sort_column) current-filter @endif"><a href="{{ route('admin_content_list', ['sc' => 'publication_date', 'so' => $sort_order]) }}">Date de publication</a></th>
                         <th class="table-cell table-cell-header">Action</th>
                     </tr>
                     @foreach ($contents as $content)

@@ -24,7 +24,7 @@ class IndexController
             'is_guest' => AccountService::isGuest(),
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(3),
-            'sales' => SaleRepository::getAll(),
+            'sales' => SaleRepository::getCurrentSales(),
             'route' => $request->route()->getName(),
         ]);
     }
