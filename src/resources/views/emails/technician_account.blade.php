@@ -10,6 +10,10 @@ Vous trouverez ci-dessous votre accès afin de vous connecter au site.<br><br>
 
 Vous pouvez accéder directement au site en <a href="{{ $url }}">cliquant içi</a>.<br/><br/>
 
+De plus, voici votre ID professionnel qui sera à transmettre à vos clients : <br><br/>
+
+<strong>ID Professionnel : </strong> {{ $technician_code }}
+
 Cordialement,<br><br>
 
 L'équipe WineSupervisor<br/><br/>

@@ -79,7 +79,11 @@ class TechnicianController extends AdminController
 
         if (!$oldStatus && $request->get('status')) {
             try {
-                Mail::send('wine-supervisor::emails.technician_account', array('login' => $technician->email, 'url' => route('index')), function ($message) use ($technicianEmail) {
+                Mail::send('wine-supervisor::emails.technician_account', array(
+                    'login' => $technician->email,
+                    'technician_code' => $technician->technician_code,
+                    'url' => route('index'),
+                ), function ($message) use ($technicianEmail) {
                     $message->to($technicianEmail)
                         ->subject('[WineSupervisor] Votre compte installateur a été validé');
                 });

@@ -37,7 +37,7 @@
                     <!-- LEFT COLUMN -->
                     <div class="left-column">
                         <h2>ID Professionnel</h2>
-                        <span class="id">{{ $technician->id }}</span>
+                        <span class="id">{{ $technician->technician_code }}</span>
                     </div>
                     <!-- LEFT COLUMN -->
 
@@ -74,11 +74,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="login">Login</label>
-                            <input type="text" name="login" id="login" value="{{ $technician->login }}" disabled />
-                        </div>
-
-                        <div class="form-group">
                             <label for="address">Adresse</label>
                             <input type="text" name="address" id="address" value="{{ $technician->address }}" disabled />
                         </div>
@@ -100,6 +95,12 @@
                                     <option value="{{ $key }}" @if ($technician->country == $key)selected="selected"@endif @if (!$technician->country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="opt_in">Lecture seule</label>
+                            <div class="radio"><input disabled type="radio" name="read_only" value="1" id="read_only" @if ($technician->read_only == true || $technician->read_only === null)checked="checked"@endif /> Oui</div>
+                            <div class="radio"><input disabled type="radio" name="read_only" value="0" @if (!$technician->read_only)checked="checked"@endif /> Non</div>
                         </div>
 
                         <div class="form-group">
