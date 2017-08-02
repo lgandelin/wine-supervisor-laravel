@@ -54,8 +54,8 @@
                         @foreach($cellars as $cellar)
                             <div class="table-row">
                                 <div class="table-cell cellar">@if ($cellar->name){{ $cellar->name }}@endif</div>
-                                <div class="table-cell status"><span class="icon status-ok"></span></div>
-                                <div class="table-cell date">12/03/2019</div>
+                                <div class="table-cell status"><span class="icon status-ok" title="Votre abonnement est valide"></span></div>
+                                <div class="table-cell date">@if ($cellar->subscription_end_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $cellar->subscription_end_date)->format('d/m/Y') }}@endif</div>
                                 <div class="table-cell type">
                                     @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)Standard
                                     @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)Premium
@@ -73,6 +73,12 @@
                                 <div class="table-cell action"><a href="{{ route('user_cellar_update', ['id' => $cellar->id]) }}"><button class="edit">Modifier</button></a></div>
                             </div>
                         @endforeach
+                    </div>
+
+                    <div class="status-legend">
+                        <span class="status"><span class="icon status-ok"></span> Abonnement valide</span>
+                        <span class="status"><span class="icon status-soon-ko"></span> Abonnement arrivant bientôt à expiration</span>
+                        <span class="status"><span class="icon status-ko"></span> Abonnement expiré</span>
                     </div>
                 @endif
 

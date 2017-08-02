@@ -2626,24 +2626,40 @@ footer a, footer a:visited {
 .cellars-template .page-content {
   margin-top: 7rem;
 }
-/* line 6, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list {
-  margin-bottom: 5rem;
-}
-/* line 9, ../sass/pages/_cellars.scss */
+/* line 8, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .table-row {
   margin-bottom: 3rem;
 }
-/* line 13, ../sass/pages/_cellars.scss */
+/* line 12, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .cellar {
   width: 25.9%;
 }
-/* line 17, ../sass/pages/_cellars.scss */
+/* line 16, ../sass/pages/_cellars.scss */
 .cellars-template .page-content .table-list .status {
   width: 20%;
 }
 /* line 20, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .status .icon {
+.cellars-template .page-content .table-list .type {
+  width: 22%;
+  text-align: center;
+}
+/* line 25, ../sass/pages/_cellars.scss */
+.cellars-template .page-content .table-list .date {
+  width: 25%;
+  text-align: center;
+}
+/* line 30, ../sass/pages/_cellars.scss */
+.cellars-template .page-content .table-list .price {
+  width: 15%;
+  text-align: center;
+}
+/* line 35, ../sass/pages/_cellars.scss */
+.cellars-template .page-content .table-list .action {
+  width: 8rem;
+  height: 8rem;
+}
+/* line 42, ../sass/pages/_cellars.scss */
+.cellars-template .icon {
   width: 3rem;
   height: 3rem;
   display: block;
@@ -2651,33 +2667,35 @@ footer a, footer a:visited {
   border-radius: 50%;
   border: 1px solid #cfdbe6;
 }
-/* line 28, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .status .icon.status-ok {
+/* line 50, ../sass/pages/_cellars.scss */
+.cellars-template .icon.status-ok {
   background: #3cb878;
 }
-/* line 32, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .status .icon.status-ko {
+/* line 54, ../sass/pages/_cellars.scss */
+.cellars-template .icon.status-ko {
   background: #e0363d;
 }
-/* line 38, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .type {
-  width: 22%;
-  text-align: center;
+/* line 58, ../sass/pages/_cellars.scss */
+.cellars-template .icon.status-soon-ko {
+  background: #f29712;
 }
-/* line 43, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .date {
-  width: 25%;
-  text-align: center;
+/* line 63, ../sass/pages/_cellars.scss */
+.cellars-template .status-legend {
+  margin-bottom: 5rem;
+  color: #8f8f8f;
+  font-style: italic;
+  font-size: 1.5rem;
 }
-/* line 48, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .price {
-  width: 15%;
-  text-align: center;
+/* line 69, ../sass/pages/_cellars.scss */
+.cellars-template .status-legend .status {
+  margin-right: 4rem;
 }
-/* line 53, ../sass/pages/_cellars.scss */
-.cellars-template .page-content .table-list .action {
-  width: 8rem;
-  height: 8rem;
+/* line 72, ../sass/pages/_cellars.scss */
+.cellars-template .status-legend .status .icon {
+  vertical-align: middle;
+  display: inline-block;
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 /* line 3, ../sass/pages/_cellar-update.scss */

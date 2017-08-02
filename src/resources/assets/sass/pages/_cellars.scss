@@ -4,7 +4,6 @@
 		margin-top: 7rem;
 
 		.table-list {
-			margin-bottom: 5rem;
 
 			.table-row {
 				margin-bottom: 3rem;
@@ -16,23 +15,6 @@
 
 			.status {
 				width: 20%;
-
-				.icon {
-					width: 3rem;
-					height: 3rem;
-					display: block;
-					margin: auto;
-					border-radius: 50%;
-					border: 1px solid #cfdbe6;
-
-					&.status-ok {
-						background: #3cb878;
-					}
-					
-					&.status-ko {
-						background: #e0363d;
-					}
-				}
 			}
 
 			.type {
@@ -53,6 +35,45 @@
 			.action {
 				width: 8rem;
 				height: 8rem;
+			}
+		}
+	}
+
+	.icon {
+		width: 3rem;
+		height: 3rem;
+		display: block;
+		margin: auto;
+		border-radius: 50%;
+		border: 1px solid #cfdbe6;
+
+		&.status-ok {
+			background: #3cb878;
+		}
+
+		&.status-ko {
+			background: #e0363d;
+		}
+		
+		&.status-soon-ko {
+			background: #f29712;
+		}
+	}
+
+	.status-legend {
+		margin-bottom: 5rem;
+		color: $gray;
+		font-style: italic;
+		font-size: 1.5rem;
+
+		.status {
+			margin-right: 4rem;
+
+			.icon {
+				vertical-align: middle;
+				display: inline-block;
+				width: 1.75rem;
+				height: 1.75rem;
 			}
 		}
 	}

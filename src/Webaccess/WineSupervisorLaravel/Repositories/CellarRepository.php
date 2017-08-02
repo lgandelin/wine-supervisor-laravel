@@ -95,7 +95,7 @@ class CellarRepository extends BaseRepository
         $cellar->name = $name;
         $cellar->first_activation_date = new DateTime();
         $cellar->subscription_start_date = new DateTime();
-        $cellar->subscription_end_date = ($ws->board_type === WS::PRIMO_BOARD) ? (new DateTime())->add(new DateInterval('P24M')) : null;
+        $cellar->subscription_end_date = ($ws->board_type == WS::PRIMO_BOARD) ? (new DateTime())->add(new DateInterval('P24M')) : null;
         $cellar->subscription_type = $subscriptionType;
         $cellar->serial_number = $serialNumber;
         $cellar->address = $address;
