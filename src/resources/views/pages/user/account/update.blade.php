@@ -95,8 +95,6 @@
 
     <div class="my-account-template" style="margin-top: 20rem;">
 
-        @include('wine-supervisor::pages.user.includes.header')
-
         <div class="main-content container">
 
             <!-- PAGE HEADER -->

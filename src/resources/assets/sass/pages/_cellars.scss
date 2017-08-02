@@ -34,7 +34,11 @@
 
 			.action {
 				width: 8rem;
-				height: 8rem;
+				height: 8.2rem;
+				
+				&:hover {
+					background: #fa686f;
+				}
 			}
 		}
 	}
@@ -76,5 +80,10 @@
 				height: 1.75rem;
 			}
 		}
+	}
+	
+	.table-cell-header.action {
+		background: #f8f7fa !important;
+		height: 8.2rem !important;
 	}
 }
