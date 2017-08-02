@@ -1648,14 +1648,21 @@ img {
   border-bottom: 1px solid #cfdbe6;
 }
 /* line 21, ../sass/includes/_tables.scss */
+.table-list .table-row .table-cell.truncate {
+  max-width: 275px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 28, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell:first-child {
   border-left: 1px solid #cfdbe6;
 }
-/* line 25, ../sass/includes/_tables.scss */
+/* line 32, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell:last-child {
   border-right: 1px solid #cfdbe6;
 }
-/* line 29, ../sass/includes/_tables.scss */
+/* line 36, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.table-cell-header {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -1665,28 +1672,26 @@ img {
   font-family: "Open Sans";
   font-weight: 300;
 }
-/* line 40, ../sass/includes/_tables.scss */
+/* line 47, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.align-left {
   text-align: left;
 }
-/* line 43, ../sass/includes/_tables.scss */
+/* line 50, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.align-left:first-child {
-  padding-left: 5rem;
+  padding-left: 3rem;
 }
-/* line 48, ../sass/includes/_tables.scss */
+/* line 55, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell.action {
-  display: block;
   padding: 0 !important;
-  text-align: right;
+  background: #f83740;
+  text-align: center;
 }
-/* line 53, ../sass/includes/_tables.scss */
-.table-list .table-row .table-cell.action.table-cell-header {
-  height: 8.2rem;
-}
-/* line 58, ../sass/includes/_tables.scss */
+/* line 61, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button {
-  width: 8rem;
-  height: 8.4rem;
+  min-width: 7rem;
+  min-height: 7rem;
+  display: inline-block;
+  vertical-align: middle;
   text-indent: -999rem;
   cursor: pointer;
   background-color: #f83740;
@@ -1694,19 +1699,19 @@ img {
   background-repeat: no-repeat;
   border: none;
 }
-/* line 70, ../sass/includes/_tables.scss */
+/* line 75, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button:hover {
   background-color: #fa686f;
 }
-/* line 75, ../sass/includes/_tables.scss */
+/* line 80, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell .edit {
   background-image: url(../img/generic/edit.png);
 }
-/* line 79, ../sass/includes/_tables.scss */
+/* line 84, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell .delete {
   background-image: url(../img/generic/delete.png);
 }
-/* line 87, ../sass/includes/_tables.scss */
+/* line 92, ../sass/includes/_tables.scss */
 .table-list.less-padding .table-row .table-cell {
   padding: 2rem;
 }

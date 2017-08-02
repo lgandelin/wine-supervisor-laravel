@@ -34,22 +34,20 @@
 
                 <table class="table-list less-padding">
                     <tr class="table-row">
-                        <th class="table-cell table-cell-header">Nom</th>
-                        <th class="table-cell table-cell-header">Prénom</th>
+                        <th class="table-cell table-cell-header">Nom complet</th>
                         <th class="table-cell table-cell-header">Email</th>
                         <th class="table-cell table-cell-header">Login</th>
-                        <th class="table-cell table-cell-header">Début d'accès</th>
-                        <th class="table-cell table-cell-header">Fin d'accès</th>
+                        <th class="table-cell table-cell-header">Début</th>
+                        <th class="table-cell table-cell-header">Fin</th>
                         <th class="table-cell table-cell-header">Action</th>
                     </tr>
                     @foreach ($guests as $guest)
                         <tr class="table-row">
-                            <td class="table-cell align-left">{{ $guest->last_name }}</td>
-                            <td class="table-cell align-left">{{ $guest->first_name }}</td>
-                            <td class="table-cell align-left"><a href="mailto:{{ $guest->email }}">{{ $guest->email }}</a></td>
+                            <td class="table-cell align-left">{{ $guest->last_name }} {{ $guest->first_name }}</td>
+                            <td class="table-cell align-left truncate"><a href="mailto:{{ $guest->email }}">{{ $guest->email }}</a></td>
                             <td class="table-cell align-left">{{ $guest->login }}</td>
-                            <td class="table-cell align-left">@if ($guest->access_start_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/Y') }}@endif</td>
-                            <td class="table-cell align-left">@if ($guest->access_end_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/Y') }}@endif</td>
+                            <td class="table-cell align-left">@if ($guest->access_start_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_start_date)->format('d/m/y') }}@endif</td>
+                            <td class="table-cell align-left">@if ($guest->access_end_date){{ \DateTime::createFromFormat('Y-m-d', $guest->access_end_date)->format('d/m/y') }}@endif</td>
                             <td class="table-cell align-left action">
                                 <a href="{{ route('admin_guest_update', $guest->id) }}"><button class="edit">Modifier</button></a>
                                 <a href="{{ route('admin_guest_delete_handler', $guest->id) }}"><button class="delete">Supprimer</button></a>

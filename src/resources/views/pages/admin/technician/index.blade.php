@@ -43,9 +43,9 @@
                     @foreach ($technicians as $technician)
                         <tr class="table-row">
                             <td class="table-cell align-left">{{ $technician->company }}</td>
-                            <td class="table-cell align-left"><a href="mailto:{{ $technician->email }}">{{ $technician->email }}</a></td>
+                            <td class="table-cell align-left truncate"><a href="mailto:{{ $technician->email }}">{{ $technician->email }}</a></td>
                             <td class="table-cell align-left">@if ($technician->status == Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED) Activé @else Désactivé @endif
-                            <td class="table-cell align-left action"><a href="{{ route('admin_technician_update', $technician->id) }}"><button class="edit">Modifier</button></a></td>
+                            <td class="table-cell align-left action" width="10%"><a href="{{ route('admin_technician_update', $technician->id) }}"><button class="edit">Modifier</button></a></td>
                         </tr>
                     @endforeach
                 </table>

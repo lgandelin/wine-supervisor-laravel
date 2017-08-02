@@ -37,7 +37,7 @@
                         <td class="table-cell table-cell-header align-left">Titre</td>
                         <td class="table-cell table-cell-header align-left">Date de début</td>
                         <td class="table-cell table-cell-header align-left">Date de fin</td>
-                        <td class="table-cell table-cell-header">Action</td>
+                        <td class="table-cell table-cell-header" width="15%">Action</td>
                     </tr>
                     @foreach ($sales as $sale)
                         <tr class="table-row">
