@@ -2,7 +2,6 @@
 
 namespace Webaccess\WineSupervisorLaravel\Services;
 
-use DateTimeZone;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Webaccess\WineSupervisorLaravel\Models\Cellar;
@@ -59,7 +58,7 @@ class CellierDomesticusAPI
                 'lastName' => $user->last_name,
                 'firstName' => $user->first_name,
                 'address' => $user->address . ' ' . $user->address2,
-                'zipcode' => $user->zipcode,
+                'zipcode' => $user->zipcode ? $user->zipcode : '73000',
                 'city' => $user->city,
                 'country' => $user->country,
                 'phone' => $user->phone,
@@ -105,11 +104,11 @@ class CellierDomesticusAPI
                 'email' => $technician->email,
                 'plainPassword' => $technician->password,
                 'type' => 'technician',
-                'lastName' => $technician->last_name,
-                'firstName' => $technician->first_name,
-                'company' => $technician->company,
+                'lastName' => $technician->company,
+                //'firstName' => $technician->first_name,
+                //'company' => $technician->company,
                 'address' => $technician->address . ' ' . $technician->address2,
-                'zipcode' => $technician->zipcode,
+                'zipcode' => $technician->zipcode ? $technician->zipcode : '73000',
                 'city' => $technician->city,
                 'country' => $technician->country,
                 'phone' => $technician->phone,
@@ -150,7 +149,7 @@ class CellierDomesticusAPI
         $requestData = [
             'json' => [
                 'name' => $cellarName ? $cellarName : 'Ma cave',
-                'timezone' => DateTimeZone::EUROPE,
+                'timezone' => 'Europe/Paris',
                 'degreeType' => 'celcius',
             ],
             'headers' => [
@@ -228,7 +227,7 @@ class CellierDomesticusAPI
                 'lastName' => $user->last_name,
                 'firstName' => $user->first_name,
                 'address' => $user->address . ' ' . $user->address2,
-                'zipcode' => $user->zipcode,
+                'zipcode' => $user->zipcode ? $user->zipcode : '73000',
                 'city' => $user->city,
                 'country' => $user->country,
                 'phone' => $user->phone,
@@ -263,11 +262,11 @@ class CellierDomesticusAPI
             'json' => [
                 'username' => $technician->email,
                 'email' => $technician->email,
-                'lastName' => $technician->last_name,
-                'firstName' => $technician->first_name,
-                'company' => $technician->company,
+                'lastName' => $technician->company,
+                //'firstName' => $technician->first_name,
+                //'company' => $technician->company,
                 'address' => $technician->address . ' ' . $technician->address2,
-                'zipcode' => $technician->zipcode,
+                'zipcode' => $technician->zipcode ? $technician->zipcode : '73000',
                 'city' => $technician->city,
                 'country' => $technician->country,
                 'phone' => $technician->phone,
@@ -301,7 +300,7 @@ class CellierDomesticusAPI
         $parameters = [
             'name' => $cellar->name ? $cellar->name : 'Ma cave',
             'address' => $cellar->address . ' ' . $cellar->address2,
-            'zipcode' => $cellar->zipcode,
+            'zipcode' => $cellar->zipcode ? $cellar->zipcode : '73000',
             'city' => $cellar->city,
             'country' => $cellar->country,
         ];
