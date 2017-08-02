@@ -1685,8 +1685,9 @@ img {
   padding: 0 !important;
   background: #f83740;
   text-align: center;
+  vertical-align: middle;
 }
-/* line 61, ../sass/includes/_tables.scss */
+/* line 62, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button {
   min-width: 7rem;
   min-height: 7rem;
@@ -1699,19 +1700,19 @@ img {
   background-repeat: no-repeat;
   border: none;
 }
-/* line 75, ../sass/includes/_tables.scss */
+/* line 76, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell button:hover {
   background-color: #fa686f;
 }
-/* line 80, ../sass/includes/_tables.scss */
+/* line 81, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell .edit {
   background-image: url(../img/generic/edit.png);
 }
-/* line 84, ../sass/includes/_tables.scss */
+/* line 85, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell .delete {
   background-image: url(../img/generic/delete.png);
 }
-/* line 92, ../sass/includes/_tables.scss */
+/* line 93, ../sass/includes/_tables.scss */
 .table-list.less-padding .table-row .table-cell {
   padding: 2rem;
 }

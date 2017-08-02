@@ -26,7 +26,7 @@ class CellarRepository extends BaseRepository
 
     public static function getAll()
     {
-        return Cellar::all();
+        return Cellar::orderBy('created_at', 'DESC')->get();
     }
 
     /**

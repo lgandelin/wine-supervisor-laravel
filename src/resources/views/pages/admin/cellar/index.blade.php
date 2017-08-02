@@ -36,12 +36,16 @@
                     <tr class="table-row">
                         <td class="table-cell table-cell-header align-left">ID WS</th>
                         <td class="table-cell table-cell-header align-left">Utilisateur</th>
+                        <td class="table-cell table-cell-header align-left">Technicien</th>
+                        <td class="table-cell table-cell-header align-left">Date de création</th>
                         <td class="table-cell table-cell-header">Action</th>
                     </tr>
                     @foreach ($cellars as $cellar)
                         <tr class="table-row">
-                            <td class="table-cell">{{ $cellar->id_ws }}</td>
-                            <td class="table-cell align-left">{{ $cellar->user->last_name }} {{ $cellar->user->first_name }}</td>
+                            <td class="table-cell"><a title="Voir la fiche du WS" href="{{ route('admin_ws_update', ['id_ws' => $cellar->id_ws]) }}">{{ $cellar->id_ws }}</a></td>
+                            <td class="table-cell align-left">@if ($cellar->user)<a href="{{ route('admin_user_update', ['uuid' => $cellar->user->id]) }}" title="Voir la fiche de l'utilisateur">{{ $cellar->user->last_name }} {{ $cellar->user->first_name }}</a>@endif</td>
+                            <td class="table-cell align-left">@if ($cellar->technician)<a href="{{ route('admin_technician_update', ['uuid' => $cellar->technician->id]) }}" title="Voir la fiche du technicien">{{ $cellar->technician->last_name }} {{ $cellar->technician->first_name }} [{{ $cellar->technician->company }}]</a>@endif</td>
+                            <td class="table-cell align-left">@if ($cellar->created_at){{ DateTime::createFromFormat('Y-m-d H:i:s', $cellar->created_at)->format('d/m/Y') }}@endif</td>
                             <td class="table-cell action"><a href="{{ route('admin_cellar_update', $cellar->id) }}"><button class="edit">Modifier</button></a></td>
                         </tr>
                     @endforeach

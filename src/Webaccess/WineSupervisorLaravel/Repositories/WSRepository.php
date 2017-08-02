@@ -21,7 +21,7 @@ class WSRepository extends BaseRepository
      */
     public static function getAll()
     {
-        return WS::all();
+        return WS::orderBy('first_activation_date', 'DESC')->get();
     }
 
     /**

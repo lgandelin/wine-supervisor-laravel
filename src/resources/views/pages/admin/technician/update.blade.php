@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Editer un professionnel < Administration | WineSupervisor @endsection
+@section('page-title') Editer un technicien < Administration | WineSupervisor @endsection
 
 @section('page-content')
 
@@ -13,7 +13,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Editer un professionnel</h1>
+                <h1>Editer un technicien</h1>
             </div>
             <!-- PAGE HEADER -->
 
@@ -107,7 +107,6 @@
                             <div class="radio"><input type="radio" name="status" @if ($technician->status === Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED)checked="checked"@endif value="on" /> Activé</div>
                             <div class="radio"><input type="radio" name="status"   @if (!$technician->status)checked="checked"@endif value="off" /> Désactivé</div>
                         </div>
-
                     </div>
                     <!-- RIGHT COLUMN -->
 

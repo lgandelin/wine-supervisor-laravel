@@ -21,6 +21,14 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * @return mixed
+     */
+    public static function getAll()
+    {
+        return User::orderBy('created_at', 'DESC')->get();
+    }
+
+    /**
      * @param $firstName
      * @param $lastName
      * @param $email

@@ -30,7 +30,7 @@ class TechnicianRepository extends BaseRepository
      */
     public static function getAll()
     {
-        return Technician::all();
+        return Technician::orderBy('created_at', 'DESC')->get();
     }
 
     /**
