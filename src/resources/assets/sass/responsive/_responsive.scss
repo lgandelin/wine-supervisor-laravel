@@ -22,6 +22,30 @@
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .sales {
+        .slider-container {
+            .sales-slider {
+                .slick-slide {
+                    .background {
+                        display: none;
+                        background-position: center !important;
+                        background-size: contain;
+                        background-color: white;
+                    }
+
+                    &:nth-child(2).slick-active {
+                        .background {
+                            min-height: 50rem;
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 768px) {
     body {
         padding-top: 0;
@@ -434,16 +458,16 @@
                     color: black;
 
                     .background {
-                        background: white;
-                        background-repeat: no-repeat;
                         display: none;
+                        background-position: center !important;
+                        background-size: contain;
+                        min-height: 50rem;
+                        background-color: white;
                     }
 
                     &:nth-child(2).slick-active {
-                        position: static;
-
                         .background {
-                            background-repeat: no-repeat;
+                            min-height: 50rem;
                             display: block;
                         }
                     }
