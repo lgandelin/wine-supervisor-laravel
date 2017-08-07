@@ -27,7 +27,7 @@
                     </p>
                 @endif
 
-                @if (isset($is_eligible_to_club_premium) && !$is_eligible_to_club_premium)
+                @if ($is_user && isset($is_eligible_to_club_premium) && !$is_eligible_to_club_premium)
                     <p>Votre compte ne vous donne pas droit aux ventes du Club Avantage Wine Supervisor.</p>
                 @endif
 
