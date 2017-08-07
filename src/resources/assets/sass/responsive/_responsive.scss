@@ -27,17 +27,13 @@
         .slider-container {
             .sales-slider {
                 .slick-slide {
-                    .background {
-                        display: none;
-                        background-position: center !important;
-                        background-size: contain;
-                        background-color: white;
-                    }
-
                     &:nth-child(2).slick-active {
                         .background {
                             min-height: 50rem;
                             display: block;
+                            background-position: center !important;
+                            background-size: contain;
+                            background-color: white;
                         }
                     }
                 }
