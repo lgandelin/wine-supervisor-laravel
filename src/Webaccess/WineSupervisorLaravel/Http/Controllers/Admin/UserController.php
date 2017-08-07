@@ -53,7 +53,7 @@ class UserController extends AdminController
         list ($success, $error) = UserRepository::delete($userID, null);
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::user.user_delete_error'));
+            $request->session()->flash('error', $error);
 
             Log::info('ADMIN_DELETE_USER_RESPONSE', [
                 'id' => $requestID,

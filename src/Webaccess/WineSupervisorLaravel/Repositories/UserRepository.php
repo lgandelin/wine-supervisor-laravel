@@ -189,6 +189,13 @@ class UserRepository extends BaseRepository
     {
         if ($user = User::find($userID)) {
 
+            //On bloque la suppression si l'utilisateur a des caves associées
+            if ($cellars = CellarRepository::getByUser($user->id)) {
+                if (sizeof($cellars) > 0) {
+                    return self::error(trans('wine-supervisor::user.user_delete_error_active_cellars'));
+                }
+            }
+
             if (!$user->delete()) {
                 return self::error(trans('wine-supervisor::user.database_error'));
             }

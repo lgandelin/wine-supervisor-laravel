@@ -81,7 +81,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/caves', array('as' => 'admin_cellar_list', 'uses' => 'Admin\CellarController@index'));
         Route::get('/admin/modifier-cave/{uuid}', array('as' => 'admin_cellar_update', 'uses' => 'Admin\CellarController@update'));
         Route::post('/admin/modifier-cave', array('as' => 'admin_cellar_update_handler', 'uses' => 'Admin\CellarController@update_handler'));
-        Route::get('/admin/supprimer-cave/{uuid}', array('as' => 'admin_cellar_delete_handler', 'uses' => 'Admin\CellarController@delete_handler'));
+        //Route::get('/admin/supprimer-cave/{uuid}', array('as' => 'admin_cellar_delete_handler', 'uses' => 'Admin\CellarController@delete_handler'));
 
         Route::get('/admin/ventes', array('as' => 'admin_sale_list', 'uses' => 'Admin\SaleController@index'));
         Route::get('/admin/creer-vente', array('as' => 'admin_sale_create', 'uses' => 'Admin\SaleController@create'));

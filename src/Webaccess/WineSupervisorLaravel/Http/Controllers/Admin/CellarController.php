@@ -92,7 +92,7 @@ class CellarController extends AdminController
         return redirect()->route('admin_cellar_list');
     }
 
-    public function delete_handler(Request $request, $cellarID)
+    /*public function delete_handler(Request $request, $cellarID)
     {
         parent::__construct($request);
 
@@ -126,5 +126,5 @@ class CellarController extends AdminController
         ]);
 
         return redirect()->route('admin_cellar_list');
-    }
+    }*/
 }
