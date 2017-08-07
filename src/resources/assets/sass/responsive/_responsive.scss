@@ -592,4 +592,24 @@
 
 @media screen and (max-width: 480px) {
 
+    .home-template .box .buttons .red-button {
+        padding: 1rem 2rem;
+    }
+
+    .club-premium-template {
+
+        .left-navigation {
+            ul {
+                li {
+                    width: 5.5rem;
+                    height: 5.5rem;
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
+
+    .sales .slider-container .sales-slider-arrows .slick-arrow {
+        top: 12.5%;
+    }
 }

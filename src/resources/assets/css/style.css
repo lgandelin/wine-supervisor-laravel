@@ -3501,3 +3501,21 @@ footer a, footer a:visited {
     overflow: hidden;
   }
 }
+@media screen and (max-width: 480px) {
+  /* line 595, ../sass/responsive/_responsive.scss */
+  .home-template .box .buttons .red-button {
+    padding: 1rem 2rem;
+  }
+
+  /* line 603, ../sass/responsive/_responsive.scss */
+  .club-premium-template .left-navigation ul li {
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-right: 1rem;
+  }
+
+  /* line 612, ../sass/responsive/_responsive.scss */
+  .sales .slider-container .sales-slider-arrows .slick-arrow {
+    top: 12.5%;
+  }
+}
