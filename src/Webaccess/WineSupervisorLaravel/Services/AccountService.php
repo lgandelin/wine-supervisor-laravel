@@ -31,6 +31,12 @@ class AccountService
     public static function hasAValidUserAccountForClubPremium()
     {
         if ($user = Auth::guard('users')->user()) {
+
+            //Les utilisateurs en lecture seule n'ont pas accès au club avantages
+            if ($user->read_only) {
+                return false;
+            }
+
             $userHasOneSubscription = false;
 
             //Récupération des caves de l'utilisateur

@@ -24,6 +24,7 @@ class LoginController extends Controller
     public function login()
     {
         return view('wine-supervisor::pages.user.auth.login', [
+            'is_eligible_to_club_premium' => AccountService::isUserEligibleToClubPremium(),
             'is_technician' => AccountService::isTechnician(),
             'next_route' => $this->request->input('route'),
             'error' => ($this->request->session()->has('error')) ? $this->request->session()->get('error') : null,
