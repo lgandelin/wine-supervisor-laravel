@@ -1644,7 +1644,7 @@ img {
 /* line 11, ../sass/includes/_tables.scss */
 .table-list .table-row .table-cell {
   float: left;
-  padding: 2.5rem 5rem;
+  padding: 2.5rem 4rem;
   line-height: 3rem;
   text-overflow: ellipsis;
   background: #f8f7fa;
