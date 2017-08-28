@@ -26,7 +26,7 @@
                                 @if (isset($wine->name))<h3 class="sale-name">{{ $wine->name }}</h3>@endif
 
                                 {!! $wine->text !!}
-                            </div>t
+                            </div>
 
                             @if (($is_user || $is_guest) && $is_eligible_to_club_premium)
                                 @if ($wine->club_premium_price && $sale->is_active)

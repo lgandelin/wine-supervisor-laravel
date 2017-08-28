@@ -109,8 +109,9 @@
                         </select>
                     </div>
 
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
+
                     <div class="submit-container">
-                        <i class="legend"><span class="required">*</span> : champs obligatoires</i>
                         <input type="submit" class="button red-button" value="Valider" />
                     </div>
 

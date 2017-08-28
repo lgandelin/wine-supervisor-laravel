@@ -18,7 +18,6 @@
         <!-- BOX -->
         <div class="box" id="wine-supervisor">
             <div class="container">
-                <img class="box-image" src="{{ asset('img/home/box/box.png') }}" width="390" height="453" alt="Boitier WineSupervisor" />
                 <h2 class="title"><img class="logo-wine-supervisor-ii" src="{{ asset('img/home/box/logo-winesupervisor-ii.png') }}" width="450" height="100" alt="WineSupervisor" /></h2>
                 
                 <?php include base_path() . '/contents/home/wine-supervisor.html' ?>
@@ -31,6 +30,8 @@
                         <a href="{{ route('supervision') }}" target="_blank" class="btn red-button btn-supervision">Supervision</a>
                     @endif
                 </div>
+
+                <img class="box-image" src="{{ asset('img/home/box/box.png') }}" width="390" height="453" alt="Boitier WineSupervisor" />
             </div>
         </div>
         <!-- BOX -->

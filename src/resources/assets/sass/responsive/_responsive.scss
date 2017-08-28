@@ -1,4 +1,14 @@
+@media only screen and (max-width:1800px) {
+    .banner {
+        background-size: inherit;
+    }
+}
+
 @media screen and (max-width: 1200px) {
+    .hamburger {
+        display: none;
+    }
+
     .home-template {
         .logo-navigation {
             nav {
@@ -12,13 +22,594 @@
     }
 }
 
-@media screen and (max-width: 768px) {
-
+@media screen and (max-width: 1000px) {
+    .sales {
+        .slider-container {
+            .sales-slider {
+                .slick-slide {
+                    &:nth-child(2).slick-active {
+                        .background {
+                            min-height: 50rem;
+                            display: block;
+                            background-position: center !important;
+                            background-size: contain;
+                            background-color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
-@media only screen and (max-width:1800px) {
+@media screen and (max-width: 768px) {
+    body {
+        padding-top: 0;
+    }
+
+    .red-button {
+        padding: 1rem 3rem;
+    }
+
+    form .form-group .radio {
+        margin-right: 3rem;
+    }
+    
+    header {
+        position: static;
+
+        .hamburger {
+            display: block;
+            float: right;
+            width: 40px;
+            height: 27px;
+            margin-top: 18px;
+            margin-right: 15px;
+
+            cursor: pointer;
+
+            background: url('../img/header/hamburger.png') no-repeat center center;
+        }
+
+        .top-bar {
+
+            .welcome {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                padding-left: 1rem;
+                display: none;
+            }
+            
+            .container {
+                padding: 0;
+            }
+
+            .nav {
+                position: static;
+
+                li {
+                    font-family: $main-font;
+                    font-size: 1.4rem;
+                    margin-right: 1rem;
+
+                    a {
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                    }
+                }
+
+                .account {
+                    .login {
+                        z-index: 5;
+                        right: 0;
+                        left: 0;
+                        width: 100%;
+
+                        .input-login, .input-password {
+                            width: auto;
+
+                            input {
+                                width: 30rem;
+                            }
+                        }
+                    }
+
+                    &.logout {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+
+                        a {
+                            padding-top: 0;
+                            padding-bottom: 0;
+                        }
+
+                        .logout-icon {
+                            width: 4rem;
+                            height: 3.6rem;
+                        }
+                    }
+                }
+            }
+
+            .welcome + .nav {
+                margin-right: 4.5rem;
+            }
+        }
+
+        .logo-navigation {
+
+            .logo {
+                img {
+                    max-width: 70%;
+                    margin-left: 2rem;
+                }
+            }
+
+            .container {
+                padding: 0;
+            }
+
+            nav {
+                z-index: 999;
+                display: none;
+                left: 1rem;
+                right: 1rem;
+                top: 10.6rem;
+                position: absolute;
+                float: none;
+                background: white;
+                border: 2px solid #ccc;
+                border-top: none;
+
+                ul {
+                    padding-top: 3rem;
+                    padding-bottom: 1rem;
+                    text-align: center;
+
+                    li {
+                        display: block;
+                        float: none;
+                        margin-bottom: 2rem;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .main-content {
+        .page-header {
+            text-align: left;
+            padding: 2rem 3.5rem 1rem 3.5rem;
+            margin-bottom: 5rem;
+
+            h1 {
+                font-size: 3rem;
+
+                &:after {
+                    margin-top: 1rem;
+                    margin-bottom: 2.5rem;
+                }
+            }
+        }
+        
+        .page-content {
+            .submit-container {
+                margin-top: 5rem;
+            }
+        }
+    }
 
     .banner {
-        background-size: inherit;
+        padding-top: 1.5rem;
+        height: 15.5rem;
+        max-height: 15.5rem;
+        background-size: cover !important;
+        background-position-y: top !important;
+        background-attachment: local !important;
+
+        .title {
+            margin-top: 2rem;
+            font-size: 3rem;
+        }
+
+        h2 {
+            .title {
+                font-size: 3rem;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .home-template {
+
+        .title {
+            font-size: 3rem;
+        }
+
+        .box {
+            background: none;
+            padding-top: 1.5rem;
+
+            p {
+                text-align: left;
+                width: 100%;
+            }
+
+            .box-image {
+                width: 75%;
+                margin-top: 5rem;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+                position: static;
+            }
+
+            .buttons {
+                overflow: hidden;
+                margin-left: 0;
+                margin-right: 0;
+                text-align: center;
+
+                .btn-discover {
+                    float: none;
+                    display: inline-block;
+                    margin-right: 2rem;
+                }
+                
+                .btn-supervision {
+                    float: none;
+                    display: inline-block;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .club {
+            height: 15.5rem;
+            max-height: 15.5rem;
+            padding-top: 1.5rem;
+
+            background-size: cover !important;
+            background-position-y: top !important;
+            background-attachment: local !important;
+
+            .title {
+                margin-top: 3rem;
+            }
+        }
+        
+        .club-contents {
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+            
+            .image {
+                width: 100%;
+                float: none;
+
+                img {
+                    display: block;
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+            }
+
+            .red-button {
+                float: none;
+                width: 80%;
+                margin: auto;
+                margin-top: 5rem;
+                display: block;
+
+                text-align: center;
+            }
+        }
+
+        .news {
+            .title {
+                margin-top: 0;
+                font-size: 3rem;
+            }
+
+            .news-slider .slick-slide {
+                max-height: none;
+
+                .image {
+                    float: none;
+                }
+            }
+        }
+
+        .our-partners {
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+            .title {
+                margin-top: 0;
+                font-size: 3rem;
+            }
+        }
+    }
+
+    .contact-template {
+        .left-content {
+            width: 100%;
+            float: none;
+            margin-right: 0;
+
+            .info {
+                margin-bottom: 5rem;
+            }
+        }
+    }
+
+    .id_ws {
+        margin-bottom: 2rem;
+    }
+
+    .signup-template {
+
+        .page-header {
+            width: 100%;
+            float: none;
+            margin-right: 0;
+        }
+
+        .steps {
+            margin-bottom: 5rem;
+            
+            .step {
+                z-index: 1;
+                min-height: 10.5rem;
+                padding-top: 1rem;
+                padding-left: 1rem;
+
+                .step-number {
+                    margin-right: 3rem;
+                    font-size: 6rem;
+                }
+
+                .step-title {
+                    font-size: 2rem;
+                }
+
+                &.active {
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .cellars-template {
+
+       .page-content .table-list {
+           .cellar, .status, .date, .type, .action {
+                width: 100%;
+                float: none;
+                border: 1px solid #cfdbe6;
+               border-bottom: none;
+           }
+
+           .action {
+               button {
+                   width: 100%;
+               }
+           }
+       }
+    }
+
+    .cellar-update-template {
+
+        .left-column {
+            width: 100%;
+            float: none;
+            margin-right: 0;
+            
+            .mak {
+                margin-bottom: 2rem;
+            }
+            
+            .links {
+                margin-bottom: 5rem;
+            }
+        }
+    }
+
+    .sales {
+        border-top: 2px solid #ccc;
+        padding: 0 1rem;
+
+        .container {
+            padding: 0;
+        }
+
+        .slider-container {
+            .sales-slider-arrows .slick-arrow {
+                top: 17%;
+                border-radius: 50%;
+                width: 8rem;
+                height: 8rem;
+
+                &.slick-next {
+                    right: 1rem;
+                    background: white url(../img/home/sales/next-mobile.png) no-repeat 2.9rem center;
+                }
+
+                &.slick-prev {
+                    left: 1rem;
+                    background: white url(../img/home/sales/prev-mobile.png) no-repeat 2.2rem center;
+                }
+            }
+
+            .sales-slider {
+                margin-bottom: 0;
+
+                .slick-slide {
+
+                    height: auto;
+                    padding: 3rem 1rem;
+                    color: black;
+
+                    .background {
+                        display: none;
+                        background-position: center !important;
+                        background-size: contain;
+                        min-height: 50rem;
+                        background-color: white;
+                    }
+
+                    &:nth-child(2).slick-active {
+                        .background {
+                            min-height: 50rem;
+                            display: block;
+                        }
+                    }
+
+                    .content {
+                        margin: 0;
+
+                        .sale-name {
+                            font-size: 4rem;
+                            
+                            &:after {
+                                color: black;
+                                background: black;
+                            }
+                        }
+
+                        .sale-subtitle {
+                            font-style: italic;
+                            font-size: 1.7rem;
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .bottle {
+                        position: static;
+                        margin: auto;
+                        margin-bottom: 3rem;
+                    }
+
+                    .button {
+                        width: 80%;
+                        display: block;
+                        margin: auto;
+                        position: static;
+
+                        color: white;
+                        text-align: center;
+
+                        background: $blue;
+
+                        &:hover {
+                            background: lighten($blue, 10%);
+                            color: white;
+                        }
+                    }
+
+                    .sale-price {
+                        display: block;
+                        text-align: left;
+                        position: static;
+                        margin-top: 5rem;
+                        margin-bottom: 2rem;
+                    }
+                }
+            }
+        }
+
+        .sales-navigation {
+            display: none;
+        }
+    }
+
+    .club-premium-template {
+
+        .banner {
+            margin-bottom: 0;
+
+            .logo-club-premium {
+                display: none;
+            }
+        }
+
+        .left-navigation {
+            width: 100%;
+            float: none;
+            margin-top: 3.5rem;
+            margin-bottom: 3.5rem;
+            
+            ul {
+                text-align: center;
+                
+                li {
+                    vertical-align: top;
+                    display: inline-block;
+                    margin-bottom: 0;
+                    margin-right: 2rem;
+                    text-indent: 0;
+                    
+                    &:hover, &.active {
+                        a {
+                            display: inline-block;
+                        }
+
+                        span {
+                            display: none;
+                        }
+                    }
+                    
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .text-content {
+            section {
+                margin-bottom: 5rem;
+            }
+            
+            .left-image {
+                float: none;
+                width: 80%;
+                margin: auto;
+            }
+        }
+    }
+
+    .login-template {
+        .page-header {
+            width: 100%;
+            overflow: hidden;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .home-template .box .buttons .red-button {
+        padding: 1rem 2rem;
+    }
+
+    .club-premium-template {
+
+        .left-navigation {
+            ul {
+                li {
+                    width: 5.5rem;
+                    height: 5.5rem;
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
+
+    .sales .slider-container .sales-slider-arrows .slick-arrow {
+        top: 12.5%;
     }
 }
