@@ -59,8 +59,8 @@
                 <form action="">
                     <div class="form-group">
                         <label>Vous êtes</label>
-                        <div class="radio"><input type="radio" name="type" value="1" checked="checked" /> Utilisateur</div>
-                        <div class="radio"><input type="radio" name="type" value="2"> Installateur</div>
+                        <div class="radio"><input type="radio" name="user_type" value="1" checked="checked" /> Utilisateur</div>
+                        <div class="radio"><input type="radio" name="user_type" value="2"> Installateur</div>
                     </div>
                 </form>
 
@@ -108,8 +108,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal <span class="required">*</span></label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ $zipcode }}" required />
+                        <label for="zipcode">Code postal</label>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $zipcode }}" />
                     </div>
 
                     <div class="form-group">
@@ -137,7 +137,7 @@
                     <div class="submit-container">
                         <input type="submit" class="button red-button" value="Valider" />
                     </div>
-
+                    <input type="hidden" value="1" name="type" />
                     {{ csrf_field() }}
                 </form>
                 <!-- USER FORM -->
@@ -147,12 +147,22 @@
                 <form id="technician_signup" action="{{ route('technician_signup_handler') }}" method="post" style="display:none">
 
                     <div class="form-group">
+                        <label for="last_name">Nom</label>
+                        <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="first_name">Prénom</label>
+                        <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" />
+                    </div>
+
+                    <div class="form-group">
                         <label for="company">Nom de la société <span class="required">*</span></label>
                         <input type="text" name="company" id="company" value="{{ old('company') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="registration">Immatriculation <span class="required">*</span></label>
+                        <label for="registration">Immatriculation <span class="required">*</span> <i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">(N° de TVA intracommunautaire)</i></label>
                         <input type="text" name="registration" id="registration" value="{{ old('registration') }}" required />
                     </div>
 
@@ -187,8 +197,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal <span class="required">*</span></label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" required />
+                        <label for="zipcode">Code postal</label>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
                     </div>
 
                     <div class="form-group">
@@ -211,6 +221,7 @@
                         <input type="submit" class="button red-button" value="Valider" />
                     </div>
 
+                    <input type="hidden" value="2" name="type" />
                     {{ csrf_field() }}
                 </form>
                 <!-- TECHNICIAN FORM -->
@@ -227,26 +238,29 @@
         $(document).ready(function() {
 
             //User type
-            $('input[name="type"]').change(function() {
-                if ($(this).val() == 1) {
-                    $('#user_signup').show();
-                    $('#user_header').show();
-                    $('#technician_signup').hide();
-                    $('#technician_header').hide();
-                    $('.steps .step').show();
-                } else if ($(this).val() == 2) {
-                    $('#user_signup').hide();
-                    $('#user_header').hide();
-                    $('#technician_signup').show();
-                    $('#technician_header').show();
-                    $('.steps .step').hide();
-                }
+            $('input[name="user_type"]').change(function() {
+                display_tab($(this).val());
             });
 
-            //Disable copy paste in email field
-            /*$('#email, #email_confirm').on('cut copy paste', function(e) {
-                e.preventDefault();
-            });*/
+            @if (old('type'))
+                $('input[name="user_type"][value="{{ old('type')}}"]').trigger('click');
+            @endif
         });
+
+        function display_tab(tab) {
+            if (tab == 1) {
+                $('#user_signup').show();
+                $('#user_header').show();
+                $('#technician_signup').hide();
+                $('#technician_header').hide();
+                $('.steps .step').show();
+            } else if (tab == 2) {
+                $('#user_signup').hide();
+                $('#user_header').hide();
+                $('#technician_signup').show();
+                $('#technician_header').show();
+                $('.steps .step').hide();
+            }
+        }
     </script>
 @stop

@@ -57,9 +57,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/admin', array('as' => 'admin_index', 'uses' => 'Admin\IndexController@index'));
 
+        Route::get('/admin/utilisateurs', array('as' => 'admin_user_list', 'uses' => 'Admin\UserController@index'));
+        Route::get('/admin/modifier-utilisateur/{uuid}', array('as' => 'admin_user_update', 'uses' => 'Admin\UserController@update'));
+        Route::post('/admin/modifier-utilisateur/', array('as' => 'admin_user_update_handler', 'uses' => 'Admin\UserController@update_handler'));
+        Route::get('/admin/supprimer-utilisateur/{uuid}', array('as' => 'admin_user_delete_handler', 'uses' => 'Admin\UserController@delete_handler'));
+
         Route::get('/admin/professionnels', array('as' => 'admin_technician_list', 'uses' => 'Admin\TechnicianController@index'));
         Route::get('/admin/modifier-professionnel/{uuid}', array('as' => 'admin_technician_update', 'uses' => 'Admin\TechnicianController@update'));
         Route::post('/admin/modifier-professionnel/', array('as' => 'admin_technician_update_handler', 'uses' => 'Admin\TechnicianController@update_handler'));
+        Route::get('/admin/supprimer-professionnel/{uuid}', array('as' => 'admin_technician_delete_handler', 'uses' => 'Admin\TechnicianController@delete_handler'));
 
         Route::get('/admin/ws', array('as' => 'admin_ws_list', 'uses' => 'Admin\WSController@index'));
         Route::get('/admin/modifier-ws/{id_ws}', array('as' => 'admin_ws_update', 'uses' => 'Admin\WSController@update'));
@@ -75,6 +81,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/caves', array('as' => 'admin_cellar_list', 'uses' => 'Admin\CellarController@index'));
         Route::get('/admin/modifier-cave/{uuid}', array('as' => 'admin_cellar_update', 'uses' => 'Admin\CellarController@update'));
         Route::post('/admin/modifier-cave', array('as' => 'admin_cellar_update_handler', 'uses' => 'Admin\CellarController@update_handler'));
+        //Route::get('/admin/supprimer-cave/{uuid}', array('as' => 'admin_cellar_delete_handler', 'uses' => 'Admin\CellarController@delete_handler'));
 
         Route::get('/admin/ventes', array('as' => 'admin_sale_list', 'uses' => 'Admin\SaleController@index'));
         Route::get('/admin/creer-vente', array('as' => 'admin_sale_create', 'uses' => 'Admin\SaleController@create'));

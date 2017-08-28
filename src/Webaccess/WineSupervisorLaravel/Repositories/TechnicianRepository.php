@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
+use Webaccess\WineSupervisorLaravel\Tools\PasswordTool;
 
 class TechnicianRepository extends BaseRepository
 {
@@ -19,15 +20,24 @@ class TechnicianRepository extends BaseRepository
         return Technician::find($technicianID);
     }
 
-    /**
-     * @return mixed
-     */
-    public static function getAll()
+    public static function getByCode($technicianCode)
     {
-        return Technician::all();
+        return Technician::where('technician_code', '=', $technicianCode)->first();
     }
 
     /**
+     * @param null $sort_column
+     * @param null $sort_order
+     * @return mixed
+     */
+    public static function getAll($sort_column = null, $sort_order = null)
+    {
+        return Technician::orderBy($sort_column ? $sort_column : 'created_at', $sort_order ? $sort_order : 'DESC')->get();
+    }
+
+    /**
+     * @param $firstName
+     * @param $lastName
      * @param $company
      * @param $registration
      * @param $phone
@@ -40,10 +50,12 @@ class TechnicianRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function create($company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
+    public static function create($firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
     {
         $technician = new Technician();
         $technician->id = Uuid::uuid4()->toString();
+        $technician->first_name = $firstName;
+        $technician->last_name = $lastName;
         $technician->company = $company;
         $technician->registration = $registration;
         $technician->phone = $phone;
@@ -54,6 +66,7 @@ class TechnicianRepository extends BaseRepository
         $technician->zipcode = $zipcode;
         $technician->city = $city;
         $technician->country = $country;
+        $technician->technician_code = PasswordTool::generatePassword(8);
         $technician->status = Technician::STATUS_DISABLED;
 
         if (!$technician->save()) {
@@ -100,6 +113,8 @@ class TechnicianRepository extends BaseRepository
 
     /**
      * @param $technicianID
+     * @param $firstName
+     * @param $lastName
      * @param $company
      * @param $registration
      * @param $phone
@@ -112,9 +127,11 @@ class TechnicianRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function update($technicianID, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
+    public static function update($technicianID, $firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
     {
         if ($technician = Technician::find($technicianID)) {
+            $technician->first_name = $firstName;
+            $technician->last_name = $lastName;
             $technician->company = $company;
             $technician->registration = $registration;
             $technician->phone = $phone;
@@ -165,5 +182,35 @@ class TechnicianRepository extends BaseRepository
         }
 
         return true;
+    }
+    
+    /**
+     * @param $technicianID
+     * @return bool
+     */
+    public static function delete($technicianID)
+    {
+        if ($technician = Technician::find($technicianID)) {
+
+            if (!$technician->delete()) {
+                return self::error(trans('wine-supervisor::technician.database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        }
+
+        try {
+            (new CellierDomesticusAPI())->disable_technician($technician);
+        } catch (\Exception $e) {
+            Log::info('API_DISABLE_TECHNICIAN_ERROR', [
+                'technician_id' => $technicianID,
+                'cd_technician_id' => $technician->cd_technician_id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
+
+        return self::success();
     }
 }

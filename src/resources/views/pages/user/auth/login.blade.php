@@ -27,6 +27,10 @@
                     </p>
                 @endif
 
+                @if ($is_user && isset($is_eligible_to_club_premium) && !$is_eligible_to_club_premium)
+                    <p>Votre compte ne vous donne pas droit aux ventes du Club Avantage Wine Supervisor.</p>
+                @endif
+
                 <div class="login">
                     <form class="login form-horizontal" role="form" method="POST" action="{{ route('user_login_handler') }}">
                         <div class="input-login">

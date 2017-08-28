@@ -91,8 +91,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal <span class="required">*</span></label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" required />
+                        <label for="zipcode">Code postal</label>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
                     </div>
 
                     <div class="form-group">
@@ -109,8 +109,9 @@
                         </select>
                     </div>
 
+                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
+
                     <div class="submit-container">
-                        <i class="legend"><span class="required">*</span> : champs obligatoires</i>
                         <input type="submit" class="button red-button" value="Valider" />
                     </div>
 

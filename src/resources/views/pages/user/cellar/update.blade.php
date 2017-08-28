@@ -51,10 +51,12 @@
                         <span class="serial-number">{{ $cellar->serial_number }}</span>
                     @endif
 
-                    <div class="links">
-                        <a class="link" href="#">SAV</a>
-                        <a class="link" href="#">Supprimer</a>
-                    </div>
+                    @if (!$cellar->user->read_only)
+                        <div class="links">
+                            <a class="link" href="#">SAV</a>
+                            <a class="link" href="#">Supprimer</a>
+                        </div>
+                    @endif
                 </div>
                 <!-- LEFT COLUMN -->
 
@@ -68,7 +70,7 @@
 
                         <div class="form-group">
                             <label for="technician_id">ID Professionnel</label>
-                            <input type="text" name="technician_id" id="technician_id" value="{{ $cellar->technician_id }}" />
+                            <input type="text" name="technician_id" id="technician_id" value="@if ($cellar->technician){{ $cellar->technician->technician_code }}@endif" />
                         </div>
 
                         <div class="form-group">
@@ -91,8 +93,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="zipcode">Code postal <span class="required">*</span></label>
-                            <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" required />
+                            <label for="zipcode">Code postal</label>
+                            <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" />
                         </div>
 
                         <div class="form-group">
@@ -111,9 +113,11 @@
 
                         <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
-                        <div class="submit-container">
-                            <input type="submit" class="button red-button" value="Valider" />
-                        </div>
+                        @if (!$cellar->user->read_only)
+                            <div class="submit-container">
+                                <input type="submit" class="button red-button" value="Valider" />
+                            </div>
+                        @endif
 
                         <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
                         {{ csrf_field() }}

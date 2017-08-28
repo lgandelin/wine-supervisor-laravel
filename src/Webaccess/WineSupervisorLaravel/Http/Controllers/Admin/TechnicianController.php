@@ -16,7 +16,9 @@ class TechnicianController extends AdminController
         parent::__construct($request);
 
         return view('wine-supervisor::pages.admin.technician.index', [
-            'technicians' => TechnicianRepository::getAll(),
+            'technicians' => TechnicianRepository::getAll($request->get('sc'), $request->get('so')),
+            'sort_column' => $request->get('sc'),
+            'sort_order' => ($request->get('so') == 'asc') ? 'desc' : 'asc',
 
             'error' => ($request->session()->has('error')) ? $request->session()->get('error') : null,
             'confirmation' => ($request->session()->has('confirmation')) ? $request->session()->get('confirmation') : null,
@@ -77,7 +79,11 @@ class TechnicianController extends AdminController
 
         if (!$oldStatus && $request->get('status')) {
             try {
-                Mail::send('wine-supervisor::emails.technician_account', array('login' => $technician->email, 'url' => route('index')), function ($message) use ($technicianEmail) {
+                Mail::send('wine-supervisor::emails.technician_account', array(
+                    'login' => $technician->email,
+                    'technician_code' => $technician->technician_code,
+                    'url' => route('index'),
+                ), function ($message) use ($technicianEmail) {
                     $message->to($technicianEmail)
                         ->subject('[WineSupervisor] Votre compte installateur a été validé');
                 });
@@ -100,6 +106,42 @@ class TechnicianController extends AdminController
                 ]);
             }
         }
+
+        return redirect()->route('admin_technician_list');
+    }
+
+    public function delete_handler(Request $request, $technicianID)
+    {
+        parent::__construct($request);
+
+        $requestID = Uuid::uuid4()->toString();
+
+        Log::info('ADMIN_DELETE_TECHNICIAN_REQUEST', [
+            'id' => $requestID,
+            'technician_id' => $request->get('technician_id'),
+            'admin_id' => $this->getAdministratorID(),
+        ]);
+
+        list ($success, $error) = TechnicianRepository::delete($technicianID, null);
+
+        if (!$success) {
+            $request->session()->flash('error', trans('wine-supervisor::technician.technician_delete_error'));
+
+            Log::info('ADMIN_DELETE_TECHNICIAN_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
+        }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::technician.technician_delete_success'));
+
+        Log::info('ADMIN_DELETE_TECHNICIAN_RESPONSE', [
+            'id' => $requestID,
+            'success' => true
+        ]);
 
         return redirect()->route('admin_technician_list');
     }

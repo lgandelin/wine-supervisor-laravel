@@ -17,11 +17,13 @@ class WSRepository extends BaseRepository
     }
 
     /**
+     * @param null $sort_column
+     * @param null $sort_order
      * @return mixed
      */
-    public static function getAll()
+    public static function getAll($sort_column = null, $sort_order = null)
     {
-        return WS::all();
+        return WS::orderBy($sort_column ? $sort_column : 'first_activation_date', $sort_order ? $sort_order : 'DESC')->get();
     }
 
     /**

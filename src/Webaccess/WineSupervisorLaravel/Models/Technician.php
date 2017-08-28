@@ -24,6 +24,9 @@ class Technician extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'technician_code',
+        'first_name',
+        'last_name',
         'company',
         'registration',
         'email',

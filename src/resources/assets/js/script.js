@@ -20,6 +20,22 @@ $(document).ready(function() {
 		slidesToScroll: 4,
 		arrows: true,
 		appendArrows: $('.partners-slider-arrows'),
+		responsive: [
+			{
+				breakpoint: 780,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				}
+			},
+			{
+				breakpoint: 480,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				}
+			}
+		]
 	});
 
 	//SLIDER SALES
@@ -51,6 +67,7 @@ $(document).ready(function() {
 
 	//SCROLLTO
     $('a[href^="#"]').click(function() {
+		console.log('ok')
         var id = $(this).attr("href");
         var offset = $(id).offset().top - $('header').height();
         $('html, body').animate({scrollTop: offset}, 800);
@@ -71,7 +88,7 @@ $(document).ready(function() {
 		}, 300);
 	});
 
-	//SUPPRESSION CONFIRMATION
+	//DELETE CONFIRMATION
 	$('.delete').click(function(e) {
 		if (!confirm('Etes-vous sûrs de vouloir supprimer cet élément ?')) {
 			e.preventDefault();
@@ -85,5 +102,14 @@ $(document).ready(function() {
 		if($(this).val().length==$(this).attr("maxlength")){
 			$(this).next().next().focus();
 		}
+	});
+
+	//MENU MOBILE
+	$('.hamburger').click(function() {
+		$('.logo-navigation nav').toggle();
+	});
+
+	$('.logo-navigation .close').click(function() {
+		$('.logo-navigation nav').hide();
 	});
 });

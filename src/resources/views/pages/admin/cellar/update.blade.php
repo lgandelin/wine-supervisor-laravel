@@ -43,11 +43,11 @@
 
                     <div class="form-group">
                         <label for="technician_id">ID Professionnel</label>
-                        <input type="text" name="technician_id" id="technician_id" value="{{ $cellar->technician_id }}" disabled />
+                        <input type="text" name="technician_id" id="technician_id" value="@if ($cellar->technician){{ $cellar->technician->technician_code }}@endif" disabled />
                     </div>
 
                     <div class="form-group">
-                        <label for="name">Nom de la cave (optionnel)</label>
+                        <label for="name">Nom de la cave</label>
                         <input type="text" name="name" id="name" value="{{ $cellar->name }}" disabled />
                     </div>
 
@@ -62,6 +62,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="address2">Complément d'adresse</label>
+                        <input type="text" name="address2" id="address2" value="{{ $cellar->address2 }}" disabled />
+                    </div>
+
+                    <div class="form-group">
                         <label for="zipcode">Code postal</label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" disabled />
                     </div>
@@ -71,31 +76,18 @@
                         <input type="text" name="city" id="city" value="{{ $cellar->city }}" disabled />
                     </div>
 
-                    <h2 style="margin-top: 7.5rem;">Infos utilisateur</h2>
-
                     <div class="form-group">
-                        <label for="last_name">Nom</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ $cellar->user->last_name }}" disabled />
+                        <label for="country">Pays</label>
+                        <select name="country" id="country" disabled>
+                            @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
+                                <option value="{{ $key }}" @if ($cellar->country == $key)selected="selected"@endif>{{ $label }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">Prénom</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ $cellar->user->first_name }}" disabled />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ $cellar->user->email }}" disabled />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="login">Login</label>
-                        <input type="text" name="login" id="login" value="{{ $cellar->user->login }}" disabled />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="opt_in">Inscrit à la newsletter</label>
-                        <input type="checkbox" name="opt_in" id="opt_in" @if ($cellar->user->opt_in == true || $cellar->user->opt_in === null)checked="checked"@endif disabled />
+                        <label for="user">Utilsateur associé</label>
+                        @if ($cellar->user) <a href="{{ route('admin_user_update', ['uuid' => $cellar->user->id]) }}" title="Voir la fiche de l'utilisateur">{{ $cellar->user->last_name }} {{ $cellar->user->first_name }}</a> @endif
                     </div>
 
                     <div class="submit-container">
@@ -134,6 +126,8 @@
                         @endforeach
                     </table>
                 @endif
+
+                <a class="button red-button back-button" href="{{ route('admin_cellar_list') }}" style="position: static; clear: both; display: inline-block; margin-top: 5rem; margin-bottom: 5rem;">Retour</a>
 
             </div>
             <!-- PAGE CONTENT -->

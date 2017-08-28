@@ -34,10 +34,10 @@
 
                 <table class="table-list">
                     <tr class="table-row">
-                        <td class="table-cell table-cell-header align-left">Titre</td>
-                        <td class="table-cell table-cell-header align-left">Date de début</td>
-                        <td class="table-cell table-cell-header align-left">Date de fin</td>
-                        <td class="table-cell table-cell-header">Action</td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'title') current-filter @endif"><a href="{{ route('admin_sale_list', ['sc' => 'title', 'so' => $sort_order]) }}">Titre</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'start_date') current-filter @endif"><a href="{{ route('admin_sale_list', ['sc' => 'start_date', 'so' => $sort_order]) }}">Date de début</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'end_date') current-filter @endif"><a href="{{ route('admin_sale_list', ['sc' => 'end_date', 'so' => $sort_order]) }}">Date de fin</a></td>
+                        <td class="table-cell table-cell-header" width="15%">Action</td>
                     </tr>
                     @foreach ($sales as $sale)
                         <tr class="table-row">

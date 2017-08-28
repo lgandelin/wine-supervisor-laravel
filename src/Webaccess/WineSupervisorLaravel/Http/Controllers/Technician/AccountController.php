@@ -49,6 +49,8 @@ class AccountController
         Log::info('TECHNICIAN_UPDATE_ACCOUNT_REQUEST', [
             'id' => $requestID,
             'technician_id' => $this->getTechnicianID(),
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
             'company' => $request->get('company'),
             'registration' => $request->get('registration'),
             'phone' => $request->get('phone'),
@@ -62,6 +64,8 @@ class AccountController
 
         list($success, $error) = TechnicianRepository::update(
             $this->getTechnicianID(),
+            $request->get('first_name'),
+            $request->get('last_name'),
             $request->get('company'),
             $request->get('registration'),
             $request->get('phone'),

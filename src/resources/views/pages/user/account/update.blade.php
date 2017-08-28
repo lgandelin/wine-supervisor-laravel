@@ -54,8 +54,8 @@
                         @foreach($cellars as $cellar)
                             <div class="table-row">
                                 <div class="table-cell cellar">@if ($cellar->name){{ $cellar->name }}@endif</div>
-                                <div class="table-cell status"><span class="icon status-ok"></span></div>
-                                <div class="table-cell date">12/03/2019</div>
+                                <div class="table-cell status"><span class="icon status-ok" title="Votre abonnement est valide"></span></div>
+                                <div class="table-cell date">@if ($cellar->subscription_end_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $cellar->subscription_end_date)->format('d/m/Y') }}@endif</div>
                                 <div class="table-cell type">
                                     @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)Standard
                                     @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)Premium
@@ -74,9 +74,17 @@
                             </div>
                         @endforeach
                     </div>
+
+                    <div class="status-legend">
+                        <span class="status"><span class="icon status-ok"></span> Abonnement valide</span>
+                        <span class="status"><span class="icon status-soon-ko"></span> Abonnement arrivant bientôt à expiration</span>
+                        <span class="status"><span class="icon status-ko"></span> Abonnement expiré</span>
+                    </div>
                 @endif
 
-                <a href="{{ route('user_cellar_create') }}" class="add">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
+                @if (!$user->read_only)
+                    <a href="{{ route('user_cellar_create') }}" class="add">{{ trans('wine-supervisor::cellar.create_cellar_button') }}</a>
+                @endif
             </div>
             <!-- PAGE CONTENT -->
 
@@ -86,8 +94,6 @@
 
 
     <div class="my-account-template" style="margin-top: 20rem;">
-
-        @include('wine-supervisor::pages.user.includes.header')
 
         <div class="main-content container">
 
@@ -153,8 +159,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal <span class="required">*</span></label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ $user->zipcode }}" required />
+                        <label for="zipcode">Code postal</label>
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $user->zipcode }}" />
                     </div>
 
                     <div class="form-group">
@@ -179,9 +185,11 @@
 
                     <i class="legend"><span class="required">*</span> : champs obligatoires</i>
 
-                    <div class="submit-container">
-                        <input type="submit" class="button red-button" value="Valider" />
-                    </div>
+                    @if (!$user->read_only)
+                        <div class="submit-container">
+                            <input type="submit" class="button red-button" value="Valider" />
+                        </div>
+                    @endif
 
                     {{ csrf_field() }}
                 </form>

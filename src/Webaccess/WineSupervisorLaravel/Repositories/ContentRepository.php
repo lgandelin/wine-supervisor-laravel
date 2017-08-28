@@ -17,11 +17,15 @@ class ContentRepository extends BaseRepository
     }
 
     /**
+     * @param null $limit
+     * @param bool $publication_date_filter
+     * @param null $sort_column
+     * @param null $sort_order
      * @return mixed
      */
-    public static function getAll($limit = null, $publication_date_filter = true)
+    public static function getAll($limit = null, $publication_date_filter = true, $sort_column = null, $sort_order = null)
     {
-        $contents = Content::orderBy('publication_date', 'desc');
+        $contents = Content::orderBy($sort_column ? $sort_column : 'publication_date', $sort_order ? $sort_order : 'DESC');
 
         if ($limit) {
             $contents->limit($limit);

@@ -21,6 +21,14 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * @return mixed
+     */
+    public static function getAll($sort_column = null, $sort_order = null)
+    {
+        return User::orderBy($sort_column ? $sort_column : 'created_at', $sort_order ? $sort_order : 'DESC')->get();
+    }
+
+    /**
      * @param $firstName
      * @param $lastName
      * @param $email
@@ -171,5 +179,42 @@ class UserRepository extends BaseRepository
     public static function checkPassword($password)
     {
         return strlen($password) >= 7;
+    }
+
+    /**
+     * @param $userID
+     * @return bool
+     */
+    public static function delete($userID)
+    {
+        if ($user = User::find($userID)) {
+
+            //On bloque la suppression si l'utilisateur a des caves associées
+            if ($cellars = CellarRepository::getByUser($user->id)) {
+                if (sizeof($cellars) > 0) {
+                    return self::error(trans('wine-supervisor::user.user_delete_error_active_cellars'));
+                }
+            }
+
+            if (!$user->delete()) {
+                return self::error(trans('wine-supervisor::user.database_error'));
+            }
+        } else {
+            return self::error(trans('wine-supervisor::user.id_not_found'));
+        }
+
+        try {
+            (new CellierDomesticusAPI())->disable_user($user);
+        } catch (\Exception $e) {
+            Log::info('API_DISABLE_USER_ERROR', [
+                'user_id' => $userID,
+                'cd_user_id' => $user->cd_user_id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return self::error(trans('wine-supervisor::generic.api_error'));
+        }
+
+        return self::success();
     }
 }

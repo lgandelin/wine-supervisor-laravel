@@ -2,7 +2,6 @@
 
 namespace Webaccess\WineSupervisorLaravel\Services;
 
-use DateTimeZone;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Webaccess\WineSupervisorLaravel\Models\Cellar;
@@ -59,7 +58,7 @@ class CellierDomesticusAPI
                 'lastName' => $user->last_name,
                 'firstName' => $user->first_name,
                 'address' => $user->address . ' ' . $user->address2,
-                'zipcode' => $user->zipcode,
+                'zipcode' => $user->zipcode ? $user->zipcode : '73000',
                 'city' => $user->city,
                 'country' => $user->country,
                 'phone' => $user->phone,
@@ -106,8 +105,10 @@ class CellierDomesticusAPI
                 'plainPassword' => $technician->password,
                 'type' => 'technician',
                 'lastName' => $technician->company,
+                //'firstName' => $technician->first_name,
+                //'company' => $technician->company,
                 'address' => $technician->address . ' ' . $technician->address2,
-                'zipcode' => $technician->zipcode,
+                'zipcode' => $technician->zipcode ? $technician->zipcode : '73000',
                 'city' => $technician->city,
                 'country' => $technician->country,
                 'phone' => $technician->phone,
@@ -148,7 +149,7 @@ class CellierDomesticusAPI
         $requestData = [
             'json' => [
                 'name' => $cellarName ? $cellarName : 'Ma cave',
-                'timezone' => DateTimeZone::EUROPE,
+                'timezone' => 'Europe/Paris',
                 'degreeType' => 'celcius',
             ],
             'headers' => [
@@ -226,7 +227,7 @@ class CellierDomesticusAPI
                 'lastName' => $user->last_name,
                 'firstName' => $user->first_name,
                 'address' => $user->address . ' ' . $user->address2,
-                'zipcode' => $user->zipcode,
+                'zipcode' => $user->zipcode ? $user->zipcode : '73000',
                 'city' => $user->city,
                 'country' => $user->country,
                 'phone' => $user->phone,
@@ -262,8 +263,10 @@ class CellierDomesticusAPI
                 'username' => $technician->email,
                 'email' => $technician->email,
                 'lastName' => $technician->company,
+                //'firstName' => $technician->first_name,
+                //'company' => $technician->company,
                 'address' => $technician->address . ' ' . $technician->address2,
-                'zipcode' => $technician->zipcode,
+                'zipcode' => $technician->zipcode ? $technician->zipcode : '73000',
                 'city' => $technician->city,
                 'country' => $technician->country,
                 'phone' => $technician->phone,
@@ -297,7 +300,7 @@ class CellierDomesticusAPI
         $parameters = [
             'name' => $cellar->name ? $cellar->name : 'Ma cave',
             'address' => $cellar->address . ' ' . $cellar->address2,
-            'zipcode' => $cellar->zipcode,
+            'zipcode' => $cellar->zipcode ? $cellar->zipcode : '73000',
             'city' => $cellar->city,
             'country' => $cellar->country,
         ];
@@ -380,6 +383,60 @@ class CellierDomesticusAPI
             ]);
         } else {
             Log::info('API_UNAFFECT_CELLAR_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function disable_user(User $user)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_DISABLE_USER_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/users/%s/disable', $user->cd_user_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_DISABLE_USER_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_DISABLE_USER_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function disable_technician($technician)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_DISABLE_TECHNICIAN_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/users/%s/disable', $technician->cd_user_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_DISABLE_TECHNICIAN_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_DISABLE_TECHNICIAN_RESPONSE', [
                 'success' => false,
             ]);
         }

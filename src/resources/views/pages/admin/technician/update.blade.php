@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Editer un professionnel < Administration | WineSupervisor @endsection
+@section('page-title') Editer un technicien < Administration | WineSupervisor @endsection
 
 @section('page-content')
 
@@ -13,7 +13,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Editer un professionnel</h1>
+                <h1>Editer un technicien</h1>
             </div>
             <!-- PAGE HEADER -->
 
@@ -37,12 +37,22 @@
                     <!-- LEFT COLUMN -->
                     <div class="left-column">
                         <h2>ID Professionnel</h2>
-                        <span class="id">{{ $technician->id }}</span>
+                        <span class="id">{{ $technician->technician_code }}</span>
                     </div>
                     <!-- LEFT COLUMN -->
 
                     <!-- RIGHT COLUMN -->
                     <div class="right-column">
+                        <div class="form-group">
+                            <label for="last_name">Nom</label>
+                            <input type="text" name="last_name" id="last_name" value="{{ $technician->last_name }}" disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="first_name">Prénom</label>
+                            <input type="text" name="first_name" id="first_name" value="{{ $technician->first_name }}" disabled />
+                        </div>
+
                         <div class="form-group">
                             <label for="company">Nom de la société</label>
                             <input type="text" name="company" id="company" value="{{ $technician->company }}" disabled />
@@ -61,11 +71,6 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" name="email" id="email" value="{{ $technician->email }}" disabled />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="login">Login</label>
-                            <input type="text" name="login" id="login" value="{{ $technician->login }}" disabled />
                         </div>
 
                         <div class="form-group">
@@ -93,11 +98,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="opt_in">Lecture seule</label>
+                            <div class="radio"><input disabled type="radio" name="read_only" value="1" id="read_only" @if ($technician->read_only == true || $technician->read_only === null)checked="checked"@endif /> Oui</div>
+                            <div class="radio"><input disabled type="radio" name="read_only" value="0" @if (!$technician->read_only)checked="checked"@endif /> Non</div>
+                        </div>
+
+                        <div class="form-group">
                             <label for="city">Statut</label>
                             <div class="radio"><input type="radio" name="status" @if ($technician->status === Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED)checked="checked"@endif value="on" /> Activé</div>
                             <div class="radio"><input type="radio" name="status"   @if (!$technician->status)checked="checked"@endif value="off" /> Désactivé</div>
                         </div>
-
                     </div>
                     <!-- RIGHT COLUMN -->
 

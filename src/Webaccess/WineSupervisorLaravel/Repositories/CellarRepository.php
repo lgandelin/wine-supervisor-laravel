@@ -21,12 +21,12 @@ class CellarRepository extends BaseRepository
      */
     public static function getByID($cellarID)
     {
-        return Cellar::with('history', 'history.user', 'history.admin')->find($cellarID);
+        return Cellar::with('history', 'history.user', 'history.admin', 'technician')->find($cellarID);
     }
 
-    public static function getAll()
+    public static function getAll($sort_column = null, $sort_order = null)
     {
-        return Cellar::all();
+        return Cellar::orderBy($sort_column ? $sort_column : 'created_at', $sort_order ? $sort_order : 'DESC')->get();
     }
 
     /**
@@ -50,7 +50,7 @@ class CellarRepository extends BaseRepository
     /**
      * @param $userID
      * @param $idWS
-     * @param $technicianID
+     * @param $technicianCode
      * @param $name
      * @param $subscriptionType
      * @param $serialNumber
@@ -61,7 +61,7 @@ class CellarRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function create($userID, $idWS, $technicianID, $name, $subscriptionType, $serialNumber, $address, $address2, $zipcode, $city, $country)
+    public static function create($userID, $idWS, $technicianCode, $name, $subscriptionType, $serialNumber, $address, $address2, $zipcode, $city, $country)
     {
         if (!$user = UserRepository::getByID($userID)) {
             return self::error(trans('wine-supervisor::user.id_not_found'));
@@ -71,8 +71,12 @@ class CellarRepository extends BaseRepository
             return self::error(trans('wine-supervisor::cellar.id_ws_error'));
         }
 
-        if ($technicianID && !CellarRepository::checkTechnicianID($technicianID)) {
-            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        $technicianID = null;
+        if ($technicianCode && !CellarRepository::checkTechnicianCode($technicianCode)) {
+            return self::error(trans('wine-supervisor::signup.technician_id_error'));
+        } else {
+            $technician = TechnicianRepository::getByCode($technicianCode);
+            $technicianID = $technician->id;
         }
 
         //Fetch GPS coordinates from address
@@ -91,7 +95,7 @@ class CellarRepository extends BaseRepository
         $cellar->name = $name;
         $cellar->first_activation_date = new DateTime();
         $cellar->subscription_start_date = new DateTime();
-        $cellar->subscription_end_date = ($ws->board_type === WS::PRIMO_BOARD) ? (new DateTime())->add(new DateInterval('P24M')) : null;
+        $cellar->subscription_end_date = ($ws->board_type == WS::PRIMO_BOARD) ? (new DateTime())->add(new DateInterval('P24M')) : null;
         $cellar->subscription_type = $subscriptionType;
         $cellar->serial_number = $serialNumber;
         $cellar->address = $address;
@@ -181,7 +185,7 @@ class CellarRepository extends BaseRepository
      * @param $cellarID
      * @param $userID
      * @param $adminID
-     * @param $technicianID
+     * @param $technicianCode
      * @param $name
      * @param $subscriptionType
      * @param $serialNumber
@@ -192,10 +196,14 @@ class CellarRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function update($cellarID, $userID, $adminID, $technicianID, $name, $subscriptionType, $serialNumber, $address, $address2, $zipcode, $city, $country)
+    public static function update($cellarID, $userID, $adminID, $technicianCode, $name, $subscriptionType, $serialNumber, $address, $address2, $zipcode, $city, $country)
     {
-        if ($technicianID && !CellarRepository::checkTechnicianID($technicianID)) {
-            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        $technicianID = null;
+        if ($technicianCode && !CellarRepository::checkTechnicianCode($technicianCode)) {
+            return self::error(trans('wine-supervisor::signup.technician_id_error'));
+        } else {
+            $technician = TechnicianRepository::getByCode($technicianCode);
+            $technicianID = $technician->id;
         }
 
         //Fetch GPS coordinates from address
@@ -210,7 +218,7 @@ class CellarRepository extends BaseRepository
 
             //Save the modifications history
             $updates = [];
-            if ($technicianID != $cellar->technician_id) { $updates[]= ['column' => 'technician_id', 'old_value' => $cellar->technician_id, 'new_value' => $technicianID]; }
+            if ($technicianCode != $cellar->technician_id) { $updates[]= ['column' => 'technician_id', 'old_value' => $cellar->technician_id, 'new_value' => $technicianCode]; }
             if ($name != $cellar->name) { $updates[]= ['column' => 'name', 'old_value' => $cellar->name, 'new_value' => $name]; }
             if ($serialNumber != $cellar->serial_number) { $updates[]= ['column' => 'serial_number', 'old_value' => $cellar->serial_number, 'new_value' => $serialNumber]; }
             if ($subscriptionType != $cellar->subscription_type) { $updates[]= ['column' => 'subscription_type', 'old_value' => $cellar->subscription_type, 'new_value' => $subscriptionType]; }
@@ -266,7 +274,7 @@ class CellarRepository extends BaseRepository
                 sleep(2);
 
                 try {
-                    $technician = TechnicianRepository::getByID($technicianID);
+                    $technician = TechnicianRepository::getByID($$technicianID);
                     $cellar = CellarRepository::getByID($cellar->id);
 
                     (new CellierDomesticusAPI())->affect_cellar($cellar, $technician);
@@ -375,11 +383,15 @@ class CellarRepository extends BaseRepository
         if ($cellar = Cellar::find($cellarID)) {
 
             //Update WS table
-            if ($ws = WS::find($cellar->id_ws)->first()) {
-                $ws->deactivation_date = new DateTime();
-                $ws->board_type = $boardType;
-                if (!$ws->save()) {
-                    return self::error(trans('wine-supervisor::cellar.database_error'));
+            if ($cellar->id_ws) {
+                if ($ws = WS::find($cellar->id_ws)) {
+                    $ws->deactivation_date = new DateTime();
+                    if ($boardType) {
+                        $ws->board_type = $boardType;
+                    }
+                    if (!$ws->save()) {
+                        return self::error(trans('wine-supervisor::cellar.database_error'));
+                    }
                 }
             }
 
@@ -417,12 +429,12 @@ class CellarRepository extends BaseRepository
     }
 
     /**
-     * @param $technicianID
+     * @param $technicianCode
      * @return bool
      */
-    public static function checkTechnicianID($technicianID)
+    public static function checkTechnicianCode($technicianCode)
     {
-        $technician = Technician::find($technicianID);
+        $technician = TechnicianRepository::getByCode($technicianCode);
 
         return $technician && $technician->status == Technician::STATUS_ENABLED;
     }
@@ -452,18 +464,18 @@ class CellarRepository extends BaseRepository
 
     /**
      * @param $idWS
-     * @param $technicianID
+     * @param $technicianCode
      * @param $activationCode
      * @return array
      */
-    public static function doPreliminaryChecks($idWS, $technicianID, $activationCode)
+    public static function doPreliminaryChecks($idWS, $technicianCode, $activationCode)
     {
         if (!CellarRepository::checkIDWS($idWS)) {
             return self::error(trans('wine-supervisor::cellar.id_ws_error'));
         }
 
-        if ($technicianID && !CellarRepository::checkTechnicianID($technicianID)) {
-            return self::error(trans('wine-supervisor::technician.id_not_found'));
+        if ($technicianCode && !CellarRepository::checkTechnicianCode($technicianCode)) {
+            return self::error(trans('wine-supervisor::signup.technician_id_error'));
         }
 
         $ws = WSRepository::getByID($idWS);

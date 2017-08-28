@@ -31,6 +31,12 @@ class AccountService
     public static function hasAValidUserAccountForClubPremium()
     {
         if ($user = Auth::guard('users')->user()) {
+
+            //Les utilisateurs en lecture seule n'ont pas accès au club avantages
+            if ($user->read_only) {
+                return false;
+            }
+
             $userHasOneSubscription = false;
 
             //Récupération des caves de l'utilisateur
@@ -74,7 +80,8 @@ class AccountService
         return
             (self::isAdministrator()) ||
             (self::isUser() && self::hasAValidUserAccountForSupervision()) ||
-            (self::isTechnician() && self::hasAValidTechnicianAccountForSupervision());
+            (self::isTechnician() && self::hasAValidTechnicianAccountForSupervision()) ||
+            (self::isSuperTechnician());
     }
 
     public static function hasAValidUserAccountForSupervision()
@@ -142,5 +149,14 @@ class AccountService
             return Auth::guard('users')->user()->first_name;
 
         return null;
+    }
+
+    private static function isSuperTechnician()
+    {
+        if ($technician = Auth::guard('technicians')->user()) {
+            return $technician->super_tech;
+        }
+
+        return false;
     }
 }

@@ -34,15 +34,15 @@
 
                 <table class="table-list less-padding">
                     <tr class="table-row">
-                        <th class="table-cell table-cell-header">Titre</th>
-                        <th class="table-cell table-cell-header">Date de publication</th>
+                        <th class="table-cell table-cell-header @if ($sort_column == 'title') current-filter @endif"><a href="{{ route('admin_content_list', ['sc' => 'title', 'so' => $sort_order]) }}">Titre</a></th>
+                        <th class="table-cell table-cell-header @if ($sort_column == 'publication_date' || !$sort_column) current-filter @endif"><a href="{{ route('admin_content_list', ['sc' => 'publication_date', 'so' => $sort_order]) }}">Date de publication</a></th>
                         <th class="table-cell table-cell-header">Action</th>
                     </tr>
                     @foreach ($contents as $content)
                         <tr class="table-row">
                             <td class="table-cell align-left">{{ $content->title }}</td>
                             <td class="table-cell align-left">@if ($content->publication_date){{ \DateTime::createFromFormat('Y-m-d', $content->publication_date)->format('d/m/Y') }}@endif</td>
-                            <td class="table-cell align-left action">
+                            <td class="table-cell align-left action" width="15%">
                                 <a href="{{ route('admin_content_update', $content->id) }}"><button class="edit">Modifier</button></a>
                                 <a href="{{ route('admin_content_delete_handler', $content->id) }}"><button class="delete">Supprimer</button></a>
                             </td>
