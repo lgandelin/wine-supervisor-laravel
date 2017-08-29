@@ -75,8 +75,9 @@ class CellarRepository extends BaseRepository
         if ($technicianCode && !CellarRepository::checkTechnicianCode($technicianCode)) {
             return self::error(trans('wine-supervisor::signup.technician_id_error'));
         } else {
-            $technician = TechnicianRepository::getByCode($technicianCode);
-            $technicianID = $technician->id;
+            if ($technician = TechnicianRepository::getByCode($technicianCode)) {
+                $technicianID = $technician->id;
+            }
         }
 
         //Fetch GPS coordinates from address
@@ -202,8 +203,9 @@ class CellarRepository extends BaseRepository
         if ($technicianCode && !CellarRepository::checkTechnicianCode($technicianCode)) {
             return self::error(trans('wine-supervisor::signup.technician_id_error'));
         } else {
-            $technician = TechnicianRepository::getByCode($technicianCode);
-            $technicianID = $technician->id;
+            if ($technician = TechnicianRepository::getByCode($technicianCode)) {
+                $technicianID = $technician->id;
+            }
         }
 
         //Fetch GPS coordinates from address
@@ -274,7 +276,7 @@ class CellarRepository extends BaseRepository
                 sleep(2);
 
                 try {
-                    $technician = TechnicianRepository::getByID($$technicianID);
+                    $technician = TechnicianRepository::getByID($technicianID);
                     $cellar = CellarRepository::getByID($cellar->id);
 
                     (new CellierDomesticusAPI())->affect_cellar($cellar, $technician);
