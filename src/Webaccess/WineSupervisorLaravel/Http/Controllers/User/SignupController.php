@@ -11,6 +11,7 @@ use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\WSRepository;
 
 class SignupController
 {
@@ -86,11 +87,7 @@ class SignupController
     {
         $requestID = Uuid::uuid4()->toString();
 
-        $idWS = '';
-        for ($i = 1; $i <= 6; $i++) {
-            $idWS .= strtoupper($request->get('id_ws_' . $i));
-            if ($i < 6) $idWS .= ':';
-        }
+        $idWS = WSRepository::getWSIDFromCDWSID($request->get('cd_ws_id'));
 
         list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($idWS, $request->get('technician_id'), $request->get('activation_code'));
 
@@ -159,6 +156,7 @@ class SignupController
             Log::info('USER_SIGNUP_CREATE_CELLAR_REQUEST', [
                 'id' => $requestID,
                 'user_id' => $userID,
+                'cd_id_ws' => $request->get('cd_ws_id'),
                 'id_ws' => $idWS,
                 'technician_id' => $request->get('technician_id'),
                 'name' => $request->get('name'),

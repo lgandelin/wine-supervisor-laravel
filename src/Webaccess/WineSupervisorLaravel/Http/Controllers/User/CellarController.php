@@ -8,6 +8,7 @@ use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\WS;
 use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\WSRepository;
 
 class CellarController extends UserController
 {
@@ -39,11 +40,7 @@ class CellarController extends UserController
 
         $requestID = Uuid::uuid4()->toString();
 
-        $idWS = '';
-        for ($i = 1; $i <= 6; $i++) {
-            $idWS .= strtoupper($request->get('id_ws_' . $i));
-            if ($i < 6) $idWS .= ':';
-        }
+        $idWS = WSRepository::getWSIDFromCDWSID($request->get('cd_ws_id'));
 
         list($checkSuccess, $checkError) = CellarRepository::doPreliminaryChecks($idWS, $request->get('technician_id'), $request->get('activation_code'));
 
@@ -56,6 +53,7 @@ class CellarController extends UserController
             'id' => $requestID,
             'user_id' => $this->getUserID(),
             'id_ws' => $idWS,
+            'cd_ws_id' => $request->get('cd_ws_id'),
             'technician_id' => $request->get('technician_id'),
             'name' => $request->get('name'),
             'serial_number' => $request->get('serial_number'),

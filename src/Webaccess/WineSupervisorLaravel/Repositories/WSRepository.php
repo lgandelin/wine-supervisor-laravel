@@ -67,4 +67,13 @@ class WSRepository extends BaseRepository
 
         return self::success();
     }
+
+    public static function getWSIDFromCDWSID($cdWSID)
+    {
+        if ($ws = WS::where('cd_ws_id', '=', $cdWSID)->first()) {
+            return $ws->id;
+        }
+
+        return false;
+    }
 }
