@@ -134,6 +134,11 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="phone">Téléphone <span class="required">*</span></label>
+                        <input type="text" name="phone" id="phone" value="{{ $user->phone }}" required />
+                    </div>
+
+                    <div class="form-group">
                         <label for="email">Email <span class="required">*</span></label>
                         <input type="text" name="email" id="email" value="{{ $user->email }}" autocomplete="off" required />
                     </div>

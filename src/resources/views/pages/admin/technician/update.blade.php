@@ -45,47 +45,47 @@
                     <div class="right-column">
                         <div class="form-group">
                             <label for="last_name">Nom</label>
-                            <input type="text" name="last_name" id="last_name" value="{{ $technician->last_name }}" disabled />
+                            <input type="text" name="last_name" id="last_name" value="{{ $technician->last_name }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="first_name">Prénom</label>
-                            <input type="text" name="first_name" id="first_name" value="{{ $technician->first_name }}" disabled />
+                            <input type="text" name="first_name" id="first_name" value="{{ $technician->first_name }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="company">Nom de la société</label>
-                            <input type="text" name="company" id="company" value="{{ $technician->company }}" disabled />
+                            <input type="text" name="company" id="company" value="{{ $technician->company }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="registration">Immatriculation</label>
-                            <input type="text" name="registration" id="registration" value="{{ $technician->registration }}" disabled />
+                            <input type="text" name="registration" id="registration" value="{{ $technician->registration }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Téléphone</label>
-                            <input type="text" name="phone" id="phone" value="{{ $technician->phone }}" disabled />
+                            <input type="text" name="phone" id="phone" value="{{ $technician->phone }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" name="email" id="email" value="{{ $technician->email }}" disabled />
+                            <input type="text" name="email" id="email" value="{{ $technician->email }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="address">Adresse</label>
-                            <input type="text" name="address" id="address" value="{{ $technician->address }}" disabled />
+                            <input type="text" name="address" id="address" value="{{ $technician->address }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="zipcode">Code postal</label>
-                            <input type="text" name="zipcode" id="zipcode" value="{{ $technician->zipcode }}" disabled />
+                            <input type="text" name="zipcode" id="zipcode" value="{{ $technician->zipcode }}" />
                         </div>
 
                         <div class="form-group">
                             <label for="city">Ville</label>
-                            <input type="text" name="city" id="city" value="{{ $technician->city }}" disabled />
+                            <input type="text" name="city" id="city" value="{{ $technician->city }}" />
                         </div>
 
                         <div class="form-group">
@@ -99,8 +99,8 @@
 
                         <div class="form-group">
                             <label for="opt_in">Lecture seule</label>
-                            <div class="radio"><input disabled type="radio" name="read_only" value="1" id="read_only" @if ($technician->read_only == true || $technician->read_only === null)checked="checked"@endif /> Oui</div>
-                            <div class="radio"><input disabled type="radio" name="read_only" value="0" @if (!$technician->read_only)checked="checked"@endif /> Non</div>
+                            <div class="radio"><input type="radio" name="read_only" value="1" id="read_only" @if ($technician->read_only == true || $technician->read_only === null)checked="checked"@endif /> Oui</div>
+                            <div class="radio"><input type="radio" name="read_only" value="0" @if (!$technician->read_only)checked="checked"@endif /> Non</div>
                         </div>
 
                         <div class="form-group">

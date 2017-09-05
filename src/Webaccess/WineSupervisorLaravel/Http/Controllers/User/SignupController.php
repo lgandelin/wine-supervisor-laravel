@@ -12,11 +12,17 @@ use Webaccess\WineSupervisorLaravel\Repositories\CellarRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\TechnicianRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\UserRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\WSRepository;
+use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
 class SignupController
 {
     public function signup(Request $request)
     {
+        //Redirect the user if already logged
+        if (AccountService::isUser() || AccountService::isTechnician() || AccountService::isGuest()) {
+            return redirect()->route('index');
+        }
+
         if ($session_user = $request->session()->get('user_signup')) {
             $session_user = json_decode($session_user);
         }

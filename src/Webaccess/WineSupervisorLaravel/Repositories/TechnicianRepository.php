@@ -78,15 +78,17 @@ class TechnicianRepository extends BaseRepository
 
     /**
      * @param $technicianID
+     * @param $readOnly
      * @param $status
      * @return bool
      */
-    public static function update_status($technicianID, $status)
+    public static function update_status($technicianID, $readOnly, $status)
     {
         $oldStatus = 0;
         if ($technician = Technician::find($technicianID)) {
             $oldStatus = $technician->status;
             $technician->status = $status;
+            $technician->read_only = $readOnly;
 
             if (!$technician->save()) {
                 return self::error(trans('wine-supervisor::technician.update_database_error'));

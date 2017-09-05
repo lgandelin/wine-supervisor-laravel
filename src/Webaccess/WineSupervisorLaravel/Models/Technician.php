@@ -37,6 +37,7 @@ class Technician extends Authenticatable
         'city',
         'country',
         'status',
+        'read_only',
         'last_connection_date',
     ];
 

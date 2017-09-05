@@ -107,6 +107,7 @@ class UserRepository extends BaseRepository
      * @param $userID
      * @param $firstName
      * @param $lastName
+     * @param $phone
      * @param $email
      * @param $password
      * @param $opt_in
@@ -115,13 +116,15 @@ class UserRepository extends BaseRepository
      * @param $city
      * @param $zipcode
      * @param $country
+     * @param bool $read_only
      * @return User
      */
-    public static function update($userID, $firstName, $lastName, $email, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
+    public static function update($userID, $firstName, $lastName, $phone, $email, $password, $opt_in, $address, $address2, $city, $zipcode, $country, $read_only = false)
     {
         if ($user = User::find($userID)) {
             $user->first_name = $firstName;
             $user->last_name = $lastName;
+            $user->phone = $phone;
             $user->email = $email;
             if ($password !== null) $user->password = Hash::make($password);
             $user->opt_in = $opt_in;
@@ -130,6 +133,7 @@ class UserRepository extends BaseRepository
             $user->city = $city;
             $user->zipcode = $zipcode;
             $user->country = $country;
+            $user->read_only = $read_only;
 
             if (!$user->save())
                 return self::error(trans('wine-supervisor::user.database_error'));

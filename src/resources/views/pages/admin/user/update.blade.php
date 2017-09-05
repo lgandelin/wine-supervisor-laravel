@@ -36,42 +36,42 @@
 
                     <div class="form-group">
                         <label for="last_name">Nom</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" disabled />
+                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" />
                     </div>
 
                     <div class="form-group">
                         <label for="first_name">Prénom</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" disabled />
+                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" />
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Téléphone</label>
-                        <input type="text" name="phone" id="phone" value="{{ $user->phone }}" disabled />
+                        <input type="text" name="phone" id="phone" value="{{ $user->phone }}" />
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" value="{{ $user->email }}" disabled />
+                        <input type="text" name="email" id="email" value="{{ $user->email }}" />
                     </div>
 
                     <div class="form-group">
                         <label for="address">Adresse</label>
-                        <input type="text" name="address" id="address" value="{{ $user->address }}" disabled />
+                        <input type="text" name="address" id="address" value="{{ $user->address }}" />
                     </div>
 
                     <div class="form-group">
                         <label for="address2">Complément d'adresse</label>
-                        <input type="text" name="address2" id="address2" value="{{ $user->address2 }}" disabled />
+                        <input type="text" name="address2" id="address2" value="{{ $user->address2 }}" />
                     </div>
 
                     <div class="form-group">
                         <label for="zipcode">Code postal</label>
-                        <input type="text" name="zipcode" id="zipcode" value="{{ $user->zipcode }}" disabled />
+                        <input type="text" name="zipcode" id="zipcode" value="{{ $user->zipcode }}" />
                     </div>
 
                     <div class="form-group">
                         <label for="city">Ville</label>
-                        <input type="text" name="city" id="city" value="{{ $user->city }}" disabled />
+                        <input type="text" name="city" id="city" value="{{ $user->city }}" />
                     </div>
 
                     <div class="form-group">
@@ -95,14 +95,14 @@
 
                     <div class="form-group">
                         <label for="opt_in">Inscrit à la Newsletter</label>
-                        <div class="radio"><input disabled type="radio" name="opt_in" value="1" id="opt_in" @if ($user->opt_in == true || $user->opt_in === null)checked="checked"@endif /> Oui</div>
-                        <div class="radio"><input disabled type="radio" name="opt_in" value="0" @if (!$user->opt_in)checked="checked"@endif /> Non</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($user->opt_in == true || $user->opt_in === null)checked="checked"@endif /> Oui</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$user->opt_in)checked="checked"@endif /> Non</div>
                     </div>
 
                     <div class="form-group">
                         <label for="opt_in">Lecture seule</label>
-                        <div class="radio"><input disabled type="radio" name="read_only" value="1" id="read_only" @if ($user->read_only == true || $user->read_only === null)checked="checked"@endif /> Oui</div>
-                        <div class="radio"><input disabled type="radio" name="read_only" value="0" @if (!$user->read_only)checked="checked"@endif /> Non</div>
+                        <div class="radio"><input type="radio" name="read_only" value="1" id="read_only" @if ($user->read_only == true || $user->read_only === null)checked="checked"@endif /> Oui</div>
+                        <div class="radio"><input type="radio" name="read_only" value="0" @if (!$user->read_only)checked="checked"@endif /> Non</div>
                     </div>
 
                     @if ($cellars)
@@ -115,11 +115,15 @@
                     </div>
                     @endif
 
+                    <div class="submit-container">
+                        <input type="submit" value="Valider" />
+                    </div>
+
                     <input type="hidden" name="user_id" value="{{ $user->id }}" />
                     {{ csrf_field() }}
                 </form>
 
-                <a class="button red-button back-button" href="{{ route('admin_user_list') }}" style="position:static; margin-top: 5rem; margin-bottom: 5rem; display: inline-block;">Retour</a>
+                <a class="button red-button back-button" href="{{ route('admin_user_list') }}">Retour</a>
 
             </div>
             <!-- PAGE CONTENT -->

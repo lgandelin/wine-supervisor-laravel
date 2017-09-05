@@ -38,6 +38,35 @@ class UserController extends AdminController
         ]);
     }
 
+    public function update_handler(Request $request)
+    {
+        parent::__construct($request);
+
+        list($success, $error) = UserRepository::update(
+            $request->get('user_id'),
+            $request->get('first_name'),
+            $request->get('last_name'),
+            $request->get('phone'),
+            $request->get('email'),
+            $request->get('password'),
+            $request->get('opt_in'),
+            $request->get('address'),
+            $request->get('address2'),
+            $request->get('city'),
+            $request->get('zipcode'),
+            $request->get('country'),
+            $request->get('read_only')
+        );
+
+        if (!$success) {
+            $request->session()->flash('error', trans('wine-supervisor::user.user_update_error'));
+
+            return redirect()->back()->withInput();
+        }
+
+        return redirect()->route('admin_user_list');
+    }
+
     public function delete_handler(Request $request, $userID)
     {
         parent::__construct($request);
