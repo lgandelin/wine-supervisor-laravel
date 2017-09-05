@@ -97,13 +97,6 @@ $(document).ready(function() {
 		return true;
 	});
 
-	//ID WS FIELDS
-	$('input.id_ws').keyup(function(){
-		if($(this).val().length==$(this).attr("maxlength")){
-			$(this).next().next().focus();
-		}
-	});
-
 	//MENU MOBILE
 	$('.hamburger').click(function() {
 		$('.logo-navigation nav').toggle();

@@ -42,7 +42,7 @@
 
                     @foreach ($wss as $ws)
                         <tr class="table-row">
-                            <td class="table-cell">{{ $ws->id }}</td>
+                            <td class="table-cell">{{ $ws->cd_ws_id }}</td>
                             <td class="table-cell">@if ($ws->first_activation_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $ws->first_activation_date)->format('d/m/Y') }}@endif</td>
                             <td class="table-cell">{{ Webaccess\WineSupervisorLaravel\Services\WSService::getBoardTypeLabel($ws->board_type) }}</td>
                             <td class="table-cell action"><a href="{{ route('admin_ws_update', $ws->id) }}"><button class="edit">Modifier</button></a></td>

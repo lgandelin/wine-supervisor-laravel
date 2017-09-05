@@ -44,7 +44,7 @@
                 <!-- LEFT COLUMN -->
                 <div class="left-column">
                     <h2>Identifiant WineSupervisor</h2>
-                    <span class="mak">{{ $cellar->id_ws }}</span>
+                    <span class="mak">{{ $cellar->cd_cellar_id }}</span>
 
                     @if ($cellar->serial_number)
                         <h2>N° de série de l'appareil</h2>

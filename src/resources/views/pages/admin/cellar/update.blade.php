@@ -38,7 +38,7 @@
 
                     <div class="form-group">
                         <label for="id_ws">Identifiant WineSupervisor</label>
-                        <input type="text" name="id_ws" id="id_ws" value="{{ $cellar->id_ws }}" disabled />
+                        <input type="text" name="id_ws" id="id_ws" value="{{ $cellar->cd_cellar_id }}" disabled />
                     </div>
 
                     <div class="form-group">

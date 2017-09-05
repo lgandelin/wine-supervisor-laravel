@@ -35,7 +35,7 @@
                 <form action="{{ route('admin_ws_update_handler') }}" method="POST">
                     <div class="form-group">
                         <label for="id">ID</label>
-                        <input type="text" name="id" id="id" value="{{ $ws->id }}" disabled />
+                        <input type="text" name="id" id="id" value="{{ $ws->cd_ws_id }}" disabled />
                     </div>
 
                     <div class="form-group">
