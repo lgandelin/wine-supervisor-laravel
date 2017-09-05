@@ -120,6 +120,8 @@ class CellarRepository extends BaseRepository
             }
         }
 
+        sleep(2);
+
         //Call API : Activate cellar
         try {
             (new CellierDomesticusAPI())->activate_cellar($user->cd_user_id, $cellar->id, $ws->activation_code, $cellar->name);
