@@ -42,13 +42,18 @@ class UserController extends AdminController
     {
         parent::__construct($request);
 
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
         list($success, $error) = UserRepository::update(
             $request->get('user_id'),
             $request->get('first_name'),
             $request->get('last_name'),
             $request->get('phone'),
             $request->get('email'),
-            $request->get('password'),
+            $request->get('password') != "********" ? $request->get('password') : null,
             $request->get('opt_in'),
             $request->get('address'),
             $request->get('address2'),
@@ -63,6 +68,8 @@ class UserController extends AdminController
 
             return redirect()->back()->withInput();
         }
+
+        $request->session()->flash('confirmation', trans('wine-supervisor::user.user_admin_update_success'));
 
         return redirect()->route('admin_user_list');
     }

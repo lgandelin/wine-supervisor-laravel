@@ -41,6 +41,11 @@ class TechnicianController extends AdminController
     {
         parent::__construct($request);
 
+        if ($request->get('password') != $request->get('password_confirm')) {
+            $request->session()->flash('error', trans('wine-supervisor::signup.user_password_confirmation'));
+            return redirect()->back()->withInput();
+        }
+
         $requestID = Uuid::uuid4()->toString();
 
         $technician = TechnicianRepository::getByID($request->get('technician_id'));
@@ -61,7 +66,7 @@ class TechnicianController extends AdminController
             $request->get('registration'),
             $request->get('phone'),
             $request->get('email'),
-            $request->get('password'),
+            $request->get('password') != "********" ? $request->get('password') : null,
             $request->get('address'),
             $request->get('address2'),
             $request->get('zipcode'),

@@ -74,6 +74,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="password">Mot de passe <span class="required">*</span> <i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">(7 caractères minimum)</i></label>
+                            <input type="password" name="password" id="password" value="********" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password_confirm">Confirmation du mot de passe <span class="required">*</span></label>
+                            <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password" value="********" />
+                        </div>
+
+                        <div class="form-group">
                             <label for="address">Adresse</label>
                             <input type="text" name="address" id="address" value="{{ $technician->address }}" />
                         </div>
