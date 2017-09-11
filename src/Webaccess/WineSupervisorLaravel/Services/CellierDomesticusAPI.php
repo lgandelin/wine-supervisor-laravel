@@ -62,6 +62,8 @@ class CellierDomesticusAPI
                 'city' => $user->city,
                 'country' => $user->country,
                 'phone' => $user->phone,
+                'degreeType' => 'celcius',
+                'culture' => 'FR',
             ],
             'headers' => [
                 'Authorization' => 'profile="UsernameToken"',
@@ -112,6 +114,8 @@ class CellierDomesticusAPI
                 'city' => $technician->city,
                 'country' => $technician->country,
                 'phone' => $technician->phone,
+                'degreeType' => 'celcius',
+                'culture' => 'FR',
             ],
             'headers' => [
                 'Authorization' => 'profile="UsernameToken"',
