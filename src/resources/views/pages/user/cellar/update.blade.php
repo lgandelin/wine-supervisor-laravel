@@ -56,7 +56,7 @@
                     @if (!$cellar->user->read_only)
                         <div class="links">
                             <a class="link" href="#">{{ trans('wine-supervisor::cellar.update.sav') }}</a>
-                            <a class="link" href="#">{{ trans('wine-supervisor::generic.delete') }}</a>
+                            <a class="link" data-fancybox data-src="#modal-delete-cellar" href="javascript:;">{{ trans('wine-supervisor::generic.delete') }}</a>
                         </div>
                     @endif
                 </div>
@@ -151,14 +151,19 @@
             {{ csrf_field() }}
         </form>
 
+        -->
+
+    </div>
+
+    <div style="display: none;" id="modal-delete-cellar">
         <h2>Suppression</h2>
 
         <p>ATTENTION : Valider ce formulaire entrainera la suppression de votre cave dans le système.</p>
 
         <form action="{{ route('user_cellar_delete_handler') }}" method="POST">
-            <div>
+            <div class="form-group">
                 <label for="reason">Raison de la suppression</label>
-                <select name="reason" id="reason">
+                <select name="reason" id="reason" class="form-control">
                     <option value="board_out_of_order">Carte HS</option>
                     <option value="other">Autre</option>
                 </select>
@@ -168,7 +173,9 @@
             <input type="submit" value="Valider" />
             <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
             {{ csrf_field() }}
-        </form>-->
+        </form>
 
     </div>
+
+    <script src="{{ asset('js/vendor/fancybox.js') }}"></script>
 @stop
