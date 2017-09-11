@@ -1,8 +1,20 @@
 <?php
 
 return [
-    'login' => 'Se connecter',
-    'forgotten_password' => 'Mot de passe oublié ?',
+    'login' => [
+        'login' => 'Se connecter',
+        'meta_title' => 'Connexion | WineSupervisor',
+        'unelligible_to_club_premium' => 'Votre compte ne vous donne pas droit aux ventes du Club Avantage Wine Supervisor.',
+    ],
+
+    'forgotten_password' => [
+        'forgotten_password' => 'Mot de passe oublié ?',
+        'meta_title' => 'Mot de passe oublié | WineSupervisor',
+        'page_title' => 'Mot de passe oublié',
+        'your_email' => 'Votre email',
+        'send_me_a_new_password' => 'M\'envoyer un nouveau mot de passe',
+    ],
+
     'login_or_password_error' => 'Impossible de se connecter avec cet identifiant et ce mot de passe.',
     'technician_access_error' => 'Votre compte n\'a pas encore été validé. Nous vous préviendrons par email une fois que ce sera le cas.',
     'guest_access_dates_error' => 'Ce compte invité est arrivé a expiration.',

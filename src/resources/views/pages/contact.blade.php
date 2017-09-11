@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Nous contacter | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::contact.meta_title') }}@endsection
 
 @section('page-content')
     <div class="contact-template">
@@ -11,7 +11,7 @@
         <div class="banner" id="top">
             <h2>
                 <span class="your-cellar subtitle"></span>
-                <span class="title">Nous contacter</span>
+                <span class="title">{{ trans('wine-supervisor::contact.page_title') }}</span>
             </h2>
         </div>
         <!-- BANNER -->
@@ -33,8 +33,8 @@
 
             <div class="left-content">
                 <div class="page-header">
-                    <h1>Nous contacter</h1>
-                    <p>N'hésitez pas à nous contacter via ce formulaire pour n'importe quelle demande.</p>
+                    <h1>{{ trans('wine-supervisor::contact.page_title') }}</h1>
+                    <p>{{ trans('wine-supervisor::contact.page_header') }}</p>
                 </div>
 
                 <div class="info" style="margin-left: 4.5rem;">
@@ -47,26 +47,26 @@
                 <form action="{{ route('contact_handler') }}" method="post">
 
                     <div class="form-group">
-                        <label for="subject">Sujet :</label>
+                        <label for="subject">{{ trans('wine-supervisor::contact.subject') }} :</label>
                         <input type="text" name="subject" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email :</label>
+                        <label for="email">{{ trans('wine-supervisor::contact.email') }} :</label>
                         <input type="text" name="email" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Téléphone :</label>
+                        <label for="phone">{{ trans('wine-supervisor::contact.phone') }} :</label>
                         <input type="text" name="phone" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Message :</label>
+                        <label for="phone">{{ trans('wine-supervisor::contact.message') }} :</label>
                         <textarea name="message" id="message" cols="30" rows="10"></textarea>
                     </div>
 
-                    <input type="submit" value="Envoyer" />
+                    <input type="submit" value="{{ trans('wine-supervisor::contact.send') }}" />
                     {{ csrf_field() }}
                 </form>
             </div>

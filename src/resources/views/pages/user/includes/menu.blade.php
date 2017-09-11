@@ -43,8 +43,8 @@
                     <input type="password" name="password" autocomplete="off" />
                 </div>
 
-                <input type="submit" value="{{ trans('wine-supervisor::login.login') }}" />
-                <a class="forgotten-password" href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password') }}</a>
+                <input type="submit" value="{{ trans('wine-supervisor::login.login.login') }}" />
+                <a class="forgotten-password" href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password.forgotten_password') }}</a>
 
                 <input type="hidden" name="route" value="{{ (isset($route) && $route) ? $route : (Request::route() ? Request::route()->getName() : '') }}" />
                 {!! csrf_field() !!}

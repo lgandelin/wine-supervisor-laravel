@@ -31,7 +31,7 @@
                             @if (($is_user || $is_guest) && $is_eligible_to_club_premium)
                                 @if ($wine->club_premium_price && $sale->is_active)
                                     <span class="sale-price">
-                                        <span class="club_premium_price_label">Prix Club Avantage</span>
+                                        <span class="club_premium_price_label">{{ trans('wine-superivisor::sales_slider.club_premium_price') }}</span>
                                         <span class="prices">
                                             @if ($wine->standard_price)<span class="standard">{{ $wine->standard_price }}€</span> -> @endif
                                             <span class="club_premium">{{ $wine->club_premium_price }}€</span>
@@ -42,9 +42,9 @@
 
                             @if ($sale->is_active)
                                 @if ((!$is_user && !$is_guest) || !$is_eligible_to_club_premium)
-                                    <a href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">Accès vente</a>
+                                    <a href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">{{ trans('wine-superivisor::sales_slider.sales_access') }}</a>
                                 @elseif ($wine->link)
-                                    <a target="_blank" href="{{ $wine->link }}" class="button">Commander</a>
+                                    <a target="_blank" href="{{ $wine->link }}" class="button">{{ trans('wine-superivisor::sales_slider.order') }}</a>
                                 @endif
                             @endif
                         </li>

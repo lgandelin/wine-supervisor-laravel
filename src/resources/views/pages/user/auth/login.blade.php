@@ -1,6 +1,6 @@
 @extends('wine-supervisor::master')
 
-@section('page-title') Connexion | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::login.login.meta_title') }}@endsection
 
 @section('main-content')
 
@@ -18,7 +18,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Se connecter</h1>
+                <h1>{{ trans('wine-supervisor::login.login.login') }}</h1>
 
                 @if (isset($is_technician) && $is_technician)
                     <p>Votre accès professionnel ne vous donne pas droit aux ventes du Club Avantage Wine Supervisor. Si vous désirez un code pour accédez à une vente, faites-nous
@@ -28,7 +28,7 @@
                 @endif
 
                 @if ($is_user && isset($is_eligible_to_club_premium) && !$is_eligible_to_club_premium)
-                    <p>Votre compte ne vous donne pas droit aux ventes du Club Avantage Wine Supervisor.</p>
+                    <p>{{ trans('wine-supervisor::login.login.unelligible_to_club_premium') }}</p>
                 @endif
 
                 <div class="login">
@@ -41,8 +41,8 @@
                             <input type="password" name="password" autocomplete="off" />
                         </div>
 
-                        <input type="submit" value="{{ trans('wine-supervisor::login.login') }}" />
-                        <a class="forgotten-password" href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password') }}</a>
+                        <input type="submit" value="{{ trans('wine-supervisor::login.login.login') }}" />
+                        <a class="forgotten-password" href="{{ route('forgotten_password') }}">{{ trans('wine-supervisor::login.forgotten_password.forgotten_password') }}</a>
 
                         <input type="hidden" name="route" @if (isset($next_route) && $next_route)value="{{ $next_route }}"@endif />
                         {!! csrf_field() !!}

@@ -1,6 +1,6 @@
 @extends('wine-supervisor::master')
 
-@section('page-title') Connexion | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::login.login.meta_title') }}@endsection
 
 @section('main-content')
 
@@ -18,7 +18,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Se connecter</h1>
+                <h1>{{ trans('wine-supervisor::login.login.login') }}</h1>
 
                 <div class="login" style="overflow: hidden;">
                     <form class="login form-horizontal" role="form" method="POST" action="{{ route('admin_login_handler') }}">
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-valid" value="{{ trans('wine-supervisor::login.login') }}" />
+                            <input type="submit" class="btn btn-valid" value="{{ trans('wine-supervisor::login.login.login') }}" />
                         </div>
 
                         {!! csrf_field() !!}
