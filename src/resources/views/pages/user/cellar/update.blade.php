@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Modifier une cave | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::cellar.update.meta_title') }}@endsection
 
 @section('page-content')
 
@@ -11,7 +11,7 @@
         <!-- BANNER -->
         <div class="banner">
             <h1>
-                <span class="title">La Cave, partout.</span>
+                <span class="title">{{ trans('wine-supervisor::cellar.update.banner_title') }}</span>
             </h1>
         </div>
         <!-- BANNER -->
@@ -20,9 +20,11 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Modification de cave</h1>
-                <p>Vous pouvez modifier les informations sur votre cave si vous le désirez.<br/>
-                    L’ID professionnel peut-être ajouté si toutefois vous n’en disposiez pas lors de l’enregistrement initial.</p>
+                <h1>{{ trans('wine-supervisor::cellar.update.page_title') }}</h1>
+                <p>
+                    {{ trans('wine-supervisor::cellar.update.page_header.1') }}<br/>
+                    {{ trans('wine-supervisor::cellar.update.page_header.2') }}
+                </p>
             </div>
             <!-- PAGE HEADER -->
 
@@ -43,18 +45,18 @@
 
                 <!-- LEFT COLUMN -->
                 <div class="left-column">
-                    <h2>Identifiant WineSupervisor</h2>
+                    <h2>{{ trans('wine-supervisor::cellar.winesupervisor_id') }}</h2>
                     <span class="mak">{{ $cellar->cd_cellar_id }}</span>
 
                     @if ($cellar->serial_number)
-                        <h2>N° de série de l'appareil</h2>
+                        <h2>{{ trans('wine-supervisor::cellar.serial_number') }}</h2>
                         <span class="serial-number">{{ $cellar->serial_number }}</span>
                     @endif
 
                     @if (!$cellar->user->read_only)
                         <div class="links">
-                            <a class="link" href="#">SAV</a>
-                            <a class="link" href="#">Supprimer</a>
+                            <a class="link" href="#">{{ trans('wine-supervisor::cellar.update.sav') }}</a>
+                            <a class="link" href="#">{{ trans('wine-supervisor::generic.delete') }}</a>
                         </div>
                     @endif
                 </div>
@@ -64,46 +66,46 @@
                 <div class="right-column">
                     <form action="{{ route('user_cellar_update_handler') }}" method="POST">
                         <div class="form-group">
-                            <label for="name">Nom de la cave</label>
+                            <label for="name">{{ trans('wine-supervisor::cellar.cellar_name') }}</label>
                             <input type="text" name="name" value="{{ $cellar->name }}" />
                         </div>
 
                         <div class="form-group">
-                            <label for="technician_id">ID Professionnel</label>
+                            <label for="technician_id">{{ trans('wine-supervisor::cellar.technician_id') }}</label>
                             <input type="text" name="technician_id" id="technician_id" value="@if ($cellar->technician){{ $cellar->technician->technician_code }}@endif" />
                         </div>
 
                         <div class="form-group">
-                            <label for="subscription_type">Type d'abonnement <span class="required">*</span></label>
+                            <label for="subscription_type">{{ trans('wine-supervisor::cellar.update.subscription_type') }} <span class="required">*</span></label>
                             <select name="subscription_type" id="subscription_type" required>
-                                <option value="">Sélectionner</option>
-                                <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION }}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)selected="selected"@endif>Standard</option>
-                                {{--<option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>Premium</option>--}}
+                                <option value="">{{ trans('wine-supervisor::generic.select') }}</option>
+                                <option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION }}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION)selected="selected"@endif>{{ trans('wine-supervisor::subscriptions.standard') }}</option>
+                                {{--<option value="{{ Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION}}" @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION)selected="selected"@endif>{{ trans('wine-supervisor::subscriptions.premium') }}</option>--}}
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="address">Adresse de la cave <span class="required">*</span></label>
+                            <label for="address">{{ trans('wine-supervisor::cellar.cellar_address') }} <span class="required">*</span></label>
                             <input type="text" name="address" value="{{ $cellar->address }}" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="address2">Complément d'adresse</label>
+                            <label for="address2">{{ trans('wine-supervisor::generic.address_2') }}</label>
                             <input type="text" name="address2" id="address2" value="{{ $cellar->address2 }}"/>
                         </div>
 
                         <div class="form-group">
-                            <label for="zipcode">Code postal</label>
+                            <label for="zipcode">{{ trans('wine-supervisor::generic.zipcode') }}</label>
                             <input type="text" name="zipcode" id="zipcode" value="{{ $cellar->zipcode }}" />
                         </div>
 
                         <div class="form-group">
-                            <label for="city">Ville <span class="required">*</span></label>
+                            <label for="city">{{ trans('wine-supervisor::generic.city') }} <span class="required">*</span></label>
                             <input type="text" name="city" id="city" value="{{ $cellar->city }}" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="country">Pays <span class="required">*</span></label>
+                            <label for="country">{{ trans('wine-supervisor::generic.country') }} <span class="required">*</span></label>
                             <select name="country" id="country" required>
                                 @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                     <option value="{{ $key }}" @if ($cellar->country == $key)selected="selected"@endif>{{ $label }}</option>
@@ -111,11 +113,11 @@
                             </select>
                         </div>
 
-                        <i class="legend"><span class="required">*</span> : champs obligatoires</i>
+                        <i class="legend"><span class="required">*</span> : {{ trans('wine-supervisor::generic.mandatory_fields') }}</i>
 
                         @if (!$cellar->user->read_only)
                             <div class="submit-container">
-                                <input type="submit" class="button red-button" value="Valider" />
+                                <input type="submit" class="button red-button" value="{{ trans('wine-supervisor::generic.valid') }}" />
                             </div>
                         @endif
 
@@ -128,7 +130,7 @@
             </div>
             <!-- PAGE CONTENT -->
 
-            <a class="button red-button back-button" href="{{ route('user_update_account') }}">Retour</a>
+            <a class="button red-button back-button" href="{{ route('user_update_account') }}">{{ trans('wine-supervisor::generic.back') }}</a>
         </div>
 
         @include('wine-supervisor::partials.legal-notices')

@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Mentions légales | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::legal_notices.meta_title') }}@endsection
 
 @section('page-content')
 <div class="contact-template">
@@ -11,7 +11,7 @@
     <div class="banner" id="top">
         <h2>
             <span class="your-cellar subtitle"></span>
-            <span class="title">Mentions légales</span>
+            <span class="title">{{ trans('wine-supervisor::legal_notices.page_title') }}</span>
         </h2>
     </div>
     <!-- BANNER -->

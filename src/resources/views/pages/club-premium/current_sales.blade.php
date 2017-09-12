@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Ventes en cours du Club Avantage | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::club_premium.current_sales.meta_title') }}@endsection
 
 @section('page-content')
 
@@ -23,8 +23,8 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Ventes en cours</h1>
-                <p>Tous les trimestres retrouvez la nouvelle sélection du Club Avantage WineSupervisor validée par le comité de dégustation.</p>
+                <h1>{{ trans('wine-supervisor::club_premium.current_sales.page_title') }}</h1>
+                <p>{{ trans('wine-supervisor::club_premium.current_sales.page_header') }}</p>
             </div>
             <!-- PAGE HEADER -->
 

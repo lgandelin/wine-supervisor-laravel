@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Informations sur le Club Avantage | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::club_premium.informations.meta_title') }}@endsection
 
 @section('page-content')
 
@@ -23,8 +23,8 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Informations</h1>
-                <p>En connectant votre cave à WineSupervisor II, vous devenez un membre privilégié du Club Avantage WineSupervisor.</p>
+                <h1>{{ trans('wine-supervisor::club_premium.informations.page_title') }}</h1>
+                <p>{{ trans('wine-supervisor::club_premium.informations.page_header') }}</p>
             </div>
             <!-- PAGE HEADER -->
 

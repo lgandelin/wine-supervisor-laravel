@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') La cave, partout | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::home.meta_title') }}@endsection
 
 @section('page-content')
     <div class="home-template">
@@ -10,7 +10,7 @@
         <!-- BANNER -->
         <div class="banner" id="top">
             <h2>
-                <span class="title">La Cave, partout.</span>
+                <span class="title">{{ trans('wine-supervisor::home.banner_title') }}</span>
             </h2>
         </div>
         <!-- BANNER -->
@@ -23,15 +23,15 @@
                 <?php include base_path() . '/contents/home/wine-supervisor.html' ?>
 
                 <div class="buttons">
-                    <a href="http://friax.fr/winesupervisor" target="_blank" class="btn red-button btn-discover">Découvrir</a>
+                    <a href="http://friax.fr/winesupervisor" target="_blank" class="btn red-button btn-discover">{{ trans('wine-supervisor::home.buttons.discover') }}</a>
                     @if (!$is_user && !$is_technician && !$is_guest)
-                        <a href="{{ route('user_login') }}?route=index" class="btn red-button btn-supervision">Se connecter</a>
+                        <a href="{{ route('user_login') }}?route=index" class="btn red-button btn-supervision">{{ trans('wine-supervisor::home.buttons.login') }}</a>
                     @elseif ($is_eligible_to_supervision)
-                        <a href="{{ route('supervision') }}" target="_blank" class="btn red-button btn-supervision">Supervision</a>
+                        <a href="{{ route('supervision') }}" target="_blank" class="btn red-button btn-supervision">{{ trans('wine-supervisor::home.buttons.supervision') }}</a>
                     @endif
                 </div>
 
-                <img class="box-image" src="{{ asset('img/home/box/box.png') }}" width="390" height="453" alt="Boitier WineSupervisor" />
+                <img class="box-image" src="{{ asset('img/home/box/box.png') }}" width="390" height="453" alt="WineSupervisor" />
             </div>
         </div>
         <!-- BOX -->
@@ -39,7 +39,7 @@
         <!-- CLUB -->
         <div class="club" id="club-avantage">
             <div class="container">
-                <h2 class="title">Le Club Avantage</h2>
+                <h2 class="title">{{ trans('wine-supervisor::home.club_premium.title') }}</h2>
             </div>
         </div>
         <!-- CLUB -->
@@ -53,7 +53,7 @@
                     <?php include base_path() . '/contents/home/club-avantage.html' ?>
                 </div>
 
-                <a href="{{ route('club_premium') }}" class="btn red-button">Découvrez le Club Avantage</a>
+                <a href="{{ route('club_premium') }}" class="btn red-button">{{ trans('wine-supervisor::home.club_premium.discover_club_premium') }}</a>
             </div>
         </div>
 
@@ -74,7 +74,7 @@
         @if ($contents)
             <div class="news" id="actualites">
                 <div class="container">
-                    <h2 class="title">Actualités</h2>
+                    <h2 class="title">{{ trans('wine-supervisor::home.news') }}</h2>
 
                     <div class="news-slider-dots"></div>
                     <ul class="news-slider">
@@ -98,7 +98,7 @@
         <!-- OUR PARTNERS -->
         <div class="our-partners" id="nos-partenaires">
             <div class="container">
-                <h2 class="title">Partenaires</h2>
+                <h2 class="title">{{ trans('wine-supervisor::home.partners') }}</h2>
 
                 <div class="partners-slider-arrows"></div>
                 <ul class="partners-slider">

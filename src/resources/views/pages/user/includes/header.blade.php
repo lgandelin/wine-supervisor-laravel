@@ -6,7 +6,7 @@
     <div class="top-bar">
         <div class="container">
             @if (isset($first_name) && $first_name)
-                <span class="welcome">@if (isset($route) && preg_match('/club_premium/', $route)){{'Bonne dégustation'}}@else{{'Bienvenue'}}@endif, <span class="first-name">{{ $first_name }}</span></span>
+                <span class="welcome">@if (isset($route) && preg_match('/club_premium/', $route)){{ trans('wine-supervisor::menus.top_menu.good_tasting') }}@else{{ trans('wine-supervisor::menus.top_menu.welcome') }}@endif, <span class="first-name">{{ $first_name }}</span></span>
             @endif
 
             <div class="nav">
@@ -24,11 +24,12 @@
             <span class="hamburger"></span>
             <nav>
                 <ul>
-                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#top">Accueil</a></li>
-                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#club-avantage">Le Club</a></li>
-                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#actualites">Actualités</a></li>
-                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#nos-partenaires">Nos partenaires</a></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
+                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#top">{{ trans('wine-supervisor::menus.main_menu.home') }}</a></li>
+                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#club-avantage">{{ trans('wine-supervisor::menus.main_menu.club') }}</a></li>
+                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#actualites">{{ trans('wine-supervisor::menus.main_menu.news') }}</a></li>
+                    <li><a href="@if (isset($route) && $route == 'index')@else{{ route('index') }}@endif#nos-partenaires">{{ trans('wine-supervisor::menus.main_menu.partners') }}</a></li>
+                    <li><a href="http://friax.fr/faq" target="_blank">{{ trans('wine-supervisor::menus.main_menu.faq') }}</a></li>
+                    <li><a href="{{ route('contact') }}">{{ trans('wine-supervisor::menus.main_menu.contact') }}</a></li>
                 </ul>
             </nav>
 

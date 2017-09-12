@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Historique des ventes du Club Avantage | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::club_premium.sales_history.meta_title') }}@endsection
 
 @section('page-content')
 
@@ -23,8 +23,8 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Historique des ventes</h1>
-                <p>Vous avez apprécié les produits sélectionnés par le Club Avantage. Retrouvez ici les liens avec les acteurs des ventes précédentes et rendez-leur visite à nouveau.</p>
+                <h1>{{ trans('wine-supervisor::club_premium.sales_history.page_title') }}</h1>
+                <p>{{ trans('wine-supervisor::club_premium.sales_history.page_header') }}</p>
             </div>
             <!-- PAGE HEADER -->
 

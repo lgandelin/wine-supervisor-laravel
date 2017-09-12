@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Comité de dégustation du Club Avantage | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::club_premium.comity.meta_title') }}@endsection
 
 @section('page-content')
 
@@ -23,8 +23,8 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Comité de dégustation</h1>
-                <p>Le comité de dégustation du Club Avantage WineSupervisor va vous faire rêver.</p>
+                <h1>{{ trans('wine-supervisor::club_premium.comity.page_title') }}</h1>
+                <p>{{ trans('wine-supervisor::club_premium.comity.page_header') }}</p>
             </div>
             <!-- PAGE HEADER -->
 
