@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Créer un compte | WineSupervisor @endsection
+@section('page-title'){{ trans('wine-supervisor::signup.user.meta_title') }}@endsection
 
 @section('page-content')
     <div class="signup-template">
@@ -13,12 +13,12 @@
             <div class="steps">
                 <div class="step active">
                     <span class="step-number">1</span>
-                    <span class="step-title">Compte</span>
+                    <span class="step-title">{{ trans('wine-supervisor::signup.steps.account') }}</span>
                 </div>
 
                 <div class="step">
                     <span class="step-number">2</span>
-                    <span class="step-title">Cave</span>
+                    <span class="step-title">{{ trans('wine-supervisor::signup.steps.cellar') }}</span>
                 </div>
             </div>
             <!-- STEPS -->
@@ -26,17 +26,18 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header" id="user_header">
-                <h1>Créer un compte</h1>
-                <p>Vous venez d’acquérir un WineSupervisor II et désirez le connecter. Rien de plus simple.<br>
-                    Remplissez le formulaire en cochant la case utilisateur. Indiquez les codes fournis avec votre produit. Validez, vous êtes connectés sur le superviseur.<br>
-                    Si vous avez déjà un compte et que vous désirez ajouter une nouvelle cave alors connectez-vous et créez votre nouvelle cave dans ce compte.</p>
+                <h1>{{ trans('wine-supervisor::signup.create_account') }}</h1>
+                <p>
+                    {{ trans('wine-supervisor::signup.user.page_header.1') }}<br>
+                    {{ trans('wine-supervisor::signup.user.page_header.2') }}<br>
+                    {{ trans('wine-supervisor::signup.user.page_header.3') }}
+                </p>
             </div>
 
             <div class="page-header" id="technician_header" style="display:none">
-                <h1>Créer un compte</h1>
-                <p>Vous êtes installateurs de systèmes WineSupervisor II. Cochez la case installateur et remplissez le formulaire. Après validation par notre équipe vous
-                    obtiendrez un identifiant que vous communiquerez aux utilisateurs dont vous avez le suivi des caves. Vous pourrez ainsi suivre le bon fonctionnement
-                    de l’ensemble des installations réalisées chez vos clients.
+                <h1>{{ trans('wine-supervisor::signup.create_account') }}</h1>
+                <p>
+                    {{ trans('wine-supervisor::signup.technician.page_header') }}
                 </p>
             </div>
             <!-- PAGE HEADER -->
@@ -58,9 +59,9 @@
 
                 <form action="">
                     <div class="form-group">
-                        <label>Vous êtes</label>
-                        <div class="radio"><input type="radio" name="user_type" value="1" checked="checked" /> Utilisateur</div>
-                        <div class="radio"><input type="radio" name="user_type" value="2"> Installateur</div>
+                        <label>{{ trans('wine-supervisor::signup.you_are') }}</label>
+                        <div class="radio"><input type="radio" name="user_type" value="1" checked="checked" /> {{ trans('wine-supervisor::signup.user_account') }}</div>
+                        <div class="radio"><input type="radio" name="user_type" value="2"> {{ trans('wine-supervisor::signup.technician_account') }}</div>
                     </div>
                 </form>
 
@@ -68,57 +69,57 @@
                 <form id="user_signup" action="{{ route('user_signup_handler') }}" method="post">
 
                     <div class="form-group">
-                        <label for="last_name">Nom <span class="required">*</span></label>
+                        <label for="last_name">{{ trans('wine-supervisor::generic.last_name') }} <span class="required">*</span></label>
                         <input type="text" name="last_name" id="last_name" value="{{ $last_name }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">Prénom</label>
+                        <label for="first_name">{{ trans('wine-supervisor::generic.first_name') }}</label>
                         <input type="text" name="first_name" id="first_name" value="{{ $first_name }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Téléphone <span class="required">*</span></label>
+                        <label for="phone">{{ trans('wine-supervisor::generic.phone') }} <span class="required">*</span></label>
                         <input type="text" name="phone" id="phone" value="{{ $phone }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email <span class="required">*</span></label>
+                        <label for="email">{{ trans('wine-supervisor::generic.email') }} <span class="required">*</span></label>
                         <input type="text" name="email" id="email" value="{{ $email }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe <span class="required">*</span><i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">(7 caractères minimum)</i></label>
+                        <label for="password">{{ trans('wine-supervisor::generic.password') }} <span class="required">*</span><i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">{{ trans('wine-supervisor::generic.password_notice') }}</i></label>
                         <input type="password" name="password" id="password" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirmation mot de passe <span class="required">*</span></label>
+                        <label for="password_confirm">{{ trans('wine-supervisor::generic.password_confirmation') }} <span class="required">*</span></label>
                         <input type="password" name="password_confirm" id="password_confirm" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Adresse <span class="required">*</span></label>
+                        <label for="address">{{ trans('wine-supervisor::generic.address') }} <span class="required">*</span></label>
                         <input type="text" name="address" id="address" value="{{ $address }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="address2">Complément d'adresse</label>
+                        <label for="address2">{{ trans('wine-supervisor::generic.address_2') }}</label>
                         <input type="text" name="address2" id="address2" value="{{ $address2 }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal</label>
+                        <label for="zipcode">{{ trans('wine-supervisor::generic.zipcode') }}</label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ $zipcode }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Ville <span class="required">*</span></label>
+                        <label for="city">{{ trans('wine-supervisor::generic.city') }} <span class="required">*</span></label>
                         <input type="text" name="city" id="city" value="{{ $city }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Pays <span class="required">*</span></label>
+                        <label for="country">{{ trans('wine-supervisor::generic.country') }} <span class="required">*</span></label>
                         <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if ($country == $key)selected="selected"@endif @if (!$country && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
@@ -127,15 +128,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="opt_in" style="display: inline-block; margin-right: 1rem; vertical-align: middle;">Recevoir la Newsletter du Club</label><i>(modifiable dans votre espace utilisateur)</i><br>
-                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in == true || $opt_in === null)checked="checked"@endif /> Oui</div>
-                        <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$opt_in)checked="checked"@endif /> Non</div>
+                        <label for="opt_in" style="display: inline-block; margin-right: 1rem; vertical-align: middle;">{{ trans('wine-supervisor::user.update_account.receive_club_newsletter') }}</label><i>{{ trans('wine-supervisor::signup.user.club_newsletter_updatable_in_account') }}</i><br>
+                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in == true || $opt_in === null)checked="checked"@endif /> {{ trans('wine-supervisor::generic.yes') }}</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$opt_in)checked="checked"@endif /> {{ trans('wine-supervisor::generic.no') }}</div>
                     </div>
 
-                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
+                    <i class="legend"><span class="required">*</span> : {{ trans('wine-supervisor::generic.mandatory_fields') }}</i>
 
                     <div class="submit-container">
-                        <input type="submit" class="button red-button" value="Valider" />
+                        <input type="submit" class="button red-button" value="{{ trans('wine-supervisor::generic.valid') }}" />
                     </div>
                     <input type="hidden" value="1" name="type" />
                     {{ csrf_field() }}
@@ -147,67 +148,67 @@
                 <form id="technician_signup" action="{{ route('technician_signup_handler') }}" method="post" style="display:none">
 
                     <div class="form-group">
-                        <label for="last_name">Nom</label>
+                        <label for="last_name">{{ trans('wine-supervisor::generic.last_name') }}</label>
                         <input type="text" name="last_name" id="last_name" value="{{ old('last_name') }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">Prénom</label>
+                        <label for="first_name">{{ trans('wine-supervisor::generic.first_name') }}</label>
                         <input type="text" name="first_name" id="first_name" value="{{ old('first_name') }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="company">Nom de la société <span class="required">*</span></label>
+                        <label for="company">{{ trans('wine-supervisor::technician.company_name') }} <span class="required">*</span></label>
                         <input type="text" name="company" id="company" value="{{ old('company') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="registration">Immatriculation <span class="required">*</span> <i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">(N° de TVA intracommunautaire)</i></label>
+                        <label for="registration">{{ trans('wine-supervisor::technician.immatriculation') }} <span class="required">*</span> <i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">{{ trans('wine-supervisor::technician.immatriculation_notice') }}</i></label>
                         <input type="text" name="registration" id="registration" value="{{ old('registration') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Téléphone <span class="required">*</span></label>
+                        <label for="phone">{{ trans('wine-supervisor::generic.phone') }} <span class="required">*</span></label>
                         <input type="text" name="phone" id="phone" value="{{ old('phone') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email <span class="required">*</span></label>
+                        <label for="email">{{ trans('wine-supervisor::generic.email') }} <span class="required">*</span></label>
                         <input type="text" name="email" id="email" value="{{ old('email') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Mot de passe <span class="required">*</span><i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">(7 caractères minimum)</i></label>
+                        <label for="password">{{ trans('wine-supervisor::generic.password') }} <span class="required">*</span><i style="display:inline-block; vertical-align: middle; margin-left: 1rem;">{{ trans('wine-supervisor::generic.password_notice') }}</i></label>
                         <input type="password" name="password" id="password" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="password_confirm">Confirmation mot de passe <span class="required">*</span></label>
+                        <label for="password_confirm">{{ trans('wine-supervisor::generic.password_confirmation') }} <span class="required">*</span></label>
                         <input type="password" name="password_confirm" id="password_confirm" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="address">Adresse <span class="required">*</span></label>
+                        <label for="address">{{ trans('wine-supervisor::generic.address') }} <span class="required">*</span></label>
                         <input type="text" name="address" id="address" value="{{ old('address') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="address2">Complément d'adresse</label>
+                        <label for="address2">{{ trans('wine-supervisor::generic.address_2') }}</label>
                         <input type="text" name="address2" id="address2" value="{{ old('address2') }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="zipcode">Code postal</label>
+                        <label for="zipcode">{{ trans('wine-supervisor::generic.zipcode') }}</label>
                         <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode') }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="city">Ville <span class="required">*</span></label>
+                        <label for="city">{{ trans('wine-supervisor::generic.city') }} <span class="required">*</span></label>
                         <input type="text" name="city" id="city" value="{{ old('city') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <label for="country">Pays <span class="required">*</span></label>
+                        <label for="country">{{ trans('wine-supervisor::generic.country') }} <span class="required">*</span></label>
                         <select name="country" id="country" required>
                             @foreach (\Webaccess\WineSupervisorLaravel\Tools\CountriesTool::getCountriesList() as $key => $label)
                                 <option value="{{ $key }}" @if (old('country') == $key)selected="selected"@endif @if (!old('country') && $key == 'FR')selected="selected"@endif>{{ $label }}</option>
@@ -215,10 +216,10 @@
                         </select>
                     </div>
 
-                    <i class="legend"><span class="required">*</span> : champs obligatoires</i>
+                    <i class="legend"><span class="required">*</span> : {{ trans('wine-supervisor::generic.mandatory_fields') }}</i>
 
                     <div class="submit-container">
-                        <input type="submit" class="button red-button" value="Valider" />
+                        <input type="submit" class="button red-button" value="{{ trans('wine-supervisor::generic.valid') }}" />
                     </div>
 
                     <input type="hidden" value="2" name="type" />
