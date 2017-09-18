@@ -9,6 +9,8 @@ return [
     'cellar_update_error' => 'Une erreur est survenue lors de la mise à jour de la cave. Veuillez nous excuser pour la gêne occasionnée.',
     'create_cellar_button' => 'Ajouter une cave',
     'id_ws_error' => 'ID Wine Supervisor non trouvé ou déjà utilisé. Veuillez vérifier que vous avez bien saisi le champ Identifiant WineSupervisor.',
+    'boar_type_not_sav_error' => 'L\'identifiant WineSupervisor entré est invalide pour un SAV.',
+    'cellar_sav_success' => 'Changement d\'identifiant WineSupervisor effectué avec succès !',
 
     'cellar_name' => 'Nom de la cave',
     'winesupervisor_id' => 'Identifiant WineSupervisor',

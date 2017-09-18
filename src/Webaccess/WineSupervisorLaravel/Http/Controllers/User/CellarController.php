@@ -180,17 +180,17 @@ class CellarController extends UserController
             'id' => $requestID,
             'cellar_id' => $request->get('cellar_id'),
             'user_id' => $this->getUserID(),
-            'id_ws' => $request->get('id_ws')
+            'cd_ws_id' => $request->get('cd_ws_id')
         ]);
 
         list($success, $error) = CellarRepository::sav(
             $request->get('cellar_id'),
             $this->getUserID(),
-            $request->get('id_ws')
+            $request->get('cd_ws_id')
         );
 
         if (!$success) {
-            $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_sav_error'));
+            $request->session()->flash('error', $error);
 
             Log::info('USER_SAV_CELLAR_RESPONSE', [
                 'id' => $requestID,
