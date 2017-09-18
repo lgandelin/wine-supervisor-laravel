@@ -58,6 +58,41 @@ class TechnicianController extends AdminController
             'status' => $request->get('status'),
         ]);
 
+        list($success, $error) = TechnicianRepository::update_status(
+            $request->get('technician_id'),
+            $request->get('read_only'),
+            $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
+        );
+
+        if (!$success) {
+            $request->session()->flash('error', trans('wine-supervisor::technician.technician_update_error'));
+
+            Log::info('ADMIN_UPDATE_TECHNICIAN_RESPONSE', [
+                'id' => $requestID,
+                'error' => $error,
+                'success' => false
+            ]);
+
+            return redirect()->back()->withInput();
+        }
+
+        Log::info('ADMIN_UPDATE_TECHNICIAN_REQUEST', [
+            'id' => $requestID,
+            'admin_id' => $this->getAdministratorID(),
+            'technician_id' => $request->get('technician_id'),
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'company' => $request->get('company'),
+            'registration' => $request->get('registration'),
+            'phone' => $request->get('phone'),
+            'email' => $request->get('email'),
+            'address' => $request->get('address'),
+            'address2' => $request->get('address2'),
+            'zipcode' => $request->get('zipcode'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+        ]);
+
         list($success, $error) = TechnicianRepository::update(
             $request->get('technician_id'),
             $request->get('first_name'),
@@ -72,12 +107,6 @@ class TechnicianController extends AdminController
             $request->get('zipcode'),
             $request->get('city'),
             $request->get('country')
-        );
-
-        list($success, $error) = TechnicianRepository::update_status(
-            $request->get('technician_id'),
-            $request->get('read_only'),
-            $request->get('status') === 'on' ? Technician::STATUS_ENABLED : Technician::STATUS_DISABLED
         );
 
         if (!$success) {

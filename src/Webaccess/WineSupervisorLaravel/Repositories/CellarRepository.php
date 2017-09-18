@@ -273,8 +273,32 @@ class CellarRepository extends BaseRepository
                 return self::error(trans('wine-supervisor::generic.api_error'));
             }
 
+            //Call API : Unaffect cellar to a technician
+            if ($oldTechnicianID && (!$technicianID || $technicianID != $oldTechnicianID)) {
+                sleep(2);
+
+                try {
+                    $technician = TechnicianRepository::getByID($oldTechnicianID);
+                    $cellar = CellarRepository::getByID($cellar->id);
+
+                    (new CellierDomesticusAPI())->unaffect_cellar($cellar, $technician);
+                } catch (\Exception $e) {
+                    Log::info('API_UNAFFECT_CELLAR_ERROR', [
+                        'user_id' => $userID,
+                        'cd_user_id' => $user->cd_user_id,
+                        'cellar_id' => $cellar->id,
+                        'cd_cellar_id' => $cellar->cd_cellar_id,
+                        'technician_id' => $technicianID,
+                        'cd_technician_id' => $technician->cd_user_id,
+                        'error' => $e->getMessage(),
+                    ]);
+
+                    return self::error(trans('wine-supervisor::generic.api_error'));
+                }
+            }
+
             //Call API : Affect cellar to a technician
-            if ($technicianID && !$oldTechnicianID) {
+            if ($technicianID && (!$oldTechnicianID || $technicianID != $oldTechnicianID)) {
                 sleep(2);
 
                 try {
@@ -297,29 +321,6 @@ class CellarRepository extends BaseRepository
                 }
             }
 
-            //Call API : Unaffect cellar to a technician
-            if (!$technicianID && $oldTechnicianID) {
-                sleep(2);
-                
-                try {
-                    $technician = TechnicianRepository::getByID($oldTechnicianID);
-                    $cellar = CellarRepository::getByID($cellar->id);
-
-                    (new CellierDomesticusAPI())->unaffect_cellar($cellar, $technician);
-                } catch (\Exception $e) {
-                    Log::info('API_UNAFFECT_CELLAR_ERROR', [
-                        'user_id' => $userID,
-                        'cd_user_id' => $user->cd_user_id,
-                        'cellar_id' => $cellar->id,
-                        'cd_cellar_id' => $cellar->cd_cellar_id,
-                        'technician_id' => $technicianID,
-                        'cd_technician_id' => $technician->cd_user_id,
-                        'error' => $e->getMessage(),
-                    ]);
-
-                    return self::error(trans('wine-supervisor::generic.api_error'));
-                }
-            }
         }
 
         return self::success();

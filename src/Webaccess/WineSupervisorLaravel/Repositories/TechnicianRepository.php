@@ -100,6 +100,9 @@ class TechnicianRepository extends BaseRepository
         if (!$oldStatus && $status) {
             try {
                 (new CellierDomesticusAPI())->create_technician($technician);
+
+                sleep(2);
+
             } catch (\Exception $e) {
                 Log::info('API_CREATE_TECHNICIAN_ERROR', [
                     'technician_id' => $technician->id,

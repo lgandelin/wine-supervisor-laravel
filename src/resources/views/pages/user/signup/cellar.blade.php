@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="id_ws">{{ trans('wine-supervisor::cellar.technician_code') }}</label>
+                        <label for="id_ws">{{ trans('wine-supervisor::cellar.technician_id') }}</label>
                         <input type="text" name="technician_id" id="technician_id" value="{{ old('technician_id') }}" />
                     </div>
 
