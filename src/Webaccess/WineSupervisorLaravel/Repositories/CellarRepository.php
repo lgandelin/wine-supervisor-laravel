@@ -329,20 +329,39 @@ class CellarRepository extends BaseRepository
     /**
      * @param $cellarID
      * @param $userID
-     * @param $idWS
+     * @param $cdWSID
      * @return bool
      */
-    public static function sav($cellarID, $userID, $idWS)
+    public static function sav($cellarID, $userID, $cdWSID)
     {
-        if (!CellarRepository::checkIDWS($idWS)) {
-            return self::error(trans('wine-supervisor::user_signup.id_ws_error'));
-        }
-
-        //TODO : CALL CDO
+        $idWS = WSRepository::getWSIDFromCDWSID($cdWSID);
 
         if ($cellar = Cellar::find($cellarID)) {
 
+            //Check that the WS ID entered is of type SAV
+            if ($ws = WS::find($idWS)) {
+                if ($ws->board_type != WS::SAV_BOARD) {
+                    return self::error(trans('wine-supervisor::cellar.boar_type_not_sav_error'));
+                }
+            } else {
+                return self::error(trans('wine-supervisor::cellar.id_ws_error'));
+            }
+
             $oldIDWS = $cellar->id_ws;
+
+            //Call API : sav cellar
+            try {
+                (new CellierDomesticusAPI())->sav($cellar, $idWS);
+            } catch (\Exception $e) {
+                Log::info('API_SAV_CELLAR_ERROR', [
+                    'cellar_id' => $cellarID,
+                    'cellar_cd_id' => $cellar->cd_cellar_id,
+                    'new_id_ws' => $idWS,
+                    'error' => $e->getMessage(),
+                ]);
+
+                return self::error(trans('wine-supervisor::generic.api_error'));
+            }
 
             //Update WS table (old board)
             if ($oldWS = WS::find($oldIDWS)) {
@@ -383,8 +402,6 @@ class CellarRepository extends BaseRepository
      */
     public static function delete($cellarID, $boardType)
     {
-        //TODO : CALL CDO
-
         if ($cellar = Cellar::find($cellarID)) {
 
             //Update WS table
@@ -403,6 +420,20 @@ class CellarRepository extends BaseRepository
             if (!$cellar->delete()) {
                 return self::error(trans('wine-supervisor::cellar.database_error'));
             }
+
+            //Call API : delete cellar
+            try {
+                (new CellierDomesticusAPI())->delete_cellar($cellar);
+            } catch (\Exception $e) {
+                Log::info('API_DELETE_CELLAR_ERROR', [
+                    'cellar_id' => $cellarID,
+                    'cellar_cd_id' => $cellar->cd_cellar_id,
+                    'error' => $e->getMessage(),
+                ]);
+
+                return self::error(trans('wine-supervisor::generic.api_error'));
+            }
+
         } else {
             return self::error(trans('wine-supervisor::cellar.id_not_found'));
         }

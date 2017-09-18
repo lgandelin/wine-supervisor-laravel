@@ -445,4 +445,58 @@ class CellierDomesticusAPI
             ]);
         }
     }
+
+    public function delete_cellar(Cellar $cellar)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_DELETE_CELLAR_REQUEST', $requestData);
+
+        if ($response = $this->client->request('DELETE', sprintf('/api/cellars/%s', $cellar->cd_cellar_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_DELETE_CELLAR_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_DELETE_CELLAR_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function sav(Cellar $cellar, $newIDWS)
+    {
+        $requestData = [
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_SAV_CELLAR_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s', $cellar->cd_cellar_id, $newIDWS), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_SAV_CELLAR_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_SAV_CELLAR_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
 }

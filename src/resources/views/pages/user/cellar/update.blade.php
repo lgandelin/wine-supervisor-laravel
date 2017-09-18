@@ -55,8 +55,8 @@
 
                     @if (!$cellar->user->read_only)
                         <div class="links">
-                            <a class="link" href="#">{{ trans('wine-supervisor::cellar.update.sav') }}</a>
-                            <a class="link" href="#">{{ trans('wine-supervisor::generic.delete') }}</a>
+                            <a class="link" data-fancybox data-src="#modal-sav-cellar" href="javascript:;">{{ trans('wine-supervisor::cellar.update.sav') }}</a>
+                            <a class="link" data-fancybox data-src="#modal-delete-cellar" href="javascript:;">{{ trans('wine-supervisor::generic.delete') }}</a>
                         </div>
                     @endif
                 </div>
@@ -135,40 +135,47 @@
 
         @include('wine-supervisor::partials.legal-notices')
 
-        <!--<h2>SAV</h2>
+    </div>
 
-        <p>Si vous avez changé votre carte, veuillez renseignez ci-dessous l'adresse MAK de votre nouvelle carte.</p>
-
-        <form action="{{ route('user_cellar_sav_handler') }}" method="POST">
-            <div>
-                <label for="id_ws">Nouvelle adresse MAK</label>
-                <input type="text" name="id_ws" id="id_ws" />
-            </div>
-
-            <a href="{{ route('user_cellar_list') }}">Retour</a>
-            <input type="submit" value="Valider" />
-            <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
-            {{ csrf_field() }}
-        </form>
-
+    <div style="display: none;" id="modal-delete-cellar" class="modal">
         <h2>Suppression</h2>
 
-        <p>ATTENTION : Valider ce formulaire entrainera la suppression de votre cave dans le système.</p>
+        <p class="warning">ATTENTION : Valider ce formulaire entrainera la suppression de votre cave dans le système.</p>
 
         <form action="{{ route('user_cellar_delete_handler') }}" method="POST">
-            <div>
+            <div class="form-group">
                 <label for="reason">Raison de la suppression</label>
-                <select name="reason" id="reason">
+                <select name="reason" id="reason" class="form-control">
                     <option value="board_out_of_order">Carte HS</option>
                     <option value="other">Autre</option>
                 </select>
             </div>
 
-            <a href="{{ route('user_cellar_list') }}">Retour</a>
+            <a href="{{ route('user_cellar_list') }}" data-fancybox-close class="back-button">Retour</a>
             <input type="submit" value="Valider" />
             <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
             {{ csrf_field() }}
-        </form>-->
-
+        </form>
     </div>
+
+    <div style="display: none;" id="modal-sav-cellar" class="modal">
+
+        <h2>SAV</h2>
+
+        <p>Si vous avez changé votre carte, veuillez renseigner ci-dessous le nouvel Identifiant WineSupevisor.</p>
+
+        <form action="{{ route('user_cellar_sav_handler') }}" method="POST">
+            <div class="form-group">
+                <label for="cd_ws_id">Identifiant WineSupevisor</label>
+                <input type="text" name="cd_ws_id" id="cd_ws_id" class="form-control" />
+            </div>
+
+            <a href="{{ route('user_cellar_list') }}" data-fancybox-close class="back-button">Retour</a>
+            <input type="submit" value="Valider" />
+            <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
+            {{ csrf_field() }}
+        </form>
+    </div>
+
+    <script src="{{ asset('js/vendor/fancybox.js') }}"></script>
 @stop

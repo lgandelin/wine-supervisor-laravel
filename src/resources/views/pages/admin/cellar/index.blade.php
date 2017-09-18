@@ -46,9 +46,12 @@
                             <td class="table-cell align-left">@if ($cellar->user)<a href="{{ route('admin_user_update', ['uuid' => $cellar->user->id]) }}" title="Voir la fiche de l'utilisateur">{{ $cellar->user->last_name }} {{ $cellar->user->first_name }}</a>@endif</td>
                             <td class="table-cell align-left">@if ($cellar->technician)<a href="{{ route('admin_technician_update', ['uuid' => $cellar->technician->id]) }}" title="Voir la fiche du technicien">{{ $cellar->technician->last_name }} {{ $cellar->technician->first_name }} [{{ $cellar->technician->company }}]</a>@endif</td>
                             <td class="table-cell align-left">@if ($cellar->created_at){{ DateTime::createFromFormat('Y-m-d H:i:s', $cellar->created_at)->format('d/m/Y') }}@endif</td>
-                            <td class="table-cell action" width="8%">
+                            <td class="table-cell action" width="14%">
                                 <a href="{{ route('admin_cellar_update', $cellar->id) }}"><button class="edit">Modifier</button></a>
-                                {{--<a href="{{ route('admin_cellar_delete_handler', $cellar->id) }}"><button class="delete">Supprimer</button></a>--}}
+
+                                @if (!$cellar->user_id)
+                                    <a href="{{ route('admin_cellar_delete_handler', $cellar->id) }}"><button class="delete">Supprimer</button></a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
