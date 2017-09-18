@@ -3172,6 +3172,49 @@ footer a, footer a:visited {
   z-index: 2;
 }
 
+/* line 1, ../sass/partials/_modals.scss */
+.modal {
+  padding: 5rem;
+}
+/* line 4, ../sass/partials/_modals.scss */
+.modal h2 {
+  color: #1e95c9;
+  font-weight: 700;
+  font-size: 4.2rem;
+  margin-bottom: 2rem;
+}
+/* line 11, ../sass/partials/_modals.scss */
+.modal h2:after {
+  content: " ";
+  width: 1.8rem;
+  height: 0.3rem;
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 3.5rem;
+  background: #1e95c9;
+}
+/* line 22, ../sass/partials/_modals.scss */
+.modal .warning {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #e0363d;
+  font-family: "Roboto";
+  font-size: 1.8rem;
+  font-style: italic;
+}
+/* line 32, ../sass/partials/_modals.scss */
+.modal form {
+  padding-left: 10rem;
+  padding-right: 10rem;
+  margin-top: 5rem;
+}
+/* line 38, ../sass/partials/_modals.scss */
+.modal .back-button {
+  margin-top: 2rem;
+  display: block;
+  float: left;
+}
+
 /* line 3, ../sass/pages/_login.scss */
 .login-template .page-header {
   margin-top: 6rem;

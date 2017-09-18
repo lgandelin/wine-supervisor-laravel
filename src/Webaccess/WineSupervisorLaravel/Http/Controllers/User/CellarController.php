@@ -218,13 +218,15 @@ class CellarController extends UserController
         $boardType = ($request->get('reason') == 'board_out_of_order') ? WS::OUT_OF_ORDER_BOARD : WS::OTHER_BOARD;
         $requestID = Uuid::uuid4()->toString();
 
+        $cellarID = $request->get('cellar_id');
+
         Log::info('USER_DELETE_CELLAR_REQUEST', [
             'id' => $requestID,
-            'cellar_id' => $request->get('cellar_id'),
+            'cellar_id' => $cellarID,
             'board_type' => $boardType,
         ]);
 
-        list($success, $error) = CellarRepository::delete($request->get('cellar_id'), $boardType);
+        list($success, $error) = CellarRepository::delete($cellarID, $boardType);
 
         if (!$success) {
             $request->session()->flash('error', trans('wine-supervisor::cellar.cellar_delete_error'));

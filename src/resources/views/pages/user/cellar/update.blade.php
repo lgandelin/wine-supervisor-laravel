@@ -155,10 +155,10 @@
 
     </div>
 
-    <div style="display: none;" id="modal-delete-cellar">
+    <div style="display: none;" id="modal-delete-cellar" class="modal">
         <h2>Suppression</h2>
 
-        <p>ATTENTION : Valider ce formulaire entrainera la suppression de votre cave dans le système.</p>
+        <p class="warning">ATTENTION : Valider ce formulaire entrainera la suppression de votre cave dans le système.</p>
 
         <form action="{{ route('user_cellar_delete_handler') }}" method="POST">
             <div class="form-group">
@@ -169,7 +169,7 @@
                 </select>
             </div>
 
-            <a href="{{ route('user_cellar_list') }}">Retour</a>
+            <a href="{{ route('user_cellar_list') }}" data-fancybox-close class="back-button">Retour</a>
             <input type="submit" value="Valider" />
             <input type="hidden" name="cellar_id" value="{{ $cellar->id }}" />
             {{ csrf_field() }}

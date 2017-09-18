@@ -55,7 +55,7 @@
                             <div class="table-row">
                                 <div class="table-cell cellar">@if ($cellar->name){{ $cellar->name }}@endif</div>
                                 <div class="table-cell status"><span class="icon status-ok" title="Votre abonnement est valide"></span></div>
-                                <div class="table-cell date">@if ($cellar->subscription_end_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $cellar->subscription_end_date)->format('d/m/Y') }}@endif</div>
+                                <div class="table-cell date">@if ($cellar->subscription_end_date){{ DateTime::createFromFormat('Y-m-d H:i:s', $cellar->subscription_end_date)->format('d/m/Y') }}@else{{ '&nbsp;' }}@endif</div>
                                 <div class="table-cell type">
                                     @if ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::DEFAULT_SUBSCRIPTION){{ trans('wine-supervisor::subscriptions.standard') }}
                                     @elseif ($cellar->subscription_type == Webaccess\WineSupervisorLaravel\Models\Subscription::PREMIUM_SUBSCRIPTION){{ trans('wine-supervisor::subscriptions.premium') }}
