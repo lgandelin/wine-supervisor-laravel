@@ -11,4 +11,16 @@ return [
     'technician_signup' => 'technician/signup',
 
     'legal_notices' => 'legal-notices',
+
+    'forgotten_password' => '/forgotten-password',
+
+    'my_cellars' => 'user/my-cellars',
+    'create_cellar' => 'user/create-cellar',
+    'update_cellar' => 'user/update-cellar',
+    'sav_cellar' => 'user/sav-cellar',
+    'delete_cellar' => 'user/delete-cellar',
+
+    'my_account' => 'user/my-account',
+
+    'technician_my_account' => 'technician/my-account',
 ];

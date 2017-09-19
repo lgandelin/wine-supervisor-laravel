@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function __construct(Request $request)
     {
         $this->request = $request;
-        view()->share('route', $request->route()->getName());
+        view()->share('route', $request->route() ? $request->route()->getName() : null);
     }
 
     public function login()
@@ -44,11 +44,17 @@ class LoginController extends Controller
             'email' => $this->request->input('login'),
             'password' => $this->request->input('password'),
         ])) {
+            $user = Auth::user();
+
             //Update last connection date
-            Auth::user()->last_connection_date = new DateTime();
-            Auth::user()->save();
+            $user->last_connection_date = new DateTime();
+            $user->save();
 
             $route = $this->request->input('route') ? $this->request->input('route') : 'user_update_account';
+
+            /*if ($user->locale == 'en') {
+                return redirect()->route($route);
+            }*/
 
             return redirect()->route($route);
         }
@@ -65,6 +71,12 @@ class LoginController extends Controller
                     'error' => trans('wine-supervisor::login.technician_access_error'),
                 ]);
             }
+
+            $user = Auth::guard('technicians')->user();
+
+            /*if ($user->locale == 'en') {
+                return redirect()->route('technician_update_account');
+            }*/
 
             return redirect()->route('technician_update_account');
         }

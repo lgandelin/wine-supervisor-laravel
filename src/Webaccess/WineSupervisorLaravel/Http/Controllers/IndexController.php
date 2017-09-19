@@ -26,7 +26,7 @@ class IndexController extends Controller
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(3),
             'sales' => SaleRepository::getCurrentSales(),
-            'route' => $request->route()->getName(),
+            'route' => $request->route() ? $request->route()->getName() : null,
         ]);
     }
 

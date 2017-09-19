@@ -13,14 +13,18 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
     Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
     Route::pattern('id_ws', '[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}');
 
-    Route::get('/login', array('as' => 'user_login', 'uses' => 'LoginController@login'));
-    Route::post('/login', array('as' => 'user_login_handler', 'uses' => 'LoginController@authenticate'));
-    Route::get('/se-deconnecter', array('as' => 'user_logout', 'uses' => 'LoginController@logout'));
-    Route::get('/mot-de-passe-oublie', array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
-    Route::post('/mot-de-passe-oublie', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
-
     Route::group(['prefix' => $locale], function () {
+
+        //AUTH ROUTES
+        Route::get('/login', array('as' => 'user_login', 'uses' => 'LoginController@login'));
+        Route::post('/login', array('as' => 'user_login_handler', 'uses' => 'LoginController@authenticate'));
+        Route::get('/disconnect', array('as' => 'user_logout', 'uses' => 'LoginController@logout'));
+        Route::get(trans('wine-supervisor::routes.forgotten_password'), array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
+        Route::post(trans('wine-supervisor::routes.forgotten_password'), array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
+
+        //PUBLIC ROUTES
         Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
+
         Route::get(trans('wine-supervisor::routes.club_premium'), array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'));
         Route::get(trans('wine-supervisor::routes.club_premium_comity'), array('as' => 'club_premium_comity', 'uses' => 'ClubPremium\IndexController@comity'));
         Route::get(trans('wine-supervisor::routes.club_premium_current_sales'), array('as' => 'club_premium_current_sales', 'uses' => 'ClubPremium\IndexController@current_sales'));
@@ -28,6 +32,8 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
 
         Route::get(trans('wine-supervisor::routes.legal_notices'), array('as' => 'legal_notices', 'uses' => 'IndexController@legal_notices'));
 
+
+        //SIGNUP ROUTES
         Route::get(trans('wine-supervisor::routes.user_signup'), array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
         Route::post(trans('wine-supervisor::routes.user_signup'), array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
 
@@ -36,31 +42,34 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
 
         Route::get(trans('wine-supervisor::routes.technician_signup'), array('as' => 'technician_signup_success', 'uses' => 'User\SignupController@technician_signup_success'));
         Route::post(trans('wine-supervisor::routes.technician_signup'), array('as' => 'technician_signup_handler', 'uses' => 'User\SignupController@technician_signup_handler'));
+
+        Route::get('/contact', array('as' => 'contact', 'uses' => 'IndexController@contact'));
+        Route::post('/contact', array('as' => 'contact_handler', 'uses' => 'IndexController@contact_handler'));
+
+        //USER ROUTES
+        Route::group(['middleware' => ['user']], function () {
+            Route::get(trans('wine-supervisor::routes.my_cellars'), array('as' => 'user_cellar_list', 'uses' => 'User\CellarController@index'));
+            Route::get(trans('wine-supervisor::routes.create_cellar'), array('as' => 'user_cellar_create', 'uses' => 'User\CellarController@create'));
+            Route::post(trans('wine-supervisor::routes.create_cellar'), array('as' => 'user_cellar_create_handler', 'uses' => 'User\CellarController@create_handler'));
+            Route::get(trans('wine-supervisor::routes.update_cellar') . '/{uuid}', array('as' => 'user_cellar_update', 'uses' => 'User\CellarController@update'));
+            Route::post(trans('wine-supervisor::routes.update_cellar'), array('as' => 'user_cellar_update_handler', 'uses' => 'User\CellarController@update_handler'));
+            Route::post(trans('wine-supervisor::routes.sav_cellar'), array('as' => 'user_cellar_sav_handler', 'uses' => 'User\CellarController@sav_handler'));
+            Route::post(trans('wine-supervisor::routes.delete_cellar'), array('as' => 'user_cellar_delete_handler', 'uses' => 'User\CellarController@delete_handler'));
+
+            Route::get(trans('wine-supervisor::routes.my_account'), array('as' => 'user_update_account', 'uses' => 'User\AccountController@update'));
+            Route::post(trans('wine-supervisor::routes.my_account'), array('as' => 'user_update_account_handler', 'uses' => 'User\AccountController@update_handler'));
+        });
+
+        //TECHNICIAN ROUTES
+        Route::group(['middleware' => ['technician']], function () {
+            Route::get(trans('wine-supervisor::routes.technician_my_account'), array('as' => 'technician_update_account', 'uses' => 'Technician\AccountController@update'));
+            Route::post(trans('wine-supervisor::routes.technician_my_account'), array('as' => 'technician_update_account_handler', 'uses' => 'Technician\AccountController@update_handler'));
+        });
     });
 
     Route::get('/supervision', array('as' => 'supervision', 'uses' => 'IndexController@supervision'));
 
-    Route::get('/contact', array('as' => 'contact', 'uses' => 'IndexController@contact'));
-    Route::post('/contact', array('as' => 'contact_handler', 'uses' => 'IndexController@contact_handler'));
-
-    Route::group(['middleware' => ['user']], function () {
-        Route::get('/utilisateur/mes-caves', array('as' => 'user_cellar_list', 'uses' => 'User\CellarController@index'));
-        Route::get('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create', 'uses' => 'User\CellarController@create'));
-        Route::post('/utilisateur/ajouter-cave', array('as' => 'user_cellar_create_handler', 'uses' => 'User\CellarController@create_handler'));
-        Route::get('/utilisateur/modifier-cave/{uuid}', array('as' => 'user_cellar_update', 'uses' => 'User\CellarController@update'));
-        Route::post('/utilisateur/modifier-cave', array('as' => 'user_cellar_update_handler', 'uses' => 'User\CellarController@update_handler'));
-        Route::post('/utilisateur/sav-cave', array('as' => 'user_cellar_sav_handler', 'uses' => 'User\CellarController@sav_handler'));
-        Route::post('/utilisateur/supprimer-cave', array('as' => 'user_cellar_delete_handler', 'uses' => 'User\CellarController@delete_handler'));
-
-        Route::get('/utilisateur/mon-compte', array('as' => 'user_update_account', 'uses' => 'User\AccountController@update'));
-        Route::post('/utilisateur/mon-compte', array('as' => 'user_update_account_handler', 'uses' => 'User\AccountController@update_handler'));
-    });
-
-    Route::group(['middleware' => ['technician']], function () {
-        Route::get('/professionnel/mon-compte', array('as' => 'technician_update_account', 'uses' => 'Technician\AccountController@update'));
-        Route::post('/professionnel/mon-compte', array('as' => 'technician_update_account_handler', 'uses' => 'Technician\AccountController@update_handler'));
-    });
-
+    //ADMIN ROUTES
     Route::get('/admin/login', array('as' => 'admin_login', 'uses' => 'Admin\LoginController@login'));
     Route::post('/admin/login', array('as' => 'admin_login_handler', 'uses' => 'Admin\LoginController@authenticate'));
     Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'Admin\LoginController@logout'));

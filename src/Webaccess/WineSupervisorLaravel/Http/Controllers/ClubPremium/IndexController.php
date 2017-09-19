@@ -11,7 +11,7 @@ class IndexController
 {
     public function __construct(Request $request)
     {
-        view()->share('route', $request->route()->getName());
+        view()->share('route', $request->route() ? $request->route()->getName() : null);
     }
 
     public function index(Request $request)

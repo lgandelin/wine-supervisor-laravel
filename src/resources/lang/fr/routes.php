@@ -11,4 +11,16 @@ return [
     'technician_signup' => 'professionnel/inscription',
 
     'legal_notices' => 'mentions-legales',
+
+    'forgotten_password' => 'mot-de-passe-oublie',
+
+    'my_cellars' => 'utilisateur/mes-caves',
+    'create_cellar' => 'utilisateur/ajouter-cave',
+    'update_cellar' => 'utilisateur/modifier-cave',
+    'sav_cellar' => 'utilisateur/sav-cave',
+    'delete_cellar' => 'utilisateur/supprimer-cave',
+
+    'my_account' => 'utilisateur/mon-compte',
+
+    'technician_my_account' => 'professionnel/mon-compte',
 ];
