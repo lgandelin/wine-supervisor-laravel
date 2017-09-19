@@ -83,8 +83,13 @@
                                 @if ($content->image)<img class="image" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'contents/' . $content->id . '/' . $content->image) }}" alt="{{ $content->title }}" width="350" height="273" />@endif
                                 <div class="content">
                                     @if ($content->publication_date)<span class="date">{{ strftime('%d %B %Y', DateTime::createFromFormat('Y-m-d', $content->publication_date)->getTimestamp()) }}</span>@endif
-                                    @if ($content->title)<h3>{{ $content->title }}</h3>@endif
-                                    @if ($content->text)<p>{!! $content->text !!}</p>@endif
+                                    @if (App::getLocale() == 'en')
+                                        @if ($content->title_en)<h3>{{ $content->title_en }}</h3>@endif
+                                        @if ($content->text_en)<p>{!! $content->text_en !!}</p>@endif
+                                    @else
+                                        @if ($content->title)<h3>{{ $content->title }}</h3>@endif
+                                        @if ($content->text)<p>{!! $content->text !!}</p>@endif
+                                    @endif
                                 </div>
                             </li>
                         @endforeach

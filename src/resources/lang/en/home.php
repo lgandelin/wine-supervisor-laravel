@@ -14,7 +14,6 @@ return [
     'club_premium' => [
         'title' => 'Le Club Avantage',
         'discover_club_premium' => 'Découvrez le Club Avantage',
-
     ],
 
     'news' => 'Actualités',

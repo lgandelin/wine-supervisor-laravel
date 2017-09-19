@@ -38,6 +38,11 @@
                         <input type="text" name="title" id="title" value="{{ old('title') }}" />
                     </div>
 
+                    <div class="form-group">
+                        <label for="title_en">Titre EN</label>
+                        <input type="text" name="title_en" id="title_en" value="{{ old('title_en') }}" />
+                    </div>
+
                     <div class="form-group" style="display:none;">
                         <label for="slug">URI</label>
                         <input type="text" name="slug" id="slug" value="{{ old('slug') }}" />
@@ -46,6 +51,11 @@
                     <div class="form-group">
                         <label for="text">Texte</label>
                         <textarea class="editor" name="text" id="text">{{ old('text') }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text_en">Texte EN</label>
+                        <textarea class="editor" name="text_en" id="text_en">{{ old('text_en') }}</textarea>
                     </div>
 
                     <div class="form-group">
@@ -79,6 +89,7 @@
     <script>
         $(document).ready(function() {
             CKEDITOR.replace( 'text' );
+            CKEDITOR.replace( 'text_en' );
         });
     </script>
 @stop

@@ -30,25 +30,29 @@ class SaleRepository extends BaseRepository
 
     /**
      * @param $title
+     * @param $title_en
      * @param $description
      * @param $image
      * @param $wines
      * @param $startDate
      * @param $endDate
      * @param $comments
+     * @param $comments_en
      * @return bool
      */
-    public static function create($title, $description, $image, $wines, $startDate, $endDate, $comments)
+    public static function create($title, $title_en, $description, $image, $wines, $startDate, $endDate, $comments, $comments_en)
     {
         $sale = new Sale();
         $sale->id = Uuid::uuid4()->toString();
         $sale->title = $title;
+        $sale->title_en = $title_en;
         $sale->description = $description;
         $sale->image = $image;
         $sale->wines = $wines;
         $sale->start_date = $startDate;
         $sale->end_date = $endDate;
         $sale->comments = $comments;
+        $sale->comments_en = $comments_en;
 
         if ($sale->save()) {
             return $sale->id;
@@ -60,24 +64,28 @@ class SaleRepository extends BaseRepository
     /**
      * @param $saleID
      * @param $title
+     * @param $title_en
      * @param $description
      * @param $image
      * @param $wines
      * @param $startDate
      * @param $endDate
      * @param $comments
+     * @param $comments_en
      * @return bool
      */
-    public static function update($saleID, $title, $description, $image, $wines, $startDate, $endDate, $comments)
+    public static function update($saleID, $title, $title_en, $description, $image, $wines, $startDate, $endDate, $comments, $comments_en)
     {
         if ($sale = Sale::find($saleID)) {
             $sale->title = $title;
+            $sale->title_en = $title_en;
             $sale->description = $description;
             $sale->image = $image;
             $sale->wines = $wines;
             $sale->start_date = $startDate;
             $sale->end_date = $endDate;
             $sale->comments = $comments;
+            $sale->comments_en = $comments_en;
 
             return $sale->save();
         }

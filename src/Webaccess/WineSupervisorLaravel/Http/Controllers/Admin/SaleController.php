@@ -52,6 +52,7 @@ class SaleController extends AdminController
         $names = $request->get('wine_name');
         $varieties = $request->get('wine_variety');
         $texts = $request->get('wine_text');
+        $texts_en = $request->get('wine_text_en');
         $images = $request->get('wine_image');
         $bottle_images = $request->get('wine_bottle_image');
         $links = $request->get('wine_link');
@@ -86,6 +87,7 @@ class SaleController extends AdminController
                     'name' => $names[$i],
                     'variety' => isset($varieties[$i]) ? $varieties[$i] : '',
                     'text' => isset($texts[$i]) ? $texts[$i] : '',
+                    'text_en' => isset($texts_en[$i]) ? $texts_en[$i] : '',
                     'image' => $imageWineBackground,
                     'bottle_image' => $imageWineBottle,
                     'link' => isset($links[$i]) ? $links[$i] : '',
@@ -97,12 +99,14 @@ class SaleController extends AdminController
 
         if ($saleID = SaleRepository::create(
             $request->get('title'),
+            $request->get('title_en'),
             $request->get('description'),
             $imageSaleBackground,
             json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
-            $request->get('comments')
+            $request->get('comments'),
+            $request->get('comments_en')
         )) {
             rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' . $saleID));
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_create_success'));
@@ -141,6 +145,7 @@ class SaleController extends AdminController
         $names = $request->get('wine_name');
         $varieties = $request->get('wine_variety');
         $texts = $request->get('wine_text');
+        $texts_en = $request->get('wine_text_en');
         $images = $request->get('wine_image');
         $bottle_images = $request->get('wine_bottle_image');
         $links = $request->get('wine_link');
@@ -175,6 +180,7 @@ class SaleController extends AdminController
                     'name' => $names[$i],
                     'variety' => isset($varieties[$i]) ? $varieties[$i] : '',
                     'text' => isset($texts[$i]) ? $texts[$i] : '',
+                    'text_en' => isset($texts_en[$i]) ? $texts_en[$i] : '',
                     'image' => $imageWineBackground,
                     'bottle_image' => $imageWineBottle,
                     'link' => isset($links[$i]) ? $links[$i] : '',
@@ -187,12 +193,14 @@ class SaleController extends AdminController
         if (SaleRepository::update(
             $request->get('sale_id'),
             $request->get('title'),
+            $request->get('title_en'),
             $request->get('description'),
             $imageSaleBackground,
             json_encode($wines),
             \DateTime::createFromformat('d/m/Y', $request->get('start_date'))->format('Y-m-d'),
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
-            $request->get('comments')
+            $request->get('comments'),
+            $request->get('comments_en')
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_update_success'));
         } else {

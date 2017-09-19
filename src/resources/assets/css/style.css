@@ -4010,6 +4010,15 @@ footer a, footer a:visited {
   text-decoration: underline;
 }
 
+/* line 38, ../sass/pages/admin/_admin.scss */
+.lang-flag {
+  display: inline-block;
+  margin-left: 1rem;
+  vertical-align: middle;
+  position: relative;
+  top: -3px;
+}
+
 @media only screen and (max-width: 1800px) {
   /* line 2, ../sass/responsive/_responsive.scss */
   .banner {

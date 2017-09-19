@@ -17,15 +17,23 @@
                             <img class="bottle" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->bottle_image) }}" alt="{{ $wine->name }}" />
                             <div class="content">
                                 @if (($is_user || $is_guest) && $is_eligible_to_club_premium)
-                                    @if ($sale->is_active && $sale->comments)
-                                        <div class="sale-comments">{!! nl2br($sale->comments) !!}</div>
+                                    @if ($sale->is_active)
+                                        @if (App::getLocale() == 'en' && $sale->comments_en)
+                                            <div class="sale-comments">{!! nl2br($sale->comments_en) !!}</div>
+                                        @elseif (App::getLocale() == 'fr' && $sale->comments)
+                                            <div class="sale-comments">{!! nl2br($sale->comments) !!}</div>
+                                        @endif
                                     @endif
                                 @endif
 
                                 @if (isset($wine->variety))<span class="sale-subtitle">{{ $wine->variety }}</span>@endif
                                 @if (isset($wine->name))<h3 class="sale-name">{{ $wine->name }}</h3>@endif
 
-                                {!! $wine->text !!}
+                                @if (App::getLocale() == 'en')
+                                    {!! $wine->text_en !!}
+                                @else
+                                    {!! $wine->text !!}
+                                @endif
                             </div>
 
                             @if (($is_user || $is_guest) && $is_eligible_to_club_premium)

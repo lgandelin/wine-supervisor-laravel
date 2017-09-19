@@ -40,19 +40,23 @@ class ContentRepository extends BaseRepository
 
     /**
      * @param $title
+     * @param $title_en
      * @param $slug
      * @param $text
+     * @param $text_en
      * @param $image
      * @param $publication_date
      * @return bool
      */
-    public static function create($title, $slug, $text, $image, $publication_date)
+    public static function create($title, $title_en, $slug, $text, $text_en, $image, $publication_date)
     {
         $sale = new Content();
         $sale->id = Uuid::uuid4()->toString();
         $sale->title = $title;
+        $sale->title_en = $title_en;
         $sale->slug = $slug;
         $sale->text = $text;
+        $sale->text_en = $text_en;
         $sale->image = $image;
         $sale->publication_date = $publication_date;
 
@@ -66,16 +70,22 @@ class ContentRepository extends BaseRepository
     /**
      * @param $saleID
      * @param $title
+     * @param $title_en
      * @param $slug
      * @param $text
+     * @param $text_en
+     * @param $image
+     * @param $publication_date
      * @return bool
      */
-    public static function update($saleID, $title, $slug, $text, $image, $publication_date)
+    public static function update($saleID, $title, $title_en, $slug, $text, $text_en, $image, $publication_date)
     {
         if ($sale = Content::find($saleID)) {
             $sale->title = $title;
+            $sale->title_en = $title_en;
             $sale->slug = $slug;
             $sale->text = $text;
+            $sale->text_en = $text_en;
             $sale->image = $image;
             $sale->publication_date = $publication_date;
 

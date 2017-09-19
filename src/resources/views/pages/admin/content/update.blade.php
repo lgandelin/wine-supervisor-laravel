@@ -35,8 +35,13 @@
                 <form action="{{ route('admin_content_update_handler') }}" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <label for="title">Titre</label>
+                        <label for="title">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
                         <input type="text" name="title" id="title" value="{{ $content->title }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title_en">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                        <input type="text" name="title_en" id="title_en" value="{{ $content->title_en }}" />
                     </div>
 
                     <div class="form-group" style="display:none;">
@@ -45,9 +50,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="text">Texte</label>
+                        <label for="text">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
                         <textarea class="editor" name="text" id="text">{{ $content->text }}</textarea>
                     </div>
+
+                    <div class="form-group">
+                        <label for="text_en">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                        <textarea class="editor" name="text_en" id="text_en">{{ $content->text_en }}</textarea>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="publication_date">Date de publication</label>
@@ -84,6 +95,7 @@
     <script>
         $(document).ready(function() {
             CKEDITOR.replace( 'text' );
+            CKEDITOR.replace( 'text_en' );
         });
     </script>
 @stop

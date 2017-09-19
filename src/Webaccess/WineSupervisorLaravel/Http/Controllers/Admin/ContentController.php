@@ -51,8 +51,10 @@ class ContentController extends AdminController
 
         if ($contentID = ContentRepository::create(
             $request->get('title'),
+            $request->get('title_en'),
             $request->get('slug'),
             $request->get('text'),
+            $request->get('text_en'),
             $imageNews,
             $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
@@ -93,8 +95,10 @@ class ContentController extends AdminController
         if (ContentRepository::update(
             $request->get('content_id'),
             $request->get('title'),
+            $request->get('title_en'),
             $request->get('slug'),
             $request->get('text'),
+            $request->get('text_en'),
             $imageNews,
             $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {

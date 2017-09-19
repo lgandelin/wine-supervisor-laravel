@@ -36,8 +36,13 @@
 
                     <h3><strong>Informations générales</strong></h3><br>
                     <div class="form-group">
-                        <label for="title">Titre</label>
+                        <label for="title">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
                         <input type="text" name="title" id="title" value="{{ $sale->title }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title_en">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                        <input type="text" name="title_en" id="title_en" value="{{ $sale->title_en }}" />
                     </div>
 
                     <div class="form-group" style="display: none;">
@@ -56,8 +61,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="comments">Commentaires</label>
+                        <label for="comments">Commentaires <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
                         <textarea name="comments" id="comments">@if ($sale->comments){{ $sale->comments }}@endif</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comments_en">Commentaires <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                        <textarea name="comments_en" id="comments_en">@if ($sale->comments_en){{ $sale->comments_en }}@endif</textarea>
                     </div>
 
                     <div class="form-group">
@@ -88,6 +98,11 @@
                             <div class="form-group">
                                 <label for="text[]">Texte</label>
                                 <textarea class="editor" name="wine_text[]" id="text_{{ $i }}">@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->text)){{ $sale->wines[$i]->text }}@endif</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="text_en[]">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                                <textarea class="editor" name="wine_text_en[]" id="text_en_{{ $i }}">@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->text_en)){{ $sale->wines[$i]->text_en }}@endif</textarea>
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
@@ -149,6 +164,7 @@
             CKEDITOR.replace( 'description' );
             @for($i = 0; $i < 10; $i++)
                 CKEDITOR.replace( 'text_{{ $i }}');
+                CKEDITOR.replace( 'text_en_{{ $i }}');
             @endfor
         });
     </script>
