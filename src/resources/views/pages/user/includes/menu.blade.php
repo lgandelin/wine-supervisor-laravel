@@ -1,4 +1,9 @@
 <ul>
+    <li class="langs">
+        <a @if (App::getLocale() == 'fr') class="current" @endif href="/"><img src="{{ asset('img/generic/flags/fr.jpg') }}" width="35" height="25" /></a>
+        <a @if (App::getLocale() == 'en') class="current" @endif href="/en"><img src="{{ asset('img/generic/flags/en.jpg') }}" width="35" height="25" /></a>
+    </li>
+
     @if (isset($is_technician) && $is_technician)
         <li @if (isset($route) && $route == 'technician_update_account')class="active"@endif><a href="{{ route('technician_update_account') }}">{{ trans('wine-supervisor::menus.top_menu.my_account') }}</a></li>
 

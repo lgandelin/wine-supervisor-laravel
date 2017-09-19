@@ -33,14 +33,14 @@
                 <section>
                     <div class="left-image"><img src="{{ asset('img/club-premium/left-image.jpg') }}" width="541" height="361" /></div>
                     <div class="text">
-                        <?php include base_path() . '/contents/club-avantage/qu-est-ce-que-le-club-avantage.html' ?>
+                        <?php include base_path() . '/contents/' . App::getLocale() . '/club-avantage/qu-est-ce-que-le-club-avantage.html' ?>
                     </div>
                 </section>
 
                 <section>
                     <div class="right-image" style="margin-top:1rem"><img src="{{ asset('img/club-premium/right-image.jpg') }}" width="541" height="457" /></div>
                     <div class="text" style="padding-top: 0rem;">
-                        <?php include base_path() . '/contents/club-avantage/programme-des-ventes.html' ?>
+                        <?php include base_path() . '/contents/' . App::getLocale() . '/club-avantage/programme-des-ventes.html' ?>
                     </div>
                 </section>
 

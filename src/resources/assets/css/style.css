@@ -2787,7 +2787,24 @@ header .top-bar .nav li.logout .logout-icon {
 header .top-bar .nav li.logout .logout-icon:hover {
   background-color: #114a83;
 }
-/* line 83, ../sass/partials/_header.scss */
+/* line 82, ../sass/partials/_header.scss */
+header .top-bar .nav li.langs {
+  position: relative;
+  top: 0.7rem;
+}
+/* line 86, ../sass/partials/_header.scss */
+header .top-bar .nav li.langs a {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+  opacity: 0.5;
+}
+/* line 93, ../sass/partials/_header.scss */
+header .top-bar .nav li.langs a:hover, header .top-bar .nav li.langs a.current {
+  opacity: 1;
+}
+/* line 100, ../sass/partials/_header.scss */
 header .top-bar .nav .account-icon {
   width: 5.2rem;
   height: 4.5rem;
@@ -2795,7 +2812,7 @@ header .top-bar .nav .account-icon {
   vertical-align: middle;
   background: #1e95c9 url(../img/header/account.png) no-repeat center center;
 }
-/* line 92, ../sass/partials/_header.scss */
+/* line 109, ../sass/partials/_header.scss */
 header .top-bar .nav .login {
   width: 35.6rem;
   right: 1px;
@@ -2806,7 +2823,7 @@ header .top-bar .nav .login {
   transition-property: opacity;
   transition-duration: 0.5s;
 }
-/* line 104, ../sass/partials/_header.scss */
+/* line 121, ../sass/partials/_header.scss */
 header .top-bar .nav .login a.forgotten-password {
   display: block;
   margin-top: 3.8rem;
@@ -2814,36 +2831,36 @@ header .top-bar .nav .login a.forgotten-password {
   font-size: 1.4rem;
   color: white;
 }
-/* line 113, ../sass/partials/_header.scss */
+/* line 130, ../sass/partials/_header.scss */
 header .top-bar .nav .login.login-open {
   display: block;
 }
-/* line 121, ../sass/partials/_header.scss */
+/* line 138, ../sass/partials/_header.scss */
 header .logo-navigation {
   overflow: hidden;
   padding-top: 1.7rem;
   padding-bottom: 1.5rem;
 }
-/* line 126, ../sass/partials/_header.scss */
+/* line 143, ../sass/partials/_header.scss */
 header .logo-navigation nav {
   float: right;
   margin-top: 4rem;
 }
-/* line 132, ../sass/partials/_header.scss */
+/* line 149, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li {
   display: inline-block;
   margin-right: 4rem;
 }
-/* line 136, ../sass/partials/_header.scss */
+/* line 153, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li a {
   color: #000;
 }
-/* line 140, ../sass/partials/_header.scss */
+/* line 157, ../sass/partials/_header.scss */
 header .logo-navigation nav ul li:last-child {
   margin-right: 0;
 }
 
-/* line 151, ../sass/partials/_header.scss */
+/* line 166, ../sass/partials/_header.scss */
 .input-login, .input-password {
   width: 30.6rem;
   margin-bottom: 1.3rem;
@@ -2852,7 +2869,7 @@ header .logo-navigation nav ul li:last-child {
   border: 1px solid #114a83;
   border-radius: 3px;
 }
-/* line 160, ../sass/partials/_header.scss */
+/* line 175, ../sass/partials/_header.scss */
 .input-login:before, .input-password:before {
   content: '';
   width: 4.8rem;
@@ -2861,17 +2878,17 @@ header .logo-navigation nav ul li:last-child {
   vertical-align: middle;
 }
 
-/* line 170, ../sass/partials/_header.scss */
+/* line 185, ../sass/partials/_header.scss */
 .input-login:before {
   background: #114a83 url(../img/header/ico-login.png) no-repeat center center;
 }
 
-/* line 176, ../sass/partials/_header.scss */
+/* line 191, ../sass/partials/_header.scss */
 .input-password:before {
   background: #114a83 url(../img/header/ico-password.png) no-repeat center center;
 }
 
-/* line 181, ../sass/partials/_header.scss */
+/* line 196, ../sass/partials/_header.scss */
 .input-login input[type="text"], .input-password input[type="password"] {
   margin: 0;
   padding: 0;
@@ -2883,7 +2900,7 @@ header .logo-navigation nav ul li:last-child {
   border: none;
 }
 
-/* line 194, ../sass/partials/_header.scss */
+/* line 209, ../sass/partials/_header.scss */
 input[type="submit"] {
   margin-top: 1.5rem;
   float: right;
@@ -2897,7 +2914,7 @@ input[type="submit"] {
   border-radius: 1px;
   background: #e0363d;
 }
-/* line 208, ../sass/partials/_header.scss */
+/* line 223, ../sass/partials/_header.scss */
 input[type="submit"]:hover {
   background: #e85258;
 }

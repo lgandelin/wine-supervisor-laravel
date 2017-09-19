@@ -19,7 +19,7 @@
     <!-- LEGAL NOTICES -->
     <div class="legal-notices main-content container">
 
-        <?php include base_path() . '/contents/mentions-legales/mentions-legales.html' ?>
+        <?php include base_path() . '/contents/' . App::getLocale() . '/mentions-legales/mentions-legales.html' ?>
 
     </div>
     <!-- LEGAL NOTICES -->

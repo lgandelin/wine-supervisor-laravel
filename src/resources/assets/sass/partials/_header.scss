@@ -78,6 +78,23 @@ header {
 						}
 					}
 				}
+
+				&.langs {
+					position: relative;
+					top: 0.7rem;
+
+					a {
+						padding-top: 0rem;
+						padding-bottom: 0rem;
+						display: inline-block;
+						margin-right: 0.5rem;
+						opacity: 0.5;
+
+						&:hover, &.current {
+							opacity: 1;
+						}
+					}
+				}
 			}
 
 			.account-icon {
@@ -145,8 +162,6 @@ header {
 		}
 	}
 }
-
-
 
 .input-login, .input-password {
 	width: 30.6rem;

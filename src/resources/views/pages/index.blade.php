@@ -20,7 +20,7 @@
             <div class="container">
                 <h2 class="title"><img class="logo-wine-supervisor-ii" src="{{ asset('img/home/box/logo-winesupervisor-ii.png') }}" width="450" height="100" alt="WineSupervisor" /></h2>
                 
-                <?php include base_path() . '/contents/home/wine-supervisor.html' ?>
+                <?php include base_path() . '/contents/' . App::getLocale() . '/home/wine-supervisor.html' ?>
 
                 <div class="buttons">
                     <a href="http://friax.fr/winesupervisor" target="_blank" class="btn red-button btn-discover">{{ trans('wine-supervisor::home.buttons.discover') }}</a>
@@ -50,7 +50,7 @@
                     <img src="{{ asset('img/club-premium/logo-club-avantage.png') }}" alt="Wine Supervisor - Club Avantage" width="300" height="205" />
                 </div>
                 <div class="text">
-                    <?php include base_path() . '/contents/home/club-avantage.html' ?>
+                    <?php include base_path() . '/contents/' . App::getLocale() . '/home/club-avantage.html' ?>
                 </div>
 
                 <a href="{{ route('club_premium') }}" class="btn red-button">{{ trans('wine-supervisor::home.club_premium.discover_club_premium') }}</a>

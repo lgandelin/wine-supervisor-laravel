@@ -1,6 +1,14 @@
 <?php
 
-Route::group(['middleware' => ['web']], function () {
+$locale = Request::segment(1);
+
+if (in_array($locale, Config::get('app.available_locales'))) {
+    \App::setLocale($locale);
+} else {
+    $locale = null;
+}
+
+Route::group(['middleware' => ['web']], function () use ($locale) {
 
     Route::pattern('uuid', '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}');
     Route::pattern('id_ws', '[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}:[0-9A-F]{2}');
@@ -11,26 +19,28 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/mot-de-passe-oublie', array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
     Route::post('/mot-de-passe-oublie', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
 
-    Route::get('/utilisateur/inscription', array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
     Route::post('/utilisateur/inscription', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
-    Route::get('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
     Route::post('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
     Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'User\SignupController@technician_signup_handler'));
-    Route::get('/professionnel/inscription', array('as' => 'technician_signup_success', 'uses' => 'User\SignupController@technician_signup_success'));
 
-    Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
+    Route::group(['prefix' => $locale], function () {
+        Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
+        Route::get(trans('wine-supervisor::routes.club_premium'), array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'));
+        Route::get(trans('wine-supervisor::routes.club_premium_comity'), array('as' => 'club_premium_comity', 'uses' => 'ClubPremium\IndexController@comity'));
+        Route::get(trans('wine-supervisor::routes.club_premium_current_sales'), array('as' => 'club_premium_current_sales', 'uses' => 'ClubPremium\IndexController@current_sales'));
+        Route::get(trans('wine-supervisor::routes.club_premium_sales_history'), array('as' => 'club_premium_sales_history', 'uses' => 'ClubPremium\IndexController@sales_history'));
 
-    Route::get('/club-avantages', array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'));
-    Route::get('/club-avantages/comite', array('as' => 'club_premium_comity', 'uses' => 'ClubPremium\IndexController@comity'));
-    Route::get('/club-avantages/ventes-en-cours', array('as' => 'club_premium_current_sales', 'uses' => 'ClubPremium\IndexController@current_sales'));
-    Route::get('/club-avantages/historique-des-ventes', array('as' => 'club_premium_sales_history', 'uses' => 'ClubPremium\IndexController@sales_history'));
+        Route::get(trans('wine-supervisor::routes.legal_notices'), array('as' => 'legal_notices', 'uses' => 'IndexController@legal_notices'));
+
+        Route::get(trans('wine-supervisor::routes.user_signup'), array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
+        Route::get(trans('wine-supervisor::routes.user_signup_cellar'), array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
+        Route::get(trans('wine-supervisor::routes.technician_signup'), array('as' => 'technician_signup_success', 'uses' => 'User\SignupController@technician_signup_success'));
+    });
 
     Route::get('/supervision', array('as' => 'supervision', 'uses' => 'IndexController@supervision'));
 
     Route::get('/contact', array('as' => 'contact', 'uses' => 'IndexController@contact'));
     Route::post('/contact', array('as' => 'contact_handler', 'uses' => 'IndexController@contact_handler'));
-
-    Route::get('/mentions-legales', array('as' => 'legal_notices', 'uses' => 'IndexController@legal_notices'));
 
     Route::group(['middleware' => ['user']], function () {
         Route::get('/utilisateur/mes-caves', array('as' => 'user_cellar_list', 'uses' => 'User\CellarController@index'));

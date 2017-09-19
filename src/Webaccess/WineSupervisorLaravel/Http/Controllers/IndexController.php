@@ -3,6 +3,7 @@
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +13,7 @@ use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
 
-class IndexController
+class IndexController extends Controller
 {
     public function index(Request $request)
     {

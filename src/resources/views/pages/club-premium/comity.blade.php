@@ -33,7 +33,7 @@
                 <section>
                     <div class="left-image"><img src="{{ asset('img/club-premium/comite.jpg') }}" width="541" height="379" /></div>
                     <div class="text" style="padding-top: 6rem">
-                        <?php include base_path() . '/contents/club-avantage/comite-de-degustation.html' ?>
+                        <?php include base_path() . '/contents/' . App::getLocale() . '/club-avantage/comite-de-degustation.html' ?>
                     </div>
                 </section>
                 <p>&nbsp;</p>

@@ -1,7 +1,6 @@
 <!-- HEADER -->
 <header>
 
-
     <!-- TOP BAR -->
     <div class="top-bar">
         <div class="container">
