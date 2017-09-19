@@ -417,23 +417,39 @@ class CellarRepository extends BaseRepository
                 }
             }
 
+
+            //Call API : resell cellar
+            if ($boardType == WS::PRIMO_BOARD) {
+                //Call API : delete cellar
+                try {
+                    (new CellierDomesticusAPI())->resell_cellar($cellar);
+                } catch (\Exception $e) {
+                    Log::info('API_RESELL_CELLAR_ERROR', [
+                        'cellar_id' => $cellarID,
+                        'cellar_cd_id' => $cellar->cd_cellar_id,
+                        'error' => $e->getMessage(),
+                    ]);
+
+                    return self::error(trans('wine-supervisor::generic.api_error'));
+                }
+            } else {
+                //Call API : delete cellar
+                try {
+                    (new CellierDomesticusAPI())->delete_cellar($cellar);
+                } catch (\Exception $e) {
+                    Log::info('API_DELETE_CELLAR_ERROR', [
+                        'cellar_id' => $cellarID,
+                        'cellar_cd_id' => $cellar->cd_cellar_id,
+                        'error' => $e->getMessage(),
+                    ]);
+
+                    return self::error(trans('wine-supervisor::generic.api_error'));
+                }
+            }
+
             if (!$cellar->delete()) {
                 return self::error(trans('wine-supervisor::cellar.database_error'));
             }
-
-            //Call API : delete cellar
-            try {
-                (new CellierDomesticusAPI())->delete_cellar($cellar);
-            } catch (\Exception $e) {
-                Log::info('API_DELETE_CELLAR_ERROR', [
-                    'cellar_id' => $cellarID,
-                    'cellar_cd_id' => $cellar->cd_cellar_id,
-                    'error' => $e->getMessage(),
-                ]);
-
-                return self::error(trans('wine-supervisor::generic.api_error'));
-            }
-
         } else {
             return self::error(trans('wine-supervisor::cellar.id_not_found'));
         }

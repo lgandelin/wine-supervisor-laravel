@@ -147,6 +147,7 @@
                 <label for="reason">Raison de la suppression</label>
                 <select name="reason" id="reason" class="form-control">
                     <option value="board_out_of_order">Carte HS</option>
+                    <option value="resell">Revente</option>
                     <option value="other">Autre</option>
                 </select>
             </div>
