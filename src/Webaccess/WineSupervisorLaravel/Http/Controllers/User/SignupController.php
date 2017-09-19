@@ -119,7 +119,8 @@ class SignupController
                     'address2' => $user_data->address2,
                     'zipcode' => $user_data->zipcode,
                     'city' => $user_data->city,
-                    'country' => $user_data->country
+                    'country' => $user_data->country,
+                    'locale' => app()->getLocale(),
                 ]);
 
                 list($success, $error, $result) = UserRepository::create(
@@ -133,7 +134,8 @@ class SignupController
                     $user_data->address2,
                     $user_data->zipcode,
                     $user_data->city,
-                    $user_data->country
+                    $user_data->country,
+                    app()->getLocale()
                 );
 
                 if (!$success) {
@@ -248,7 +250,8 @@ class SignupController
             'address2' => $request->get('address2'),
             'zipcode' => $request->get('zipcode'),
             'city' => $request->get('city'),
-            'country' => $request->get('country')
+            'country' => $request->get('country'),
+            'locale' => app()->getLocale()
         ]);
 
         list($success, $error, $technicianID) = TechnicianRepository::create(
@@ -263,7 +266,8 @@ class SignupController
             $request->get('address2'),
             $request->get('zipcode'),
             $request->get('city'),
-            $request->get('country')
+            $request->get('country'),
+            app()->getLocale()
         );
 
         if (!$success) {

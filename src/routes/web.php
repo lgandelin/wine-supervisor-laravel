@@ -19,10 +19,6 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
     Route::get('/mot-de-passe-oublie', array('as' => 'forgotten_password', 'uses' => 'LoginController@forgotten_password'));
     Route::post('/mot-de-passe-oublie', array('as' => 'forgotten_password_handler', 'uses' => 'LoginController@forgotten_password_handler'));
 
-    Route::post('/utilisateur/inscription', array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
-    Route::post('/utilisateur/inscription/cave', array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
-    Route::post('/professionnel/inscription', array('as' => 'technician_signup_handler', 'uses' => 'User\SignupController@technician_signup_handler'));
-
     Route::group(['prefix' => $locale], function () {
         Route::get('/', array('as' => 'index', 'uses' => 'IndexController@index'));
         Route::get(trans('wine-supervisor::routes.club_premium'), array('as' => 'club_premium', 'uses' => 'ClubPremium\IndexController@index'));
@@ -33,8 +29,13 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
         Route::get(trans('wine-supervisor::routes.legal_notices'), array('as' => 'legal_notices', 'uses' => 'IndexController@legal_notices'));
 
         Route::get(trans('wine-supervisor::routes.user_signup'), array('as' => 'user_signup', 'uses' => 'User\SignupController@signup'));
+        Route::post(trans('wine-supervisor::routes.user_signup'), array('as' => 'user_signup_handler', 'uses' => 'User\SignupController@signup_handler'));
+
         Route::get(trans('wine-supervisor::routes.user_signup_cellar'), array('as' => 'user_signup_cellar', 'uses' => 'User\SignupController@signup_cellar'));
+        Route::post(trans('wine-supervisor::routes.user_signup_cellar'), array('as' => 'user_signup_cellar_handler', 'uses' => 'User\SignupController@signup_cellar_handler'));
+
         Route::get(trans('wine-supervisor::routes.technician_signup'), array('as' => 'technician_signup_success', 'uses' => 'User\SignupController@technician_signup_success'));
+        Route::post(trans('wine-supervisor::routes.technician_signup'), array('as' => 'technician_signup_handler', 'uses' => 'User\SignupController@technician_signup_handler'));
     });
 
     Route::get('/supervision', array('as' => 'supervision', 'uses' => 'IndexController@supervision'));

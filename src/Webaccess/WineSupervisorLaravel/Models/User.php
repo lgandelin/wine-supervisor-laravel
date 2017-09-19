@@ -33,6 +33,7 @@ class User extends Authenticatable
         'zipcode',
         'city',
         'country',
+        'locale',
         'cd_user_id',
         'cd_password',
     ];

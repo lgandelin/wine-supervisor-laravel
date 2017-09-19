@@ -20,10 +20,10 @@ return [
     'zipcode' => 'Code postal',
     'city' => 'Ville',
     'country' => 'Pays',
+    'locale' => 'Locale',
 
     'valid' => 'Valider',
     'modify' => 'Modifier',
     'delete' => 'Supprimer',
     'select' => 'Sélectionner',
-
 ];

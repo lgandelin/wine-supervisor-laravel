@@ -184,6 +184,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="locale">{{ trans('wine-supervisor::generic.locale') }}</label>
+                        <select name="locale" id="locale" required>
+                            <option value="fr" @if ($user->locale == 'fr' || !$user->locale)selected="selected"@endif>Français</option>
+                            <option value="en" @if ($user->locale == 'en')selected="selected"@endif>English</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="opt_in">{{ trans('wine-supervisor::user.update_account.receive_club_newsletter') }}</label>
                         <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($user->opt_in == true || $user->opt_in === null)checked="checked"@endif /> {{ trans('wine-supervisor::generic.yes') }}</div>
                         <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$user->opt_in)checked="checked"@endif /> {{ trans('wine-supervisor::generic.no') }}</div>

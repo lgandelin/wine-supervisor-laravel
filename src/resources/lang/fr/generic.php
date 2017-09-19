@@ -20,6 +20,7 @@ return [
     'zipcode' => 'Code postal',
     'city' => 'Ville',
     'country' => 'Pays',
+    'locale' => 'Langue',
 
     'valid' => 'Valider',
     'modify' => 'Modifier',

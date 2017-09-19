@@ -2,14 +2,15 @@
 
 return [
     'top_menu' => [
-        'my_account' => 'Gérer mon compte',
+        'my_account' => 'My account',
         'club_premium' => 'Club Premium',
         'supervision' => 'Supervision',
         'signup' => 'Signup',
 
-        'good_tasting' => 'Bonne dégustation',
-        'welcome' => 'Bienvenue',
+        'good_tasting' => 'Good degustation',
+        'welcome' => 'Welcome',
     ],
+
     'main_menu' => [
         'home' => 'Home',
         'club' => 'The Club',
@@ -27,7 +28,6 @@ return [
     ],
 
     'login' => [
-        'disconnect' => 'Se déconnecter',
-
+        'disconnect' => 'Disconnect',
     ]
 ];

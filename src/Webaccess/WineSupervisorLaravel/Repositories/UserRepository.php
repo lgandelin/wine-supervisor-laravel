@@ -40,9 +40,10 @@ class UserRepository extends BaseRepository
      * @param $city
      * @param $zipcode
      * @param $country
+     * @param $locale
      * @return User
      */
-    public static function create($firstName, $lastName, $email, $phone, $password, $opt_in, $address, $address2, $city, $zipcode, $country)
+    public static function create($firstName, $lastName, $email, $phone, $password, $opt_in, $address, $address2, $city, $zipcode, $country, $locale)
     {
         if (!self::checkEmail(null, $email)) {
             return self::error(trans('wine-supervisor::signup.user_existing_email_error'));
@@ -61,6 +62,7 @@ class UserRepository extends BaseRepository
         $user->city = $city;
         $user->zipcode = $zipcode;
         $user->country = $country;
+        $user->locale = $locale;
         $user->last_connection_date = new DateTime();
 
         if (!$user->save()) {
