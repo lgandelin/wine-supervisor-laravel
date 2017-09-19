@@ -2790,7 +2790,7 @@ header .top-bar .nav li.logout .logout-icon:hover {
 /* line 82, ../sass/partials/_header.scss */
 header .top-bar .nav li.langs {
   position: relative;
-  top: 0.7rem;
+  top: 0.5rem;
 }
 /* line 86, ../sass/partials/_header.scss */
 header .top-bar .nav li.langs a {

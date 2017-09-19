@@ -1,7 +1,7 @@
 <ul>
     <li class="langs">
-        <a @if (App::getLocale() == 'fr') class="current" @endif href="/"><img src="{{ asset('img/generic/flags/fr.jpg') }}" width="35" height="25" /></a>
-        <a @if (App::getLocale() == 'en') class="current" @endif href="/en"><img src="{{ asset('img/generic/flags/en.jpg') }}" width="35" height="25" /></a>
+        <a @if (App::getLocale() == 'fr') class="current" @endif href="/"><img src="{{ asset('img/generic/flags/fr.jpg') }}" width="30" height="20" /></a>
+        <a @if (App::getLocale() == 'en') class="current" @endif href="/en"><img src="{{ asset('img/generic/flags/en.jpg') }}" width="30" height="20" /></a>
     </li>
 
     @if (isset($is_technician) && $is_technician)
