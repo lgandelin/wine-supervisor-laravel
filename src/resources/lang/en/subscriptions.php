@@ -3,11 +3,11 @@
 return [
     'standard' => 'Standard',
     'premium' => 'Premium',
-    'free' => 'Gratuit',
-    'none' => 'Aucun',
+    'free' => 'Free',
+    'none' => 'None',
 
-    'valid_subscription' => 'Abonnement valide',
-    'soon_expired_subscription' => 'Abonnement arrivant bientôt à expiration',
-    'expired_subscription' => 'Abonnement expiré',
+    'valid_subscription' => 'Subscription valid',
+    'soon_expired_subscription' => 'Subscription expiring soon',
+    'expired_subscription' => 'Subscription expired',
 
 ];

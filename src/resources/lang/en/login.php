@@ -2,24 +2,24 @@
 
 return [
     'login' => [
-        'login' => 'Se connecter',
-        'meta_title' => 'Connexion | WineSupervisor',
-        'unelligible_to_club_premium' => 'Votre compte ne vous donne pas droit aux ventes du Club Avantage Wine Supervisor.',
+        'login' => 'Login',
+        'meta_title' => 'Login | WineSupervisor',
+        'unelligible_to_club_premium' => 'Your current account is unelligible to the sales of Club Avantage WineSupervisor.',
     ],
 
     'forgotten_password' => [
-        'forgotten_password' => 'Mot de passe oublié ?',
-        'meta_title' => 'Mot de passe oublié | WineSupervisor',
-        'page_title' => 'Mot de passe oublié',
-        'your_email' => 'Votre email',
-        'send_me_a_new_password' => 'M\'envoyer un nouveau mot de passe',
+        'forgotten_password' => 'Forgot your password ?',
+        'meta_title' => 'Forgotten password | WineSupervisor',
+        'page_title' => 'Forgotten password',
+        'your_email' => 'Your email',
+        'send_me_a_new_password' => 'Send me a new password',
     ],
 
-    'login_or_password_error' => 'Impossible de se connecter avec cet identifiant et ce mot de passe.',
-    'technician_access_error' => 'Votre compte n\'a pas encore été validé. Nous vous préviendrons par email une fois que ce sera le cas.',
-    'guest_access_dates_error' => 'Ce compte invité est arrivé a expiration.',
+    'login_or_password_error' => 'Unable to log in with this username and password.',
+    'technician_access_error' => 'Your account has not yet been validated. We will notify you by email once this is the case.',
+    'guest_access_dates_error' => 'This guest account has expired.',
 
-    'forgotten_password_email_success' => 'Votre mot de passe a bien été réinitialisé, et vous a été envoyé sur votre adresse email.',
-    'forgotten_password_email_not_found_error' => 'Cet email n\'est pas présent dans notre base de données. Veuillez vous assurer que vous avez bien saisi votre email.',
-    'forgotten_password_email_error' => 'Une erreur est survenue lors de la réinitialisation de votre mot de passe. Nous vous prions de bien vouloir retenter l\'opération.',
+    'forgotten_password_email_success' => 'Your password has been reset, and have been sent to your email address.',
+    'forgotten_password_email_not_found_error' => 'This e-mail address is not available in our database. Please make sure you have entered your email.',
+    'forgotten_password_email_error' => 'An error occurred while resetting your password. Please repeat the operation.',
 ];

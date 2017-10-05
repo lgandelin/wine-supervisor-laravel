@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'guest_create_success' => 'Invité créé avec succès',
-    'guest_create_error' => 'Une erreur est survenue lors de la création de l\'invité',
-    'guest_update_success' => 'Mise à jour de l\'invité effectuée avec succès',
-    'guest_update_error' => 'Une erreur est survenue lors de la mise à jour de de l\'invité',
-    'guest_delete_success' => 'Invité supprimé avec succès',
-    'guest_delete_error' => 'Une erreur est survenue lors de la suppression de l\'invité',
-    'guest_create_email_error' => 'Le compte invité a bien été créé, mais une erreur est survenue lors de l\'envoi du mail récapitulatif de ses identifiants. Veuillez retenter l\'opération en modifiant son compte, ou en lui envoyant manuellement ses identifiants par mail.',
+    'guest_create_success' => 'Guest created successfully',
+    'guest_create_error' => 'An error occurred during the creation of the guest',
+    'guest_update_success' => 'Guest Update completed successfully',
+    'guest_update_error' => 'An error occurred during the update of the guest',
+    'guest_delete_success' => 'Guest successfully deleted!',
+    'guest_delete_error' => 'An error occurred during the delete of the guest',
+    'guest_create_email_error' => 'The guest account was successfully created, but an error occurred while sending the mail summary of its identifiers. Please retry the transaction by modifying its account, or by manually sending its identifiers by email.',
 ];

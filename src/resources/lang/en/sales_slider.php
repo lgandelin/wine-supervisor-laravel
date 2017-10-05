@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'club_premium_price' => 'Prix Club Avantage',
-    'sales_access' => 'Accès vente',
-    'order' => 'Commander',
-    'current' => 'En cours',
+    'club_premium_price' => ' Club Avantage price',
+    'sales_access' => 'Sales access',
+    'order' => 'Order',
+    'current' => 'Current',
 ];

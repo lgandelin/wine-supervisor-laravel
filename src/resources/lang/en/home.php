@@ -1,21 +1,22 @@
 <?php
 
 return [
-    'meta_title' => 'La cave, partout | WineSupervisor',
-    'banner_title' => 'The Cellar, everywhere.',
+    'meta_title' => 'Your cellar, everywhere. | WineSupervisor',
+    'banner_title' => 'Your cellar, everywhere.',
 
     'buttons' => [
-        'discover' => 'Découvrir',
-        'login' => 'Se connecter',
+        'discover' => 'Discover',
+        'login' => 'Login',
         'supervision' => 'Supervision',
 
     ],
 
     'club_premium' => [
-        'title' => 'Le Club Avantage',
-        'discover_club_premium' => 'Découvrez le Club Avantage',
+        'title' => 'Club Avantage',
+        'discover_club_premium' => 'Discover Club Avantage',
+
     ],
 
-    'news' => 'Actualités',
-    'partners' => 'Partenaires',
+    'news' => 'News',
+    'partners' => 'Partners',
 ];

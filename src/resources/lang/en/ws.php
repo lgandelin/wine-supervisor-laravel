@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'ws_update_success' => 'Mise à jour du WineSupervisor effectuée avec succès',
-    'invalid_activation_code' => 'Code d\'activation invalide. Veuillez vérifier que vous avez bien saisi ce champ.',
+    'ws_update_success' => 'WineSupervisor Update performed successfully',
+    'invalid_activation_code' => 'Invalid activation code. Please check that you have entered this field.',
 ];

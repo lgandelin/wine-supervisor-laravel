@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'meta_title' => 'Mentions légales | WineSupervisor',
-    'page_title' => 'Mentions légales',
+    'meta_title' => 'Legal Notice| WineSupervisor',
+    'page_title' => 'Legal Notice',
 ];

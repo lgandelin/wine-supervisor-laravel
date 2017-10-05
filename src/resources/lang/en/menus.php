@@ -2,18 +2,17 @@
 
 return [
     'top_menu' => [
-        'my_account' => 'My account',
-        'club_premium' => 'Club Premium',
+        'my_account' => 'Manage my account',
+        'club_premium' => 'Club Avantage',
         'supervision' => 'Supervision',
-        'signup' => 'Signup',
+        'signup' => 'Create an account',
 
-        'good_tasting' => 'Good degustation',
+        'good_tasting' => 'Cheers',
         'welcome' => 'Welcome',
     ],
-
     'main_menu' => [
         'home' => 'Home',
-        'club' => 'The Club',
+        'club' => 'Club',
         'news' => 'News',
         'partners' => 'Our partners',
         'faq' => 'FAQ',
@@ -22,12 +21,13 @@ return [
 
     'club_premium' => [
         'informations' => 'Informations',
-        'comity' => 'Comité de dégustation',
-        'current_sales' => 'Ventes en cours',
-        'sales_history' => 'Historique des ventes',
+        'comity' => 'Tasting Committee',
+        'current_sales' => 'Sales in progress',
+        'sales_history' => 'Sales History',
     ],
 
     'login' => [
         'disconnect' => 'Disconnect',
+
     ]
 ];

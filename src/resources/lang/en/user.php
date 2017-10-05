@@ -1,36 +1,36 @@
 <?php
 
 return [
-    'id_not_found' => 'Utilisateur non trouvé',
-    'database_error' => 'Une erreur est survenue lors de l\'opération. Veuillez nous excuser pour la gêne occasionnée.',
-    'user_update_success' => 'Mise à jour de vos informations effectuée avec succès.',
-    'user_admin_update_success' => 'Utilisateur modifié avec succès.',
-    'user_update_error' => 'Une erreur est survenue lors de la mise à jour de vos informations.',
-    'user_delete_error' => 'Une erreur est survenue lors de la suppression de l\'utilisateur.',
-    'user_delete_success' => 'Utilisateur supprimé avec succès !',
-    'user_delete_error_active_cellars' => 'Impossible de supprimer cet utilisateur, il a toujours des caves actives.',
+    'id_not_found' => 'User not found',
+    'database_error' => 'An error occurred during the operation. We apologize for the inconvenience.',
+    'user_update_success' => 'Your information have been updated successfully.',
+    'user_admin_update_success' => 'User successfully modified.',
+    'user_update_error' => 'An error occurred while updating your information.',
+    'user_delete_error' => 'An error occurred while deleting the user.',
+    'user_delete_success' => 'User successfully deleted!',
+    'user_delete_error_active_cellars' => 'Can not delete this user, he still have active cellars.',
 
     'update_account' => [
-        'meta_title' => 'Mon compte | WineSupervisor',
-        'banner_title' => 'Mon compte',
-        'receive_club_newsletter' => 'Recevoir la Newsletter du Club',
+        'meta_title' => 'My Account | WineSupervisor',
+        'banner_title' => 'My Account',
+        'receive_club_newsletter' => 'Get the Club Newsletter by email',
 
         'my_cellars' => [
-            'page_title' => 'Mes caves',
-            'page_header' => 'Voici ci-dessous la liste de vos caves connectées. Pour chacune, vous avez la possibilité d’en compléter ou d’en modifier les informations.',
+            'page_title' => 'My cellars',
+            'page_header' => 'Below is a list of your connected cellars. For each one, you have the possibility to complete or modify the information.',
             'table' => [
-                'cellar' => 'Cave',
-                'subscription_status' => 'Statut abonnement',
-                'expiration_date' => 'Date d\'expiration',
-                'subscription_type' => 'Type d\'abonnement',
+                'cellar' => 'Cellar',
+                'subscription_status' => 'Subscription status',
+                'expiration_date' => 'Expiration date',
+                'subscription_type' => 'Type of subscription',
             ]
         ],
 
         'my_account' => [
-            'page_title' => 'Mon compte',
+            'page_title' => 'My account',
             'page_header' => [
-                '1' => 'Retrouvez les informations sur votre compte.',
-                '2' => 'Vous pouvez les modifier chaque fois que c’est nécessaire.',
+                '1' => 'Find all the information of your account.',
+                '2' => 'You can change them whenever necessary.',
             ]
         ]
     ]
