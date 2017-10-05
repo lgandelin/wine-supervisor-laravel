@@ -96,7 +96,7 @@ class CellarRepository extends BaseRepository
         $cellar->name = $name;
         $cellar->first_activation_date = new DateTime();
         $cellar->subscription_start_date = new DateTime();
-        $cellar->subscription_end_date = ($ws->board_type == WS::PRIMO_BOARD) ? (new DateTime())->add(new DateInterval('P24M')) : null;
+        $cellar->subscription_end_date = (new DateTime())->add(new DateInterval('P24M'));
         $cellar->subscription_type = $subscriptionType;
         $cellar->serial_number = $serialNumber;
         $cellar->address = $address;
@@ -364,11 +364,11 @@ class CellarRepository extends BaseRepository
             }
 
             //Update WS table (old board)
-            if ($oldWS = WS::find($oldIDWS)) {
+            /*if ($oldWS = WS::find($oldIDWS)) {
                 $oldWS->deactivation_date = new DateTime();
                 $oldWS->board_type = WS::OUT_OF_ORDER_BOARD;
                 $oldWS->save();
-            }
+            }*/
 
             //Update WS table (new board)
             if ($ws = WS::find($idWS)) {
@@ -419,7 +419,7 @@ class CellarRepository extends BaseRepository
 
 
             //Call API : resell cellar
-            if ($boardType == WS::PRIMO_BOARD) {
+            if ($boardType == WS::DEUXIO_BOARD) {
                 //Call API : delete cellar
                 try {
                     (new CellierDomesticusAPI())->resell_cellar($cellar);
@@ -474,7 +474,7 @@ class CellarRepository extends BaseRepository
             return false;
 
         //If the board type is compatible
-        if ($ws->board_type != WS::PRIMO_BOARD && $ws->board_type != WS::OTHER_BOARD)
+        if ($ws->board_type != WS::PRIMO_BOARD && $ws->board_type != WS::DEUXIO_BOARD && $ws->board_type != WS::RESELL_BOARD)
             return false;
 
         return true;

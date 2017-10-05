@@ -10,9 +10,10 @@ class WSService
         $label = 'DEFAULT';
         switch ($boardType) {
             case WS::PRIMO_BOARD: $label = 'Primo'; break;
+            case WS::DEUXIO_BOARD: $label = 'Deuxio'; break;
             case WS::SAV_BOARD: $label = 'SAV'; break;
             case WS::OUT_OF_ORDER_BOARD: $label = 'HS'; break;
-            case WS::OTHER_BOARD: $label = 'Autre'; break;
+            case WS::RESELL_BOARD: $label = 'Revente'; break;
         }
 
         return $label;

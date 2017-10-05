@@ -221,10 +221,10 @@ class CellarController extends UserController
                 $boardType = WS::OUT_OF_ORDER_BOARD;
             break;
             case 'resell':
-                $boardType = WS::PRIMO_BOARD;
+                $boardType = WS::DEUXIO_BOARD;
             break;
             default:
-                $boardType = WS::OTHER_BOARD;
+                $boardType = WS::RESELL_BOARD;
             break;
         }
 
