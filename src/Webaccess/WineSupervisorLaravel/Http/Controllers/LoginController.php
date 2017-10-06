@@ -144,7 +144,7 @@ class LoginController extends Controller
                 $user = Guest::where('email', '=', $email)->first();
             }
 
-            if ($user) {
+            if ($user && !$user->read_only) {
                 $newPassword = PasswordTool::generatePassword(8);
                 $user->password = bcrypt($newPassword);
                 $user->save();
