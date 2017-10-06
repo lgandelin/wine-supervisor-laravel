@@ -559,4 +559,68 @@ class CellierDomesticusAPI
             ]);
         }
     }
+
+    public function change_subscription_duration($cellar, $durationInYears)
+    {
+        $parameters = [
+            'duration' => $durationInYears,
+        ];
+
+        $requestData = [
+            'json' => $parameters,
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_CHANGE_SUBSCRIPTION_DURATION_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/change-subscription-duration', $cellar->cd_cellar_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_CHANGE_SUBSCRIPTION_DURATION_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_CHANGE_SUBSCRIPTION_DURATION_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
+
+    public function change_subscription_kind($cellar, $subscriptionKind)
+    {
+        $parameters = [
+            'kind' => $subscriptionKind,
+        ];
+
+        $requestData = [
+            'json' => $parameters,
+            'headers' => [
+                'Authorization' => 'profile="UsernameToken"',
+                'X-WSSE' => 'UsernameToken ' . $this->generateWSSEToken()
+            ]
+        ];
+
+        Log::info('API_CHANGE_SUBSCRIPTION_KIND_REQUEST', $requestData);
+
+        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/change-subscription-kind', $cellar->cd_cellar_id), $requestData)) {
+            $result = $response->getBody()->getContents();
+            $resultObject = json_decode($result);
+
+            Log::info('API_CHANGE_SUBSCRIPTION_KIND_RESPONSE', [
+                'success' => $resultObject->status,
+                'status_code' => $response->getStatusCode(),
+                'body' => $result
+            ]);
+        } else {
+            Log::info('API_CHANGE_SUBSCRIPTION_KIND_RESPONSE', [
+                'success' => false,
+            ]);
+        }
+    }
 }
