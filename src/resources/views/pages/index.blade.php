@@ -110,15 +110,17 @@
                     <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
                     <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
                     <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
+                    <li><a href="http://www.my-vulx.com" target="_blank"><img class="partner" src="img/home/partners/4.jpg" alt="Vulx" width="214" height="150" /></a></li>
+
                     <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
                     <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
                     <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
+                    <li><a href="http://www.my-vulx.com" target="_blank"><img class="partner" src="img/home/partners/4.jpg" alt="Vulx" width="214" height="150" /></a></li>
+
                     <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
                     <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
                     <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
-                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
-                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
-                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
+                    <li><a href="http://www.my-vulx.com" target="_blank"><img class="partner" src="img/home/partners/4.jpg" alt="Vulx" width="214" height="150" /></a></li>
                 </ul>
             </div>
         </div>
