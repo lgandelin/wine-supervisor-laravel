@@ -8,6 +8,7 @@
                 @else
                     @if ($sale->start_date){{ strftime('%d %B', DateTime::createFromFormat('Y-m-d', $sale->start_date)->getTimestamp()) }} -@endif
                     @if ($sale->end_date){{ strftime('%d %B', DateTime::createFromFormat('Y-m-d', $sale->end_date)->getTimestamp()) }}@endif
+                    {{ strftime('%Y', DateTime::createFromFormat('Y-m-d', $sale->end_date)->getTimestamp()) }}
                 @endif
             </span>
         </li>

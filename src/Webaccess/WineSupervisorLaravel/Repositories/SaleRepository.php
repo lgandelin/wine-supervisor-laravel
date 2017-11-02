@@ -111,7 +111,7 @@ class SaleRepository extends BaseRepository
      */
     public static function getSalesHistory()
     {
-        $now = new DateTime();
+        $now = (new DateTime())->setTime(0, 0, 0);
 
         $sales = Sale::where('end_date', '<', $now)->orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
 
@@ -124,7 +124,7 @@ class SaleRepository extends BaseRepository
 
     public static function getCurrentSales()
     {
-        $now = new DateTime();
+        $now = (new DateTime())->setTime(0, 0, 0);
 
         $sales = Sale::where('start_date', '<=', $now)
             ->where('end_date', '>=', $now)

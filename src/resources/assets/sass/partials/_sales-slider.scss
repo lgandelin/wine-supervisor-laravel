@@ -23,7 +23,7 @@
 			
 			.slick-slide {
 				height: 58.5rem;
-				padding: 5rem 8rem 0rem 8rem;
+				padding: 3rem 6rem 0rem 6rem;
 				position: relative;
 
 				.bottle {
@@ -61,17 +61,17 @@
 					.sale-name {
 						display: block;
 
-						line-height: 5rem;
+						line-height: 4rem;
 						font-weight: 700;
-						font-size: 6rem;
+						font-size: 4rem;
 
 						&:after {					
 						    content: " ";
 						    display: block;
 						    width: 1.8rem;
 						    height: 0.3rem;
-						    margin-top: 1.5rem;
-						    margin-bottom: 3.5rem;
+						    margin-top: 0.75rem;
+						    margin-bottom: 1.5rem;
 
 						    background: white;
 						}
@@ -80,6 +80,10 @@
 					.sale-comments {
 						margin-right: -4rem;
 						float: right;
+					}
+					
+					p {
+						margin-bottom: 1rem;
 					}
 				}
 
@@ -141,12 +145,12 @@
 	  			border: none;
 
 		  		&.slick-prev {
-		  			left: 3rem;
+		  			left: 2rem;
 		  			background: url(../img/home/sales/prev.png) no-repeat center center;
 		  		}
 
 		  		&.slick-next {
-		  			right: 3rem;
+		  			right: 2rem;
 		  			background: url(../img/home/sales/next.png) no-repeat center center;
 		  		}
 
