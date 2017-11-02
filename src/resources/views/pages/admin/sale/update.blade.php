@@ -34,6 +34,11 @@
 
                 <form action="{{ route('admin_sale_update_handler') }}" method="POST" enctype="multipart/form-data">
 
+                    <div class="submit-container" style="margin-top: 0;">
+                        <input type="submit" value="Valider" />
+                        <a target="_blank" class="button preview-button" href="{{ route('sale_preview', ['uuid' => $sale->id]) }}">Prévisualiser</a>
+                    </div>
+
                     <h3><strong>Informations générales</strong></h3><br>
                     <div class="form-group">
                         <label for="title">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
@@ -144,6 +149,7 @@
 
                     <div class="submit-container">
                         <input type="submit" value="Valider" />
+                        <a target="_blank" class="button preview-button" href="{{ route('sale_preview', ['uuid' => $sale->id]) }}">Prévisualiser</a>
                     </div>
 
                     <input type="hidden" name="sale_id" value="{{ $sale->id }}" />

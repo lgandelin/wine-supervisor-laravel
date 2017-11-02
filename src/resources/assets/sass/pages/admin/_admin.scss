@@ -42,3 +42,23 @@
     position: relative;
     top: -3px;
 }
+
+.preview-button {
+    float: right;
+
+    background: #1e95c9;
+    padding: 1.0rem 3rem;
+    text-align: center;
+    font-size: 1.4rem;
+    color: white !important;
+    cursor: pointer;
+    border: none;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+    border-radius: 0;
+
+    &:hover {
+        opacity: 0.9;
+        background: #1e95c9;
+    }
+}

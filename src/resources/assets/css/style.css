@@ -4023,6 +4023,26 @@ footer a, footer a:visited {
   top: -3px;
 }
 
+/* line 46, ../sass/pages/admin/_admin.scss */
+.preview-button {
+  float: right;
+  background: #1e95c9;
+  padding: 1.0rem 3rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: white !important;
+  cursor: pointer;
+  border: none;
+  margin-top: 1.5rem;
+  margin-right: 1.5rem;
+  border-radius: 0;
+}
+/* line 60, ../sass/pages/admin/_admin.scss */
+.preview-button:hover {
+  opacity: 0.9;
+  background: #1e95c9;
+}
+
 @media only screen and (max-width: 1800px) {
   /* line 2, ../sass/responsive/_responsive.scss */
   .banner {

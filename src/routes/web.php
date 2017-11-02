@@ -75,6 +75,7 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
     Route::get('/admin/logout', array('as' => 'admin_logout', 'uses' => 'Admin\LoginController@logout'));
 
     Route::group(['middleware' => ['admin']], function () {
+        Route::get('/preview/{uuid}', array('as' => 'sale_preview', 'uses' => 'IndexController@preview'));
         Route::get('/admin', array('as' => 'admin_index', 'uses' => 'Admin\IndexController@index'));
 
         Route::get('/admin/utilisateurs', array('as' => 'admin_user_list', 'uses' => 'Admin\UserController@index'));

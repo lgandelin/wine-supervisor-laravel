@@ -30,6 +30,21 @@ class IndexController extends Controller
         ]);
     }
 
+    public function preview(Request $request)
+    {
+        return view('wine-supervisor::pages.index', [
+            'is_eligible_to_club_premium' => AccountService::isUserEligibleToClubPremium(),
+            'is_eligible_to_supervision' => AccountService::isUserEligibleToSupervision(),
+            'is_user' => AccountService::isUser(),
+            'is_technician' => AccountService::isTechnician(),
+            'is_guest' => AccountService::isGuest(),
+            'first_name' => AccountService::getFirstName(),
+            'contents' => ContentRepository::getAll(3),
+            'sales' => SaleRepository::getSalePreview($request->uuid),
+            'route' => $request->route() ? $request->route()->getName() : null,
+        ]);
+    }
+
     public function contact(Request $request)
     {
         return view('wine-supervisor::pages.contact', [

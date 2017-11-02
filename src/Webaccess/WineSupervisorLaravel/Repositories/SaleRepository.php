@@ -147,4 +147,13 @@ class SaleRepository extends BaseRepository
 
         return $sale;
     }
+
+    public static function getSalePreview($saleID)
+    {
+        if ($sale = Sale::find($saleID)) {
+            return [self::getAdditionalInfo($sale)];
+        }
+
+        return [];
+    }
 }
