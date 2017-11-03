@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @if (env('META_ROBOTS_NO_INDEX'))<meta name="robots" content="noindex, nofollow">@endif
     <title>@yield('page-title')</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ env('ASSETS_VERSION') }}">
 
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/favicons/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/favicons/favicon-32x32.png') }}">

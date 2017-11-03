@@ -10,21 +10,28 @@
 		.sales-slider {
 			position: relative;
 
-			/*&:before {
-				position: absolute;
-				content: "";
-			    left: 1.5rem;
-			    right: 1.5rem;
-			    top: 0;
-			    bottom: 3.1rem;
-
-				background: rgba(0, 0, 0, 0.25);
-			}*/
-			
 			.slick-slide {
 				height: 58.5rem;
 				padding: 3rem 6rem 0rem 6rem;
 				position: relative;
+
+				&:before {
+					position: absolute;
+					content: "";
+					left: 0;
+					right: 0;
+					top: 0;
+					bottom: 0;
+					z-index: 2;
+
+					background: rgba(0, 0, 0, 0.25);
+				}
+				
+				&:nth-child(2) {
+					&:before {
+						display: none;
+					}
+				}
 
 				.bottle {
 					position: absolute;

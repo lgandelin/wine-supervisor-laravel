@@ -69,7 +69,8 @@ class AccountService
     public static function hasAValidGuestAccount()
     {
         if ($guest = Auth::guard('guests')->user()) {
-            return new DateTime() >= new DateTime($guest->access_start_date) && new DateTime() <= new DateTime($guest->access_end_date);
+            $now = (new DateTime())->setTime(0, 0, 0);
+            return $now >= new DateTime($guest->access_start_date) && $now <= new DateTime($guest->access_end_date);
         }
 
         return false;

@@ -441,6 +441,10 @@
                         background-color: white;
                     }
 
+                    &:before {
+                        display: none;
+                    }
+
                     &:nth-child(2).slick-active {
                         .background {
                             min-height: 50rem;
