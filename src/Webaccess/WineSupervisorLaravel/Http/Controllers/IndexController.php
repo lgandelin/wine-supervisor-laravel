@@ -25,7 +25,8 @@ class IndexController extends Controller
             'is_guest' => AccountService::isGuest(),
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(3),
-            'sales' => SaleRepository::getCurrentSales(),
+            'last_sale' => SaleRepository::getLastSale(),
+            'sales' => SaleRepository::getCurrentSales()->merge(SaleRepository::getUpcomingSales()),
             'route' => $request->route() ? $request->route()->getName() : null,
         ]);
     }

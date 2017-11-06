@@ -5,4 +5,5 @@ return [
     'sales_access' => 'Accès vente',
     'order' => 'Commander',
     'current' => 'En cours',
+    'upcoming' => 'A venir',
 ];

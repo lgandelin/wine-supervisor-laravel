@@ -32,5 +32,9 @@
     @if (env('GA_TRACKING_ENABLED') && env('GA_TRACKING_ID'))
         @include('wine-supervisor::partials.ga')
     @endif
+
+    @if (env('APP_ENV') == 'local')
+        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +':35729/livereload.js?snipver=2"></' + 'script>')</script>
+    @endif
 </body>
 </html>

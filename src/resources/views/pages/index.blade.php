@@ -60,6 +60,10 @@
         <!-- SALES -->
         <div class="sales">
 
+            @if (isset($last_sale) && $last_sale)
+                @include('wine-supervisor::partials.sales-slider', ['sale' => $last_sale, 'index' => '0', 'display' => 'none'])
+            @endif
+
             @foreach ($sales as $i => $sale)
                 @include('wine-supervisor::partials.sales-slider', ['sale' => $sale, 'index' => ($i+1), 'display' => ($i != 0) ? 'none' : 'block'])
             @endforeach

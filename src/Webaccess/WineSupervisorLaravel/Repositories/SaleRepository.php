@@ -156,4 +156,30 @@ class SaleRepository extends BaseRepository
 
         return [];
     }
+
+    public static function getUpcomingSales()
+    {
+        $now = (new DateTime())->setTime(0, 0, 0);
+
+        $sales = Sale::where('start_date', '>', $now)
+            ->orderBy('start_date', 'desc')
+            ->get();
+
+        foreach ($sales as $sale) {
+            $sale = self::getAdditionalInfo($sale);
+        }
+
+        return $sales;
+    }
+
+    public static function getLastSale()
+    {
+        $now = (new DateTime())->setTime(0, 0, 0);
+
+        $sale = Sale::where('end_date', '<', $now)
+            ->orderBy('end_date', 'desc')
+            ->first();
+
+        return ($sale) ? self::getAdditionalInfo($sale) : [];
+    }
 }

@@ -39,7 +39,7 @@ $(document).ready(function() {
 	});
 
 	//SLIDER SALES
-	for (var i = 1; i <= 10; i++) {
+	for (var i = 0; i <= 10; i++) {
 		$('.sales-slider-' + i).on('init', function(event, slick, direction) {
 			if (!$(this).closest('.container').hasClass('first'))
 				$(this).closest('.container').hide();
