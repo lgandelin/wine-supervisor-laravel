@@ -219,11 +219,21 @@
 		}
 
 		.sale-name {
+			height: 100%;
 			padding-top: 7rem;
 			display: block;
 			text-align: center;
 			position: relative;
 			z-index: 2;
+		}
+
+		a {
+			display: block;
+			height: 100%;
+
+			text-decoration: none;
+			color: white;
+
 		}
 	}
 }

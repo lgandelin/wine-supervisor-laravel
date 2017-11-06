@@ -3191,11 +3191,19 @@ footer a, footer a:visited {
 }
 /* line 221, ../sass/partials/_sales-slider.scss */
 .sales-navigation li .sale-name {
+  height: 100%;
   padding-top: 7rem;
   display: block;
   text-align: center;
   position: relative;
   z-index: 2;
+}
+/* line 230, ../sass/partials/_sales-slider.scss */
+.sales-navigation li a {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: white;
 }
 
 /* line 1, ../sass/partials/_modals.scss */

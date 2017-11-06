@@ -1,13 +1,15 @@
 <ul class="sales-navigation">
     @if (isset($last_sale) && $last_sale)
-        <li data-slider="0">
-            <span class="sale-background"><img src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $last_sale->id . '/0/' . $last_sale->image) }}" /></span>
-            <span class="sale-name">
-                @if ($last_sale->start_date){{ strftime('%d %B', DateTime::createFromFormat('Y-m-d', $last_sale->start_date)->getTimestamp()) }} -@endif
-                @if ($last_sale->end_date){{ strftime('%d %B', DateTime::createFromFormat('Y-m-d', $last_sale->end_date)->getTimestamp()) }}@endif
-                {{ strftime('%Y', DateTime::createFromFormat('Y-m-d', $last_sale->end_date)->getTimestamp()) }}
-            </span>
-        </li>
+            <li data-slider="0">
+                @if ($last_sale->link_history)<a href="{{ $last_sale->link_history }}" target="_blank">@endif
+                    <span class="sale-background"><img src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $last_sale->id . '/0/' . $last_sale->image) }}" /></span>
+                    <span class="sale-name">
+                        @if ($last_sale->start_date){{ strftime('%d %B', DateTime::createFromFormat('Y-m-d', $last_sale->start_date)->getTimestamp()) }} -@endif
+                        @if ($last_sale->end_date){{ strftime('%d %B', DateTime::createFromFormat('Y-m-d', $last_sale->end_date)->getTimestamp()) }}@endif
+                        {{ strftime('%Y', DateTime::createFromFormat('Y-m-d', $last_sale->end_date)->getTimestamp()) }}
+                    </span>
+                @if ($last_sale->link_history)</a>@endif
+            </li>
     @endif
 
     @foreach ($sales as $i => $sale)

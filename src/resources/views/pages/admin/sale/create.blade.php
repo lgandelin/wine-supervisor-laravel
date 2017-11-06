@@ -35,6 +35,12 @@
                 <form action="{{ route('admin_sale_create_handler') }}" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
+                        <label for="is_active">Mettre en ligne</label>
+                        <div class="radio"><input type="radio" name="is_active" value="1" /> Oui</div>
+                        <div class="radio"><input type="radio" name="is_active" value="0" checked="checked" /> Non</div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="title">Titre</label>
                         <input type="text" name="title" id="title" value="{{ old('title') }}" />
                     </div>
@@ -57,6 +63,11 @@
                     <div class="form-group">
                         <label for="comments">Commentaires</label>
                         <textarea name="comments" id="comments"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="link_history">URL quand vente passée</label>
+                        <input type="text" name="link_history" id="link_history" value="" />
                     </div>
 
                     <div class="form-group">
@@ -107,7 +118,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="link[]">Lien de commande</label>
+                                <label for="link[]">URL de commande</label>
                                 <input type="text" name="wine_link[]" />
                             </div>
                         </section>

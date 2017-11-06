@@ -37,6 +37,7 @@
                         <td class="table-cell table-cell-header align-left @if ($sort_column == 'title') current-filter @endif"><a href="{{ route('admin_sale_list', ['sc' => 'title', 'so' => $sort_order]) }}">Titre</a></td>
                         <td class="table-cell table-cell-header align-left @if ($sort_column == 'start_date') current-filter @endif"><a href="{{ route('admin_sale_list', ['sc' => 'start_date', 'so' => $sort_order]) }}">Date de début</a></td>
                         <td class="table-cell table-cell-header align-left @if ($sort_column == 'end_date') current-filter @endif"><a href="{{ route('admin_sale_list', ['sc' => 'end_date', 'so' => $sort_order]) }}">Date de fin</a></td>
+                        <td class="table-cell table-cell-header align-left">En ligne</td>
                         <td class="table-cell table-cell-header" width="15%">Action</td>
                     </tr>
                     @foreach ($sales as $sale)
@@ -44,6 +45,7 @@
                             <td class="table-cell align-left">{{ $sale->title }}</td>
                             <td class="table-cell align-left">@if ($sale->start_date){{ \DateTime::createFromFormat('Y-m-d', $sale->start_date)->format('d/m/Y') }}@endif</td>
                             <td class="table-cell align-left">@if ($sale->end_date){{ \DateTime::createFromFormat('Y-m-d', $sale->end_date)->format('d/m/Y') }}@endif</td>
+                            <td class="table-cell align-left">@if ($sale->is_active) Oui @else Non @endif</td>
                             <td class="table-cell align-left action">
                                 <a href="{{ route('admin_sale_update', $sale->id) }}"><button class="edit">Modifier</button></a>
                                 <a href="{{ route('admin_sale_delete_handler', $sale->id) }}"><button class="delete">Supprimer</button></a>

@@ -40,6 +40,13 @@
                     </div>
 
                     <h3><strong>Informations générales</strong></h3><br>
+
+                    <div class="form-group">
+                        <label for="is_active">Mettre en ligne</label>
+                        <div class="radio"><input type="radio" name="is_active" value="1" @if ($sale->is_active == true)checked="checked"@endif /> Oui</div>
+                        <div class="radio"><input type="radio" name="is_active" value="0" @if (!$sale->is_active)checked="checked"@endif /> Non</div>
+                    </div>
+
                     <div class="form-group">
                         <label for="title">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
                         <input type="text" name="title" id="title" value="{{ $sale->title }}" />
@@ -73,6 +80,11 @@
                     <div class="form-group">
                         <label for="comments_en">Commentaires <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
                         <textarea name="comments_en" id="comments_en">@if ($sale->comments_en){{ $sale->comments_en }}@endif</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="link_history">URL quand vente passée</label>
+                        <input type="text" name="link_history" id="link_history" value="{{ $sale->link_history }}" />
                     </div>
 
                     <div class="form-group">
@@ -141,7 +153,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="link[]">Lien de commande</label>
+                                <label for="link[]">URL de commande</label>
                                 <input type="text" name="wine_link[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->link)){{ $sale->wines[$i]->link }}@endif" />
                             </div>
                         </section>

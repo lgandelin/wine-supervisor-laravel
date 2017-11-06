@@ -18,6 +18,7 @@ class Sale extends Model
      * @var array
      */
     protected $fillable = [
+        'is_active',
         'title',
         'jury_note',
         'jury_opinion',
