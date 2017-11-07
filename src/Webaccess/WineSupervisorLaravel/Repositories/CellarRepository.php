@@ -356,7 +356,7 @@ class CellarRepository extends BaseRepository
                 Log::info('API_SAV_CELLAR_ERROR', [
                     'cellar_id' => $cellarID,
                     'cellar_cd_id' => $cellar->cd_cellar_id,
-                    'new_id_ws' => $idWS,
+                    'new_id_ws' => $cdWSID,
                     'error' => $e->getMessage(),
                 ]);
 
