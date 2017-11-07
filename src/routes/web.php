@@ -117,5 +117,12 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
         Route::get('/admin/modifier-actualite/{uuid}', array('as' => 'admin_content_update', 'uses' => 'Admin\ContentController@update'));
         Route::post('/admin/modifier-actualite', array('as' => 'admin_content_update_handler', 'uses' => 'Admin\ContentController@update_handler'));
         Route::get('/admin/supprimer-actualite/{uuid}', array('as' => 'admin_content_delete_handler', 'uses' => 'Admin\ContentController@delete_handler'));
+
+        Route::get('/admin/partenaires', array('as' => 'admin_partner_list', 'uses' => 'Admin\PartnerController@index'));
+        Route::get('/admin/creer-partenaire', array('as' => 'admin_partner_create', 'uses' => 'Admin\PartnerController@create'));
+        Route::post('/admin/creer-partenaire', array('as' => 'admin_partner_create_handler', 'uses' => 'Admin\PartnerController@create_handler'));
+        Route::get('/admin/modifier-partenaire/{uuid}', array('as' => 'admin_partner_update', 'uses' => 'Admin\PartnerController@update'));
+        Route::post('/admin/modifier-partenaire', array('as' => 'admin_partner_update_handler', 'uses' => 'Admin\PartnerController@update_handler'));
+        Route::get('/admin/supprimer-partenaire/{uuid}', array('as' => 'admin_partner_delete_handler', 'uses' => 'Admin\PartnerController@delete_handler'));
     });
 });

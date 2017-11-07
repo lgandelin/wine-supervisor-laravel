@@ -105,29 +105,23 @@
 
 
         <!-- OUR PARTNERS -->
-        <div class="our-partners" id="nos-partenaires">
-            <div class="container">
-                <h2 class="title">{{ trans('wine-supervisor::home.partners') }}</h2>
+        @if ($partners)
+            <div class="our-partners" id="nos-partenaires">
+                <div class="container">
+                    <h2 class="title">{{ trans('wine-supervisor::home.partners') }}</h2>
 
-                <div class="partners-slider-arrows"></div>
-                <ul class="partners-slider">
-                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
-                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
-                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
-                    <li><a href="http://www.my-vulx.com" target="_blank"><img class="partner" src="img/home/partners/4.jpg" alt="Vulx" width="214" height="150" /></a></li>
+                    <div class="partners-slider-arrows"></div>
+                    <ul class="partners-slider">
 
-                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
-                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
-                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
-                    <li><a href="http://www.my-vulx.com" target="_blank"><img class="partner" src="img/home/partners/4.jpg" alt="Vulx" width="214" height="150" /></a></li>
-
-                    <li><a href="{{ route('club_premium') }}"><img class="partner" src="img/home/partners/1.png" alt="Wine Supervisor - Club Avantage" width="220" height="150" /></a></li>
-                    <li><a href="http://friax.fr" target="_blank"><img class="partner" src="img/home/partners/2.jpg" alt="Friax Industrie" width="220" height="150" /></a></li>
-                    <li><a href="http://www.herve-thizy-traiteur.fr" target="_blank"><img class="partner" src="img/home/partners/3.jpg" alt="Hervé Thizy" width="150" height="150" /></a></li>
-                    <li><a href="http://www.my-vulx.com" target="_blank"><img class="partner" src="img/home/partners/4.jpg" alt="Vulx" width="214" height="150" /></a></li>
-                </ul>
+                        @for($i = 0; $i < 3; $i++)
+                            @foreach ($partners as $partner)
+                                <li><a href="{{ $partner->url }}" target="_blank"><img class="partner" src="{{ asset('uploads/partners/' . $partner->id . '/' . $partner->image) }}" alt="{{ $partner->name }}" @if ($partner->image_width)width="{{ $partner->image_width }}"@endif @if ($partner->image_height)height="{{ $partner->image_height }}"@endif /></a></li>
+                            @endforeach
+                        @endfor
+                    </ul>
+                </div>
             </div>
-        </div>
+        @endif
         <!-- OUR PARTNERS -->
 
         @include('wine-supervisor::partials.legal-notices')

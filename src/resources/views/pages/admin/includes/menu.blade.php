@@ -8,6 +8,7 @@
         <li @if (isset($route) && preg_match('/admin_guest/', $route))class="active"@endif><a href="{{ route('admin_guest_list') }}">Invités</a></li>
         <li @if (isset($route) && preg_match('/admin_sale/', $route))class="active"@endif><a href="{{ route('admin_sale_list') }}">Ventes</a></li>
         <li @if (isset($route) && preg_match('/admin_content/', $route))class="active"@endif><a href="{{ route('admin_content_list') }}">Actualités</a></li>
+        <li @if (isset($route) && preg_match('/admin_partner/', $route))class="active"@endif><a href="{{ route('admin_partner_list') }}">Partenaires</a></li>
         <li class="account logout"><a href="{{ route('admin_logout') }}"><span class="logout-icon" title="Se déconnecter"></span></a></li>
     @endif
 </ul>

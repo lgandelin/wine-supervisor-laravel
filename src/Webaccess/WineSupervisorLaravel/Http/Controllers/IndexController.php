@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Webaccess\WineSupervisorLaravel\Repositories\ContentRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\PartnerRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
@@ -27,6 +28,7 @@ class IndexController extends Controller
             'contents' => ContentRepository::getAll(3),
             'last_sale' => SaleRepository::getLastSale(),
             'sales' => SaleRepository::getCurrentSales()->merge(SaleRepository::getUpcomingSales()),
+            'partners' => PartnerRepository::getAll(),
             'route' => $request->route() ? $request->route()->getName() : null,
         ]);
     }

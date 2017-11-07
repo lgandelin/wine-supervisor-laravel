@@ -14,8 +14,8 @@ class UpdateSalesTableAddIsActive extends Migration
     public function up()
     {
         Schema::table('sales', function (Blueprint $table) {
-            $table->boolean('is_active')->after('id')->default(0);
-            $table->string('link_history')->after('link')->default(0);
+            $table->boolean('is_active')->after('id')->default(0)->nullable();
+            $table->string('link_history')->after('link')->nullable();
         });
 
     }
