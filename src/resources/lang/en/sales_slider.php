@@ -6,4 +6,5 @@ return [
     'order' => 'Order',
     'current' => 'Current',
     'upcoming' => 'Upcoming',
+    'website_access' => 'Website access',
 ];

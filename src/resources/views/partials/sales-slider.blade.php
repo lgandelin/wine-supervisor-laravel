@@ -49,7 +49,11 @@
                             @endif
 
                             @if ($sale->is_active)
-                                @if ((!$is_user && !$is_guest) || !$is_eligible_to_club_premium)
+                                @if (new DateTime() > DateTime::createFromFormat('Y-m-d', $sale->end_date))
+                                    @if ($sale->link_history)
+                                        <a target="_blank" href="{{ $sale->link_history }}" class="button">{{ trans('wine-supervisor::sales_slider.website_access') }}</a>
+                                    @endif
+                                @elseif ((!$is_user && !$is_guest) || !$is_eligible_to_club_premium)
                                     <a href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">{{ trans('wine-supervisor::sales_slider.sales_access') }}</a>
                                 @elseif ($wine->link)
                                     <a target="_blank" href="{{ $wine->link }}" class="button">{{ trans('wine-supervisor::sales_slider.order') }}</a>
