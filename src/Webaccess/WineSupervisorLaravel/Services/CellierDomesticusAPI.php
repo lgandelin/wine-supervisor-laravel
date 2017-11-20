@@ -473,7 +473,7 @@ class CellierDomesticusAPI
         }
     }
 
-    public function sav(Cellar $cellar, $newIDWS)
+    public function sav(Cellar $cellar, $newCDCellarID)
     {
         $requestData = [
             'headers' => [
@@ -484,7 +484,7 @@ class CellierDomesticusAPI
 
         Log::info('API_SAV_CELLAR_REQUEST', $requestData);
 
-        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/sav/%s', $cellar->cd_cellar_id, $newIDWS), $requestData)) {
+        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/sav/%s', $cellar->cd_cellar_id, $newCDCellarID), $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
 

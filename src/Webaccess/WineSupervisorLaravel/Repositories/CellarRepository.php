@@ -329,34 +329,35 @@ class CellarRepository extends BaseRepository
     /**
      * @param $cellarID
      * @param $userID
-     * @param $cdWSID
+     * @param $newCDCellarID
      * @return bool
      */
-    public static function sav($cellarID, $userID, $cdWSID)
+    public static function sav($cellarID, $userID, $newCDCellarID)
     {
-        $idWS = WSRepository::getWSIDFromCDWSID($cdWSID);
+        $idWS = WSRepository::getWSIDFromCDWSID($newCDCellarID);
 
         if ($cellar = Cellar::find($cellarID)) {
 
             //Check that the WS ID entered is of type SAV
-            if ($ws = WS::find($idWS)) {
+            /*if ($ws = WS::find($idWS)) {
                 if ($ws->board_type != WS::SAV_BOARD) {
                     return self::error(trans('wine-supervisor::cellar.boar_type_not_sav_error'));
                 }
             } else {
                 return self::error(trans('wine-supervisor::cellar.id_ws_error'));
-            }
+            }*/
 
             $oldIDWS = $cellar->id_ws;
+            $oldCDCellarID = $cellar->cd_cellar_id;
 
             //Call API : sav cellar
             try {
-                (new CellierDomesticusAPI())->sav($cellar, $idWS);
+                (new CellierDomesticusAPI())->sav($cellar, $newCDCellarID);
             } catch (\Exception $e) {
                 Log::info('API_SAV_CELLAR_ERROR', [
                     'cellar_id' => $cellarID,
-                    'cellar_cd_id' => $cellar->cd_cellar_id,
-                    'new_id_ws' => $cdWSID,
+                    'cd_cellar_id' => $cellar->cd_cellar_id,
+                    'new_cd_cellar_id' => $newCDCellarID,
                     'error' => $e->getMessage(),
                 ]);
 
@@ -371,21 +372,27 @@ class CellarRepository extends BaseRepository
             }*/
 
             //Update WS table (new board)
-            if ($ws = WS::find($idWS)) {
+            /*if ($ws = WS::find($idWS)) {
                 if ($ws->first_activation_date == null) {
                     $ws->first_activation_date = new DateTime();
                     $ws->save();
                 }
-            }
+            }*/
 
             //Update cellar with new id_ws
             $cellar->id_ws = $idWS;
+            $cellar->cd_cellar_id = $newCDCellarID;
+
             if (!$cellar->save()) {
                 return self::error(trans('wine-supervisor::cellar.database_error'));
             }
 
             //Update cellar history
             if (!self::updateCellarHistory($cellarID, $userID, null, 'id_ws', $oldIDWS, $idWS)) {
+                return self::error(trans('wine-supervisor::cellar.database_error'));
+            }
+
+            if (!self::updateCellarHistory($cellarID, $userID, null, 'cd_cellar_id', $oldCDCellarID, $newCDCellarID)) {
                 return self::error(trans('wine-supervisor::cellar.database_error'));
             }
         } else {
@@ -417,10 +424,8 @@ class CellarRepository extends BaseRepository
                 }
             }
 
-
             //Call API : resell cellar
             if ($boardType == WS::DEUXIO_BOARD) {
-                //Call API : delete cellar
                 try {
                     (new CellierDomesticusAPI())->resell_cellar($cellar);
                 } catch (\Exception $e) {
@@ -432,8 +437,9 @@ class CellarRepository extends BaseRepository
 
                     return self::error(trans('wine-supervisor::generic.api_error'));
                 }
+
+            //Call API : delete cellar
             } else {
-                //Call API : delete cellar
                 try {
                     (new CellierDomesticusAPI())->delete_cellar($cellar);
                 } catch (\Exception $e) {

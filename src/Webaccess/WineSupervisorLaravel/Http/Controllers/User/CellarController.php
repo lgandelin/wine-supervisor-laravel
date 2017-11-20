@@ -180,13 +180,13 @@ class CellarController extends UserController
             'id' => $requestID,
             'cellar_id' => $request->get('cellar_id'),
             'user_id' => $this->getUserID(),
-            'cd_ws_id' => $request->get('cd_ws_id')
+            'cd_cellar_id' => $request->get('cd_cellar_id')
         ]);
 
         list($success, $error) = CellarRepository::sav(
             $request->get('cellar_id'),
             $this->getUserID(),
-            $request->get('cd_ws_id')
+            $request->get('cd_cellar_id')
         );
 
         if (!$success) {

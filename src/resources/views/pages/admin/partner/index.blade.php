@@ -39,7 +39,6 @@
                         <th class="table-cell table-cell-header @if ($sort_column == 'display_start_date' || !$sort_column) current-filter @endif"><a href="{{ route('admin_partner_list', ['sc' => 'display_start_date', 'so' => $sort_order]) }}">Date de publication</a></th>
                         <th class="table-cell table-cell-header @if ($sort_column == 'display_end_date' || !$sort_column) current-filter @endif"><a href="{{ route('admin_partner_list', ['sc' => 'display_start_date', 'so' => $sort_order]) }}">Date de publication</a></th>
                         <td class="table-cell table-cell-header align-left">En ligne</td>
-                        <td class="table-cell table-cell-header align-left">En ligne</td>
                         <th class="table-cell table-cell-header">Action</th>
                     </tr>
                     @foreach ($partners as $partner)
