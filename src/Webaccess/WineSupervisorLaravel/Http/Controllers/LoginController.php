@@ -144,13 +144,17 @@ class LoginController extends Controller
                 $user = Guest::where('email', '=', $email)->first();
             }
 
-            if ($user && !$user->read_only) {
-                $newPassword = PasswordTool::generatePassword(8);
-                $user->password = bcrypt($newPassword);
-                $user->save();
-                $this->sendNewPasswordToUser($newPassword, $user->email);
+            if ($user) {
+                if ($user->read_only) {
+                    $this->request->session()->flash('error', trans('wine-supervisor::login.forgotten_password.user_read_only'));
+                } else {
+                    $newPassword = PasswordTool::generatePassword(8);
+                    $user->password = bcrypt($newPassword);
+                    $user->save();
+                    $this->sendNewPasswordToUser($newPassword, $user->email);
 
-                $this->request->session()->flash('message', trans('wine-supervisor::login.forgotten_password_email_success'));
+                    $this->request->session()->flash('message', trans('wine-supervisor::login.forgotten_password_email_success'));
+                }
             } else {
                 $this->request->session()->flash('error', trans('wine-supervisor::login.forgotten_password_email_not_found_error'));
             }

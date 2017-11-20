@@ -32,6 +32,7 @@ class GuestRepository extends BaseRepository
      * @param $lastName
      * @param $accessStartDate
      * @param $accessEndDate
+     * @param $readOnly
      * @param $login
      * @param $password
      * @param $email
@@ -45,7 +46,7 @@ class GuestRepository extends BaseRepository
      * @return bool
      * @internal param $idGuest
      */
-    public static function create($firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $company, $address, $address2, $zipcode, $city, $country)
+    public static function create($firstName, $lastName, $accessStartDate, $accessEndDate, $readOnly, $login, $password, $email, $phone, $company, $address, $address2, $zipcode, $city, $country)
     {
         if (!GuestRepository::checkLogin(null, $login)) {
             return self::error(trans('wine-supervisor::guest.existing_login_error'));
@@ -57,6 +58,7 @@ class GuestRepository extends BaseRepository
         $guest->last_name = $lastName;
         $guest->access_start_date = $accessStartDate;
         $guest->access_end_date = $accessEndDate;
+        $guest->read_only = $readOnly;
         $guest->login = $login;
         $guest->password = Hash::make($password);
         $guest->email = $email;
@@ -81,6 +83,7 @@ class GuestRepository extends BaseRepository
      * @param $lastName
      * @param $accessStartDate
      * @param $accessEndDate
+     * @param $readOnly
      * @param $login
      * @param $password
      * @param $email
@@ -93,7 +96,7 @@ class GuestRepository extends BaseRepository
      * @param $country
      * @return bool
      */
-    public static function update($guestID, $firstName, $lastName, $accessStartDate, $accessEndDate, $login, $password, $email, $phone, $company, $address, $address2, $zipcode, $city, $country)
+    public static function update($guestID, $firstName, $lastName, $accessStartDate, $accessEndDate, $readOnly, $login, $password, $email, $phone, $company, $address, $address2, $zipcode, $city, $country)
     {
         if (!GuestRepository::checkLogin($guestID, $login)) {
             return self::error(trans('wine-supervisor::guest.existing_login_error'));
@@ -104,6 +107,7 @@ class GuestRepository extends BaseRepository
             $guest->last_name = $lastName;
             $guest->access_start_date = $accessStartDate;
             $guest->access_end_date = $accessEndDate;
+            $guest->read_only = $readOnly;
             $guest->login = $login;
             if ($password) $guest->password = Hash::make($password);
             $guest->email = $email;

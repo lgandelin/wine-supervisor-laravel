@@ -13,6 +13,7 @@ return [
         'page_title' => 'Forgotten password',
         'your_email' => 'Your email',
         'send_me_a_new_password' => 'Send me a new password',
+        'user_read_only' => 'Your account is read only, you can\'t update your password.',
     ],
 
     'login_or_password_error' => 'Unable to log in with this username and password.',

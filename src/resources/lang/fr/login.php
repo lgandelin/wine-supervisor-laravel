@@ -13,6 +13,7 @@ return [
         'page_title' => 'Mot de passe oublié',
         'your_email' => 'Votre email',
         'send_me_a_new_password' => 'M\'envoyer un nouveau mot de passe',
+        'user_read_only' => 'Votre compte est en lecture seule, vous ne pouvez pas modifier votre mot de passe.',
     ],
 
     'login_or_password_error' => 'Impossible de se connecter avec cet identifiant et ce mot de passe.',

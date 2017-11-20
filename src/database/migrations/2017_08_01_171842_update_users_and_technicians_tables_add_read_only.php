@@ -33,7 +33,6 @@ class UpdateUsersAndTechniciansTablesAddReadOnly extends Migration
             $table->dropColumn('read_only');
         });
 
-
         Schema::table('technicians', function (Blueprint $table) {
             $table->dropColumn('read_only');
         });

@@ -55,6 +55,12 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="opt_in">Lecture seule</label>
+                        <div class="radio"><input type="radio" name="read_only" value="1" id="read_only" @if (old('read_only') == true || old('read_only') === null)checked="checked"@endif /> Oui</div>
+                        <div class="radio"><input type="radio" name="read_only" value="0" @if (!old('read_only'))checked="checked"@endif /> Non</div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="login">Login <span class="required">*</span></label>
                         <input type="text" name="login" id="login" value="{{ old('login') }}" required />
                     </div>
