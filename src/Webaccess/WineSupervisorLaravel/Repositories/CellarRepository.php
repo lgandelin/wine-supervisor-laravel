@@ -338,15 +338,6 @@ class CellarRepository extends BaseRepository
 
         if ($cellar = Cellar::find($cellarID)) {
 
-            //Check that the WS ID entered is of type SAV
-            /*if ($ws = WS::find($idWS)) {
-                if ($ws->board_type != WS::SAV_BOARD) {
-                    return self::error(trans('wine-supervisor::cellar.boar_type_not_sav_error'));
-                }
-            } else {
-                return self::error(trans('wine-supervisor::cellar.id_ws_error'));
-            }*/
-
             $oldIDWS = $cellar->id_ws;
             $oldCDCellarID = $cellar->cd_cellar_id;
 
@@ -365,19 +356,18 @@ class CellarRepository extends BaseRepository
             }
 
             //Update WS table (old board)
-            /*if ($oldWS = WS::find($oldIDWS)) {
-                $oldWS->deactivation_date = new DateTime();
-                $oldWS->board_type = WS::OUT_OF_ORDER_BOARD;
+            if ($oldWS = WS::find($oldIDWS)) {
+                $oldWS->board_type = WS::SAV_BOARD;
                 $oldWS->save();
-            }*/
+            }
 
             //Update WS table (new board)
-            /*if ($ws = WS::find($idWS)) {
+            if ($ws = WS::find($idWS)) {
                 if ($ws->first_activation_date == null) {
                     $ws->first_activation_date = new DateTime();
                     $ws->save();
                 }
-            }*/
+            }
 
             //Update cellar with new id_ws
             $cellar->id_ws = $idWS;
@@ -427,7 +417,7 @@ class CellarRepository extends BaseRepository
             //Call API : resell cellar
             if ($boardType == WS::DEUXIO_BOARD) {
                 try {
-                    (new CellierDomesticusAPI())->resell_cellar($cellar);
+                    (new CellierDomesticusAPI())->resell_cellar($cellar->cd_cellar_id);
                 } catch (\Exception $e) {
                     Log::info('API_RESELL_CELLAR_ERROR', [
                         'cellar_id' => $cellarID,
@@ -441,7 +431,7 @@ class CellarRepository extends BaseRepository
             //Call API : delete cellar
             } else {
                 try {
-                    (new CellierDomesticusAPI())->delete_cellar($cellar);
+                    (new CellierDomesticusAPI())->delete_cellar($cellar->cd_cellar_id);
                 } catch (\Exception $e) {
                     Log::info('API_DELETE_CELLAR_ERROR', [
                         'cellar_id' => $cellarID,

@@ -446,7 +446,7 @@ class CellierDomesticusAPI
         }
     }
 
-    public function delete_cellar(Cellar $cellar)
+    public function delete_cellar($cdCellarID)
     {
         $requestData = [
             'headers' => [
@@ -457,7 +457,7 @@ class CellierDomesticusAPI
 
         Log::info('API_DELETE_CELLAR_REQUEST', $requestData);
 
-        if ($response = $this->client->request('DELETE', sprintf('/api/cellars/%s', $cellar->cd_cellar_id), $requestData)) {
+        if ($response = $this->client->request('DELETE', sprintf('/api/cellars/%s', $cdCellarID), $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
 
@@ -473,7 +473,7 @@ class CellierDomesticusAPI
         }
     }
 
-    public function sav(Cellar $cellar, $newCDCellarID)
+    public function sav($cdCellarID, $newCDCellarID)
     {
         $requestData = [
             'headers' => [
@@ -484,7 +484,7 @@ class CellierDomesticusAPI
 
         Log::info('API_SAV_CELLAR_REQUEST', $requestData);
 
-        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/sav/%s', $cellar->cd_cellar_id, $newCDCellarID), $requestData)) {
+        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/sav/%s', $cdCellarID, $newCDCellarID), $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
 
@@ -500,7 +500,7 @@ class CellierDomesticusAPI
         }
     }
 
-    public function resell_cellar($cellar)
+    public function resell_cellar($cdCellarID)
     {
         $requestData = [
             'headers' => [
@@ -511,7 +511,7 @@ class CellierDomesticusAPI
 
         Log::info('API_RESELL_CELLAR_REQUEST', $requestData);
 
-        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/re-sell', $cellar->cd_cellar_id), $requestData)) {
+        if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/re-sell', $cdCellarID), $requestData)) {
             $result = $response->getBody()->getContents();
             $resultObject = json_decode($result);
 
