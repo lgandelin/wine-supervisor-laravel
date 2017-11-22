@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\WS;
@@ -199,6 +200,13 @@ class CellarController extends UserController
             ]);
 
             return redirect()->back()->withInput();
+        }
+
+        if ($wsID = WSRepository::getWSIDFromCDWSID($request->get('cellar_id'))) {
+            Mail::send('wine-supervisor::emails.user_sav_admin', array('id_ws' => $wsID), function ($message) {
+                $message->to(env('WS_ADMIN_EMAIL'))
+                    ->subject('[WineSupervisor] Un installateur a effectué l\'action SAV sur le site');
+            });
         }
 
         $request->session()->flash('confirmation', trans('wine-supervisor::cellar.cellar_sav_success'));
