@@ -343,7 +343,7 @@ class CellarRepository extends BaseRepository
 
             //Call API : sav cellar
             try {
-                (new CellierDomesticusAPI())->sav($cellar, $newCDCellarID);
+                (new CellierDomesticusAPI())->sav($cellar->cd_cellar_id, $newCDCellarID);
             } catch (\Exception $e) {
                 Log::info('API_SAV_CELLAR_ERROR', [
                     'cellar_id' => $cellarID,
