@@ -13,7 +13,6 @@ class WSService
             case WS::DEUXIO_BOARD: $label = 'Deuxio'; break;
             case WS::SAV_BOARD: $label = 'SAV'; break;
             case WS::OUT_OF_ORDER_BOARD: $label = 'HS'; break;
-            case WS::RESELL_BOARD: $label = 'Revente'; break;
         }
 
         return $label;

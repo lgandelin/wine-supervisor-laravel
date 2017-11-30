@@ -470,7 +470,7 @@ class CellarRepository extends BaseRepository
             return false;
 
         //If the board type is compatible
-        if ($ws->board_type != WS::PRIMO_BOARD && $ws->board_type != WS::DEUXIO_BOARD && $ws->board_type != WS::RESELL_BOARD)
+        if ($ws->board_type != WS::PRIMO_BOARD && $ws->board_type != WS::DEUXIO_BOARD)
             return false;
 
         return true;

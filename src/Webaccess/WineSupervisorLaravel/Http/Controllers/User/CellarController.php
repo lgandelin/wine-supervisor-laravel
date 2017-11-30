@@ -232,7 +232,7 @@ class CellarController extends UserController
                 $boardType = WS::DEUXIO_BOARD;
             break;
             default:
-                $boardType = WS::RESELL_BOARD;
+                $boardType = WS::DEUXIO_BOARD;
             break;
         }
 

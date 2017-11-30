@@ -243,6 +243,9 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_UPDATE_USER_REQUEST', $requestData);
+        Log::info('API_UPDATE_CELLAR_REQUEST_PARAMETERS', [
+            'cd_user_id' => $user->cd_user_id,
+        ]);
 
         if ($response = $this->client->request('PUT', sprintf('/api/users/%s', $user->cd_user_id), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -282,6 +285,9 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_UPDATE_TECHNICIAN_REQUEST', $requestData);
+        Log::info('API_UPDATE_CELLAR_REQUEST_PARAMETERS', [
+            'cd_technician_id' => $technician->cd_user_id,
+        ]);
 
         if ($response = $this->client->request('PUT', sprintf('/api/users/%s', $technician->cd_user_id), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -321,6 +327,9 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_UPDATE_CELLAR_REQUEST', $requestData);
+        Log::info('API_UPDATE_CELLAR_REQUEST_PARAMETERS', [
+            'cd_cellar_id' => $cellar->cd_cellar_id,
+        ]);
 
         if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s', $cellar->cd_cellar_id), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -348,6 +357,10 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_AFFECT_CELLAR_REQUEST', $requestData);
+        Log::info('API_AFFECT_CELLAR_PARAMETERS', [
+            'cd_technician_id' => $technician->cd_user_id,
+            'cd_cellar_id' => $cellar->cd_cellar_id,
+        ]);
 
         if ($response = $this->client->request('POST', sprintf('/api/users/%s/affect-cellar/%s', $technician->cd_user_id, $cellar->cd_cellar_id), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -375,6 +388,10 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_UNAFFECT_CELLAR_REQUEST', $requestData);
+        Log::info('API_UNAFFECT_CELLAR_PARAMETERS', [
+            'cd_technician_id' => $technician->cd_user_id,
+            'cd_cellar_id' => $cellar->cd_cellar_id,
+        ]);
 
         if ($response = $this->client->request('POST', sprintf('/api/users/%s/unaffect-cellar/%s', $technician->cd_user_id, $cellar->cd_cellar_id), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -402,6 +419,9 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_DISABLE_USER_REQUEST', $requestData);
+        Log::info('API_DISABLE_USER_REQUEST_PARAMETERS', [
+            'cd_user_id' => $user->cd_user_id,
+        ]);
 
         if ($response = $this->client->request('PUT', sprintf('/api/users/%s/disable', $user->cd_user_id), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -429,6 +449,9 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_DISABLE_TECHNICIAN_REQUEST', $requestData);
+        Log::info('API_DISABLE_TECHNICIAN_REQUEST_PARAMETERS', [
+            'cd_technician_id' => $technician->cd_user_id,
+        ]);
 
         if ($response = $this->client->request('PUT', sprintf('/api/users/%s/disable', $technician->cd_user_id), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -456,6 +479,9 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_DELETE_CELLAR_REQUEST', $requestData);
+        Log::info('API_DELETE_CELLAR_REQUEST_PARAMETERS', [
+            'cd_cellar_id' => $cdCellarID,
+        ]);
 
         if ($response = $this->client->request('DELETE', sprintf('/api/cellars/%s', $cdCellarID), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -483,6 +509,10 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_SAV_CELLAR_REQUEST', $requestData);
+        Log::info('API_SAV_CELLAR_REQUEST_PARAMETERS', [
+            'cd_cellar_id' => $cdCellarID,
+            'new_cd_cellar_id' => $newCDCellarID,
+        ]);
 
         if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/sav/%s', $cdCellarID, $newCDCellarID), $requestData)) {
             $result = $response->getBody()->getContents();
@@ -510,6 +540,9 @@ class CellierDomesticusAPI
         ];
 
         Log::info('API_RESELL_CELLAR_REQUEST', $requestData);
+        Log::info('API_RESELL_CELLAR_REQUEST_PARAMETERS', [
+            'cd_cellar_id' => $cdCellarID,
+        ]);
 
         if ($response = $this->client->request('PUT', sprintf('/api/cellars/%s/re-sell', $cdCellarID), $requestData)) {
             $result = $response->getBody()->getContents();

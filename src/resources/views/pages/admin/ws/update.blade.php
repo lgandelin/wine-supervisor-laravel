@@ -46,7 +46,6 @@
                                 Webaccess\WineSupervisorLaravel\Models\WS::DEUXIO_BOARD,
                                 Webaccess\WineSupervisorLaravel\Models\WS::SAV_BOARD,
                                 Webaccess\WineSupervisorLaravel\Models\WS::OUT_OF_ORDER_BOARD,
-                                Webaccess\WineSupervisorLaravel\Models\WS::RESELL_BOARD,
                             ] as $board_type)
                                 <option value="{{ $board_type }}" @if ($ws->board_type == $board_type) selected="selected" @endif>
                                     {{ Webaccess\WineSupervisorLaravel\Services\WSService::getBoardTypeLabel($board_type) }}
