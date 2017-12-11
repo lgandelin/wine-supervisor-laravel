@@ -225,18 +225,7 @@ class CellarController extends UserController
     {
         parent::__construct($request);
 
-        $boardType = null;
-        switch($request->get('reason')) {
-            /*case 'board_out_of_order':
-                $boardType = WS::OUT_OF_ORDER_BOARD;
-            break;*/
-            case 'resell':
-                $boardType = WS::DEUXIO_BOARD;
-            break;
-            default:
-                $boardType = WS::DEUXIO_BOARD;
-            break;
-        }
+        $boardType = WS::DEUXIO_BOARD;
 
         $requestID = Uuid::uuid4()->toString();
 
