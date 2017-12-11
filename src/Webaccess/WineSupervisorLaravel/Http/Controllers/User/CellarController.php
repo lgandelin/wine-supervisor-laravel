@@ -181,13 +181,15 @@ class CellarController extends UserController
             'id' => $requestID,
             'cellar_id' => $request->get('cellar_id'),
             'user_id' => $this->getUserID(),
-            'cd_cellar_id' => $request->get('cd_cellar_id')
+            'cd_cellar_id' => $request->get('cd_cellar_id'),
+            'activation_code' => $request->get('activation_code')
         ]);
 
         list($success, $error) = CellarRepository::sav(
             $request->get('cellar_id'),
             $this->getUserID(),
-            $request->get('cd_cellar_id')
+            $request->get('cd_cellar_id'),
+            $request->get('activation_code')
         );
 
         if (!$success) {
@@ -225,9 +227,9 @@ class CellarController extends UserController
 
         $boardType = null;
         switch($request->get('reason')) {
-            case 'board_out_of_order':
+            /*case 'board_out_of_order':
                 $boardType = WS::OUT_OF_ORDER_BOARD;
-            break;
+            break;*/
             case 'resell':
                 $boardType = WS::DEUXIO_BOARD;
             break;

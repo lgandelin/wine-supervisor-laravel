@@ -330,11 +330,19 @@ class CellarRepository extends BaseRepository
      * @param $cellarID
      * @param $userID
      * @param $newCDCellarID
+     * @param $activationCode
      * @return bool
      */
-    public static function sav($cellarID, $userID, $newCDCellarID)
+    public static function sav($cellarID, $userID, $newCDCellarID, $activationCode)
     {
         $idWS = WSRepository::getWSIDFromCDWSID($newCDCellarID);
+
+        //Check activation code
+        if ($ws = WS::find($idWS)) {
+            if ($ws->activation_code != $activationCode) {
+                return self::error(trans('wine-supervisor::ws.invalid_activation_code'));
+            }
+        }
 
         if ($cellar = Cellar::find($cellarID)) {
 

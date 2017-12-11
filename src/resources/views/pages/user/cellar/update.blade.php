@@ -146,7 +146,7 @@
             <div class="form-group">
                 <label for="reason">Raison de la suppression</label>
                 <select name="reason" id="reason" class="form-control">
-                    <option value="board_out_of_order">Carte HS</option>
+                    {{--<option value="board_out_of_order">Carte HS</option>--}}
                     <option value="resell">Revente ou Suppression</option>
                 </select>
             </div>
@@ -166,8 +166,13 @@
 
         <form action="{{ route('user_cellar_sav_handler') }}" method="POST">
             <div class="form-group">
-                <label for="cd_cellar_id">Identifiant WineSupevisor</label>
-                <input type="text" name="cd_cellar_id" id="cd_cellar_id" class="form-control" />
+                <label for="cd_cellar_id">Identifiant WineSupevisor <span class="required">*</span></label>
+                <input type="text" name="cd_cellar_id" id="cd_cellar_id" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="activation_code">Code d'activation <span class="required">*</span></label>
+                <input type="text" name="activation_code" id="activation_code" class="form-control" required />
             </div>
 
             <a href="{{ route('user_cellar_list') }}" data-fancybox-close class="back-button">Retour</a>
