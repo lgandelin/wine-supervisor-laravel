@@ -34,7 +34,7 @@
 
                 <table class="table-list">
                     <tr class="table-row">
-                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'cd_user_id') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'cd_user_id', 'so' => $sort_order]) }}">ID</a></td>
+                        <td class="table-cell table-cell-header align-left @if ($sort_column == 'technician_code') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'technician_code', 'so' => $sort_order]) }}">Code</a></td>
                         <td class="table-cell table-cell-header align-left @if ($sort_column == 'company') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'company', 'so' => $sort_order]) }}">Nom de la société</a></td>
                         <td class="table-cell table-cell-header align-left @if ($sort_column == 'email') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'email', 'so' => $sort_order]) }}">Email</a></td>
                         <td class="table-cell table-cell-header align-left @if ($sort_column == 'status') current-filter @endif"><a href="{{ route('admin_technician_list', ['sc' => 'status', 'so' => $sort_order]) }}">Statut</a></td>
@@ -45,7 +45,7 @@
 
                     @foreach ($technicians as $technician)
                         <tr class="table-row">
-                            <td class="table-cell align-left">{{ $technician->cd_user_id }}</td>
+                            <td class="table-cell align-left">{{ $technician->technician_code }}</td>
                             <td class="table-cell align-left">{{ $technician->company }}</td>
                             <td class="table-cell align-left truncate"><a href="mailto:{{ $technician->email }}">{{ $technician->email }}</a></td>
                             <td class="table-cell align-left">@if ($technician->status == Webaccess\WineSupervisorLaravel\Models\Technician::STATUS_ENABLED) Activé @else Désactivé @endif
