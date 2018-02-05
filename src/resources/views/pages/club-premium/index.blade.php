@@ -37,12 +37,21 @@
                     </div>
                 </section>
 
-                <section>
-                    <div class="right-image" style="margin-top:1rem"><img src="{{ asset('img/club-premium/right-image.jpg') }}" width="541" height="457" /></div>
-                    <div class="text" style="padding-top: 0rem;">
-                        <?php include base_path() . '/contents/' . App::getLocale() . '/club-avantage/programme-des-ventes.html' ?>
-                    </div>
-                </section>
+                @if ($programme_des_ventes)
+                    <section>
+                        @if ($programme_des_ventes->image)
+                            <div class="right-image" style="margin-top:1rem"><img src="{{ asset(env('WS_UPLOADS_FOLDER') . 'contents/' . $programme_des_ventes->id . '/' . $programme_des_ventes->image) }}" width="541" height="457" /></div>
+                        @endif
+
+                        <div class="text" style="padding-top: 0rem;">
+                            @if (App::getLocale() == 'fr')
+                                {!! $programme_des_ventes->text !!}
+                            @elseif (App::getLocale() == 'en')
+                                {!! $programme_des_ventes->text_en !!}
+                            @endif
+                        </div>
+                    </section>
+                @endif
 
             </div>
             <!-- PAGE CONTENT -->

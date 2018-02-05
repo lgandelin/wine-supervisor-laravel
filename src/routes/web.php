@@ -124,5 +124,10 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
         Route::get('/admin/modifier-partenaire/{uuid}', array('as' => 'admin_partner_update', 'uses' => 'Admin\PartnerController@update'));
         Route::post('/admin/modifier-partenaire', array('as' => 'admin_partner_update_handler', 'uses' => 'Admin\PartnerController@update_handler'));
         Route::get('/admin/supprimer-partenaire/{uuid}', array('as' => 'admin_partner_delete_handler', 'uses' => 'Admin\PartnerController@delete_handler'));
+
+        Route::get('/admin/contenus', array('as' => 'admin_page_content_list', 'uses' => 'Admin\PageContentController@index'));
+        Route::get('/admin/modifier-contenu/{uuid}', array('as' => 'admin_page_content_update', 'uses' => 'Admin\PageContentController@update'));
+        Route::post('/admin/modifier-contenu', array('as' => 'admin_page_content_update_handler', 'uses' => 'Admin\PageContentController@update_handler'));
+
     });
 });

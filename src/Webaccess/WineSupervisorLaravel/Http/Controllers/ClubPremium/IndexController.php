@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\ClubPremium;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Webaccess\WineSupervisorLaravel\Repositories\PageContentRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
@@ -23,6 +24,7 @@ class IndexController
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
             'first_name' => AccountService::getFirstName(),
+            'programme_des_ventes' => PageContentRepository::getByID(env('PROGRAMME_DES_VENTES_CONTENT_ID'))
         ]);
     }
 

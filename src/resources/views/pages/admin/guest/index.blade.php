@@ -34,13 +34,13 @@
 
                 <table class="table-list less-padding">
                     <tr class="table-row">
-                        <th class="table-cell table-cell-header @if ($sort_column == 'last_name') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'last_name', 'so' => $sort_order]) }}">Nom</a></th>
-                        <th class="table-cell table-cell-header @if ($sort_column == 'first_name') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'first_name', 'so' => $sort_order]) }}">Prénom</a></th>
-                        <th class="table-cell table-cell-header @if ($sort_column == 'email') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'email', 'so' => $sort_order]) }}">Email</a></th>
-                        <th class="table-cell table-cell-header @if ($sort_column == 'login') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'login', 'so' => $sort_order]) }}">Login</a></th>
-                        <th class="table-cell table-cell-header @if ($sort_column == 'access_start_date' || !$sort_column) current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'access_start_date', 'so' => $sort_order]) }}">Début</a></th>
-                        <th class="table-cell table-cell-header @if ($sort_column == 'access_end_date') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'access_end_date', 'so' => $sort_order]) }}">Fin</a></th>
-                        <th class="table-cell table-cell-header">Action</th>
+                        <th class="table-cell table-cell-header align-left @if ($sort_column == 'last_name') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'last_name', 'so' => $sort_order]) }}">Nom</a></th>
+                        <th class="table-cell table-cell-header align-left @if ($sort_column == 'first_name') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'first_name', 'so' => $sort_order]) }}">Prénom</a></th>
+                        <th class="table-cell table-cell-header align-left @if ($sort_column == 'email') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'email', 'so' => $sort_order]) }}">Email</a></th>
+                        <th class="table-cell table-cell-header align-left @if ($sort_column == 'login') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'login', 'so' => $sort_order]) }}">Login</a></th>
+                        <th class="table-cell table-cell-header align-left @if ($sort_column == 'access_start_date' || !$sort_column) current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'access_start_date', 'so' => $sort_order]) }}">Début</a></th>
+                        <th class="table-cell table-cell-header align-left @if ($sort_column == 'access_end_date') current-filter @endif"><a href="{{ route('admin_guest_list', ['sc' => 'access_end_date', 'so' => $sort_order]) }}">Fin</a></th>
+                        <th class="table-cell table-cell-header align-left">Action</th>
                     </tr>
                     @foreach ($guests as $guest)
                         <tr class="table-row">
