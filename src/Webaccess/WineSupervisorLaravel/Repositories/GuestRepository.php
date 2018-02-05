@@ -2,6 +2,7 @@
 
 namespace Webaccess\WineSupervisorLaravel\Repositories;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Webaccess\WineSupervisorLaravel\Models\Guest;
@@ -24,7 +25,12 @@ class GuestRepository extends BaseRepository
      */
     public static function getAll($sort_column = null, $sort_order = null)
     {
-        return Guest::orderBy($sort_column ? $sort_column : 'access_start_date', $sort_order ? $sort_order : 'DESC')->get();
+        $guests = Guest::orderBy($sort_column ? $sort_column : 'access_start_date', $sort_order ? $sort_order : 'DESC');
+
+        if ($sort_column == 'last_name') {
+            $guests = Guest::orderBy(DB::raw("CASE WHEN last_name IS NOT NULL THEN last_name ELSE first_name END"), $sort_order ? $sort_order : 'DESC');
+        }
+        return $guests->get();
     }
 
     /**
