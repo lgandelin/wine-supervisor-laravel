@@ -169,77 +169,113 @@
 	}
 }
 
-.sales-navigation {
+.sales-navigation-wrapper {
+	position: relative;
 	overflow: hidden;
-	margin-bottom: 7.3rem;
 
-	li {
-		float: left;
-		margin-right: 3rem;
-		margin-bottom: 3rem;
-		width: 350px;
-		height: 180px;
-		position: relative;
-		opacity: 0.65;
+	.sales-navigation {
 		overflow: hidden;
+		margin-bottom: 7.3rem;
 
-		font-size: 1.8rem;
-		color: #eeeeee;
-		text-transform: uppercase;
-		cursor: pointer;
-
-		&:before {
-			content: "";
-			display: block;
-			position: absolute;
-			z-index: 2;
-			left: 0.75rem;
-			right: 0.75rem;
-			bottom: 0.75rem;
-			top: 0.75rem;
-
-			border: 1px solid #eee;
-		}
-
-		&.active {
-			opacity: 1;
-		}
-
-		&:hover {
-			opacity: 1;
-		}
-
-		.sale-background {
-			img {
-				width: 100%;
-				height: auto;
-			}
-			position: absolute;
-			z-index: 1;
-		}
-
-		.sale-name {
-			height: 100%;
-			padding-top: 7rem;
-			display: block;
-			text-align: center;
+		li {
+			float: left;
+			margin-right: 3rem;
+			margin-bottom: 3rem;
+			width: 350px;
+			height: 180px;
 			position: relative;
-			z-index: 2;
+			opacity: 0.65;
+			overflow: hidden;
 
-			color: white;
+			font-size: 1.8rem;
+			color: #eeeeee;
+			text-transform: uppercase;
+			cursor: pointer;
 
-			&.black {
-				color: black;
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				z-index: 2;
+				left: 0.75rem;
+				right: 0.75rem;
+				bottom: 0.75rem;
+				top: 0.75rem;
+
+				border: 1px solid #eee;
+			}
+
+			&.active {
+				opacity: 1;
+			}
+
+			&:hover {
+				opacity: 1;
+			}
+
+			.sale-background {
+				img {
+					width: 100%;
+					height: auto;
+				}
+				position: absolute;
+				z-index: 1;
+			}
+
+			.sale-name {
+				height: 100%;
+				padding-top: 7rem;
+				display: block;
+				text-align: center;
+				position: relative;
+				z-index: 2;
+
+				color: white;
+
+				&.black {
+					color: black;
+				}
+			}
+
+			a {
+				display: block;
+				height: 100%;
+
+				text-decoration: none;
+				color: white;
+
 			}
 		}
+	}
 
-		a {
-			display: block;
-			height: 100%;
+	.sales-navigation-arrows {
+		.slick-arrow {
+			width: 2.2rem;
+			height: 4.5rem;
+			position: absolute;
+			z-index: 5;
+			top: 50%;
+			transform: translate(0, -50%);
+			
+			text-indent: -9999px;
+			cursor: pointer;
+			outline: 0;
 
-			text-decoration: none;
-			color: white;
+			border: none;
 
+			&.slick-prev {
+				left: 0;
+				background: url(../img/home/partners/previous.png) no-repeat center center;
+			}
+
+			&.slick-next {
+				right: 0;
+				background: url(../img/home/partners/next.png) no-repeat center center;
+			}
+
+			&:hover {
+				opacity: 0.8;
+			}
 		}
 	}
 }

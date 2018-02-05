@@ -2,6 +2,7 @@
 
 namespace Webaccess\WineSupervisorLaravel\Http\Controllers;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,16 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
+        $sales = SaleRepository::getLastSales()->merge(SaleRepository::getCurrentSales()->merge(SaleRepository::getUpcomingSales()));
+        $current_sale = 1;
+
+        foreach ($sales as $i => $sale) {
+            if (new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date) && new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date)) {
+                $current_sale = $i + 1;
+                break;
+            }
+        }
+
         return view('wine-supervisor::pages.index', [
             'is_eligible_to_club_premium' => AccountService::isUserEligibleToClubPremium(),
             'is_eligible_to_supervision' => AccountService::isUserEligibleToSupervision(),
@@ -26,8 +37,8 @@ class IndexController extends Controller
             'is_guest' => AccountService::isGuest(),
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(5),
-            'last_sale' => SaleRepository::getLastSale(),
-            'sales' => SaleRepository::getCurrentSales()->merge(SaleRepository::getUpcomingSales()),
+            'sales' => $sales,
+            'current_sale' => $current_sale,
             'partners' => PartnerRepository::getAll(),
             'route' => $request->route() ? $request->route()->getName() : null,
         ]);
@@ -43,6 +54,7 @@ class IndexController extends Controller
             'is_guest' => AccountService::isGuest(),
             'first_name' => AccountService::getFirstName(),
             'contents' => ContentRepository::getAll(5),
+            'last_sales' => SaleRepository::getLastSales(),
             'sales' => SaleRepository::getSalePreview($request->uuid),
             'route' => $request->route() ? $request->route()->getName() : null,
         ]);

@@ -192,7 +192,22 @@
 			margin-bottom: 10rem;
 
 			padding-bottom: 1.5rem;
-		}		
+		}
+
+		.sales-navigation-wrapper {
+			margin-bottom: 7.3rem;
+			
+			.sales-navigation {
+				margin: auto;
+				width: 90%;
+				overflow: hidden;
+				margin-bottom: 0;
+
+				li {
+					margin-bottom: 0;
+				}
+			}
+		}
 	}
 	
 	//NEWS

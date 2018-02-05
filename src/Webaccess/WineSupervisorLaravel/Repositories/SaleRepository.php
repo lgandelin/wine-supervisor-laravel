@@ -187,15 +187,19 @@ class SaleRepository extends BaseRepository
         return $sales;
     }
 
-    public static function getLastSale()
+    public static function getLastSales()
     {
         $now = (new DateTime())->setTime(0, 0, 0);
 
-        $sale = Sale::where('end_date', '<', $now)
+        $sales = Sale::where('end_date', '<', $now)
             ->where('is_active', '=', true)
             ->orderBy('end_date', 'desc')
-            ->first();
+            ->get();
 
-        return ($sale) ? self::getAdditionalInfo($sale) : [];
+        foreach ($sales as $sale) {
+            $sale = self::getAdditionalInfo($sale);
+        }
+
+        return $sales;
     }
 }

@@ -60,16 +60,13 @@
         <!-- SALES -->
         <div class="sales">
 
-            @if (isset($last_sale) && $last_sale)
-                @include('wine-supervisor::partials.sales-slider', ['sale' => $last_sale, 'index' => '0', 'display' => 'none'])
-            @endif
-
-            @foreach ($sales as $i => $sale)
-                @include('wine-supervisor::partials.sales-slider', ['sale' => $sale, 'index' => ($i+1), 'display' => ($i != 0) ? 'none' : 'block'])
-            @endforeach
+            @include('wine-supervisor::partials.sales-slider', ['sales' => $sales, 'current_sale' => $current_sale])
 
             <div class="container">
-                @include('wine-supervisor::partials.sales-navigation', ['sales' => $sales])
+                <div class="sales-navigation-wrapper">
+                    <div class="sales-navigation-arrows"></div>
+                    @include('wine-supervisor::partials.sales-navigation', ['sales' => $sales, 'current_sale' => $current_sale])
+                </div>
             </div>
         </div>
         <!-- SALES -->
