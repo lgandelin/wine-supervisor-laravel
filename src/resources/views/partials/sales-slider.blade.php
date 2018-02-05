@@ -38,13 +38,15 @@
 
                             @if (($is_user || $is_guest) && $is_eligible_to_club_premium)
                                 @if ($wine->club_premium_price && $sale->is_active)
-                                    <span class="sale-price">
-                                        <span class="club_premium_price_label">{{ trans('wine-supervisor::sales_slider.club_premium_price') }}</span>
-                                        <span class="prices">
-                                            @if ($wine->standard_price)<span class="standard">{{ $wine->standard_price }}€</span> -> @endif
-                                            <span class="club_premium">{{ $wine->club_premium_price }}€</span>
+                                    @if (new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date) && new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date))
+                                        <span class="sale-price">
+                                            <span class="club_premium_price_label">{{ trans('wine-supervisor::sales_slider.club_premium_price') }}</span>
+                                            <span class="prices">
+                                                @if ($wine->standard_price)<span class="standard">{{ $wine->standard_price }}€</span> -> @endif
+                                                <span class="club_premium">{{ $wine->club_premium_price }}€</span>
+                                            </span>
                                         </span>
-                                    </span>
+                                    @endif
                                 @endif
                             @endif
 
