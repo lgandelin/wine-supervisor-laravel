@@ -3152,7 +3152,7 @@ footer a, footer a:visited {
   width: 350px;
   height: 180px;
   position: relative;
-  opacity: 0.5;
+  opacity: 0.65;
   overflow: hidden;
   font-size: 1.8rem;
   color: #eeeeee;
@@ -3197,8 +3197,13 @@ footer a, footer a:visited {
   text-align: center;
   position: relative;
   z-index: 2;
+  color: white;
 }
-/* line 230, ../sass/partials/_sales-slider.scss */
+/* line 231, ../sass/partials/_sales-slider.scss */
+.sales-navigation li .sale-name.black {
+  color: black;
+}
+/* line 236, ../sass/partials/_sales-slider.scss */
 .sales-navigation li a {
   display: block;
   height: 100%;

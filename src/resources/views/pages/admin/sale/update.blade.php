@@ -83,6 +83,12 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="text_color">Couleur du texte</label>
+                        <div class="radio"><input type="radio" name="text_color" value="white" @if ($sale->text_color == 'white')checked="checked"@endif /> Blanc</div>
+                        <div class="radio"><input type="radio" name="text_color" value="black" @if ($sale->text_color == 'black')checked="checked"@endif /> Noir</div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="link_history">URL quand vente passée</label>
                         <input type="text" name="link_history" id="link_history" value="{{ $sale->link_history }}" />
                     </div>

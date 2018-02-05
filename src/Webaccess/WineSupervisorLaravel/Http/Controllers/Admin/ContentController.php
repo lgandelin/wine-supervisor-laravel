@@ -43,7 +43,7 @@ class ContentController extends AdminController
         //Upload main image
         $imageNews = $request->get('image');
 
-        if ($request->image_file) {
+        if ($imageNews && $request->image_file) {
             if ($imageName = UploadTool::uploadImage($request->image_file, $imageTempFolder)) {
                 $imageNews = basename($imageName);
             }
@@ -58,7 +58,9 @@ class ContentController extends AdminController
             $imageNews,
             $request->get('publication_date') ? \DateTime::createFromformat('d/m/Y', $request->get('publication_date'))->format('Y-m-d') : null
         )) {
-            rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'contents/' . $contentID));
+            if ($imageNews) {
+                rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'contents/' . $contentID));
+            }
             $request->session()->flash('confirmation', trans('wine-supervisor::content.content_creation_success'));
         } else {
             $request->session()->flash('error', trans('wine-supervisor::content.content_creation_error'));

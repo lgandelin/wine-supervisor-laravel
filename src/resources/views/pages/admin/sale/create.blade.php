@@ -61,8 +61,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="comments">Commentaires</label>
+                        <label for="comments">Commentaires <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
                         <textarea name="comments" id="comments"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comments_en">Commentaires <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                        <textarea name="comments_en" id="comments_en"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text_color">Couleur du texte</label>
+                        <div class="radio"><input type="radio" name="text_color" value="white" checked="checked" /> Blanc</div>
+                        <div class="radio"><input type="radio" name="text_color" value="black" /> Noir</div>
                     </div>
 
                     <div class="form-group">

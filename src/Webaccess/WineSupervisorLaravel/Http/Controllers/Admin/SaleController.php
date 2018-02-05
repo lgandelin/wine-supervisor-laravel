@@ -108,6 +108,7 @@ class SaleController extends AdminController
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
             $request->get('comments'),
             $request->get('comments_en'),
+            $request->get('text_color'),
             $request->get('link_history')
         )) {
             rename($imageTempFolder, public_path(env('WS_UPLOADS_FOLDER') . 'sales/' . $saleID));
@@ -204,6 +205,7 @@ class SaleController extends AdminController
             \DateTime::createFromformat('d/m/Y', $request->get('end_date'))->format('Y-m-d'),
             $request->get('comments'),
             $request->get('comments_en'),
+            $request->get('text_color'),
             $request->get('link_history')
         )) {
             $request->session()->flash('confirmation', trans('wine-supervisor::sale.sale_update_success'));

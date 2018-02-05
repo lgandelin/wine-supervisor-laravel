@@ -35,7 +35,6 @@ class IndexController
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
             'first_name' => AccountService::getFirstName(),
-            'sales' => SaleRepository::getSalesHistory()
         ]);
     }
 

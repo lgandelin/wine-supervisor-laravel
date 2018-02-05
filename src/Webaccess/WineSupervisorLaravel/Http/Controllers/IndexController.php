@@ -25,7 +25,7 @@ class IndexController extends Controller
             'is_technician' => AccountService::isTechnician(),
             'is_guest' => AccountService::isGuest(),
             'first_name' => AccountService::getFirstName(),
-            'contents' => ContentRepository::getAll(3),
+            'contents' => ContentRepository::getAll(5),
             'last_sale' => SaleRepository::getLastSale(),
             'sales' => SaleRepository::getCurrentSales()->merge(SaleRepository::getUpcomingSales()),
             'partners' => PartnerRepository::getAll(),
@@ -42,7 +42,7 @@ class IndexController extends Controller
             'is_technician' => AccountService::isTechnician(),
             'is_guest' => AccountService::isGuest(),
             'first_name' => AccountService::getFirstName(),
-            'contents' => ContentRepository::getAll(3),
+            'contents' => ContentRepository::getAll(5),
             'sales' => SaleRepository::getSalePreview($request->uuid),
             'route' => $request->route() ? $request->route()->getName() : null,
         ]);

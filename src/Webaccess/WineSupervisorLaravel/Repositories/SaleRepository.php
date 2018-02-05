@@ -39,10 +39,11 @@ class SaleRepository extends BaseRepository
      * @param $endDate
      * @param $comments
      * @param $comments_en
+     * @param $text_color
      * @param $link_history
      * @return bool
      */
-    public static function create($is_active, $title, $title_en, $description, $image, $wines, $startDate, $endDate, $comments, $comments_en, $link_history)
+    public static function create($is_active, $title, $title_en, $description, $image, $wines, $startDate, $endDate, $comments, $comments_en, $text_color, $link_history)
     {
         $sale = new Sale();
         $sale->id = Uuid::uuid4()->toString();
@@ -56,6 +57,7 @@ class SaleRepository extends BaseRepository
         $sale->end_date = $endDate;
         $sale->comments = $comments;
         $sale->comments_en = $comments_en;
+        $sale->text_color = $text_color;
         $sale->link_history = $link_history;
 
         if ($sale->save()) {
@@ -76,10 +78,11 @@ class SaleRepository extends BaseRepository
      * @param $endDate
      * @param $comments
      * @param $comments_en
+     * @param $text_color
      * @param $link_history
      * @return bool
      */
-    public static function update($saleID, $is_active, $title, $title_en, $description, $image, $wines, $startDate, $endDate, $comments, $comments_en, $link_history)
+    public static function update($saleID, $is_active, $title, $title_en, $description, $image, $wines, $startDate, $endDate, $comments, $comments_en, $text_color, $link_history)
     {
         if ($sale = Sale::find($saleID)) {
             $sale->is_active = $is_active;
@@ -92,6 +95,7 @@ class SaleRepository extends BaseRepository
             $sale->end_date = $endDate;
             $sale->comments = $comments;
             $sale->comments_en = $comments_en;
+            $sale->text_color = $text_color;
             $sale->link_history = $link_history;
 
             return $sale->save();
@@ -120,7 +124,7 @@ class SaleRepository extends BaseRepository
     {
         $now = (new DateTime())->setTime(0, 0, 0);
 
-        $sales = Sale::where('end_date', '<', $now)->orderBy('start_date', 'desc')->orderBy('end_date', 'desc')->get();
+        $sales = Sale::where('end_date', '<', $now)->orderBy('start_date', 'desc')->orderBy('end_date', 'asc')->get();
 
         foreach ($sales as $sale) {
             $sale = self::getAdditionalInfo($sale);
