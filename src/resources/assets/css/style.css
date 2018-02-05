@@ -3144,13 +3144,14 @@ footer a, footer a:visited {
   position: relative;
   overflow: hidden;
 }
-/* line 176, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation {
+
+/* line 177, ../sass/partials/_sales-slider.scss */
+.sales-navigation {
   overflow: hidden;
   margin-bottom: 7.3rem;
 }
-/* line 180, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li {
+/* line 181, ../sass/partials/_sales-slider.scss */
+.sales-navigation li {
   float: left;
   margin-right: 3rem;
   margin-bottom: 3rem;
@@ -3164,8 +3165,8 @@ footer a, footer a:visited {
   text-transform: uppercase;
   cursor: pointer;
 }
-/* line 195, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li:before {
+/* line 196, ../sass/partials/_sales-slider.scss */
+.sales-navigation li:before {
   content: "";
   display: block;
   position: absolute;
@@ -3176,26 +3177,26 @@ footer a, footer a:visited {
   top: 0.75rem;
   border: 1px solid #eee;
 }
-/* line 208, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li.active {
+/* line 209, ../sass/partials/_sales-slider.scss */
+.sales-navigation li.active {
   opacity: 1;
 }
-/* line 212, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li:hover {
+/* line 213, ../sass/partials/_sales-slider.scss */
+.sales-navigation li:hover {
   opacity: 1;
 }
-/* line 216, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li .sale-background {
+/* line 217, ../sass/partials/_sales-slider.scss */
+.sales-navigation li .sale-background {
   position: absolute;
   z-index: 1;
 }
-/* line 217, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li .sale-background img {
+/* line 218, ../sass/partials/_sales-slider.scss */
+.sales-navigation li .sale-background img {
   width: 100%;
   height: auto;
 }
-/* line 225, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li .sale-name {
+/* line 226, ../sass/partials/_sales-slider.scss */
+.sales-navigation li .sale-name {
   height: 100%;
   padding-top: 7rem;
   display: block;
@@ -3204,19 +3205,20 @@ footer a, footer a:visited {
   z-index: 2;
   color: white;
 }
-/* line 235, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li .sale-name.black {
+/* line 236, ../sass/partials/_sales-slider.scss */
+.sales-navigation li .sale-name.black {
   color: black;
 }
-/* line 240, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation li a {
+/* line 241, ../sass/partials/_sales-slider.scss */
+.sales-navigation li a {
   display: block;
   height: 100%;
   text-decoration: none;
   color: white;
 }
-/* line 252, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation-arrows .slick-arrow {
+
+/* line 253, ../sass/partials/_sales-slider.scss */
+.sales-navigation-arrows .slick-arrow {
   width: 2.2rem;
   height: 4.5rem;
   position: absolute;
@@ -3228,18 +3230,18 @@ footer a, footer a:visited {
   outline: 0;
   border: none;
 }
-/* line 266, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation-arrows .slick-arrow.slick-prev {
+/* line 267, ../sass/partials/_sales-slider.scss */
+.sales-navigation-arrows .slick-arrow.slick-prev {
   left: 0;
   background: url(../img/home/partners/previous.png) no-repeat center center;
 }
-/* line 271, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation-arrows .slick-arrow.slick-next {
+/* line 272, ../sass/partials/_sales-slider.scss */
+.sales-navigation-arrows .slick-arrow.slick-next {
   right: 0;
   background: url(../img/home/partners/next.png) no-repeat center center;
 }
-/* line 276, ../sass/partials/_sales-slider.scss */
-.sales-navigation-wrapper .sales-navigation-arrows .slick-arrow:hover {
+/* line 277, ../sass/partials/_sales-slider.scss */
+.sales-navigation-arrows .slick-arrow:hover {
   opacity: 0.8;
 }
 

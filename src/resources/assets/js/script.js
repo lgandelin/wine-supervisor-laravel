@@ -65,7 +65,7 @@ $(document).ready(function() {
 		$('.sales-slider-' + $(this).data('slider')).slick('resize');
 	});
 
-	$('.sales-navigation').slick({
+	$('.home-template .sales-navigation').slick({
 		autoplay: false,
 		autoplaySpeed: 5000,
 		infinite: false,
