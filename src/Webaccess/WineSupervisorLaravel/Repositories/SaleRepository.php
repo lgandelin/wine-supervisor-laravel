@@ -124,7 +124,10 @@ class SaleRepository extends BaseRepository
     {
         $now = (new DateTime())->setTime(0, 0, 0);
 
-        $sales = Sale::where('end_date', '<', $now)->orderBy('start_date', 'desc')->orderBy('end_date', 'asc')->get();
+        $sales = Sale::where('end_date', '<', $now)
+            ->where('is_active', '=', true)
+            ->orderBy('start_date', 'asc')
+            ->orderBy('end_date', 'asc')->get();
 
         foreach ($sales as $sale) {
             $sale = self::getAdditionalInfo($sale);
@@ -154,21 +157,9 @@ class SaleRepository extends BaseRepository
     {
         if ($sale) {
             if (isset($sale->wines)) $sale->wines = json_decode($sale->wines);
-            /*if (new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date) && new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date)) {
-                $sale->is_active = true;
-            }*/
         }
 
         return $sale;
-    }
-
-    public static function getSalePreview($saleID)
-    {
-        if ($sale = Sale::find($saleID)) {
-            return [self::getAdditionalInfo($sale)];
-        }
-
-        return [];
     }
 
     public static function getUpcomingSales()
@@ -178,22 +169,6 @@ class SaleRepository extends BaseRepository
         $sales = Sale::where('start_date', '>', $now)
             ->where('is_active', '=', true)
             ->orderBy('start_date', 'asc')
-            ->get();
-
-        foreach ($sales as $sale) {
-            $sale = self::getAdditionalInfo($sale);
-        }
-
-        return $sales;
-    }
-
-    public static function getLastSales()
-    {
-        $now = (new DateTime())->setTime(0, 0, 0);
-
-        $sales = Sale::where('end_date', '<', $now)
-            ->where('is_active', '=', true)
-            ->orderBy('end_date', 'desc')
             ->get();
 
         foreach ($sales as $sale) {
