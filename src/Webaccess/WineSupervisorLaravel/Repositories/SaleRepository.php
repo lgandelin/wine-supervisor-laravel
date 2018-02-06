@@ -126,7 +126,6 @@ class SaleRepository extends BaseRepository
 
         $sales = Sale::where('end_date', '<', $now)
             ->where('is_active', '=', true)
-            ->orderBy('start_date', 'asc')
             ->orderBy('end_date', 'asc')->get();
 
         foreach ($sales as $sale) {
