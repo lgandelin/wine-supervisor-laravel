@@ -32,6 +32,8 @@
                     </div>
                 @endif
 
+                <a href="{{ route('admin_content_create') }}" class="add">Créer une actualité</a>
+
                 <table class="table-list less-padding">
                     <tr class="table-row">
                         <th class="table-cell table-cell-header @if ($sort_column == 'title') current-filter @endif"><a href="{{ route('admin_content_list', ['sc' => 'title', 'so' => $sort_order]) }}">Titre</a></th>

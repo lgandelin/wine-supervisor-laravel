@@ -31,6 +31,8 @@
                         {{ $confirmation }}
                     </div>
                 @endif
+                
+                <a href="{{ route('admin_sale_create') }}" class="add">Créer une vente</a>
 
                 <table class="table-list">
                     <tr class="table-row">

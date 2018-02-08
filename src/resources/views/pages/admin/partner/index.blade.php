@@ -32,6 +32,8 @@
                     </div>
                 @endif
 
+                <a href="{{ route('admin_partner_create') }}" class="add">Créer une partenaire</a>
+
                 <table class="table-list less-padding">
                     <tr class="table-row">
                         <td class="table-cell table-cell-header align-left">Ordre</td>
@@ -56,7 +58,7 @@
                     @endforeach
                 </table>
 
-                <a href="{{ route('admin_partner_create') }}" class="add">Créer une partenaire</a>
+                <a href="{{ route('admin_partner_create') }}" class="add">Créer un partenaire</a>
             </div>
             <!-- PAGE CONTENT -->
 

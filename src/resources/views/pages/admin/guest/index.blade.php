@@ -31,6 +31,8 @@
                         {{ $confirmation }}
                     </div>
                 @endif
+                
+                <a href="{{ route('admin_guest_create') }}" class="add">Créer un invité</a>
 
                 <table class="table-list less-padding">
                     <tr class="table-row">

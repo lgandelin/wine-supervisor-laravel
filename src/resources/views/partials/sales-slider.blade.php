@@ -72,5 +72,5 @@
 @endif
 
 <script>
-    var current_sale_slide = {{ ($current_sale-1) }};
+    var current_sale_slide = {{ sizeof($sales) - 2 }};
 </script>
