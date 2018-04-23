@@ -52,7 +52,7 @@ class ContentController extends AdminController
         if ($contentID = ContentRepository::create(
             $request->get('title'),
             $request->get('title_en'),
-            $request->get('slug'),
+            $request->get('link'),
             $request->get('text'),
             $request->get('text_en'),
             $imageNews,
@@ -98,7 +98,7 @@ class ContentController extends AdminController
             $request->get('content_id'),
             $request->get('title'),
             $request->get('title_en'),
-            $request->get('slug'),
+            $request->get('link'),
             $request->get('text'),
             $request->get('text_en'),
             $imageNews,

@@ -44,9 +44,9 @@
                         <input type="text" name="title_en" id="title_en" value="{{ $content->title_en }}" />
                     </div>
 
-                    <div class="form-group" style="display:none;">
-                        <label for="slug">URI</label>
-                        <input type="text" name="slug" id="slug" value="{{ $content->slug }}" />
+                    <div class="form-group">
+                        <label for="link">Lien</label>
+                        <input type="text" name="link" id="link" value="{{ $content->link }}" />
                     </div>
 
                     <div class="form-group">

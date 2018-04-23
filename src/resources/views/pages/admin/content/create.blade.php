@@ -44,8 +44,8 @@
                     </div>
 
                     <div class="form-group" style="display:none;">
-                        <label for="slug">URI</label>
-                        <input type="text" name="slug" id="slug" value="{{ old('slug') }}" />
+                        <label for="link">Lien</label>
+                        <input type="text" name="link" id="link" value="{{ old('link') }}" />
                     </div>
 
                     <div class="form-group">

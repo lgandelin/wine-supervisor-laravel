@@ -20,7 +20,7 @@ class Content extends Model
     protected $fillable = [
         'title',
         'text',
-        'slug',
+        'link',
         'image',
         'publication_date',
     ];

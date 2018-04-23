@@ -81,7 +81,9 @@
                     <ul class="news-slider">
                         @foreach ($contents as $content)
                             <li>
+                                @if ($content->link)<a href="{{ $content->link }}" target="_blank">@endif
                                 @if ($content->image)<img class="image" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'contents/' . $content->id . '/' . $content->image) }}" alt="{{ $content->title }}" width="350" height="273" />@endif
+                                @if ($content->link)</a>@endif
                                 <div class="content">
                                     @if ($content->publication_date)<span class="date">{{ strftime('%d %B %Y', DateTime::createFromFormat('Y-m-d', $content->publication_date)->getTimestamp()) }}</span>@endif
                                     @if (App::getLocale() == 'en')
