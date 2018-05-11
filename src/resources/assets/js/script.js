@@ -65,34 +65,37 @@ $(document).ready(function() {
 		$('.sales-slider-' + $(this).data('slider')).slick('resize');
 	});
 
-	$('.home-template .sales-navigation').slick({
-		autoplay: false,
-		autoplaySpeed: 5000,
-		infinite: false,
-		dots: false,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		centerMode: true,
-		centerPadding: '0px',
-		arrows: true,
-		appendArrows: $('.sales-navigation-arrows'),
-		initialSlide: current_sale_slide,
-		responsive: [
-			{
-				breakpoint: 780,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2
+	$('.home-template .sales-navigation').each(function(index) {
+		$(this).attr('data-slider-index', index);
+		$(this).slick({
+			autoplay: false,
+			autoplaySpeed: 5000,
+			infinite: false,
+			dots: false,
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			centerMode: true,
+			centerPadding: '0px',
+			arrows: true,
+			appendArrows: $('[data-slider-index="' + index + '"]').prev(),
+			initialSlide: current_sale_slide,
+			responsive: [
+				{
+					breakpoint: 780,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
+					}
 				}
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1
-				}
-			}
-		]
+			]
+		});
 	});
 
 	//SCROLLTO

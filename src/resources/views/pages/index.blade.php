@@ -59,8 +59,7 @@
 
         <!-- SALES -->
         <div class="sales">
-
-            @include('wine-supervisor::partials.sales-slider', ['sales' => $sales, 'current_sale' => $current_sale])
+            @include('wine-supervisor::partials.sales-slider', ['sales' => $all_sales, 'current_sale' => $current_sale])
 
             <div class="container">
                 <div class="sales-navigation-wrapper">
@@ -68,8 +67,19 @@
                     @include('wine-supervisor::partials.sales-navigation', ['sales' => $sales, 'current_sale' => $current_sale])
                 </div>
             </div>
+
+            @if (sizeof($sales_accessories) > 0)
+                <div class="container">
+                    <div class="sales-navigation-wrapper">
+                        <div class="sales-navigation-arrows"></div>
+                        @include('wine-supervisor::partials.sales-navigation', ['sales' => $sales_accessories, 'current_sale' => $current_accessories_sale, 'offset' => sizeof($sales) ])
+                    </div>
+                </div>
+            @endif
+
         </div>
         <!-- SALES -->
+
 
         <!-- NEWS -->
         @if ($contents)

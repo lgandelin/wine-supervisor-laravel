@@ -5,6 +5,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\ClubPremium;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webaccess\WineSupervisorLaravel\Repositories\PageContentRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\SaleAccessoryRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 
@@ -45,11 +46,20 @@ class IndexController
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO
         view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
 
+        $sales = SaleRepository::getCurrentSales();
+        $sales_accessories = SaleAccessoryRepository::getCurrentSales();
+
+        $all_sales = collect();
+        foreach ($sales as $sale) $all_sales->push($sale);
+        foreach ($sales_accessories as $sale_accessory) $all_sales->push($sale_accessory);
+
         return view('wine-supervisor::pages.club-premium.current_sales', [
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
             'first_name' => AccountService::getFirstName(),
-            'sales' => SaleRepository::getCurrentSales()
+            'sales' => $sales,
+            'sales_accessories' => $sales_accessories,
+            'all_sales' => $all_sales,
         ]);
     }
 
@@ -58,11 +68,20 @@ class IndexController
         view()->share('is_eligible_to_club_premium', AccountService::isUserEligibleToClubPremium()); //TODO
         view()->share('is_eligible_to_supervision', AccountService::isUserEligibleToSupervision());
 
+        $sales = SaleRepository::getSalesHistory();
+        $sales_accessories = SaleAccessoryRepository::getSalesHistory();
+
+        $all_sales = collect();
+        foreach ($sales as $sale) $all_sales->push($sale);
+        foreach ($sales_accessories as $sale_accessory) $all_sales->push($sale_accessory);
+
         return view('wine-supervisor::pages.club-premium.sales_history', [
             'is_user' => Auth::user(),
             'is_guest' => Auth::guard('guests')->user(),
             'first_name' => AccountService::getFirstName(),
-            'sales' => SaleRepository::getSalesHistory()
+            'sales' => $sales,
+            'sales_accessories' => $sales_accessories,
+            'all_sales' => $all_sales,
         ]);
     }
 }

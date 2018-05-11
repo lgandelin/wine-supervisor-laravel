@@ -7,11 +7,11 @@
 
                     @if (isset($sale->image))
                         <li>
-                            <div class="background" style="background-image: url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/0/' . $sale->image) }})"></div>
+                            <div class="background" style="background-image: url({{ asset(env('WS_UPLOADS_FOLDER') . (isset($sale->wines) && $sale->wines != '' ? 'sales/' : 'sales_accessories/') . $sale->id . '/0/' . $sale->image) }})"></div>
                         </li>
                     @endif
 
-                    @if (is_array($sale->wines) && sizeof($sale->wines) > 0)
+                    @if (isset($sale->wines) && is_array($sale->wines) && sizeof($sale->wines) > 0)
                         @foreach ($sale->wines as $i => $wine)
                             <li>
                                 <div class="background" style="background-image:url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $wine->image) }})"></div>
@@ -65,6 +65,60 @@
                             </li>
                         @endforeach
                     @endif
+
+                    @if (isset($sale->accessories) && is_array($sale->accessories) && sizeof($sale->accessories) > 0)
+                        @foreach ($sale->accessories as $i => $accessory)
+                            <li>
+                                <div class="background" style="background-image:url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/' . ($i+1) . '/' . $accessory->image) }})"></div>
+                                @if (isset($accessory->accessory_image))<img class="bottle" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/' . ($i+1) . '/' . $accessory->accessory_image) }}" alt="{{ $accessory->name }}" />@endif
+                                <div class="content">
+                                    @if (($is_user || $is_guest) && $is_eligible_to_club_premium)
+                                        @if ($sale->is_active)
+                                            @if (App::getLocale() == 'en' && $sale->comments_en)
+                                                <div class="sale-comments">{!! nl2br($sale->comments_en) !!}</div>
+                                            @elseif (App::getLocale() == 'fr' && $sale->comments)
+                                                <div class="sale-comments">{!! nl2br($sale->comments) !!}</div>
+                                            @endif
+                                        @endif
+                                    @endif
+
+                                    @if (isset($accessory->name))<h3 class="sale-name">{{ $accessory->name }}</h3>@endif
+
+                                    @if (App::getLocale() == 'en')
+                                        {!! $accessory->text_en !!}
+                                    @else
+                                        {!! $accessory->text !!}
+                                    @endif
+                                </div>
+
+                                @if (($is_user || $is_guest) && $is_eligible_to_club_premium)
+                                    @if ($accessory->club_premium_price && $sale->is_active)
+                                        @if (new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date) && new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date))
+                                            <span class="sale-price">
+                                            <span class="club_premium_price_label">{{ trans('wine-supervisor::sales_slider.club_premium_price') }}</span>
+                                            <span class="prices">
+                                                @if ($accessory->standard_price)<span class="standard">{{ $accessory->standard_price }}€</span> -> @endif
+                                                <span class="club_premium">{{ $accessory->club_premium_price }}€</span>
+                                            </span>
+                                        </span>
+                                        @endif
+                                    @endif
+                                @endif
+
+                                @if ($sale->is_active)
+                                    @if (new DateTime() > DateTime::createFromFormat('Y-m-d', $sale->end_date))
+                                        @if ($sale->link_history)
+                                            <a target="_blank" href="{{ $sale->link_history }}" class="button">{{ trans('wine-supervisor::sales_slider.website_access') }}</a>
+                                        @endif
+                                    @elseif ((!$is_user && !$is_guest) || !$is_eligible_to_club_premium)
+                                        <a href="{{ route('user_login_handler') }}?route=club_premium_current_sales" class="button">{{ trans('wine-supervisor::sales_slider.sales_access') }}</a>
+                                    @elseif ($accessory->link)
+                                        <a target="_blank" href="{{ $accessory->link }}" class="button">{{ trans('wine-supervisor::sales_slider.order') }}</a>
+                                    @endif
+                                @endif
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         </div>
@@ -72,5 +126,5 @@
 @endif
 
 <script>
-    var current_sale_slide = {{ sizeof($sales) - 2 }};
+    var current_sale_slide = {{ $current_sale }} - 2;
 </script>

@@ -4029,6 +4029,7 @@ footer a, footer a:visited {
 /* line 108, ../sass/pages/_club-premium.scss */
 .club-premium-template .sales .sales-navigation {
   margin-top: 5rem;
+  margin-bottom: 0;
 }
 
 /* line 3, ../sass/pages/_contact.scss */

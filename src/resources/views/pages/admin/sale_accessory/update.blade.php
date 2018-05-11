@@ -1,6 +1,6 @@
 @extends('wine-supervisor::default')
 
-@section('page-title') Editer une vente < Administration | WineSupervisor @endsection
+@section('page-title') Editer une vente d'accessoires < Administration | WineSupervisor @endsection
 
 @section('page-content')
 
@@ -13,7 +13,7 @@
 
             <!-- PAGE HEADER -->
             <div class="page-header">
-                <h1>Editer une vente</h1>
+                <h1>Editer une vente d'accessoires</h1>
             </div>
             <!-- PAGE HEADER -->
 
@@ -32,7 +32,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin_sale_update_handler') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin_accessories_sale_update_handler') }}" method="POST" enctype="multipart/form-data">
 
                     <div class="submit-container" style="margin-top: 0;">
                         <input type="submit" value="Valider" />
@@ -98,69 +98,64 @@
                         <input style="display: none;" type="text" name="image" id="image" value="{{ $sale->image }}" />
 
                         @if ($sale->image)
-                            <img style="float:right; width: 40%; margin-left: 10%;" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/0/' . $sale->image) }}" />
+                            <img style="float:right; width: 40%; margin-left: 10%;" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/0/' . $sale->image) }}" />
                         @endif
-
+                        
                         <input type="file" name="image_file" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
 
                     </div>
 
                     @for($i = 0; $i < 10; $i++)
                         <section style="clear: both; border-bottom: 1px solid #333; margin-bottom: 3rem; padding-bottom: 1rem; margin-top: 10rem;">
-                            <h3 style="font-weight: bold; margin-bottom: 1rem;">Vin n°{{ $i+1 }}</h3>
+                            <h3 style="font-weight: bold; margin-bottom: 1rem;">Accessoire n°{{ $i+1 }}</h3>
                             <div class="form-group">
                                 <label for="name[]">Nom</label>
-                                <input type="text" name="wine_name[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->name)){{ $sale->wines[$i]->name }}@endif" />
-                            </div>
-
-                            <div class="form-group">
-                                <label for="variety[]">Cépages</label>
-                                <input type="text" name="wine_variety[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->variety)){{ $sale->wines[$i]->variety }}@endif" />
+                                <input type="text" name="accessory_name[]" value="@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->name)){{ $sale->accessories[$i]->name }}@endif" />
                             </div>
 
                             <div class="form-group">
                                 <label for="text[]">Texte</label>
-                                <textarea class="editor" name="wine_text[]" id="text_{{ $i }}">@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->text)){{ $sale->wines[$i]->text }}@endif</textarea>
+                                <textarea class="editor" name="accessory_text[]" id="text_{{ $i }}">@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->text)){{ $sale->accessories[$i]->text }}@endif</textarea>
                             </div>
 
                             <div class="form-group">
                                 <label for="text_en[]">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
-                                <textarea class="editor" name="wine_text_en[]" id="text_en_{{ $i }}">@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->text_en)){{ $sale->wines[$i]->text_en }}@endif</textarea>
+                                <textarea class="editor" name="accessory_text_en[]" id="text_en_{{ $i }}">@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->text_en)){{ $sale->accessories[$i]->text_en }}@endif</textarea>
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
                                 <label for="image[]">Image de fond (1140x585)</label>
-                                <input style="display: none;" type="text" name="wine_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image)){{ $sale->wines[$i]->image }}@endif" />
-                                <input type="file" name="image_wine_background_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
+                                <input style="display: none;" type="text" name="accessory_image[]" value="@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->image)){{ $sale->accessories[$i]->image }}@endif" />
+                                <input type="file" name="image_accessory_background_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
 
-                                @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->image))
-                                    <img style="float:left; margin-left: 10%; width: 40%" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->image) }}" />
+                                @if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->image))
+                                    <img style="float:left; margin-left: 10%; width: 40%" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/' . ($i+1) . '/' . $sale->accessories[$i]->image) }}" />
                                 @endif
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
-                                <label for="bottle_image[]">Image de la bouteille (181x550)</label>
-                                <input style="display:none" type="text" name="wine_bottle_image[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image)){{ $sale->wines[$i]->bottle_image }}@endif" />
-                                <input type="file" name="image_wine_bottle_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
-
-                                @if (isset($sale->wines[$i]) && isset($sale->wines[$i]->bottle_image))
-                                    <img style="float:right; margin-left: 10%; width: 75px; height: auto" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales/' . $sale->id . '/' . ($i+1) . '/' . $sale->wines[$i]->bottle_image) }}" />
+                                <label for="accessory_image[]">Image de l'accessoire (181x550)</label>
+                                <input style="display:none" type="text" name="accessory_accessory_image[]" value="@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->accessory_image)){{ $sale->accessories[$i]->accessory_image }}@endif" />
+                                <input type="file" name="image_accessory_accessory_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
+                                
+                                @if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->accessory_image))
+                                    <img style="float:right; margin-left: 10%; width: 75px; height: auto" class="thumbnail" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/' . ($i+1) . '/' . $sale->accessories[$i]->accessory_image) }}" />
                                 @endif
                             </div>
 
                             <div class="form-group">
                                 <label for="standard_price[]">Prix standard</label>
-                                <input type="text" name="wine_standard_price[]" placeholder="ex: 12.5" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->standard_price)){{ $sale->wines[$i]->standard_price }}@endif" />
+                                <input type="text" name="accessory_standard_price[]" placeholder="ex: 12.5" value="@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->standard_price)){{ $sale->accessories[$i]->standard_price }}@endif" />
                             </div>
 
                             <div class="form-group">
                                 <label for="club_premium_price[]">Prix Club Avantage</label>
-                                <input type="text" name="wine_club_premium_price[]" placeholder="ex: 8.5" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->club_premium_price)){{ $sale->wines[$i]->club_premium_price }}@endif" />
+                                <input type="text" name="accessory_club_premium_price[]" placeholder="ex: 8.5" value="@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->club_premium_price)){{ $sale->accessories[$i]->club_premium_price }}@endif" />
                             </div>
 
                             <div class="form-group">
                                 <label for="link[]">URL de commande</label>
-                                <input type="text" name="wine_link[]" value="@if (isset($sale->wines[$i]) && isset($sale->wines[$i]->link)){{ $sale->wines[$i]->link }}@endif" />
+                                <input type="text" name="accessory_link[]" value="@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->link)){{ $sale->accessories[$i]->link }}@endif" />
                             </div>
                         </section>
                     @endfor
@@ -174,7 +169,7 @@
                     {{ csrf_field() }}
                 </form>
 
-                <a class="button red-button back-button" href="{{ route('admin_sale_list') }}">Retour</a>
+                <a class="button red-button back-button" href="{{ route('admin_accessories_sale_list') }}">Retour</a>
             </div>
             <!-- PAGE CONTENT -->
 

@@ -111,6 +111,13 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
         Route::post('/admin/modifier-vente', array('as' => 'admin_sale_update_handler', 'uses' => 'Admin\SaleController@update_handler'));
         Route::get('/admin/supprimer-vente/{uuid}', array('as' => 'admin_sale_delete_handler', 'uses' => 'Admin\SaleController@delete_handler'));
 
+        Route::get('/admin/ventes-accessoires', array('as' => 'admin_accessories_sale_list', 'uses' => 'Admin\SaleAccessoriesController@index'));
+        Route::get('/admin/creer-vente-accessoires', array('as' => 'admin_accessories_sale_create', 'uses' => 'Admin\SaleAccessoriesController@create'));
+        Route::post('/admin/creer-vente-accessoires', array('as' => 'admin_accessories_sale_create_handler', 'uses' => 'Admin\SaleAccessoriesController@create_handler'));
+        Route::get('/admin/modifier-vente-accessoires/{uuid}', array('as' => 'admin_accessories_sale_update', 'uses' => 'Admin\SaleAccessoriesController@update'));
+        Route::post('/admin/modifier-vente-accessoires', array('as' => 'admin_accessories_sale_update_handler', 'uses' => 'Admin\SaleAccessoriesController@update_handler'));
+        Route::get('/admin/supprimer-vente-accessoires/{uuid}', array('as' => 'admin_accessories_sale_delete_handler', 'uses' => 'Admin\SaleAccessoriesController@delete_handler'));
+
         Route::get('/admin/actualites', array('as' => 'admin_content_list', 'uses' => 'Admin\ContentController@index'));
         Route::get('/admin/creer-actualite', array('as' => 'admin_content_create', 'uses' => 'Admin\ContentController@create'));
         Route::post('/admin/creer-actualite', array('as' => 'admin_content_create_handler', 'uses' => 'Admin\ContentController@create_handler'));

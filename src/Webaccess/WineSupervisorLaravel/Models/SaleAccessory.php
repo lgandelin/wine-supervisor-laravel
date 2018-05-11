@@ -4,9 +4,9 @@ namespace Webaccess\WineSupervisorLaravel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sale extends Model
+class SaleAccessory extends Model
 {
-    protected $table = 'sales';
+    protected $table = 'sales_accessories';
     public $incrementing = false;
     public $casts = [
         'id' => 'string'
@@ -20,6 +20,11 @@ class Sale extends Model
     protected $fillable = [
         'is_active',
         'title',
+        'title_en',
+        'accessories',
+        'accessories_en',
+        'link',
+        'link_history',
         'comments',
         'comments_en',
         'image',

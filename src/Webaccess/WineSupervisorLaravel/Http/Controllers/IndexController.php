@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Webaccess\WineSupervisorLaravel\Repositories\ContentRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\PartnerRepository;
+use Webaccess\WineSupervisorLaravel\Repositories\SaleAccessoryRepository;
 use Webaccess\WineSupervisorLaravel\Repositories\SaleRepository;
 use Webaccess\WineSupervisorLaravel\Services\AccountService;
 use Webaccess\WineSupervisorLaravel\Services\CellierDomesticusAPI;
@@ -32,6 +33,23 @@ class IndexController extends Controller
             }
         }
 
+        $sales_accessories = SaleAccessoryRepository::getSalesHistory();
+        $sales_accessories = $sales_accessories->merge(SaleAccessoryRepository::getCurrentSales());
+        $sales_accessories = $sales_accessories->merge(SaleAccessoryRepository::getUpcomingSales());
+
+        $current_accessories_sale = 1;
+
+        foreach ($sales_accessories as $i => $sale) {
+            if (new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date) && new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date)) {
+                $current_accessories_sale = $i + 1;
+                break;
+            }
+        }
+
+        $all_sales = collect();
+        foreach ($sales as $sale) $all_sales->push($sale);
+        foreach ($sales_accessories as $sale_accessory) $all_sales->push($sale_accessory);
+
         return view('wine-supervisor::pages.index', [
             'is_eligible_to_club_premium' => AccountService::isUserEligibleToClubPremium(),
             'is_eligible_to_supervision' => AccountService::isUserEligibleToSupervision(),
@@ -42,6 +60,9 @@ class IndexController extends Controller
             'contents' => ContentRepository::getAll(5),
             'sales' => $sales,
             'current_sale' => $current_sale,
+            'sales_accessories' => $sales_accessories,
+            'current_accessories_sale' => $current_accessories_sale,
+            'all_sales' => $all_sales,
             'partners' => PartnerRepository::getAll(),
             'route' => $request->route() ? $request->route()->getName() : null,
         ]);
@@ -52,7 +73,7 @@ class IndexController extends Controller
         $sales = SaleRepository::getSalesHistory();
         $sales = $sales->merge(SaleRepository::getCurrentSales());
         $sales = $sales->merge(SaleRepository::getUpcomingSales());
-        $sales = $sales->merge([SaleRepository::getByID($request->uuid)]);
+        if ($salePreview = SaleRepository::getByID($request->uuid)) $sales = $sales->merge([$salePreview]);
 
         $current_sale = 1;
 
@@ -62,6 +83,25 @@ class IndexController extends Controller
                 break;
             }
         }
+
+        $sales_accessories = SaleAccessoryRepository::getSalesHistory();
+        $sales_accessories = $sales_accessories->merge(SaleAccessoryRepository::getCurrentSales());
+        $sales_accessories = $sales_accessories->merge(SaleAccessoryRepository::getUpcomingSales());
+        $sales_accessories = $sales_accessories->merge([SaleAccessoryRepository::getByID($request->uuid)]);
+        if ($salePreview = SaleAccessoryRepository::getByID($request->uuid)) $sales_accessories = $sales_accessories->merge([$salePreview]);
+
+        $current_accessories_sale = 1;
+
+        foreach ($sales_accessories as $i => $sale) {
+            if (new DateTime() <= DateTime::createFromFormat('Y-m-d', $sale->end_date) && new DateTime() >= DateTime::createFromFormat('Y-m-d', $sale->start_date)) {
+                $current_accessories_sale = $i + 1;
+                break;
+            }
+        }
+
+        $all_sales = collect();
+        foreach ($sales as $sale) $all_sales->push($sale);
+        foreach ($sales_accessories as $sale_accessory) $all_sales->push($sale_accessory);
 
         return view('wine-supervisor::pages.index', [
             'is_eligible_to_club_premium' => AccountService::isUserEligibleToClubPremium(),
@@ -73,6 +113,9 @@ class IndexController extends Controller
             'contents' => ContentRepository::getAll(5),
             'sales' => $sales,
             'current_sale' => $current_sale,
+            'sales_accessories' => $sales_accessories,
+            'current_accessories_sale' => $current_accessories_sale,
+            'all_sales' => $all_sales,
             'partners' => PartnerRepository::getAll(),
             'route' => $request->route() ? $request->route()->getName() : null,
         ]);

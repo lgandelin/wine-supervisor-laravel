@@ -30,10 +30,14 @@
 
             <!-- SALES -->
             <div class="sales">
-                @include('wine-supervisor::partials.sales-slider', ['sales' => $sales, 'current_sale' => 1])
+                @include('wine-supervisor::partials.sales-slider', ['sales' => $all_sales, 'current_sale' => 1])
 
                 <div class="container">
                     @include('wine-supervisor::partials.sales-navigation', ['sales' => $sales, 'current_sale' => 1])
+                </div>
+
+                <div class="container">
+                    @include('wine-supervisor::partials.sales-navigation', ['sales' => $sales_accessories, 'current_sale' => 1, 'offset' => sizeof($sales)])
                 </div>
             </div>
             <!-- SALES -->
