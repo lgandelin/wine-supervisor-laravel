@@ -124,4 +124,13 @@ class ContentController extends AdminController
 
         return redirect()->route('admin_content_list');
     }
+
+    public function get(Request $request, $contentID)
+    {
+        parent::__construct($request);
+
+        return response()->json([
+            'content' => ContentRepository::getByID($contentID)
+        ]);
+    }
 }

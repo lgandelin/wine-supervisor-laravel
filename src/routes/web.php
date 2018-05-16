@@ -124,6 +124,7 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
         Route::get('/admin/modifier-actualite/{uuid}', array('as' => 'admin_content_update', 'uses' => 'Admin\ContentController@update'));
         Route::post('/admin/modifier-actualite', array('as' => 'admin_content_update_handler', 'uses' => 'Admin\ContentController@update_handler'));
         Route::get('/admin/supprimer-actualite/{uuid}', array('as' => 'admin_content_delete_handler', 'uses' => 'Admin\ContentController@delete_handler'));
+        Route::get('/admin/actualite/{uuid}', array('as' => 'admin_content_get', 'uses' => 'Admin\ContentController@get'));
 
         Route::get('/admin/partenaires', array('as' => 'admin_partner_list', 'uses' => 'Admin\PartnerController@index'));
         Route::get('/admin/creer-partenaire', array('as' => 'admin_partner_create', 'uses' => 'Admin\PartnerController@create'));
@@ -135,6 +136,9 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
         Route::get('/admin/contenus', array('as' => 'admin_page_content_list', 'uses' => 'Admin\PageContentController@index'));
         Route::get('/admin/modifier-contenu/{uuid}', array('as' => 'admin_page_content_update', 'uses' => 'Admin\PageContentController@update'));
         Route::post('/admin/modifier-contenu', array('as' => 'admin_page_content_update_handler', 'uses' => 'Admin\PageContentController@update_handler'));
+
+        Route::get('/admin/mailing', array('as' => 'admin_mailing', 'uses' => 'Admin\MailingController@index'));
+        Route::post('/admin/admin_mailing_get_emails', array('as' => 'admin_mailing_get_emails', 'uses' => 'Admin\MailingController@get_emails'));
 
     });
 });
