@@ -35,7 +35,7 @@
                 <div class="step1">
                     <h2>Etape 1 - Sélection des destinataires</h2>
                     <form action="#">
-                        <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;"><input type="checkbox" name="users_filter" value="1" /> Utilisateurs</h3>
+                        <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Utilisateurs</h3>
                         <div class="form-group">
                             <label for="text">Type d'abonnement :
                             <input type="checkbox" name="user_filter_standard" value="standard" /> {{ trans('wine-supervisor::subscriptions.standard') }}
@@ -44,26 +44,26 @@
                             </label>
                         </div>
 
-                        <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem; margin-top: 2rem;"><input type="checkbox" name="technicians_filter" value="1" /> Installateurs</h3>
+                        <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Installateurs</h3>
                         <div class="form-group">
                             <label for="text">Compte rattaché à une cave client :
-                            <input type="radio" name="technician_filter_cellar" value="1" /> Oui
-                            <input type="radio" name="technician_filter_cellar" value="0" /> Non
+                            <input type="checkbox" name="technician_filter_cellar_yes" value="yes" /> Oui
+                            <input type="checkbox" name="technician_filter_cellar_no" value="no" /> Non
                             </label>
                         </div>
 
                         <div class="form-group">
                             <label for="text">Statut du compte activé :
-                            <input type="radio" name="technician_filter_status" value="1" /> Oui
-                            <input type="radio" name="technician_filter_status" value="0" /> Non
+                            <input type="checkbox" name="technician_filter_status_yes" value="yes" /> Oui
+                            <input type="checkbox" name="technician_filter_status_no" value="no" /> Non
                             </label>
                         </div>
 
-                        <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem; margin-top: 2rem;"><input type="checkbox" name="guests_filter" value="1" /> Invités</h3>
+                        <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Invités</h3>
                         <div class="form-group">
                             <label for="text">Date d'accès vente valide :
-                            <input type="radio" name="guest_filter_access" value="1" /> Oui
-                            <input type="radio" name="guest_filter_access" value="0" /> Non
+                            <input type="checkbox" name="guest_filter_access_yes" value="yes" /> Oui
+                            <input type="checkbox" name="guest_filter_access_no" value="no" /> Non
                             </label>
                         </div>
 
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="step2" style="display: none;">
-                    <h2>Etape 3 - Sélection du contenu à envoyer</h2>
+                    <h2>Etape 2 - Sélection du contenu à envoyer</h2>
 
                     <form action="#">
                         <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Actualités</h3>
@@ -121,15 +121,15 @@
                 e.preventDefault();
 
                 var filters = {
-                    users_filter: $('.step1 input[name="users_filter"]').is(':checked'),
-                    technicians_filter: $('.step1 input[name="technicians_filter"]').is(':checked'),
-                    guests_filter: $('.step1 input[name="guests_filter"]').is(':checked'),
                     user_filter_standard: $('.step1 input[name="user_filter_standard"]').is(':checked'),
                     user_filter_premium: $('.step1 input[name="user_filter_premium"]').is(':checked'),
                     user_filter_free: $('.step1 input[name="user_filter_free"]').is(':checked'),
-                    technician_filter_cellar: $('.step1 input[name="technician_filter_cellar"]').val(),
-                    technician_filter_status: $('.step1 input[name="technician_filter_status"]').val(),
-                    guest_filter_access: $('.step1 input[name="guest_filter_access"]').val(),
+                    technician_filter_cellar_yes: $('.step1 input[name="technician_filter_cellar_yes"]').is(':checked'),
+                    technician_filter_cellar_no: $('.step1 input[name="technician_filter_cellar_no"]').is(':checked'),
+                    technician_filter_status_yes: $('.step1 input[name="technician_filter_status_yes"]').is(':checked'),
+                    technician_filter_status_no: $('.step1 input[name="technician_filter_status_no"]').is(':checked'),
+                    guest_filter_access_yes: $('.step1 input[name="guest_filter_access_yes"]').is(':checked'),
+                    guest_filter_access_no: $('.step1 input[name="guest_filter_access_no"]').is(':checked'),
                 };
 
                 $.ajax({
@@ -140,7 +140,8 @@
                     },
                     type: 'post',
                     success: function(data) {
-                        console.log(data);
+                        $('.step1').hide();
+                        $('.step2').show();
                     },
                     error: function() {
                         alert('Une erreur est survenue lors du chargement des adresses email.');
