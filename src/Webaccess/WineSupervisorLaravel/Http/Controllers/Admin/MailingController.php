@@ -4,6 +4,7 @@ namespace Webaccess\WineSupervisorLaravel\Http\Controllers\Admin;
 
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Webaccess\WineSupervisorLaravel\Models\Subscription;
 use Webaccess\WineSupervisorLaravel\Models\Technician;
 use Webaccess\WineSupervisorLaravel\Models\User;
@@ -150,10 +151,17 @@ class MailingController extends AdminController
 
         $emails = array_unique($emails);
 
-        dd($emails);
-
         return response()->json([
             'emails' => $emails,
         ]);
+    }
+
+    public function send_test_email(Request $request) {
+        $email = $request->email;
+
+        Mail::send('wine-supervisor::emails.mailing_test', array('text' => $request->text, 'text_en' => $request->text_en), function ($message) use ($email) {
+            $message->to($email)
+                ->subject('[WineSupervisor] Test de mailing');
+        });
     }
 }

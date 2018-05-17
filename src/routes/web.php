@@ -139,6 +139,7 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
 
         Route::get('/admin/mailing', array('as' => 'admin_mailing', 'uses' => 'Admin\MailingController@index'));
         Route::post('/admin/admin_mailing_get_emails', array('as' => 'admin_mailing_get_emails', 'uses' => 'Admin\MailingController@get_emails'));
+        Route::post('/admin/admin_mailing_send_test_email', array('as' => 'admin_mailing_send_test_email', 'uses' => 'Admin\MailingController@send_test_email'));
 
     });
 });

@@ -32,9 +32,10 @@
                     </div>
                 @endif
 
-                <div class="step1">
-                    <h2>Etape 1 - Sélection des destinataires</h2>
-                    <form action="#">
+                <form action="">
+
+                    <div class="step1">
+                        <h2>Etape 1 - Sélection des destinataires</h2>
                         <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Utilisateurs</h3>
                         <div class="form-group">
                             <label for="text">Type d'abonnement :
@@ -70,13 +71,11 @@
                         <div class="form-group" style="overflow: hidden; margin-bottom: 5rem">
                             <input type="submit" value="Valider" id="submit-step1" />
                         </div>
-                    </form>
-                </div>
+                    </div>
 
-                <div class="step2" style="display: none;">
-                    <h2>Etape 2 - Sélection du contenu à envoyer</h2>
+                    <div class="step2" style="display: none;">
+                        <h2>Etape 2 - Sélection du contenu à envoyer</h2>
 
-                    <form action="#">
                         <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Actualités</h3>
                         <p style="font-style: italic; color: #555">Remarque : cliquer sur une actualité remplacera le contenu dans les zones de texte ci-dessous</p>
 
@@ -98,10 +97,43 @@
                         </div>
 
                         <div class="form-group" style="overflow: hidden; margin-bottom: 5rem">
-                            <input type="submit" value="Valider" />
+                            <a href="#" class="back-step1" style="margin-top:2rem">Retour</a>
+                            <input type="submit" value="Valider" id="submit-step2" />
                         </div>
-                    </form>
-                </div>
+
+                    </div>
+
+                    <div class="step3" style="display: none">
+                        <h2>Etape 3 - Vérification avant envoi</h2>
+
+                        <div class="form-group">
+                            <label for="emails">Adresses emails</label>
+                            <textarea name="emails" id="emails" cols="30" rows="10"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
+                            <div id="text_field"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="text_en">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                            <div id="text_en_field"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="test_email">Email de test</label>
+                            <input id="test_email" type="text" style="width:50%;" />
+                            <input type="submit" value="Envoyer" id="send-test-email" style="background:#45cc3e; float:none; display: inline-block; margin-left: 2%"/>
+                        </div>
+
+                        <div class="form-group" style="overflow: hidden; margin-top: 5rem; margin-bottom: 5rem; clear:both;">
+                            <a href="#" class="back-step2" style="display: inline-block; margin-top:2rem">Retour</a>
+                            <input type="submit" value="Valider" id="submit-step2" />
+                        </div>
+
+                    </div>
+                </form>
 
             </div>
             <!-- PAGE CONTENT -->
@@ -142,6 +174,10 @@
                     success: function(data) {
                         $('.step1').hide();
                         $('.step2').show();
+
+                        for (var i in data.emails) {
+                            $('#emails').val($('#emails').val() + data.emails[i] + "\n");
+                        }
                     },
                     error: function() {
                         alert('Une erreur est survenue lors du chargement des adresses email.');
@@ -159,12 +195,59 @@
                     },
                     type: 'get',
                     success: function(data) {
-                        console.log(data.content);
                         CKEDITOR.instances.text.setData(data.content.text);
                         CKEDITOR.instances.text_en.setData(data.content.text_en);
                     },
                     error: function() {
                         alert('Une erreur est survenue lors du chargement du contenu.');
+                    }
+                });
+            });
+
+            $('#submit-step2').click(function(e) {
+                e.preventDefault();
+
+                $('.step1').hide();
+                $('.step2').hide();
+                $('.step3').show();
+
+                $('#text_field').html(CKEDITOR.instances.text.getData());
+                $('#text_en_field').html(CKEDITOR.instances.text_en.getData());
+            });
+
+            $('.back-step1').click(function(e) {
+                e.preventDefault();
+
+                $('.step1').show();
+                $('.step2').hide();
+                $('.step3').hide();
+            });
+
+            $('.back-step2').click(function(e) {
+                e.preventDefault();
+
+                $('.step1').hide();
+                $('.step2').show();
+                $('.step3').hide();
+            });
+
+            $('#send-test-email').click(function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "{{ route('admin_mailing_send_test_email') }}",
+                    data: {
+                        "email": $('#test_email').val(),
+                        "text": CKEDITOR.instances.text.getData(),
+                        "text_en": CKEDITOR.instances.text_en.getData(),
+                        _token: $('input[name="_token"]').val(),
+                    },
+                    type: 'post',
+                    success: function(data) {
+                        alert('Email de test envoyé');
+                    },
+                    error: function() {
+                        alert('Une erreur est survenue lors de l\'envoi de l\'email de test');
                     }
                 });
             });
