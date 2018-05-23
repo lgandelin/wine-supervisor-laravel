@@ -49,4 +49,10 @@ return [
     'technician' => [
         'page_header' => 'You are installers of WineSupervisor II systems. Check the Technician box and fill in the form. After validation by our team you will get an ID that you will communicate to the users of WineSupervisor II you are following. You will then be able to follow the good running of all the installations realized.',
     ],
+
+    'the' => 'the',
+    'sales_terms' => 'sales terms',
+    'confidentiality_declarations' => 'confidentiality declarations',
+    'i_read_and_accept' => 'I read and accept',
+    'must_accept_cgv' => 'You must accept sales conditions before continuing',
 ];

@@ -133,6 +133,14 @@
                         <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$opt_in)checked="checked"@endif /> {{ trans('wine-supervisor::generic.no') }}</div>
                     </div>
 
+                    <div class="form-group">
+                        <label for=""><input type="checkbox" style="vertical-align: middle; display: inline-block;" id="cgv" /> {{ trans('wine-supervisor::signup.i_read_and_accept') }} <span class="required">*</span></label>
+                        <ul style="list-style: inside">
+                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/cgv-cgu-winesupervisor/?wpdmdl=28761" target="_blank">{{ trans('wine-supervisor::signup.sales_terms') }}</a></li>
+                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/declaration-de-confidentialite-winesupervisor/?wpdmdl=28764" target="_blank">{{ trans('wine-supervisor::signup.confidentiality_declarations') }}</a></li>
+                        </ul>
+                    </div>
+
                     <i class="legend"><span class="required">*</span> : {{ trans('wine-supervisor::generic.mandatory_fields') }}</i>
 
                     <div class="submit-container">
@@ -216,6 +224,14 @@
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for=""><input type="checkbox" style="vertical-align: middle; display: inline-block;" id="cgv" /> {{ trans('wine-supervisor::signup.i_read_and_accept') }} <span class="required">*</span></label>
+                        <ul style="list-style: inside">
+                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/cgv-cgu-winesupervisor/?wpdmdl=28761" target="_blank">{{ trans('wine-supervisor::signup.sales_terms') }}</a></li>
+                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/declaration-de-confidentialite-winesupervisor/?wpdmdl=28764" target="_blank">{{ trans('wine-supervisor::signup.confidentiality_declarations') }}</a></li>
+                        </ul>
+                    </div>
+
                     <i class="legend"><span class="required">*</span> : {{ trans('wine-supervisor::generic.mandatory_fields') }}</i>
 
                     <div class="submit-container">
@@ -246,6 +262,13 @@
             @if (old('type'))
                 $('input[name="user_type"][value="{{ old('type')}}"]').trigger('click');
             @endif
+
+            $('input[type="submit"]').click(function() {
+                if (!$('#cgv').is(':checked')) {
+                    alert('{{ trans('wine-supervisor::signup.must_accept_cgv') }}');
+                    return false;
+                }
+            });
         });
 
         function display_tab(tab) {

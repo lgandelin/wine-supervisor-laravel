@@ -49,4 +49,10 @@ return [
     'technician' => [
         'page_header' => 'Vous êtes installateurs de systèmes WineSupervisor II. Cochez la case installateur et remplissez le formulaire. Après validation par notre équipe vous obtiendrez un identifiant que vous communiquerez aux utilisateurs dont vous avez le suivi des caves. Vous pourrez ainsi suivre le bon fonctionnement de l’ensemble des installations réalisées chez vos clients.',
     ],
+
+    'the' => 'les',
+    'sales_terms' => 'conditions générales de ventes',
+    'confidentiality_declarations' => 'déclarations de confidentialité',
+    'i_read_and_accept' => 'J\'ai lu et j\'accepte',
+    'must_accept_cgv' => 'Vous devez accepter les conditions générales avant de continuer',
 ];
