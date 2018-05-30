@@ -263,7 +263,7 @@
                 $('input[name="user_type"][value="{{ old('type')}}"]').trigger('click');
             @endif
 
-            $('input[type="submit"]').click(function() {
+            $('.signup-template .page-content input[type="submit"]').click(function() {
                 if (!$(this).closest('form').find('.cgv').is(':checked')) {
                     alert('{{ trans('wine-supervisor::signup.must_accept_cgv') }}');
                     return false;
