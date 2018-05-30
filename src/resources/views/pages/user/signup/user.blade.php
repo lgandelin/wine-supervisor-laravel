@@ -137,7 +137,7 @@
                         <label for=""><input type="checkbox" style="vertical-align: middle; display: inline-block;" class="cgv" /> {{ trans('wine-supervisor::signup.i_read_and_accept') }} <span class="required">*</span></label>
                         <ul style="list-style: inside">
                             <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/cgv-cgu-winesupervisor/?wpdmdl=28761" target="_blank">{{ trans('wine-supervisor::signup.sales_terms') }}</a></li>
-                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/declaration-de-confidentialite-winesupervisor/?wpdmdl=28764" target="_blank">{{ trans('wine-supervisor::signup.confidentiality_declarations') }}</a></li>
+                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/politique-de-confidentialite/" target="_blank">{{ trans('wine-supervisor::signup.confidentiality_declarations') }}</a></li>
                         </ul>
                     </div>
 
@@ -228,7 +228,7 @@
                         <label for=""><input type="checkbox" style="vertical-align: middle; display: inline-block;" class="cgv" /> {{ trans('wine-supervisor::signup.i_read_and_accept') }} <span class="required">*</span></label>
                         <ul style="list-style: inside">
                             <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/cgv-cgu-winesupervisor/?wpdmdl=28761" target="_blank">{{ trans('wine-supervisor::signup.sales_terms') }}</a></li>
-                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/declaration-de-confidentialite-winesupervisor/?wpdmdl=28764" target="_blank">{{ trans('wine-supervisor::signup.confidentiality_declarations') }}</a></li>
+                            <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/politique-de-confidentialite/" target="_blank">{{ trans('wine-supervisor::signup.confidentiality_declarations') }}</a></li>
                         </ul>
                     </div>
 
