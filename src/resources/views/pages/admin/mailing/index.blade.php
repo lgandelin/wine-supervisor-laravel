@@ -77,12 +77,23 @@
                         <h2>Etape 2 - Sélection du contenu à envoyer</h2>
 
                         <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Actualités</h3>
-                        <p style="font-style: italic; color: #555">Remarque : cliquer sur une actualité remplacera le contenu dans les zones de texte ci-dessous</p>
+                        <p style="font-style: italic; color: #555">Remarque : cliquer sur une actualité remplacera le contenu des champs ci-dessous</p>
 
                         <div class="form-group news-list" style="padding-left: 2rem; margin-bottom: 3rem">
                             @foreach ($news_list as $news)
                                 <p><input type="radio" name="news" data-id="{{ $news->id }}" /> {{ $news->title }}</p>
                             @endforeach
+                        </div>
+
+                        <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Titre de la newsletter</h3>
+                        <div class="form-group">
+                            <label for="emails">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
+                            <input type="text" id="title" value="" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emails">Titre <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                            <input type="text" id="title_en" value="" />
                         </div>
 
                         <h3 style="font-weight:bold; font-size: 2rem; margin-bottom: 2rem;">Contenu</h3>
@@ -96,8 +107,17 @@
                             <textarea class="editor" name="text_en" id="text_en"></textarea>
                         </div>
 
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" id="image" />
+                            <p style="display: block; margin-top: 1rem;font-style: italic; color: #555">Remarques :<br/>
+                                - L'image sera affichée en header de la newsletter.<br/>
+                                - De préférence, choisir une image optimisée, dont la taille de dépasse pas 1Mo.
+                            </p>
+                        </div>
+
                         <div class="form-group" style="overflow: hidden; margin-bottom: 5rem">
-                            <a href="#" class="back-step1" style="margin-top:2rem">Retour</a>
+                            <a href="#" class="back-step1" style="display: block; margin-top: 3rem; float: left">Retour</a>
                             <input type="submit" value="Valider" id="submit-step2" />
                         </div>
 
@@ -112,13 +132,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="text">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
-                            <div id="text_field"></div>
+                            <label for="text">Contenu <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
+                            <iframe id="content_field" style="width: 640px; height: 640px; display: block; margin: auto;" height="100%"></iframe>
                         </div>
 
                         <div class="form-group">
-                            <label for="text_en">Texte <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
-                            <div id="text_en_field"></div>
+                            <label for="text_en">Contenu <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                            <iframe id="content_en_field" style="width: 640px; height: 640px; display: block; margin: auto;" height="100%"></iframe>
                         </div>
 
                         <div class="form-group">
@@ -146,6 +166,8 @@
 
     <script>
         $(document).ready(function() {
+            var image_src = '';
+
             CKEDITOR.replace( 'text' );
             CKEDITOR.replace( 'text_en' );
 
@@ -197,6 +219,8 @@
                     success: function(data) {
                         CKEDITOR.instances.text.setData(data.content.text);
                         CKEDITOR.instances.text_en.setData(data.content.text_en);
+                        $('#title').val(data.content.title);
+                        $('#title_en').val(data.content.title_en);
                     },
                     error: function() {
                         alert('Une erreur est survenue lors du chargement du contenu.');
@@ -207,12 +231,39 @@
             $('#submit-step2').click(function(e) {
                 e.preventDefault();
 
-                $('.step1').hide();
-                $('.step2').hide();
-                $('.step3').show();
+                //Upload image
+                var file_data = $('#image').prop('files')[0];
 
-                $('#text_field').html(CKEDITOR.instances.text.getData());
-                $('#text_en_field').html(CKEDITOR.instances.text_en.getData());
+                if (file_data) {
+                    var form_data = new FormData();
+                    form_data.append('file', file_data);
+                    form_data.append('_token', $('input[name="_token"]').val());
+
+                    $.ajax({
+                        url: "{{ route('admin_mailing_upload_image') }}",
+                        dataType: 'text',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function (data) {
+                            $('.step1').hide();
+                            $('.step2').hide();
+                            $('.step3').show();
+
+                            image_src = data;
+
+                            update_html_preview(image_src);
+                        }
+                    });
+                } else {
+                    $('.step1').hide();
+                    $('.step2').hide();
+                    $('.step3').show();
+
+                    update_html_preview('');
+                }
             });
 
             $('.back-step1').click(function(e) {
@@ -240,6 +291,9 @@
                         "email": $('#test_email').val(),
                         "text": CKEDITOR.instances.text.getData(),
                         "text_en": CKEDITOR.instances.text_en.getData(),
+                        "title": $('#title').val(),
+                        "title_en": $('#title_en').val(),
+                        image: image_src,
                         _token: $('input[name="_token"]').val(),
                     },
                     type: 'post',
@@ -252,5 +306,45 @@
                 });
             });
         });
+
+        function update_html_preview(image_src) {
+            $.ajax({
+                url: "{{ route('admin_mailing_get_html_preview') }}",
+                data: {
+                    text: CKEDITOR.instances.text.getData(),
+                    title: $('#title').val(),
+                    image: image_src,
+                    lang: 'fr',
+                    _token: $('input[name="_token"]').val()
+                },
+                type: 'post',
+                success: function(data) {
+                    $('#content_field').contents().find('html').html(data);
+                },
+                error: function() {
+                    alert('Une erreur est survenue lors du chargement du contenu.');
+                }
+            });
+
+            $.ajax({
+                url: "{{ route('admin_mailing_get_html_preview') }}",
+                data: {
+                    text: CKEDITOR.instances.text_en.getData(),
+                    title: $('#title_en').val(),
+                    image: image_src,
+                    lang: 'en',
+                    _token: $('input[name="_token"]').val()
+                },
+                type: 'post',
+                success: function(data) {
+                    $('#content_en_field').contents().find('html').html(data);
+                    //$('#content_en_field').height($('#content_en_field').contents().outerHeight());
+                },
+                error: function() {
+                    alert('Une erreur est survenue lors du chargement du contenu.');
+                }
+            });
+        }
+
     </script>
 @stop

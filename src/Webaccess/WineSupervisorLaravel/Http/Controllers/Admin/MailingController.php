@@ -158,10 +158,43 @@ class MailingController extends AdminController
 
     public function send_test_email(Request $request) {
         $email = $request->email;
+        $title = $request->title;
+        $title_en = $request->title_en;
 
-        Mail::send('wine-supervisor::emails.mailing_test', array('text' => $request->text, 'text_en' => $request->text_en), function ($message) use ($email) {
+        Mail::send('wine-supervisor::emails.mailing', array(
+            'text' => $request->text,
+            'title' => $request->title,
+            'image' => $request->image,
+            'lang' => 'fr'
+        ), function ($message) use ($email, $title) {
             $message->to($email)
-                ->subject('[WineSupervisor] Test de mailing');
+                ->subject($title);
         });
+
+        Mail::send('wine-supervisor::emails.mailing', array(
+            'text' => $request->text_en,
+            'title' => $request->title_en,
+            'image' => $request->image,
+            'lang' => 'fr'
+        ), function ($message) use ($email, $title_en) {
+            $message->to($email)
+                ->subject($title_en);
+        });
+    }
+
+    public function upload_image(Request $request) {
+        $image = time().'.'.$request->file->getClientOriginalExtension();
+        $request->file->move(public_path('/newsletter'), $image);
+
+        return asset('newsletter') . '/' . $image;
+    }
+
+    public function get_html_preview(Request $request) {
+        return view('wine-supervisor::emails.mailing', array(
+            'text' => $request->text,
+            'title' => $request->title,
+            'image' => $request->image,
+            'lang' => $request->lang
+        ));
     }
 }
