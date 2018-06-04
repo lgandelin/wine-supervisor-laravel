@@ -26,4 +26,6 @@ return [
     'delete' => 'Supprimer',
     'select' => 'Sélectionner',
 
+    'locale' => 'Langue',
+
 ];

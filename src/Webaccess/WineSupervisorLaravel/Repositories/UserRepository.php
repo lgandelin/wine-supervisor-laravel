@@ -223,4 +223,16 @@ class UserRepository extends BaseRepository
 
         return self::success();
     }
+
+    public static function getLangForMailing($user)
+    {
+        $lang = 'en';
+
+        //France, Monaco, Niger, Togo, Belgique, Canada, Suisse
+        if (in_array($user->country, ['FR', 'MC', 'NE', 'TG', 'BE', 'CA', 'CH'])) {
+            $lang = 'fr';
+        }
+
+        return $lang;
+    }
 }
