@@ -140,7 +140,7 @@
     <div style="display: none;" id="modal-delete-cellar" class="modal">
         <h2>Suppression</h2>
 
-        <p class="warning">ATTENTION : Valider ce formulaire entrainera la suppression de votre cave dans le système.</p>
+        <p class="warning">ATTENTION : Valider ce formule entrainera l’arrêt de l’abonnement de votre cave ainsi que la suppression de l’historique dans le système.</p>
 
         <form action="{{ route('user_cellar_delete_handler') }}" method="POST">
             <a href="{{ route('user_cellar_list') }}" data-fancybox-close class="back-button">Retour</a>
