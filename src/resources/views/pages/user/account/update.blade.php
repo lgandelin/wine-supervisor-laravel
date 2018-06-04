@@ -125,13 +125,13 @@
                 <form action="{{ route('user_update_account_handler') }}" method="POST">
 
                     <div class="form-group">
-                        <label for="last_name">{{ trans('wine-supervisor::generic.last_name') }} <span class="required">*</span></label>
-                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" required />
+                        <label for="first_name">{{ trans('wine-supervisor::generic.first_name') }} </label>
+                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">{{ trans('wine-supervisor::generic.first_name') }} </label>
-                        <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" />
+                        <label for="last_name">{{ trans('wine-supervisor::generic.last_name') }} <span class="required">*</span></label>
+                        <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}" required />
                     </div>
 
                     <div class="form-group">

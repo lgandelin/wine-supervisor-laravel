@@ -44,13 +44,13 @@
                     <!-- RIGHT COLUMN -->
                     <div class="right-column">
                         <div class="form-group">
-                            <label for="last_name">Nom</label>
-                            <input type="text" name="last_name" id="last_name" value="{{ $technician->last_name }}" />
+                            <label for="first_name">Prénom</label>
+                            <input type="text" name="first_name" id="first_name" value="{{ $technician->first_name }}" />
                         </div>
 
                         <div class="form-group">
-                            <label for="first_name">Prénom</label>
-                            <input type="text" name="first_name" id="first_name" value="{{ $technician->first_name }}" />
+                            <label for="last_name">Nom</label>
+                            <input type="text" name="last_name" id="last_name" value="{{ $technician->last_name }}" />
                         </div>
 
                         <div class="form-group">

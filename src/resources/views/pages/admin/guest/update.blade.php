@@ -35,13 +35,13 @@
                 <form action="{{ route('admin_guest_update_handler') }}" method="POST">
 
                     <div class="form-group">
-                        <label for="last_name">Nom</label>
-                        <input type="text" name="last_name" id="last_name" value="{{ $guest->last_name }}" />
+                        <label for="first_name">Prénom</label>
+                        <input type="text" name="first_name" id="first_name" value="{{ $guest->first_name }}" />
                     </div>
 
                     <div class="form-group">
-                        <label for="first_name">Prénom</label>
-                        <input type="text" name="first_name" id="first_name" value="{{ $guest->first_name }}" />
+                        <label for="last_name">Nom</label>
+                        <input type="text" name="last_name" id="last_name" value="{{ $guest->last_name }}" />
                     </div>
 
                     <div class="form-group">
