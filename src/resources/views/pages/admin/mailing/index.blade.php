@@ -117,7 +117,7 @@
                         </div>
 
                         <div class="form-group" style="overflow: hidden; margin-bottom: 5rem">
-                            <a href="#" class="back-step1" style="display: block; margin-top: 3rem; float: left">Retour</a>
+                            <a href="javascript:void(0)" class="back-step1" style="display: block; margin-top: 3rem; float: left">Retour</a>
                             <input type="submit" value="Valider" id="submit-step2" />
                         </div>
 
@@ -127,9 +127,15 @@
                         <h2>Etape 3 - Vérification avant envoi</h2>
 
                         <div class="form-group">
-                            <label for="emails">Adresses emails</label>
-                            <textarea name="emails" id="emails" cols="30" rows="10"></textarea>
+                            <label for="emails">Adresses emails <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
+                            <textarea name="emails" id="emails_fr" cols="30" rows="10"></textarea>
                         </div>
+
+                        <div class="form-group">
+                            <label for="emails">Adresses emails <img class="lang-flag" src="{{ asset('img/generic/flags/en.jpg') }}" width="25" height="20" /></label>
+                            <textarea name="emails" id="emails_en" cols="30" rows="10"></textarea>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="text">Contenu <img class="lang-flag" src="{{ asset('img/generic/flags/fr.jpg') }}" width="25" height="20" /></label>
@@ -148,8 +154,8 @@
                         </div>
 
                         <div class="form-group" style="overflow: hidden; margin-top: 5rem; margin-bottom: 5rem; clear:both;">
-                            <a href="#" class="back-step2" style="display: inline-block; margin-top:2rem">Retour</a>
-                            <input type="submit" value="Valider" id="submit-step2" />
+                            <a href="javascript:void(0)" class="back-step2" style="display: inline-block; margin-top:2rem">Retour</a>
+                            <input type="submit" value="Valider" id="submit-step3" />
                         </div>
 
                     </div>
@@ -168,10 +174,10 @@
         $(document).ready(function() {
             var image_src = '';
 
-            CKEDITOR.replace( 'text' );
-            CKEDITOR.replace( 'text_en' );
+            CKEDITOR.replace('text');
+            CKEDITOR.replace('text_en');
 
-            $('#submit-step1').click(function(e) {
+            $('#submit-step1').click(function (e) {
                 e.preventDefault();
 
                 var filters = {
@@ -193,21 +199,27 @@
                         _token: $('input[name="_token"]').val(),
                     },
                     type: 'post',
-                    success: function(data) {
+                    success: function (data) {
                         $('.step1').hide();
                         $('.step2').show();
 
-                        for (var i in data.emails) {
-                            $('#emails').val($('#emails').val() + data.emails[i] + "\n");
+                        $('#emails_fr').val('');
+                        $('#emails_en').val('');
+                        for (var i in data.emails_fr) {
+                            $('#emails_fr').val($('#emails_fr').val() + data.emails_fr[i] + "\n");
+                        }
+
+                        for (var i in data.emails_en) {
+                            $('#emails_en').val($('#emails_en').val() + data.emails_en[i] + "\n");
                         }
                     },
-                    error: function() {
+                    error: function () {
                         alert('Une erreur est survenue lors du chargement des adresses email.');
                     }
                 });
             });
 
-            $('.news-list input[name="news"]').click(function() {
+            $('.news-list input[name="news"]').click(function () {
                 var news_id = $(this).attr('data-id');
 
                 $.ajax({
@@ -216,19 +228,19 @@
                         news_id: news_id
                     },
                     type: 'get',
-                    success: function(data) {
+                    success: function (data) {
                         CKEDITOR.instances.text.setData(data.content.text);
                         CKEDITOR.instances.text_en.setData(data.content.text_en);
                         $('#title').val(data.content.title);
                         $('#title_en').val(data.content.title_en);
                     },
-                    error: function() {
+                    error: function () {
                         alert('Une erreur est survenue lors du chargement du contenu.');
                     }
                 });
             });
 
-            $('#submit-step2').click(function(e) {
+            $('#submit-step2').click(function (e) {
                 e.preventDefault();
 
                 //Upload image
@@ -266,7 +278,7 @@
                 }
             });
 
-            $('.back-step1').click(function(e) {
+            $('.back-step1').click(function (e) {
                 e.preventDefault();
 
                 $('.step1').show();
@@ -274,7 +286,7 @@
                 $('.step3').hide();
             });
 
-            $('.back-step2').click(function(e) {
+            $('.back-step2').click(function (e) {
                 e.preventDefault();
 
                 $('.step1').hide();
@@ -282,7 +294,7 @@
                 $('.step3').hide();
             });
 
-            $('#send-test-email').click(function(e) {
+            $('#send-test-email').click(function (e) {
                 e.preventDefault();
 
                 $.ajax({
@@ -297,11 +309,36 @@
                         _token: $('input[name="_token"]').val(),
                     },
                     type: 'post',
-                    success: function(data) {
+                    success: function (data) {
                         alert('Email de test envoyé');
                     },
-                    error: function() {
+                    error: function () {
                         alert('Une erreur est survenue lors de l\'envoi de l\'email de test');
+                    }
+                });
+            });
+
+            $('#submit-step3').click(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "{{ route('admin_mailing_send_emails') }}",
+                    data: {
+                        emails_fr: $('#emails_fr').val(),
+                        emails_en: $('#emails_en').val(),
+                        title: $('#title').val(),
+                        text: CKEDITOR.instances.text.getData(),
+                        title_en: $('#title_en').val(),
+                        text_en: CKEDITOR.instances.text_en.getData(),
+                        image: image_src,
+                        _token: $('input[name="_token"]').val(),
+                    },
+                    type: 'post',
+                    success: function (data) {
+                        alert('Newsletter envoyée avec succès !')
+                    },
+                    error: function () {
+                        alert('Une erreur est survenue lors de l\'envoi du mailing.');
                     }
                 });
             });

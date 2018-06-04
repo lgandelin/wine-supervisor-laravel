@@ -294,7 +294,7 @@
                                                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                         <tr>
                                                             <td valign="top" class="imageContent">
-                                                                <img src="{{ $image }}" width="600" class="flexibleImage" style="max-width:600px;width:100%;display:block;" />
+                                                                <img src="{{ $image }}" width="600" height="100%" class="flexibleImage" style="max-width:600px;width:100%;display:block;" alt="Image" title="Image" />
                                                             </td>
                                                         </tr>
                                                     </table>

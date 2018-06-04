@@ -142,6 +142,6 @@ Route::group(['middleware' => ['web']], function () use ($locale) {
         Route::post('/admin/admin_mailing_send_test_email', array('as' => 'admin_mailing_send_test_email', 'uses' => 'Admin\MailingController@send_test_email'));
         Route::post('/admin/admin_mailing_upload_image', array('as' => 'admin_mailing_upload_image', 'uses' => 'Admin\MailingController@upload_image'));
         Route::post('/admin/admin_mailing_get_html_preview', array('as' => 'admin_mailing_get_html_preview', 'uses' => 'Admin\MailingController@get_html_preview'));
-
+        Route::post('/admin/admin_mailing_send_emails', array('as' => 'admin_mailing_send_emails', 'uses' => 'Admin\MailingController@send_emails'));
     });
 });
