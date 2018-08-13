@@ -374,7 +374,7 @@
                                         <table border="0" cellpadding="0" cellspacing="0" width="600" class="flexibleContainer">
                                             <tr>
                                                 <td align="center" valign="top" width="600" class="flexibleContainerCell">
-                                                    <img src="{{ asset('img/header/logo-wine-supervisor.png') }}" style="display: block; margin: auto; margin-bottom: 2rem"/>
+                                                    <a href="https://winesupervisor.club/?utm_source=mailing%20WS&utm_medium=lien%20logo" target="_blank"><img src="{{ asset('img/header/logo-wine-supervisor.png') }}" style="display: block; margin: auto; margin-bottom: 2rem"/></a>
                                                 </td>
                                             </tr>
                                         </table>
@@ -420,11 +420,11 @@
 
                                                                 <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;">
                                                                     @if ($lang == 'fr')
-                                                                        <div>Copyright &#169; 2018 <a href="https://winesupervisor.club" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">Wine Supervisor</span></a>. Tous droits réservés.</div><br/>
-                                                                        <div>Si vous ne souhaitez plus recevoir d'emails de notre part, vous pouvez vous désabonner depuis <a href="{{ route('user_login') }}" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">votre profil</span></a>.</div>
+                                                                        <div>Copyright &#169; 2018 <a href="https://winesupervisor.club" target="_blank" style="text-decoration:underline;color:#828282;">WineSupervisor</a>. Tous droits réservés.</div><br/>
+                                                                        <div>Si vous ne souhaitez plus recevoir d'emails de notre part, vous pouvez vous désabonner depuis <a href="{{ route('user_login') }}" target="_blank" style="text-decoration:underline;color:#828282;">votre profil</a>.</div>
                                                                     @else
-                                                                        <div>Copyright &#169; 2018 <a href="https://winesupervisor.club" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">Wine Supervisor</span></a>. All&nbsp;rights&nbsp;reserved.</div><br/>
-                                                                        <div>If you do not want to receive emails from us, you can unsubscribe from <a href="{{ route('user_login') }}" target="_blank" style="text-decoration:none;color:#828282;"><span style="color:#828282;">your profile</span></a>.</div>
+                                                                        <div>Copyright &#169; 2018 <a href="https://winesupervisor.club" target="_blank" style="text-decoration:underline;color:#828282;">WineSupervisor</a>. All&nbsp;rights&nbsp;reserved.</div><br/>
+                                                                        <div>If you do not want to receive emails from us, you can unsubscribe from <a href="{{ route('user_login') }}" target="_blank" style="text-decoration: underline; color:#828282;">your profile</a>.</div>
                                                                     @endif
                                                                 </div>
 
