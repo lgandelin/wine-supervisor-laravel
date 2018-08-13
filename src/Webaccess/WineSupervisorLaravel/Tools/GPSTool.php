@@ -7,7 +7,7 @@ class GPSTool
     public static function getGPSCoordinates($complete_address)
     {
         $address = str_replace(" ", "+", $complete_address);
-        $url = "http://maps.google.com/maps/api/geocode/json?sensor=false&address=$address";
+        $url = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=$address&key=" . env('GOOGLE_MAPS_GEOCODING_API_KEY');
         $response = file_get_contents($url);
         $json = json_decode($response, TRUE);
 
