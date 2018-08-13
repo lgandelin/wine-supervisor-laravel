@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="form-group" style="overflow: hidden;">
-                                <label for="accessory_image[]">Image de l'accessoire (181x550)</label>
+                                <label for="accessory_image[]">Image de l'accessoire (244x244)</label>
                                 <input style="display:none" type="text" name="accessory_accessory_image[]" value="@if (isset($sale->accessories[$i]) && isset($sale->accessories[$i]->accessory_image)){{ $sale->accessories[$i]->accessory_image }}@endif" />
                                 <input type="file" name="image_accessory_accessory_{{ $i }}" style="display:block; margin-top: 2rem; float:left; width: 50%; "/>
                                 

@@ -70,8 +70,8 @@
                         @foreach ($sale->accessories as $i => $accessory)
                             <li>
                                 <div class="background" style="background-image:url({{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/' . ($i+1) . '/' . $accessory->image) }})"></div>
-                                @if (isset($accessory->accessory_image))<img class="bottle" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/' . ($i+1) . '/' . $accessory->accessory_image) }}" alt="{{ $accessory->name }}" />@endif
-                                <div class="content">
+                                @if (isset($accessory->accessory_image))<img class="accessory" src="{{ asset(env('WS_UPLOADS_FOLDER') . 'sales_accessories/' . $sale->id . '/' . ($i+1) . '/' . $accessory->accessory_image) }}" alt="{{ $accessory->name }}" />@endif
+                                <div class="content sale-accessory-content">
                                     @if (($is_user || $is_guest) && $is_eligible_to_club_premium)
                                         @if ($sale->is_active)
                                             @if (App::getLocale() == 'en' && $sale->comments_en)

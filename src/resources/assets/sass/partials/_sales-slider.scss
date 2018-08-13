@@ -39,6 +39,13 @@
 					z-index: 2;
 				}
 
+				.accessory {
+					position: absolute;
+					top: 18rem;
+					left: 8rem;
+					z-index: 2;
+				}
+
 				.background {
 					position: absolute;
 					left: 0;
@@ -57,6 +64,10 @@
 					margin-left: 20rem;
 
 					font-size: 1.7rem;
+					
+					&.sale-accessory-content {
+						margin-left: 30rem;
+					}
 
 					.sale-subtitle {
 						display: block;
