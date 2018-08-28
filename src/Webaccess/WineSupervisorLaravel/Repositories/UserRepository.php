@@ -118,10 +118,11 @@ class UserRepository extends BaseRepository
      * @param $city
      * @param $zipcode
      * @param $country
+     * @param $locale
      * @param bool $read_only
      * @return User
      */
-    public static function update($userID, $firstName, $lastName, $phone, $email, $password, $opt_in, $address, $address2, $city, $zipcode, $country, $read_only = false)
+    public static function update($userID, $firstName, $lastName, $phone, $email, $password, $opt_in, $address, $address2, $city, $zipcode, $country, $locale, $read_only = false)
     {
         if ($user = User::find($userID)) {
             $user->first_name = $firstName;
@@ -135,6 +136,7 @@ class UserRepository extends BaseRepository
             $user->city = $city;
             $user->zipcode = $zipcode;
             $user->country = $country;
+            $user->locale = $locale;
             $user->read_only = $read_only;
 
             if (!$user->save())

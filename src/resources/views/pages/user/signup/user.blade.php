@@ -225,6 +225,12 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="opt_in" style="display: inline-block; margin-right: 1rem; vertical-align: middle;">{{ trans('wine-supervisor::user.update_account.receive_club_newsletter') }}</label><i>{{ trans('wine-supervisor::signup.user.club_newsletter_updatable_in_account') }}</i><br>
+                        <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($opt_in == true || $opt_in === null)checked="checked"@endif /> {{ trans('wine-supervisor::generic.yes') }}</div>
+                        <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$opt_in)checked="checked"@endif /> {{ trans('wine-supervisor::generic.no') }}</div>
+                    </div>
+
+                    <div class="form-group">
                         <label for=""><input type="checkbox" style="vertical-align: middle; display: inline-block;" class="cgv" /> {{ trans('wine-supervisor::signup.i_read_and_accept') }} <span class="required">*</span></label>
                         <ul style="list-style: inside">
                             <li>{{ trans('wine-supervisor::signup.the') }} <a href="http://friax.fr/download/cgv-cgu-winesupervisor/?wpdmdl=28761" target="_blank">{{ trans('wine-supervisor::signup.sales_terms') }}</a></li>

@@ -60,6 +60,7 @@ class UserController extends AdminController
             $request->get('city'),
             $request->get('zipcode'),
             $request->get('country'),
+            $request->get('locale'),
             $request->get('read_only')
         );
 

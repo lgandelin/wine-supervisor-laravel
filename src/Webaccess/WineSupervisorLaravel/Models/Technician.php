@@ -36,6 +36,7 @@ class Technician extends Authenticatable
         'zipcode',
         'city',
         'country',
+        'opt_in',
         'locale',
         'status',
         'read_only',

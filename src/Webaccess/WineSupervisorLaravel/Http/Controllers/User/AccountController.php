@@ -52,6 +52,7 @@ class AccountController extends UserController
             'city' => $request->get('city'),
             'zipcode' => $request->get('zipcode'),
             'country' => $request->get('country'),
+            'locale' => $request->get('locale'),
         ]);
 
         list($success, $error) = UserRepository::update(
@@ -66,7 +67,8 @@ class AccountController extends UserController
             $request->get('address2'),
             $request->get('city'),
             $request->get('zipcode'),
-            $request->get('country')
+            $request->get('country'),
+            $request->get('locale')
         );
 
         if (!$success) {

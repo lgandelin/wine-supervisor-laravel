@@ -94,6 +94,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="locale">{{ trans('wine-supervisor::generic.locale') }}</label>
+                        <select name="locale" id="locale" required>
+                            <option value="fr" @if ($user->locale == 'fr' || !$user->locale)selected="selected"@endif>Français</option>
+                            <option value="en" @if ($user->locale == 'en')selected="selected"@endif>English</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="creation_date">Date de création</label>
                         <input type="text" name="creation_date" id="creation_date" value="{{ DateTime::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('d/m/y') }}" disabled />
                     </div>

@@ -108,6 +108,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="locale">{{ trans('wine-supervisor::generic.locale') }}</label>
+                            <select name="locale" id="locale" required>
+                                <option value="fr" @if ($technician->locale == 'fr' || !$technician->locale)selected="selected"@endif>Français</option>
+                                <option value="en" @if ($technician->locale == 'en')selected="selected"@endif>English</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="opt_in">Lecture seule</label>
                             <div class="radio"><input type="radio" name="read_only" value="1" id="read_only" @if ($technician->read_only == true || $technician->read_only === null)checked="checked"@endif /> Oui</div>
                             <div class="radio"><input type="radio" name="read_only" value="0" @if (!$technician->read_only)checked="checked"@endif /> Non</div>

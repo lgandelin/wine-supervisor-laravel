@@ -251,6 +251,7 @@ class SignupController
             'zipcode' => $request->get('zipcode'),
             'city' => $request->get('city'),
             'country' => $request->get('country'),
+            'opt_in' => $request->get('opt_in'),
             'locale' => app()->getLocale()
         ]);
 
@@ -267,6 +268,7 @@ class SignupController
             $request->get('zipcode'),
             $request->get('city'),
             $request->get('country'),
+            $request->get('opt_in') == '1' ? true : false,
             app()->getLocale()
         );
 

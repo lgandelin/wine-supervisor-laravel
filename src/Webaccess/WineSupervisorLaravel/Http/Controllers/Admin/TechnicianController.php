@@ -91,6 +91,8 @@ class TechnicianController extends AdminController
             'zipcode' => $request->get('zipcode'),
             'city' => $request->get('city'),
             'country' => $request->get('country'),
+            'opt_in' => $request->get('opt_in'),
+            'locale' => $request->get('locale'),
         ]);
 
         list($success, $error) = TechnicianRepository::update(
@@ -106,7 +108,9 @@ class TechnicianController extends AdminController
             $request->get('address2'),
             $request->get('zipcode'),
             $request->get('city'),
-            $request->get('country')
+            $request->get('country'),
+            $request->get('opt_in'),
+            $request->get('locale')
         );
 
         if (!$success) {

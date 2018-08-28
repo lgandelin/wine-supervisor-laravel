@@ -48,9 +48,11 @@ class TechnicianRepository extends BaseRepository
      * @param $zipcode
      * @param $city
      * @param $country
+     * @param $opt_in
+     * @param $locale
      * @return bool
      */
-    public static function create($firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
+    public static function create($firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country, $opt_in, $locale)
     {
         $technician = new Technician();
         $technician->id = Uuid::uuid4()->toString();
@@ -66,8 +68,10 @@ class TechnicianRepository extends BaseRepository
         $technician->zipcode = $zipcode;
         $technician->city = $city;
         $technician->country = $country;
+        $technician->opt_in = $opt_in;
         $technician->technician_code = PasswordTool::generatePassword(8);
         $technician->status = Technician::STATUS_DISABLED;
+        $technician->locale = $locale;
 
         if (!$technician->save()) {
             return self::error(trans('wine-supervisor::technician.create_database_error'));
@@ -130,9 +134,11 @@ class TechnicianRepository extends BaseRepository
      * @param $zipcode
      * @param $city
      * @param $country
+     * @param $opt_in
+     * @param $locale
      * @return bool
      */
-    public static function update($technicianID, $firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country)
+    public static function update($technicianID, $firstName, $lastName, $company, $registration, $phone, $email, $password, $address, $address2, $zipcode, $city, $country, $opt_in, $locale)
     {
         if ($technician = Technician::find($technicianID)) {
             $technician->first_name = $firstName;
@@ -147,6 +153,8 @@ class TechnicianRepository extends BaseRepository
             $technician->zipcode = $zipcode;
             $technician->city = $city;
             $technician->country = $country;
+            $technician->opt_in = $opt_in;
+            $technician->locale = $locale;
 
             if (!$technician->save()) {
                 return self::error(trans('wine-supervisor::technician.update_database_error'));

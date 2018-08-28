@@ -60,6 +60,8 @@ class AccountController
             'zipcode' => $request->get('zipcode'),
             'city' => $request->get('city'),
             'country' => $request->get('country'),
+            'opt_in' => $request->get('opt_in'),
+            'locale' => $request->get('locale'),
         ]);
 
         list($success, $error) = TechnicianRepository::update(
@@ -75,7 +77,9 @@ class AccountController
             $request->get('address2'),
             $request->get('zipcode'),
             $request->get('city'),
-            $request->get('country')
+            $request->get('country'),
+            $request->get('opt_in') == '1' ? true : false,
+            $request->get('locale')
         );
 
         if (!$success) {
