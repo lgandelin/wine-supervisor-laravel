@@ -116,7 +116,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="opt_in">Lecture seule</label>
+                            <label for="opt_in">Inscrit à la Newsletter</label>
+                            <div class="radio"><input type="radio" name="opt_in" value="1" id="opt_in" @if ($technician->opt_in == true || $technician->opt_in === null)checked="checked"@endif /> Oui</div>
+                            <div class="radio"><input type="radio" name="opt_in" value="0" @if (!$technician->opt_in)checked="checked"@endif /> Non</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="read_only">Lecture seule</label>
                             <div class="radio"><input type="radio" name="read_only" value="1" id="read_only" @if ($technician->read_only == true || $technician->read_only === null)checked="checked"@endif /> Oui</div>
                             <div class="radio"><input type="radio" name="read_only" value="0" @if (!$technician->read_only)checked="checked"@endif /> Non</div>
                         </div>
