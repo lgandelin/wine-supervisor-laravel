@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="zipcode">{{ trans('wine-supervisor::generic.zipcode') }}{{ trans('wine-supervisor::generic.zipcode') }}</label>
+                            <label for="zipcode">{{ trans('wine-supervisor::generic.zipcode') }}</label>
                             <input type="text" name="zipcode" id="zipcode" value="{{ $technician->zipcode }}" />
                         </div>
 
